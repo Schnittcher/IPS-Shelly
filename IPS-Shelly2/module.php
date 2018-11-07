@@ -67,9 +67,9 @@ class IPS_Shelly2 extends IPSModule
             //Power Variable prüfen
             if (property_exists($Buffer, 'TOPIC')) {
                 //Ist es ein Relay?
-                if (fnmatch('*relay*', $Buffer->TOPIC)) {
-                    $this->SendDebug('Power Topic', $Buffer->TOPIC, 0);
-                    $this->SendDebug('Power Msg', $Buffer->MSG, 0);
+                if (fnmatch('*/relay/[01]', $Buffer->TOPIC)) {
+                    $this->SendDebug('State Topic', $Buffer->TOPIC, 0);
+                    $this->SendDebug('State Msg', $Buffer->MSG, 0);
                     $ShellyTopic = explode("/", $Buffer->TOPIC);
                     $LastKey = count($ShellyTopic) - 1;
                     $relay = $ShellyTopic[$LastKey];
@@ -106,6 +106,16 @@ class IPS_Shelly2 extends IPSModule
                 if (fnmatch('*roller*', $Buffer->TOPIC)) {
                     //TODO ROLLER
 
+                }
+                if (fnmatch('*/relay/power*', $Buffer->TOPIC)) {
+                    $this->SendDebug('Power Topic', $Buffer->TOPIC, 0);
+                    $this->SendDebug('Power Msg', $Buffer->MSG, 0);
+                    SetValue($this->GetIDForIdent('Shelly_Power'), $Buffer->MSG);
+                }
+                if (fnmatch('*/relay/energy*', $Buffer->TOPIC)) {
+                    $this->SendDebug('Energy Topic', $Buffer->TOPIC, 0);
+                    $this->SendDebug('Energy Msg', $Buffer->MSG, 0);
+                    SetValue($this->GetIDForIdent('Shelly_Energy'), $Buffer->MSG);
                 }
             }
         }
