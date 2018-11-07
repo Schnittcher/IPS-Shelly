@@ -1,5 +1,5 @@
-# IPS-Shelly1
-   Mit diesem Modul ist es zur Zeit möglich ein Shelly 1 über MQTT zu schalten.
+# IPS-Shelly2
+   Mit diesem Modul ist es zur Zeit möglich ein Shelly 2 über MQTT zu schalten.
    
    Benötigt wird ein MQTT Broker und das Modul IPS-KS-MQTT.
    
@@ -11,13 +11,17 @@
    
    Feld | Beschreibung
    ------------ | -------------
-   MQTT Topic | Hier wird das Topic (shelly1-deviceid) des Shelly 1 eingetragen. Dazu muss zur Zeit die folgende URL aufgerufen werden: http://ShellyIP/settings dort ist derHostname zu finden. Der Hostname ist die DeviceID!
+   MQTT Topic | Hier wird das Topic (shellyswitch-deviceid) des Shelly 1 eingetragen. Dazu muss zur Zeit die folgende URL aufgerufen werden: http://ShellyIP/settings dort ist derHostname zu finden. Der Hostname ist die DeviceID!
+   Device Type | Relay oder Roller
    
    ## 2. Funktionen
    
-   ### Shelly_SwitchMode($InstanceID, $Value)
+   ### Shelly_SwitchMode($InstanceID, $Relay, $Value)
    Mit dieser Funktion ist es möglich das Gerät ein- bzw. auszuschalten.
    ```php
-   Shelly1_SwitchMode(25537, true) //Einschalten;
-   Shelly1_SwitchMode(25537, false) //Ausschalten;
+   Shelly_SwitchMode(25537, 0, true) //Relay 1 Einschalten;
+   Shelly_SwitchMode(25537, 0, false) //Relay 1 Ausschalten;
+   
+   Shelly_SwitchMode(25537, 1, true) //Relay 2 Einschalten;
+   Shelly_SwitchMode(25537, 1, false) //Relay 1 Ausschalten;
    ```
