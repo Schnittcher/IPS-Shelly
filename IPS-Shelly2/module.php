@@ -105,7 +105,8 @@ class IPS_Shelly2 extends IPSModule
                 }
                 if (fnmatch('*roller*', $Buffer->TOPIC)) {
                     //TODO ROLLER
-
+                    $this->SendDebug('Roller Topic', $Buffer->TOPIC, 0);
+                    $this->SendDebug('Roller Msg', $Buffer->MSG, 0);
                 }
                 if (fnmatch('*/relay/power*', $Buffer->TOPIC)) {
                     $this->SendDebug('Power Topic', $Buffer->TOPIC, 0);
