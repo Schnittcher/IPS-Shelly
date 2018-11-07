@@ -1,4 +1,4 @@
-# IPS-Shelly
+# IPS-Shelly1
    Mit diesem Modul ist es zur Zeit möglich ein Shelly 1 über MQTT zu schalten.
    
    Benötigt wird ein MQTT Broker und das Modul IPS-KS-MQTT.
@@ -18,6 +18,6 @@
    ### Shelly_SwitchMode($InstanceID, $Value)
    Mit dieser Funktion ist es möglich das Gerät ein- bzw. auszuschalten.
    ```php
-   Shelly_SwitchMode(25537, true) //Einschalten;
-   Shelly_SwitchMode(25537, false) //Ausschalten;
+   Shelly1_SwitchMode(25537, true) //Einschalten;
+   Shelly1_SwitchMode(25537, false) //Ausschalten;
    ```
