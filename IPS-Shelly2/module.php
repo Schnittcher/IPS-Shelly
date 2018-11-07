@@ -31,8 +31,8 @@ class IPS_Shelly2 extends IPSModule
                 $this->SendDebug(__FUNCTION__ .' Device Type: ',' Relay',0);
                 $this->RegisterVariableBoolean('Shelly_State','State','~Switch');
                 $this->EnableAction('Shelly_State');
-                $this->RegisterVariableBoolean('Shelly_State2','State 2','~Switch');
-                $this->EnableAction('Shelly_State2');
+                $this->RegisterVariableBoolean('Shelly_State1','State 2','~Switch');
+                $this->EnableAction('Shelly_State1');
 
                 $this->RegisterVariableFloat('Shelly_Power','Power','');
                 $this->RegisterVariableFloat('Shelly_Energy','Energy','');
@@ -83,7 +83,7 @@ class IPS_Shelly2 extends IPSModule
                                     SetValue($this->GetIDForIdent('Shelly_State'), 0);
                                     break;
                                 case 1:
-                                    SetValue($this->GetIDForIdent('Shelly_State2'), 0);
+                                    SetValue($this->GetIDForIdent('Shelly_State1'), 0);
                                     break;
                                 default:
                                     break;
@@ -95,7 +95,7 @@ class IPS_Shelly2 extends IPSModule
                                     SetValue($this->GetIDForIdent('Shelly_State'), 1);
                                     break;
                                 case 1:
-                                    SetValue($this->GetIDForIdent('Shelly_State2'), 1);
+                                    SetValue($this->GetIDForIdent('Shelly_State1'), 1);
                                     break;
                                 default:
                                     break;
