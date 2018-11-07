@@ -6,7 +6,7 @@ trait ShellyRelayAction {
 
     public function RequestAction($Ident, $Value)
     {
-        if ($Ident == 'Shelly_Power') {
+        if ($Ident == 'Shelly_State') {
             $relay = 0;
         } else {
             $relay = substr($Ident, -1, 1);

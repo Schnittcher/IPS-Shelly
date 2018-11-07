@@ -1,7 +1,11 @@
 <?php
 
+require_once __DIR__ . '/../libs/ShellyHelper.php';
+
 class IPS_Shelly2 extends IPSModule
 {
+    use ShellyRelayAction;
+
     public function Create()
     {
         //Never delete this line!
@@ -106,14 +110,14 @@ class IPS_Shelly2 extends IPSModule
             }
         }
     }
-
+/**
     public function RequestAction($Ident, $Value)
     {
         $this->SendDebug(__FUNCTION__ . ' Ident', $Ident, 0);
         $this->SendDebug(__FUNCTION__ . ' Value', $Value, 0);
         $result = $this->SwitchMode($Value);
     }
-
+**/
     private function createVariablenProfiles()
     {
         //Online / Offline Profile
@@ -121,19 +125,6 @@ class IPS_Shelly2 extends IPSModule
             array(false, 'Offline',  '', 0xFF0000),
             array(true, 'Online',  '', 0x00FF00)
         ));
-    }
-
-    public function SwitchMode(bool $Value)
-    {
-        $Buffer['Topic'] = 'shellies/'.$this->ReadPropertyString('MQTTTopic').'/relay/0/command';
-        if($Value) {
-            $Buffer['MSG'] = 'on';
-        } else {
-            $Buffer['MSG'] = 'off';
-        }
-        $BufferJSON = json_encode($Buffer);
-        $this->SendDebug(__FUNCTION__, $BufferJSON, 0);
-        $this->SendDataToParent(json_encode(array('DataID' => '{018EF6B5-AB94-40C6-AA53-46943E824ACF}', 'Action' => 'Publish', 'Buffer' => $BufferJSON)));
     }
 
     private function RegisterProfileBoolean($Name, $Icon, $Prefix, $Suffix, $MinValue, $MaxValue, $StepSize)

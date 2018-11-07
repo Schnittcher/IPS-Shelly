@@ -14,9 +14,9 @@ class IPS_Shelly1 extends IPSModule
         $this->ConnectParent('{EE0D345A-CF31-428A-A613-33CE98E752DD}');
 
         $this->RegisterPropertyString('MQTTTopic', '');
-        $this->RegisterVariableBoolean('Shelly_Power','Power','~Switch');
+        $this->RegisterVariableBoolean('Shelly_State','State','~Switch');
 
-        $this->EnableAction('Shelly_Power');
+        $this->EnableAction('Shelly_State');
     }
 
     public function ApplyChanges()
@@ -47,10 +47,10 @@ class IPS_Shelly1 extends IPSModule
                     //Power prüfen und in IPS setzen
                     switch ($Buffer->MSG) {
                         case 'off':
-                            SetValue($this->GetIDForIdent('Shelly_Power'), 0);
+                            SetValue($this->GetIDForIdent('Shelly_State'), 0);
                             break;
                         case 'on':
-                            SetValue($this->GetIDForIdent('Shelly_Power'), 1);
+                            SetValue($this->GetIDForIdent('Shelly_State'), 1);
                             break;
                     }
                 }
