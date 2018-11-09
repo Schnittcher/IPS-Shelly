@@ -4,14 +4,14 @@ require_once __DIR__ . '/../libs/ShellyHelper.php';
 
 class IPS_Shelly2 extends IPSModule
 {
-    use ShellyRelayAction;
+    use ShellyRelayAction,
+        ShellyRollerAction;
 
     public function Create()
     {
         //Never delete this line!
         parent::Create();
         $this->ConnectParent('{EE0D345A-CF31-428A-A613-33CE98E752DD}');
-        $this->createVariablenProfiles();
 
         $this->RegisterPropertyString('MQTTTopic', '');
         $this->RegisterPropertyString("DeviceType", '');
@@ -33,18 +33,18 @@ class IPS_Shelly2 extends IPSModule
                 $this->EnableAction('Shelly_State');
                 $this->RegisterVariableBoolean('Shelly_State1','State 2','~Switch');
                 $this->EnableAction('Shelly_State1');
-
-                $this->RegisterVariableFloat('Shelly_Power','Power','');
-                $this->RegisterVariableFloat('Shelly_Energy','Energy','');
                 break;
             case 'roller':
                 $this->SendDebug(__FUNCTION__.' Device Type: ',' Roller',0);
-                //TODO
+                $this->RegisterVariableInteger('Shelly_Roller','Roller','~ShutterMoveStop');
+                $this->EnableAction('Shelly_Roller');
                 break;
             default:
                 $this->SendDebug(__FUNCTION__ .' Device Type: ','No Device Type',0);
 
         }
+        $this->RegisterVariableFloat('Shelly_Power','Power','');
+        $this->RegisterVariableFloat('Shelly_Energy','Energy','');
     }
 
     public function ReceiveData($JSONString)
@@ -107,6 +107,21 @@ class IPS_Shelly2 extends IPSModule
                     //TODO ROLLER
                     $this->SendDebug('Roller Topic', $Buffer->TOPIC, 0);
                     $this->SendDebug('Roller Msg', $Buffer->MSG, 0);
+                    switch($Buffer->MSG) {
+                        case 'open':
+                            SetValue($this->GetIDForIdent('Shelly_Roller'), 0);
+                            break;
+                        case 'stop':
+                            SetValue($this->GetIDForIdent('Shelly_Roller'), 2);
+                            break;
+                        case 'close':
+                            SetValue($this->GetIDForIdent('Shelly_Roller'), 4);
+                            break;
+                        default:
+                            $this->SendDebug(__FUNCTION__.' Roller', 'Invalid Value: '.$Buffer->MSG,0);
+                            break;
+                    }
+
                 }
                 if (fnmatch('*/relay/power*', $Buffer->TOPIC)) {
                     $this->SendDebug('Power Topic', $Buffer->TOPIC, 0);
@@ -129,46 +144,34 @@ class IPS_Shelly2 extends IPSModule
         $result = $this->SwitchMode($Value);
     }
 **/
-    private function createVariablenProfiles()
+    private function RegisterProfileIntegerEx($Name, $Icon, $Prefix, $Suffix, $Associations)
     {
-        //Online / Offline Profile
-        $this->RegisterProfileBooleanEx('Tasmota.DeviceStatus', 'Network', '', '', array(
-            array(false, 'Offline',  '', 0xFF0000),
-            array(true, 'Online',  '', 0x00FF00)
-        ));
-    }
-
-    private function RegisterProfileBoolean($Name, $Icon, $Prefix, $Suffix, $MinValue, $MaxValue, $StepSize)
-    {
-        if (!IPS_VariableProfileExists($Name)) {
-            IPS_CreateVariableProfile($Name, 0);
-        } else {
-            $profile = IPS_GetVariableProfile($Name);
-            if ($profile['ProfileType'] != 0) {
-                throw new Exception('Variable profile type does not match for profile ' . $Name);
-            }
-        }
-
-        IPS_SetVariableProfileIcon($Name, $Icon);
-        IPS_SetVariableProfileText($Name, $Prefix, $Suffix);
-        IPS_SetVariableProfileValues($Name, $MinValue, $MaxValue, $StepSize);
-    }
-
-    private function RegisterProfileBooleanEx($Name, $Icon, $Prefix, $Suffix, $Associations)
-    {
-        if (count($Associations) === 0) {
+        if (sizeof($Associations) === 0) {
             $MinValue = 0;
             $MaxValue = 0;
         } else {
             $MinValue = $Associations[0][0];
-            $MaxValue = $Associations[count($Associations) - 1][0];
+            $MaxValue = $Associations[sizeof($Associations) - 1][0];
         }
-
-        $this->RegisterProfileBoolean($Name, $Icon, $Prefix, $Suffix, $MinValue, $MaxValue, 0);
-
+        $this->RegisterProfileInteger($Name, $Icon, $Prefix, $Suffix, $MinValue, $MaxValue, 0);
         foreach ($Associations as $Association) {
             IPS_SetVariableProfileAssociation($Name, $Association[0], $Association[1], $Association[2], $Association[3]);
         }
+    }
+
+    private function RegisterProfileInteger($Name, $Icon, $Prefix, $Suffix, $MinValue, $MaxValue, $StepSize)
+    {
+        if (!IPS_VariableProfileExists($Name)) {
+            IPS_CreateVariableProfile($Name, 1);
+        } else {
+            $profile = IPS_GetVariableProfile($Name);
+            if ($profile['ProfileType'] != 1) {
+                throw new Exception("Variable profile type does not match for profile " . $Name, E_USER_NOTICE);
+            }
+        }
+        IPS_SetVariableProfileIcon($Name, $Icon);
+        IPS_SetVariableProfileText($Name, $Prefix, $Suffix);
+        IPS_SetVariableProfileValues($Name, $MinValue, $MaxValue, $StepSize);
     }
 
 }

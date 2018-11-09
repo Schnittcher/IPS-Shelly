@@ -6,15 +6,34 @@ trait ShellyRelayAction {
 
     public function RequestAction($Ident, $Value)
     {
-        if ($Ident == 'Shelly_State') {
-            $relay = 0;
-        } else {
-            $relay = substr($Ident, -1, 1);
+        if (fnmatch('Shelly_State*', $Ident)) {
+            if ($Ident == 'Shelly_State') {
+                $relay = 0;
+            } else {
+                $relay = substr($Ident, -1, 1);
+            }
+            $this->SendDebug(__FUNCTION__ . ' Relay', $relay, 0);
+            $this->SendDebug(__FUNCTION__ . ' Value', $Value, 0);
+            $this->SwitchMode($relay, $Value);
+            return;
         }
-
-        $this->SendDebug(__FUNCTION__ . ' Relay', $relay, 0);
-        $this->SendDebug(__FUNCTION__ . ' Value', $Value, 0);
-        $result = $this->SwitchMode($relay, $Value);
+        if ($Ident == 'Shelly_Roller') {
+            switch($Value) {
+                case 0:
+                    $this->MoveUp();
+                    break;
+                case 2:
+                    $this->Stop();
+                    break;
+                case 4:
+                    $this->MoveDown();
+                    break;
+                default:
+                    $this->SendDebug(__FUNCTION__ . 'Ident: Shelly_Roller', 'Invalid Value:'.$Value, 0);
+            }
+            return;
+        }
+        $this->SendDebug(__FUNCTION__, 'No Action - Ident: '.$Ident, 0);
     }
 
     public function SwitchMode(int $relay, bool $Value)
@@ -29,4 +48,33 @@ trait ShellyRelayAction {
         $this->SendDebug(__FUNCTION__, $BufferJSON, 0);
         $this->SendDataToParent(json_encode(array('DataID' => '{018EF6B5-AB94-40C6-AA53-46943E824ACF}', 'Action' => 'Publish', 'Buffer' => $BufferJSON)));
     }
+
+}
+
+trait ShellyRollerAction {
+
+    public function MoveDown() {
+        $Buffer['Topic'] = MQTT_GROUP_TOPIC.'/'.$this->ReadPropertyString('MQTTTopic').'/roller/0/command';
+        $Buffer['MSG'] = 'close';
+        $BufferJSON = json_encode($Buffer);
+        $this->SendDebug(__FUNCTION__, $BufferJSON, 0);
+        $this->SendDataToParent(json_encode(array('DataID' => '{018EF6B5-AB94-40C6-AA53-46943E824ACF}', 'Action' => 'Publish', 'Buffer' => $BufferJSON)));
+    }
+
+    public function MoveUp() {
+        $Buffer['Topic'] = MQTT_GROUP_TOPIC.'/'.$this->ReadPropertyString('MQTTTopic').'/roller/0/command';
+        $Buffer['MSG'] = 'open';
+        $BufferJSON = json_encode($Buffer);
+        $this->SendDebug(__FUNCTION__, $BufferJSON, 0);
+        $this->SendDataToParent(json_encode(array('DataID' => '{018EF6B5-AB94-40C6-AA53-46943E824ACF}', 'Action' => 'Publish', 'Buffer' => $BufferJSON)));
+    }
+
+    public function Stop() {
+        $Buffer['Topic'] = MQTT_GROUP_TOPIC.'/'.$this->ReadPropertyString('MQTTTopic').'/roller/0/command';
+        $Buffer['MSG'] = 'stop';
+        $BufferJSON = json_encode($Buffer);
+        $this->SendDebug(__FUNCTION__, $BufferJSON, 0);
+        $this->SendDataToParent(json_encode(array('DataID' => '{018EF6B5-AB94-40C6-AA53-46943E824ACF}', 'Action' => 'Publish', 'Buffer' => $BufferJSON)));
+    }
+
 }
