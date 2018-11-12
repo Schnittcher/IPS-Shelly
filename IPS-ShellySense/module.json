@@ -1,0 +1,11 @@
+{
+	"id": "{F86F268B-BC23-41AC-B107-16EEF661A4D7}",
+	"name": "IPS_ShellySense",
+	"type": 3,
+	"vendor": "",
+	"aliases": ["Shelly Sense"],
+	"parentRequirements": ["{79827379-F36E-4ADA-8A95-5F8D1DC92FA9}"],
+	"childRequirements": ["{018EF6B5-AB94-40C6-AA53-46943E824ACF}"],
+	"implemented": ["{018EF6B5-AB94-40C6-AA53-46943E824ACF}"],
+	"prefix": "Shelly"
+}
