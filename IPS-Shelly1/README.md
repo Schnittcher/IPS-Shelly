@@ -15,7 +15,7 @@
    
    ## 2. Funktionen
    
-   ### Shelly_SwitchMode($InstanceID, $Relay, $Value)
+   **Shelly_SwitchMode($InstanceID, $Relay, $Value)**\
    Mit dieser Funktion ist es möglich das Gerät ein- bzw. auszuschalten.
    ```php
    Shelly_SwitchMode(25537, 0, true) //Einschalten;

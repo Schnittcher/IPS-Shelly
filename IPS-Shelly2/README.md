@@ -1,5 +1,7 @@
 # IPS-Shelly2
-   Dieses Modul ermöglicht es, ein Shelly2 in IP-Symcon zu integrieren.  
+   Dieses Modul ermöglicht es, ein Shelly2 in IP-Symcon zu integrieren.
+   Das Modul kann in IP-Symcon als Relay oder als Rollo eingerichtet werden.
+     
    ## Inhaltverzeichnis
    1. [Konfiguration](#1-konfiguration)
    2. [Funktionen](#2-funktionen)
@@ -22,7 +24,7 @@
    Shelly_SwitchMode(25537, 0, false) //Relay 1 Ausschalten;
    
    Shelly_SwitchMode(25537, 1, true) //Relay 2 Einschalten;
-   Shelly_SwitchMode(25537, 1, false) //Relay 1 Ausschalten;
+   Shelly_SwitchMode(25537, 1, false) //Relay 2 Ausschalten;
    ```
    
   ### 2.2 Roller
