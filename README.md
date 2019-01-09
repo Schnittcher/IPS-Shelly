@@ -44,7 +44,7 @@ https://github.com/Schnittcher/IPS-Shelly.git
 ```
 
 ## 4. Konfiguration in IP-Symcon
-Bitte den einzelnen Modulen entnehme.
+Bitte den einzelnen Modulen entnehmen.
 
 ## 5. Spenden
 
