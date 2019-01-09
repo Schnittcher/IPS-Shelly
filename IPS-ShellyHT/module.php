@@ -1,7 +1,7 @@
 <?php
 
+declare(strict_types=1);
 require_once __DIR__ . '/../libs/ShellyHelper.php';
-
 
 class IPS_ShellyHT extends IPSModule
 {
@@ -11,9 +11,9 @@ class IPS_ShellyHT extends IPSModule
         parent::Create();
         $this->ConnectParent('{EE0D345A-CF31-428A-A613-33CE98E752DD}');
 
-        $this->RegisterVariableFloat('Shelly_Temperature','Temperature','~Temperature');
-        $this->RegisterVariableFloat('Shelly_Humidity','Humidity','~Humidity.F');
-        $this->RegisterVariableInteger('Shelly_Battery','Battery','~Battery.100');
+        $this->RegisterVariableFloat('Shelly_Temperature', 'Temperature', '~Temperature');
+        $this->RegisterVariableFloat('Shelly_Humidity', 'Humidity', '~Humidity.F');
+        $this->RegisterVariableInteger('Shelly_Battery', 'Battery', '~Battery.100');
         $this->RegisterPropertyString('MQTTTopic', '');
     }
 

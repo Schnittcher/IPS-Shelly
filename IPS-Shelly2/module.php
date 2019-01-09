@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 require_once __DIR__ . '/../libs/ShellyHelper.php';
 
 class IPS_Shelly2 extends IPSModule
@@ -14,7 +15,7 @@ class IPS_Shelly2 extends IPSModule
         $this->ConnectParent('{EE0D345A-CF31-428A-A613-33CE98E752DD}');
 
         $this->RegisterPropertyString('MQTTTopic', '');
-        $this->RegisterPropertyString("DeviceType", '');
+        $this->RegisterPropertyString('DeviceType', '');
     }
 
     public function ApplyChanges()
@@ -26,25 +27,25 @@ class IPS_Shelly2 extends IPSModule
         $MQTTTopic = $this->ReadPropertyString('MQTTTopic');
         $this->SetReceiveDataFilter('.*' . $MQTTTopic . '.*');
 
-        switch($this->ReadPropertyString('DeviceType')) {
+        switch ($this->ReadPropertyString('DeviceType')) {
             case 'relay':
-                $this->SendDebug(__FUNCTION__ .' Device Type: ',' Relay',0);
-                $this->RegisterVariableBoolean('Shelly_State','State','~Switch');
+                $this->SendDebug(__FUNCTION__ . ' Device Type: ', ' Relay', 0);
+                $this->RegisterVariableBoolean('Shelly_State', 'State', '~Switch');
                 $this->EnableAction('Shelly_State');
-                $this->RegisterVariableBoolean('Shelly_State1','State 2','~Switch');
+                $this->RegisterVariableBoolean('Shelly_State1', 'State 2', '~Switch');
                 $this->EnableAction('Shelly_State1');
                 break;
             case 'roller':
-                $this->SendDebug(__FUNCTION__.' Device Type: ',' Roller',0);
-                $this->RegisterVariableInteger('Shelly_Roller','Roller','~ShutterMoveStop');
+                $this->SendDebug(__FUNCTION__ . ' Device Type: ', ' Roller', 0);
+                $this->RegisterVariableInteger('Shelly_Roller', 'Roller', '~ShutterMoveStop');
                 $this->EnableAction('Shelly_Roller');
                 break;
             default:
-                $this->SendDebug(__FUNCTION__ .' Device Type: ','No Device Type',0);
+                $this->SendDebug(__FUNCTION__ . ' Device Type: ', 'No Device Type', 0);
 
         }
-        $this->RegisterVariableFloat('Shelly_Power','Power','');
-        $this->RegisterVariableFloat('Shelly_Energy','Energy','');
+        $this->RegisterVariableFloat('Shelly_Power', 'Power', '');
+        $this->RegisterVariableFloat('Shelly_Energy', 'Energy', '');
     }
 
     public function ReceiveData($JSONString)
@@ -70,10 +71,10 @@ class IPS_Shelly2 extends IPSModule
                 if (fnmatch('*/relay/[01]', $Buffer->TOPIC)) {
                     $this->SendDebug('State Topic', $Buffer->TOPIC, 0);
                     $this->SendDebug('State Msg', $Buffer->MSG, 0);
-                    $ShellyTopic = explode("/", $Buffer->TOPIC);
+                    $ShellyTopic = explode('/', $Buffer->TOPIC);
                     $LastKey = count($ShellyTopic) - 1;
                     $relay = $ShellyTopic[$LastKey];
-                    $this->SendDebug(__FUNCTION__.' Relay',$relay,0);
+                    $this->SendDebug(__FUNCTION__ . ' Relay', $relay, 0);
 
                     //Power prüfen und in IPS setzen
                     switch ($Buffer->MSG) {
@@ -107,7 +108,7 @@ class IPS_Shelly2 extends IPSModule
                     //TODO ROLLER
                     $this->SendDebug('Roller Topic', $Buffer->TOPIC, 0);
                     $this->SendDebug('Roller Msg', $Buffer->MSG, 0);
-                    switch($Buffer->MSG) {
+                    switch ($Buffer->MSG) {
                         case 'open':
                             SetValue($this->GetIDForIdent('Shelly_Roller'), 0);
                             break;
@@ -118,10 +119,9 @@ class IPS_Shelly2 extends IPSModule
                             SetValue($this->GetIDForIdent('Shelly_Roller'), 4);
                             break;
                         default:
-                            $this->SendDebug(__FUNCTION__.' Roller', 'Invalid Value: '.$Buffer->MSG,0);
+                            $this->SendDebug(__FUNCTION__ . ' Roller', 'Invalid Value: ' . $Buffer->MSG, 0);
                             break;
                     }
-
                 }
                 if (fnmatch('*/relay/power*', $Buffer->TOPIC)) {
                     $this->SendDebug('Power Topic', $Buffer->TOPIC, 0);
@@ -136,22 +136,23 @@ class IPS_Shelly2 extends IPSModule
             }
         }
     }
-/**
-    public function RequestAction($Ident, $Value)
-    {
-        $this->SendDebug(__FUNCTION__ . ' Ident', $Ident, 0);
-        $this->SendDebug(__FUNCTION__ . ' Value', $Value, 0);
-        $result = $this->SwitchMode($Value);
-    }
-**/
+
+    /**
+     * public function RequestAction($Ident, $Value)
+     * {
+     * $this->SendDebug(__FUNCTION__ . ' Ident', $Ident, 0);
+     * $this->SendDebug(__FUNCTION__ . ' Value', $Value, 0);
+     * $result = $this->SwitchMode($Value);
+     * }.
+     **/
     private function RegisterProfileIntegerEx($Name, $Icon, $Prefix, $Suffix, $Associations)
     {
-        if (sizeof($Associations) === 0) {
+        if (count($Associations) === 0) {
             $MinValue = 0;
             $MaxValue = 0;
         } else {
             $MinValue = $Associations[0][0];
-            $MaxValue = $Associations[sizeof($Associations) - 1][0];
+            $MaxValue = $Associations[count($Associations) - 1][0];
         }
         $this->RegisterProfileInteger($Name, $Icon, $Prefix, $Suffix, $MinValue, $MaxValue, 0);
         foreach ($Associations as $Association) {
@@ -166,12 +167,11 @@ class IPS_Shelly2 extends IPSModule
         } else {
             $profile = IPS_GetVariableProfile($Name);
             if ($profile['ProfileType'] != 1) {
-                throw new Exception("Variable profile type does not match for profile " . $Name, E_USER_NOTICE);
+                throw new Exception('Variable profile type does not match for profile ' . $Name, E_USER_NOTICE);
             }
         }
         IPS_SetVariableProfileIcon($Name, $Icon);
         IPS_SetVariableProfileText($Name, $Prefix, $Suffix);
         IPS_SetVariableProfileValues($Name, $MinValue, $MaxValue, $StepSize);
     }
-
 }
