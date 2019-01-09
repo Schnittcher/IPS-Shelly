@@ -1,5 +1,5 @@
 # IPS-ShellyPlug
-   Dieses Modul ermöglicht es, ein ShellyPlug in IP-Symcon zu integrieren.
+   Dieses Modul ermöglicht es, ein ShellyPlug in IP-Symcon zu integrieren.\
    Es kann das Relay geschaltet werden und Messwerte werden in IP-Symcon dargestellt.
       
    ## Inhaltverzeichnis
