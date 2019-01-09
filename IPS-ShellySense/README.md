@@ -1,4 +1,4 @@
-# IPS-Shelly1
+# IPS-Shelly2
    Mit diesem Modul ist es zur Zeit möglich ein Shelly 1 über MQTT zu schalten.
    
    Benötigt wird ein MQTT Broker und das Modul IPS-KS-MQTT.
