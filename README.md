@@ -26,7 +26,7 @@
 
 * [IPS-Shelly1](IPS-Shelly1/README.md)
 * [IPS-Shelly2](IPS-Shelly2/README.md)
-* [IPS-Shelly4Pro](IPS-Shell4Proy/README.md)
+* [IPS-Shelly4Pro](IPS-Shelly4Pro/README.md)
 * [IPS-ShellyHT](IPS-ShellyHT/README.md)
 * [IPS-ShellyPlug](IPS-ShellyPlug/README.md)
 * [IPS-ShellySense](IPS-ShellySense/README.md)
