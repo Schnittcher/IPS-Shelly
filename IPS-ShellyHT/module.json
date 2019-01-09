@@ -1,0 +1,11 @@
+{
+	"id": "{F2EE9948-94F6-4BA6-BDC9-E59E440F3DB0}",
+	"name": "IPS_ShellyHT",
+	"type": 3,
+	"vendor": "",
+	"aliases": ["Shelly H&T"],
+	"parentRequirements": ["{79827379-F36E-4ADA-8A95-5F8D1DC92FA9}"],
+	"childRequirements": ["{018EF6B5-AB94-40C6-AA53-46943E824ACF}"],
+	"implemented": ["{018EF6B5-AB94-40C6-AA53-46943E824ACF}"],
+	"prefix": "Shelly"
+}

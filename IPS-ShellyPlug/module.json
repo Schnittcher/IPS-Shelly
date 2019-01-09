@@ -1,9 +1,9 @@
 {
-	"id": "{9E5FA0B2-AA98-48D5-AE07-78DEA4B0370A}",
-	"name": "IPS_Shelly",
+	"id": "{ED5E1057-C47A-4D73-A130-B4E2912A026C}",
+	"name": "IPS_ShellyPlug",
 	"type": 3,
 	"vendor": "",
-	"aliases": ["Shelly"],
+	"aliases": ["Shelly Plug"],
 	"parentRequirements": ["{79827379-F36E-4ADA-8A95-5F8D1DC92FA9}"],
 	"childRequirements": ["{018EF6B5-AB94-40C6-AA53-46943E824ACF}"],
 	"implemented": ["{018EF6B5-AB94-40C6-AA53-46943E824ACF}"],

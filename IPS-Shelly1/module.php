@@ -1,17 +1,22 @@
 <?php
 
-class IPS_Shelly extends IPSModule
+require_once __DIR__ . '/../libs/ShellyHelper.php';
+
+
+class IPS_Shelly1 extends IPSModule
 {
+    use ShellyRelayAction;
+
     public function Create()
     {
         //Never delete this line!
         parent::Create();
         $this->ConnectParent('{EE0D345A-CF31-428A-A613-33CE98E752DD}');
-        $this->createVariablenProfiles();
-        //Anzahl die in der Konfirgurationsform angezeigt wird - Hier Standard auf 1
+
         $this->RegisterPropertyString('MQTTTopic', '');
-        $this->RegisterVariableBoolean('Shelly_Power','Power','~Switch');
-        $this->EnableAction('Shelly_Power');
+        $this->RegisterVariableBoolean('Shelly_State','State','~Switch');
+
+        $this->EnableAction('Shelly_State');
     }
 
     public function ApplyChanges()
@@ -19,9 +24,9 @@ class IPS_Shelly extends IPSModule
         //Never delete this line!
         parent::ApplyChanges();
         $this->ConnectParent('{EE0D345A-CF31-428A-A613-33CE98E752DD}');
-        //Setze Filter fÃ¼r ReceiveData
-        $topic = $this->ReadPropertyString('MQTTTopic');
-        $this->SetReceiveDataFilter('.*' . $topic . '.*');
+        //Setze Filter für ReceiveData
+        $MQTTTopic = $this->ReadPropertyString('MQTTTopic');
+        $this->SetReceiveDataFilter('.*' . $MQTTTopic . '.*');
     }
 
     public function ReceiveData($JSONString)
@@ -33,20 +38,19 @@ class IPS_Shelly extends IPSModule
             $Buffer = json_decode($data->Buffer);
             $this->SendDebug('MQTT Topic', $Buffer->TOPIC, 0);
 
-            //Power Vairablen checken
+            //Power Variable prüfen
             if (property_exists($Buffer, 'TOPIC')) {
+                //Ist es ein Shell1y1? Wenn ja weiter machen!
                 if (fnmatch('*shelly1*', $Buffer->TOPIC)) {
                     $this->SendDebug('Power Topic', $Buffer->TOPIC, 0);
                     $this->SendDebug('Power Msg', $Buffer->MSG, 0);
-                    $power = explode('/', $Buffer->TOPIC);
-                    end($power);
-                    $lastKey = key($power);
+                    //Power prüfen und in IPS setzen
                     switch ($Buffer->MSG) {
                         case 'off':
-                            SetValue($this->GetIDForIdent('Shelly_Power'), 0);
+                            SetValue($this->GetIDForIdent('Shelly_State'), 0);
                             break;
                         case 'on':
-                            SetValue($this->GetIDForIdent('Shelly_Power'), 1);
+                            SetValue($this->GetIDForIdent('Shelly_State'), 1);
                             break;
                     }
                 }
@@ -54,6 +58,7 @@ class IPS_Shelly extends IPSModule
         }
     }
 
+    /*
     public function RequestAction($Ident, $Value)
     {
         $this->SendDebug(__FUNCTION__ . ' Ident', $Ident, 0);
@@ -61,14 +66,6 @@ class IPS_Shelly extends IPSModule
         $result = $this->SwitchMode($Value);
     }
 
-    private function createVariablenProfiles()
-    {
-        //Online / Offline Profile
-        $this->RegisterProfileBooleanEx('Tasmota.DeviceStatus', 'Network', '', '', array(
-            array(false, 'Offline',  '', 0xFF0000),
-            array(true, 'Online',  '', 0x00FF00)
-        ));
-    }
 
     public function SwitchMode(bool $Value)
     {
@@ -76,12 +73,13 @@ class IPS_Shelly extends IPSModule
         if($Value) {
             $Buffer['MSG'] = 'on';
         } else {
-            $Buffer['MSG'] = 'offf';
+            $Buffer['MSG'] = 'off';
         }
         $BufferJSON = json_encode($Buffer);
         $this->SendDebug(__FUNCTION__, $BufferJSON, 0);
         $this->SendDataToParent(json_encode(array('DataID' => '{018EF6B5-AB94-40C6-AA53-46943E824ACF}', 'Action' => 'Publish', 'Buffer' => $BufferJSON)));
     }
+    */
 
     private function RegisterProfileBoolean($Name, $Icon, $Prefix, $Suffix, $MinValue, $MaxValue, $StepSize)
     {

@@ -1,0 +1,11 @@
+{
+	"id": "{F56CC544-581D-42EB-AAF0-F5E9E908916C}",
+	"name": "IPS_Shelly4Pro",
+	"type": 3,
+	"vendor": "",
+	"aliases": ["Shelly 4Pro"],
+	"parentRequirements": ["{79827379-F36E-4ADA-8A95-5F8D1DC92FA9}"],
+	"childRequirements": ["{018EF6B5-AB94-40C6-AA53-46943E824ACF}"],
+	"implemented": ["{018EF6B5-AB94-40C6-AA53-46943E824ACF}"],
+	"prefix": "Shelly"
+}
