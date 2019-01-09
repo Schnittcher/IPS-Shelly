@@ -1,7 +1,7 @@
 <?php
 
+declare(strict_types=1);
 require_once __DIR__ . '/../libs/ShellyHelper.php';
-
 
 class IPS_Shelly1 extends IPSModule
 {
@@ -14,7 +14,7 @@ class IPS_Shelly1 extends IPSModule
         $this->ConnectParent('{EE0D345A-CF31-428A-A613-33CE98E752DD}');
 
         $this->RegisterPropertyString('MQTTTopic', '');
-        $this->RegisterVariableBoolean('Shelly_State','State','~Switch');
+        $this->RegisterVariableBoolean('Shelly_State', 'State', '~Switch');
 
         $this->EnableAction('Shelly_State');
     }
@@ -113,5 +113,4 @@ class IPS_Shelly1 extends IPSModule
             IPS_SetVariableProfileAssociation($Name, $Association[0], $Association[1], $Association[2], $Association[3]);
         }
     }
-
 }

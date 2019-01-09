@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 require_once __DIR__ . '/../libs/ShellyHelper.php';
 
 class IPS_Shelly4Pro extends IPSModule
@@ -24,26 +25,26 @@ class IPS_Shelly4Pro extends IPSModule
         $MQTTTopic = $this->ReadPropertyString('MQTTTopic');
         $this->SetReceiveDataFilter('.*' . $MQTTTopic . '.*');
 
-        $this->SendDebug(__FUNCTION__ .' Device Type: ',' Relay',0);
-        $this->RegisterVariableBoolean('Shelly_State','State','~Switch');
+        $this->SendDebug(__FUNCTION__ . ' Device Type: ', ' Relay', 0);
+        $this->RegisterVariableBoolean('Shelly_State', 'State', '~Switch');
         $this->EnableAction('Shelly_State');
-        $this->RegisterVariableFloat('Shelly_Power','Power','');
-        $this->RegisterVariableFloat('Shelly_Energy','Energy','');
+        $this->RegisterVariableFloat('Shelly_Power', 'Power', '');
+        $this->RegisterVariableFloat('Shelly_Energy', 'Energy', '');
 
-        $this->RegisterVariableBoolean('Shelly_State1','State 2','~Switch');
+        $this->RegisterVariableBoolean('Shelly_State1', 'State 2', '~Switch');
         $this->EnableAction('Shelly_State1');
-        $this->RegisterVariableFloat('Shelly_Power1','Power 2','');
-        $this->RegisterVariableFloat('Shelly_Energy1','Energy 2','');
+        $this->RegisterVariableFloat('Shelly_Power1', 'Power 2', '');
+        $this->RegisterVariableFloat('Shelly_Energy1', 'Energy 2', '');
 
-        $this->RegisterVariableBoolean('Shelly_State2','State 3','~Switch');
+        $this->RegisterVariableBoolean('Shelly_State2', 'State 3', '~Switch');
         $this->EnableAction('Shelly_State2');
-        $this->RegisterVariableFloat('Shelly_Power2','Power 3','');
-        $this->RegisterVariableFloat('Shelly_Energy2','Energy 3','');
+        $this->RegisterVariableFloat('Shelly_Power2', 'Power 3', '');
+        $this->RegisterVariableFloat('Shelly_Energy2', 'Energy 3', '');
 
-        $this->RegisterVariableBoolean('Shelly_State3','State 4','~Switch');
+        $this->RegisterVariableBoolean('Shelly_State3', 'State 4', '~Switch');
         $this->EnableAction('Shelly_State3');
-        $this->RegisterVariableFloat('Shelly_Power3','Power 4','');
-        $this->RegisterVariableFloat('Shelly_Energy3','Energy 4','');
+        $this->RegisterVariableFloat('Shelly_Power3', 'Power 4', '');
+        $this->RegisterVariableFloat('Shelly_Energy3', 'Energy 4', '');
     }
 
     public function ReceiveData($JSONString)
@@ -69,10 +70,10 @@ class IPS_Shelly4Pro extends IPSModule
                 if (fnmatch('*/relay/[0123]', $Buffer->TOPIC)) {
                     $this->SendDebug('State Topic', $Buffer->TOPIC, 0);
                     $this->SendDebug('State Msg', $Buffer->MSG, 0);
-                    $ShellyTopic = explode("/", $Buffer->TOPIC);
+                    $ShellyTopic = explode('/', $Buffer->TOPIC);
                     $LastKey = count($ShellyTopic) - 1;
                     $relay = $ShellyTopic[$LastKey];
-                    $this->SendDebug(__FUNCTION__.' Relay',$relay,0);
+                    $this->SendDebug(__FUNCTION__ . ' Relay', $relay, 0);
 
                     //Power prüfen und in IPS setzen
                     switch ($Buffer->MSG) {
@@ -134,7 +135,7 @@ class IPS_Shelly4Pro extends IPSModule
                 if (fnmatch('*/relay/[0123]/power*', $Buffer->TOPIC)) {
                     $this->SendDebug('Power Topic', $Buffer->TOPIC, 0);
                     $this->SendDebug('Power Msg', $Buffer->MSG, 0);
-                    $ShellyTopic = explode("/", $Buffer->TOPIC);
+                    $ShellyTopic = explode('/', $Buffer->TOPIC);
                     $Key = count($ShellyTopic) - 2;
                     $relay = $ShellyTopic[$Key];
 
@@ -152,14 +153,14 @@ class IPS_Shelly4Pro extends IPSModule
                             SetValue($this->GetIDForIdent('Shelly_Power3'), $Buffer->MSG);
                             break;
                         default:
-                            $this->SendDebug('Relay Power', 'Undefined Relay: '.$relay, 0);
+                            $this->SendDebug('Relay Power', 'Undefined Relay: ' . $relay, 0);
                             break;
                     }
                 }
                 if (fnmatch('*/relay/[0123]/energy*', $Buffer->TOPIC)) {
                     $this->SendDebug('Energy Topic', $Buffer->TOPIC, 0);
                     $this->SendDebug('Energy Msg', $Buffer->MSG, 0);
-                    $ShellyTopic = explode("/", $Buffer->TOPIC);
+                    $ShellyTopic = explode('/', $Buffer->TOPIC);
                     $Key = count($ShellyTopic) - 2;
                     $relay = $ShellyTopic[$Key];
 
@@ -177,7 +178,7 @@ class IPS_Shelly4Pro extends IPSModule
                             SetValue($this->GetIDForIdent('Shelly_Energy3'), $Buffer->MSG);
                             break;
                         default:
-                            $this->SendDebug('Relay Energy', 'Undefined Relay: '.$relay, 0);
+                            $this->SendDebug('Relay Energy', 'Undefined Relay: ' . $relay, 0);
                             break;
                     }
                 }

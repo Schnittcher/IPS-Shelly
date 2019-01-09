@@ -1,7 +1,7 @@
 <?php
 
+declare(strict_types=1);
 require_once __DIR__ . '/../libs/ShellyHelper.php';
-
 
 class IPS_ShellySense extends IPSModule
 {
@@ -11,12 +11,12 @@ class IPS_ShellySense extends IPSModule
         parent::Create();
         $this->ConnectParent('{EE0D345A-CF31-428A-A613-33CE98E752DD}');
 
-        $this->RegisterVariableBoolean('Shelly_Motion','Motion','~Motion');
-        $this->RegisterVariableBoolean('Shelly_Charger','External Charger','~Switch');
-        $this->RegisterVariableFloat('Shelly_Temperature','Temperature','~Temperature');
-        $this->RegisterVariableFloat('Shelly_Humidity','Humidity','~Humidity.F');
-        $this->RegisterVariableInteger('Shelly_Lux','Lux','~Illumination');
-        $this->RegisterVariableInteger('Shelly_Battery','Battery','~Battery.100');
+        $this->RegisterVariableBoolean('Shelly_Motion', 'Motion', '~Motion');
+        $this->RegisterVariableBoolean('Shelly_Charger', 'External Charger', '~Switch');
+        $this->RegisterVariableFloat('Shelly_Temperature', 'Temperature', '~Temperature');
+        $this->RegisterVariableFloat('Shelly_Humidity', 'Humidity', '~Humidity.F');
+        $this->RegisterVariableInteger('Shelly_Lux', 'Lux', '~Illumination');
+        $this->RegisterVariableInteger('Shelly_Battery', 'Battery', '~Battery.100');
         $this->RegisterPropertyString('MQTTTopic', '');
     }
 
@@ -49,7 +49,7 @@ class IPS_ShellySense extends IPSModule
                             SetValue($this->GetIDForIdent('Shelly_Motion'), false);
                             break;
                         default:
-                            $this->SendDebug('Motion Sensor', 'Undefined MSG: '.$Buffer->MSG, 0);
+                            $this->SendDebug('Motion Sensor', 'Undefined MSG: ' . $Buffer->MSG, 0);
                             break;
                     }
                 }

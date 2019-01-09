@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 require_once __DIR__ . '/../libs/ShellyHelper.php';
 
 class IPS_ShellyPlug extends IPSModule
@@ -24,16 +25,16 @@ class IPS_ShellyPlug extends IPSModule
         $MQTTTopic = $this->ReadPropertyString('MQTTTopic');
         $this->SetReceiveDataFilter('.*' . $MQTTTopic . '.*');
 
-        $this->SendDebug(__FUNCTION__ .' Device Type: ',' Relay',0);
-        $this->RegisterVariableBoolean('Shelly_State','State','~Switch');
+        $this->SendDebug(__FUNCTION__ . ' Device Type: ', ' Relay', 0);
+        $this->RegisterVariableBoolean('Shelly_State', 'State', '~Switch');
         $this->EnableAction('Shelly_State');
-        $this->RegisterVariableFloat('Shelly_Power','Power','');
-        $this->RegisterVariableFloat('Shelly_Energy','Energy','');
+        $this->RegisterVariableFloat('Shelly_Power', 'Power', '');
+        $this->RegisterVariableFloat('Shelly_Energy', 'Energy', '');
     }
 
     public function ReceiveData($JSONString)
     {
-       $this->SendDebug('JSON', $JSONString, 0);
+        $this->SendDebug('JSON', $JSONString, 0);
         if (!empty($this->ReadPropertyString('MQTTTopic'))) {
             $data = json_decode($JSONString);
             // Buffer decodieren und in eine Variable schreiben
