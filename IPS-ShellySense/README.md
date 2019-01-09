@@ -1,9 +1,7 @@
 # IPS-ShellySense
    Dieses Modul integriert das Shelly Sense in IP-Symcon.\
    Die Messwerte von dem Shelly Sense werden in IP-Symcon übertragen.
-   
-   Benötigt wird ein MQTT Broker und das Modul IPS-KS-MQTT.
-   
+     
    ## Inhaltverzeichnis
    1. [Konfiguration](#1-konfiguration)
    2. [Funktionen](#2-funktionen)

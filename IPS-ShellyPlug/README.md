@@ -1,9 +1,7 @@
 # IPS-ShellyPlug
    Dieses Modul ermöglicht es, ein ShellyPlug in IP-Symcon zu integrieren.
    Es kann das Relay geschaltet werden und Messwerte werden in IP-Symcon dargestellt.
-   
-   Benötigt wird ein MQTT Broker und das Modul IPS-KS-MQTT.
-   
+      
    ## Inhaltverzeichnis
    1. [Konfiguration](#1-konfiguration)
    2. [Funktionen](#2-funktionen)
