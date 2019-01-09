@@ -1,8 +1,6 @@
 # IPS-Shelly1
-   Mit diesem Modul ist es zur Zeit möglich ein Shelly 1 über MQTT zu schalten.
-   
-   Benötigt wird ein MQTT Broker und das Modul IPS-KS-MQTT.
-   
+   Dieses Modul ermöglicht es, ein Shelly1 in IP-Symcon zu integrieren.
+     
    ## Inhaltverzeichnis
    1. [Konfiguration](#1-konfiguration)
    2. [Funktionen](#2-funktionen)

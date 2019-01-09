@@ -1,5 +1,5 @@
 # IPS-Shelly2
-   Dieses Modul ermöglicht es, ein Shelly2 in IP-Symcon zu integrieren.
+   Dieses Modul ermöglicht es, ein Shelly2 in IP-Symcon zu integrieren.\
    Das Modul kann in IP-Symcon als Relay oder als Rollo eingerichtet werden.
      
    ## Inhaltverzeichnis
