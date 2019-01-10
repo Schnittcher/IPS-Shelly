@@ -76,7 +76,8 @@ trait ShellyRollerAction
         $this->SendDataToParent(json_encode(['DataID' => '{018EF6B5-AB94-40C6-AA53-46943E824ACF}', 'Action' => 'Publish', 'Buffer' => $BufferJSON]));
     }
 
-    public function Move($position) {
+    public function Move($position)
+    {
         $Buffer['Topic'] = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/roller/0/command/pos';
         $Buffer['MSG'] = $position;
         $BufferJSON = json_encode($Buffer);
