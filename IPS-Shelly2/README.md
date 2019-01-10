@@ -40,10 +40,10 @@
   ```php
   Shelly_MoveUP(25537) //Rolladen hochfahren;
   ```
-  **Shelly_Move($Position)**\
+  **Shelly_Move($InstanceID, $Position)**\
   Mit dieser Funktion ist es möglich den Rolladen auf eine bestimmte Position zu fahren!
   ```php
-  Shelly_Move(25537,25) //Rolladen auf 25 % fahren!
+  Shelly_Move(25537,25) //Rolladen auf 25% fahren!
   ```
   
   **Shelly_Stop($InstanceID)**\
