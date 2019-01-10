@@ -39,6 +39,8 @@ class IPS_Shelly2 extends IPSModule
                 $this->SendDebug(__FUNCTION__ . ' Device Type: ', ' Roller', 0);
                 $this->RegisterVariableInteger('Shelly_Roller', 'Roller', '~ShutterMoveStop');
                 $this->EnableAction('Shelly_Roller');
+                $this->RegisterVariableInteger('Shelly_RollerPosition', 'Position', '~ShutterPosition.100');
+                $this->EnableAction('Shelly_RollerPosition');
                 break;
             default:
                 $this->SendDebug(__FUNCTION__ . ' Device Type: ', 'No Device Type', 0);
@@ -104,7 +106,7 @@ class IPS_Shelly2 extends IPSModule
                             break;
                     }
                 }
-                if (fnmatch('*roller*', $Buffer->TOPIC)) {
+                if (fnmatch('*/roller/0/command*', $Buffer->TOPIC)) {
                     //TODO ROLLER
                     $this->SendDebug('Roller Topic', $Buffer->TOPIC, 0);
                     $this->SendDebug('Roller Msg', $Buffer->MSG, 0);
@@ -119,9 +121,16 @@ class IPS_Shelly2 extends IPSModule
                             SetValue($this->GetIDForIdent('Shelly_Roller'), 4);
                             break;
                         default:
-                            $this->SendDebug(__FUNCTION__ . ' Roller', 'Invalid Value: ' . $Buffer->MSG, 0);
+                            if (!fnmatch('*/roller/0/command/pos*', $Buffer->TOPIC)) {
+                                $this->SendDebug(__FUNCTION__ . ' Roller', 'Invalid Value: ' . $Buffer->MSG, 0);
+                            }
                             break;
                     }
+                }
+                if (fnmatch('*/roller/0/pos*', $Buffer->TOPIC)) {
+                    $this->SendDebug('Roller Topic', $Buffer->TOPIC, 0);
+                    $this->SendDebug('Roller Msg', $Buffer->MSG, 0);
+                    SetValue($this->GetIDForIdent('Shelly_RollerPosition'), intval($Buffer->MSG));
                 }
                 if (fnmatch('*/relay/power*', $Buffer->TOPIC)) {
                     $this->SendDebug('Power Topic', $Buffer->TOPIC, 0);

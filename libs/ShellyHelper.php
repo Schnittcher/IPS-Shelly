@@ -34,6 +34,11 @@ trait ShellyRelayAction
             }
             return;
         }
+        if ($Ident == 'Shelly_RollerPosition') {
+            $this->SendDebug(__FUNCTION__ . ' Value Shelly_RollerPosition', $Value, 0);
+            $this->Move($Value);
+            return;
+        }
         $this->SendDebug(__FUNCTION__, 'No Action - Ident: ' . $Ident, 0);
     }
 
@@ -66,6 +71,14 @@ trait ShellyRollerAction
     {
         $Buffer['Topic'] = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/roller/0/command';
         $Buffer['MSG'] = 'open';
+        $BufferJSON = json_encode($Buffer);
+        $this->SendDebug(__FUNCTION__, $BufferJSON, 0);
+        $this->SendDataToParent(json_encode(['DataID' => '{018EF6B5-AB94-40C6-AA53-46943E824ACF}', 'Action' => 'Publish', 'Buffer' => $BufferJSON]));
+    }
+
+    public function Move($position) {
+        $Buffer['Topic'] = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/roller/0/command/pos';
+        $Buffer['MSG'] = $position;
         $BufferJSON = json_encode($Buffer);
         $this->SendDebug(__FUNCTION__, $BufferJSON, 0);
         $this->SendDataToParent(json_encode(['DataID' => '{018EF6B5-AB94-40C6-AA53-46943E824ACF}', 'Action' => 'Publish', 'Buffer' => $BufferJSON]));
