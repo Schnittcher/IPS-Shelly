@@ -15,7 +15,7 @@ trait ShellyRelayAction
             }
             $this->SendDebug(__FUNCTION__ . ' Relay', $relay, 0);
             $this->SendDebug(__FUNCTION__ . ' Value', $Value, 0);
-            $this->SwitchMode($relay, $Value);
+            $this->SwitchMode(intval($relay), $Value);
             return;
         }
         if ($Ident == 'Shelly_Roller') {
