@@ -11,7 +11,7 @@ class IPS_Shelly1 extends IPSModule
     {
         //Never delete this line!
         parent::Create();
-        $this->ConnectParent('{EE0D345A-CF31-428A-A613-33CE98E752DD}');
+        $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
 
         $this->RegisterPropertyString('MQTTTopic', '');
         $this->RegisterVariableBoolean('Shelly_State', 'State', '~Switch');
@@ -23,7 +23,7 @@ class IPS_Shelly1 extends IPSModule
     {
         //Never delete this line!
         parent::ApplyChanges();
-        $this->ConnectParent('{EE0D345A-CF31-428A-A613-33CE98E752DD}');
+        $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
         //Setze Filter für ReceiveData
         $MQTTTopic = $this->ReadPropertyString('MQTTTopic');
         $this->SetReceiveDataFilter('.*' . $MQTTTopic . '.*');
