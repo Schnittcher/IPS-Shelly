@@ -9,7 +9,7 @@ class IPS_ShellySense extends IPSModule
     {
         //Never delete this line!
         parent::Create();
-        $this->ConnectParent('{EE0D345A-CF31-428A-A613-33CE98E752DD}');
+        $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
 
         $this->RegisterVariableBoolean('Shelly_Motion', 'Motion', '~Motion');
         $this->RegisterVariableBoolean('Shelly_Charger', 'External Charger', '~Switch');
@@ -24,7 +24,7 @@ class IPS_ShellySense extends IPSModule
     {
         //Never delete this line!
         parent::ApplyChanges();
-        $this->ConnectParent('{EE0D345A-CF31-428A-A613-33CE98E752DD}');
+        $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
         //Setze Filter für ReceiveData
         $MQTTTopic = $this->ReadPropertyString('MQTTTopic');
         $this->SetReceiveDataFilter('.*' . $MQTTTopic . '.*');
@@ -36,12 +36,12 @@ class IPS_ShellySense extends IPSModule
         if (!empty($this->ReadPropertyString('MQTTTopic'))) {
             $data = json_decode($JSONString);
             // Buffer decodieren und in eine Variable schreiben
-            $Buffer = json_decode($data->Buffer);
-            $this->SendDebug('MQTT Topic', $Buffer->TOPIC, 0);
+            $Buffer = $data;
+            $this->SendDebug('MQTT Topic', $Buffer->Topic, 0);
 
-            if (property_exists($Buffer, 'TOPIC')) {
-                if (fnmatch('*/sensor/motion*', $Buffer->TOPIC)) {
-                    switch ($Buffer->MSG) {
+            if (property_exists($Buffer, 'Topic')) {
+                if (fnmatch('*/sensor/motion*', $Buffer->Topic)) {
+                    switch ($Buffer->Payload) {
                         case 'true':
                             SetValue($this->GetIDForIdent('Shelly_Motion'), true);
                             break;
@@ -49,12 +49,12 @@ class IPS_ShellySense extends IPSModule
                             SetValue($this->GetIDForIdent('Shelly_Motion'), false);
                             break;
                         default:
-                            $this->SendDebug('Motion Sensor', 'Undefined MSG: ' . $Buffer->MSG, 0);
+                            $this->SendDebug('Motion Sensor', 'Undefined Payload: ' . $Buffer->Payload, 0);
                             break;
                     }
                 }
-                if (fnmatch('*/sensor/charger*', $Buffer->TOPIC)) {
-                    switch ($Buffer->MSG) {
+                if (fnmatch('*/sensor/charger*', $Buffer->Topic)) {
+                    switch ($Buffer->Payload) {
                         case 'true':
                             SetValue($this->GetIDForIdent('Shelly_Charger'), true);
                             break;
@@ -62,21 +62,21 @@ class IPS_ShellySense extends IPSModule
                             SetValue($this->GetIDForIdent('Shelly_Charger'), false);
                             break;
                         default:
-                            $this->SendDebug('External Charger', 'Undefined MSG: ' . $Buffer->MSG, 0);
+                            $this->SendDebug('External Charger', 'Undefined Payload: ' . $Buffer->Payload, 0);
                             break;
                     }
                 }
-                if (fnmatch('*/sensor/temperature*', $Buffer->TOPIC)) {
-                    SetValue($this->GetIDForIdent('Shelly_Temperature'), $Buffer->MSG);
+                if (fnmatch('*/sensor/temperature*', $Buffer->Topic)) {
+                    SetValue($this->GetIDForIdent('Shelly_Temperature'), $Buffer->Payload);
                 }
-                if (fnmatch('*/sensor/humidity*', $Buffer->TOPIC)) {
-                    SetValue($this->GetIDForIdent('Shelly_Humidity'), $Buffer->MSG);
+                if (fnmatch('*/sensor/humidity*', $Buffer->Topic)) {
+                    SetValue($this->GetIDForIdent('Shelly_Humidity'), $Buffer->Payload);
                 }
-                if (fnmatch('*/sensor/lux*', $Buffer->TOPIC)) {
-                    SetValue($this->GetIDForIdent('Shelly_Lux'), $Buffer->MSG);
+                if (fnmatch('*/sensor/lux*', $Buffer->Topic)) {
+                    SetValue($this->GetIDForIdent('Shelly_Lux'), $Buffer->Payload);
                 }
-                if (fnmatch('*/sensor/battery*', $Buffer->TOPIC)) {
-                    SetValue($this->GetIDForIdent('Shelly_Battery'), $Buffer->MSG);
+                if (fnmatch('*/sensor/battery*', $Buffer->Topic)) {
+                    SetValue($this->GetIDForIdent('Shelly_Battery'), $Buffer->Payload);
                 }
             }
         }

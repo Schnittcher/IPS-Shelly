@@ -44,15 +44,21 @@ trait ShellyRelayAction
 
     public function SwitchMode(int $relay, bool $Value)
     {
-        $Buffer['Topic'] = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/relay/' . $relay . '/command';
+        $Data['DataID'] = '{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}';
+        $Data['PacketType'] = 3;
+        $Data['QualityOfService'] = 0;
+        $Data['Retain'] = false;
+        $Data['Topic'] = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/relay/' . $relay . '/command';
+
         if ($Value) {
-            $Buffer['MSG'] = 'on';
+            $Data['Payload'] = 'on';
         } else {
-            $Buffer['MSG'] = 'off';
+            $Data['Payload'] = 'off';
         }
-        $BufferJSON = json_encode($Buffer);
-        $this->SendDebug(__FUNCTION__, $BufferJSON, 0);
-        $this->SendDataToParent(json_encode(['DataID' => '{018EF6B5-AB94-40C6-AA53-46943E824ACF}', 'Action' => 'Publish', 'Buffer' => $BufferJSON]));
+        $DataJSON = json_encode($Data,JSON_UNESCAPED_SLASHES);
+        $this->SendDebug(__FUNCTION__. 'Topic', $Data['Topic'],0);
+        $this->SendDebug(__FUNCTION__, $DataJSON, 0);
+        $this->SendDataToParent($DataJSON);
     }
 }
 
@@ -60,37 +66,57 @@ trait ShellyRollerAction
 {
     public function MoveDown()
     {
-        $Buffer['Topic'] = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/roller/0/command';
-        $Buffer['MSG'] = 'close';
-        $BufferJSON = json_encode($Buffer);
-        $this->SendDebug(__FUNCTION__, $BufferJSON, 0);
-        $this->SendDataToParent(json_encode(['DataID' => '{018EF6B5-AB94-40C6-AA53-46943E824ACF}', 'Action' => 'Publish', 'Buffer' => $BufferJSON]));
+        $Data['DataID'] = '{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}';
+        $Data['PacketType'] = 3;
+        $Data['QualityOfService'] = 0;
+        $Data['Retain'] = false;
+        $Data['Topic'] = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/roller/0/command';
+        $Data['Payload'] = 'close';
+        $DataJSON = json_encode($Data,JSON_UNESCAPED_SLASHES);
+        $this->SendDebug(__FUNCTION__. 'Topic', $Data['Topic'],0);
+        $this->SendDebug(__FUNCTION__, $DataJSON, 0);
+        $this->SendDataToParent($DataJSON);
     }
 
     public function MoveUp()
     {
-        $Buffer['Topic'] = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/roller/0/command';
-        $Buffer['MSG'] = 'open';
-        $BufferJSON = json_encode($Buffer);
-        $this->SendDebug(__FUNCTION__, $BufferJSON, 0);
-        $this->SendDataToParent(json_encode(['DataID' => '{018EF6B5-AB94-40C6-AA53-46943E824ACF}', 'Action' => 'Publish', 'Buffer' => $BufferJSON]));
+        $Data['DataID'] = '{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}';
+        $Data['PacketType'] = 3;
+        $Data['QualityOfService'] = 0;
+        $Data['Retain'] = false;
+        $Data['Topic'] = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/roller/0/command';
+        $Data['Payload'] = 'open';
+        $DataJSON = json_encode($Data,JSON_UNESCAPED_SLASHES);
+        $this->SendDebug(__FUNCTION__. 'Topic', $Data['Topic'],0);
+        $this->SendDebug(__FUNCTION__, $DataJSON, 0);
+        $this->SendDataToParent($DataJSON);
     }
 
     public function Move($position)
     {
-        $Buffer['Topic'] = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/roller/0/command/pos';
-        $Buffer['MSG'] = $position;
-        $BufferJSON = json_encode($Buffer);
-        $this->SendDebug(__FUNCTION__, $BufferJSON, 0);
-        $this->SendDataToParent(json_encode(['DataID' => '{018EF6B5-AB94-40C6-AA53-46943E824ACF}', 'Action' => 'Publish', 'Buffer' => $BufferJSON]));
+        $Data['DataID'] = '{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}';
+        $Data['PacketType'] = 3;
+        $Data['QualityOfService'] = 0;
+        $Data['Retain'] = false;
+        $Data['Topic'] = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/roller/0/command';
+        $Data['Payload'] = $position;
+        $DataJSON = json_encode($Data,JSON_UNESCAPED_SLASHES);
+        $this->SendDebug(__FUNCTION__. 'Topic', $Data['Topic'],0);
+        $this->SendDebug(__FUNCTION__, $DataJSON, 0);
+        $this->SendDataToParent($DataJSON);
     }
 
     public function Stop()
     {
-        $Buffer['Topic'] = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/roller/0/command';
-        $Buffer['MSG'] = 'stop';
-        $BufferJSON = json_encode($Buffer);
-        $this->SendDebug(__FUNCTION__, $BufferJSON, 0);
-        $this->SendDataToParent(json_encode(['DataID' => '{018EF6B5-AB94-40C6-AA53-46943E824ACF}', 'Action' => 'Publish', 'Buffer' => $BufferJSON]));
+        $Data['DataID'] = '{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}';
+        $Data['PacketType'] = 3;
+        $Data['QualityOfService'] = 0;
+        $Data['Retain'] = false;
+        $Data['Topic'] = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/roller/0/command';
+        $Data['Payload'] = 'stop';
+        $DataJSON = json_encode($Data,JSON_UNESCAPED_SLASHES);
+        $this->SendDebug(__FUNCTION__. 'Topic', $Data['Topic'],0);
+        $this->SendDebug(__FUNCTION__, $DataJSON, 0);
+        $this->SendDataToParent($DataJSON);
     }
 }

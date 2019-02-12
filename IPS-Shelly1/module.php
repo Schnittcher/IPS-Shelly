@@ -35,17 +35,17 @@ class IPS_Shelly1 extends IPSModule
         if (!empty($this->ReadPropertyString('MQTTTopic'))) {
             $data = json_decode($JSONString);
             // Buffer decodieren und in eine Variable schreiben
-            $Buffer = json_decode($data->Buffer);
-            $this->SendDebug('MQTT Topic', $Buffer->TOPIC, 0);
+            $Buffer = $data;
+            $this->SendDebug('MQTT Topic', $Buffer->Topic, 0);
 
             //Power Variable prüfen
-            if (property_exists($Buffer, 'TOPIC')) {
+            if (property_exists($Buffer, 'Topic')) {
                 //Ist es ein Shell1y1? Wenn ja weiter machen!
-                if (fnmatch('*shelly1*', $Buffer->TOPIC)) {
-                    $this->SendDebug('Power Topic', $Buffer->TOPIC, 0);
-                    $this->SendDebug('Power Msg', $Buffer->MSG, 0);
+                if (fnmatch('*shelly1*', $Buffer->Topic)) {
+                    $this->SendDebug('Power Topic', $Buffer->Topic, 0);
+                    $this->SendDebug('Power Payload', $Buffer->Payload, 0);
                     //Power prüfen und in IPS setzen
-                    switch ($Buffer->MSG) {
+                    switch ($Buffer->Payload) {
                         case 'off':
                             SetValue($this->GetIDForIdent('Shelly_State'), 0);
                             break;
@@ -57,29 +57,6 @@ class IPS_Shelly1 extends IPSModule
             }
         }
     }
-
-    /*
-    public function RequestAction($Ident, $Value)
-    {
-        $this->SendDebug(__FUNCTION__ . ' Ident', $Ident, 0);
-        $this->SendDebug(__FUNCTION__ . ' Value', $Value, 0);
-        $result = $this->SwitchMode($Value);
-    }
-
-
-    public function SwitchMode(bool $Value)
-    {
-        $Buffer['Topic'] = 'shellies/'.$this->ReadPropertyString('MQTTTopic').'/relay/0/command';
-        if($Value) {
-            $Buffer['MSG'] = 'on';
-        } else {
-            $Buffer['MSG'] = 'off';
-        }
-        $BufferJSON = json_encode($Buffer);
-        $this->SendDebug(__FUNCTION__, $BufferJSON, 0);
-        $this->SendDataToParent(json_encode(array('DataID' => '{018EF6B5-AB94-40C6-AA53-46943E824ACF}', 'Action' => 'Publish', 'Buffer' => $BufferJSON)));
-    }
-    */
 
     private function RegisterProfileBoolean($Name, $Icon, $Prefix, $Suffix, $MinValue, $MaxValue, $StepSize)
     {

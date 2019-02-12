@@ -11,7 +11,7 @@ class IPS_Shelly4Pro extends IPSModule
     {
         //Never delete this line!
         parent::Create();
-        $this->ConnectParent('{EE0D345A-CF31-428A-A613-33CE98E752DD}');
+        $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
 
         $this->RegisterPropertyString('MQTTTopic', '');
     }
@@ -20,7 +20,7 @@ class IPS_Shelly4Pro extends IPSModule
     {
         //Never delete this line!
         parent::ApplyChanges();
-        $this->ConnectParent('{EE0D345A-CF31-428A-A613-33CE98E752DD}');
+        $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
         //Setze Filter für ReceiveData
         $MQTTTopic = $this->ReadPropertyString('MQTTTopic');
         $this->SetReceiveDataFilter('.*' . $MQTTTopic . '.*');
@@ -61,22 +61,22 @@ class IPS_Shelly4Pro extends IPSModule
         if (!empty($this->ReadPropertyString('MQTTTopic'))) {
             $data = json_decode($JSONString);
             // Buffer decodieren und in eine Variable schreiben
-            $Buffer = json_decode($data->Buffer);
-            $this->SendDebug('MQTT Topic', $Buffer->TOPIC, 0);
+            $Buffer = $data;
+            $this->SendDebug('MQTT Topic', $Buffer->Topic, 0);
 
             //Power Variable prüfen
-            if (property_exists($Buffer, 'TOPIC')) {
+            if (property_exists($Buffer, 'Topic')) {
                 //Ist es ein Relay?
-                if (fnmatch('*/relay/[0123]', $Buffer->TOPIC)) {
-                    $this->SendDebug('State Topic', $Buffer->TOPIC, 0);
-                    $this->SendDebug('State Msg', $Buffer->MSG, 0);
-                    $ShellyTopic = explode('/', $Buffer->TOPIC);
+                if (fnmatch('*/relay/[0123]', $Buffer->Topic)) {
+                    $this->SendDebug('State Topic', $Buffer->Topic, 0);
+                    $this->SendDebug('State Payload', $Buffer->Payload, 0);
+                    $ShellyTopic = explode('/', $Buffer->Topic);
                     $LastKey = count($ShellyTopic) - 1;
                     $relay = $ShellyTopic[$LastKey];
                     $this->SendDebug(__FUNCTION__ . ' Relay', $relay, 0);
 
                     //Power prüfen und in IPS setzen
-                    switch ($Buffer->MSG) {
+                    switch ($Buffer->Payload) {
                         case 'off':
                             switch ($relay) {
                                 case 0:
@@ -132,50 +132,50 @@ class IPS_Shelly4Pro extends IPSModule
                             break;
                     }
                 }
-                if (fnmatch('*/relay/[0123]/power*', $Buffer->TOPIC)) {
-                    $this->SendDebug('Power Topic', $Buffer->TOPIC, 0);
-                    $this->SendDebug('Power Msg', $Buffer->MSG, 0);
-                    $ShellyTopic = explode('/', $Buffer->TOPIC);
+                if (fnmatch('*/relay/[0123]/power*', $Buffer->Topic)) {
+                    $this->SendDebug('Power Topic', $Buffer->Topic, 0);
+                    $this->SendDebug('Power Payload', $Buffer->Payload, 0);
+                    $ShellyTopic = explode('/', $Buffer->Topic);
                     $Key = count($ShellyTopic) - 2;
                     $relay = $ShellyTopic[$Key];
 
                     switch ($relay) {
                         case 0:
-                            SetValue($this->GetIDForIdent('Shelly_Power'), $Buffer->MSG);
+                            SetValue($this->GetIDForIdent('Shelly_Power'), $Buffer->Payload);
                             break;
                         case 1:
-                            SetValue($this->GetIDForIdent('Shelly_Power1'), $Buffer->MSG);
+                            SetValue($this->GetIDForIdent('Shelly_Power1'), $Buffer->Payload);
                             break;
                         case 2:
-                            SetValue($this->GetIDForIdent('Shelly_Power2'), $Buffer->MSG);
+                            SetValue($this->GetIDForIdent('Shelly_Power2'), $Buffer->Payload);
                             break;
                         case 3:
-                            SetValue($this->GetIDForIdent('Shelly_Power3'), $Buffer->MSG);
+                            SetValue($this->GetIDForIdent('Shelly_Power3'), $Buffer->Payload);
                             break;
                         default:
                             $this->SendDebug('Relay Power', 'Undefined Relay: ' . $relay, 0);
                             break;
                     }
                 }
-                if (fnmatch('*/relay/[0123]/energy*', $Buffer->TOPIC)) {
-                    $this->SendDebug('Energy Topic', $Buffer->TOPIC, 0);
-                    $this->SendDebug('Energy Msg', $Buffer->MSG, 0);
-                    $ShellyTopic = explode('/', $Buffer->TOPIC);
+                if (fnmatch('*/relay/[0123]/energy*', $Buffer->Topic)) {
+                    $this->SendDebug('Energy Topic', $Buffer->Topic, 0);
+                    $this->SendDebug('Energy Payload', $Buffer->Payload, 0);
+                    $ShellyTopic = explode('/', $Buffer->Topic);
                     $Key = count($ShellyTopic) - 2;
                     $relay = $ShellyTopic[$Key];
 
                     switch ($relay) {
                         case 0:
-                            SetValue($this->GetIDForIdent('Shelly_Energy'), $Buffer->MSG);
+                            SetValue($this->GetIDForIdent('Shelly_Energy'), $Buffer->Payload);
                             break;
                         case 1:
-                            SetValue($this->GetIDForIdent('Shelly_Energy1'), $Buffer->MSG);
+                            SetValue($this->GetIDForIdent('Shelly_Energy1'), $Buffer->Payload);
                             break;
                         case 2:
-                            SetValue($this->GetIDForIdent('Shelly_Energy2'), $Buffer->MSG);
+                            SetValue($this->GetIDForIdent('Shelly_Energy2'), $Buffer->Payload);
                             break;
                         case 3:
-                            SetValue($this->GetIDForIdent('Shelly_Energy3'), $Buffer->MSG);
+                            SetValue($this->GetIDForIdent('Shelly_Energy3'), $Buffer->Payload);
                             break;
                         default:
                             $this->SendDebug('Relay Energy', 'Undefined Relay: ' . $relay, 0);

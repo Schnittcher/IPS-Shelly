@@ -1,5 +1,5 @@
 [![Version](https://img.shields.io/badge/Symcon-PHPModul-red.svg)](https://www.symcon.de/service/dokumentation/entwicklerbereich/sdk-tools/sdk-php/)
-![Version](https://img.shields.io/badge/Symcon%20Version-4.3%20%3E-blue.svg)
+![Version](https://img.shields.io/badge/Symcon%20Version-5.1%20%3E-blue.svg)
 [![License](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-green.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 [![StyleCI](https://styleci.io/repos/152767193/shield?style=flat)](https://styleci.io/repos/152767193)
 
@@ -16,11 +16,9 @@
    
 ## 1. Voraussetzungen
 
-* [Mosquitto Broker](https://mosquitto.org) 
-    * [Installationanleitung](https://schnittcher.info/blog/installation-mosquitto-broker/)
-* [MQTT Client](https://github.com/Schnittcher/IPS-KS-MQTT) - aktuell eine abgeänderte Version von [IPS_MQTT von thomasf68](https://github.com/thomasf68/IPS_MQTT)
-    * [Konfiguration in IP-Symcon](https://schnittcher.info/blog/einrichtung-des-mqtt-clients-in-ip-symcon/)
-* mindestens IPS Version 4.3
+* mindestens IPS Version 5.1 Ninja
+* MQTT Server (IPS Modul) 
+
 
 ## 2. Enthaltene Module
 
@@ -32,13 +30,7 @@
 * [IPS-ShellySense](IPS-ShellySense/README.md)
 
 ## 3. Installation
-
-IPS-KS-MQTT Client:
-```
-https://github.com/Schnittcher/IPS-KS-MQTT.git
-```
-
-IPS-Shelly:
+IPS-Shelly (Branch 5.1):
 ```
 https://github.com/Schnittcher/IPS-Shelly.git
 ```
