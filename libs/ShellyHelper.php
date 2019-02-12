@@ -55,8 +55,8 @@ trait ShellyRelayAction
         } else {
             $Data['Payload'] = 'off';
         }
-        $DataJSON = json_encode($Data,JSON_UNESCAPED_SLASHES);
-        $this->SendDebug(__FUNCTION__. 'Topic', $Data['Topic'],0);
+        $DataJSON = json_encode($Data, JSON_UNESCAPED_SLASHES);
+        $this->SendDebug(__FUNCTION__ . 'Topic', $Data['Topic'], 0);
         $this->SendDebug(__FUNCTION__, $DataJSON, 0);
         $this->SendDataToParent($DataJSON);
     }
@@ -72,8 +72,8 @@ trait ShellyRollerAction
         $Data['Retain'] = false;
         $Data['Topic'] = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/roller/0/command';
         $Data['Payload'] = 'close';
-        $DataJSON = json_encode($Data,JSON_UNESCAPED_SLASHES);
-        $this->SendDebug(__FUNCTION__. 'Topic', $Data['Topic'],0);
+        $DataJSON = json_encode($Data, JSON_UNESCAPED_SLASHES);
+        $this->SendDebug(__FUNCTION__ . 'Topic', $Data['Topic'], 0);
         $this->SendDebug(__FUNCTION__, $DataJSON, 0);
         $this->SendDataToParent($DataJSON);
     }
@@ -86,8 +86,8 @@ trait ShellyRollerAction
         $Data['Retain'] = false;
         $Data['Topic'] = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/roller/0/command';
         $Data['Payload'] = 'open';
-        $DataJSON = json_encode($Data,JSON_UNESCAPED_SLASHES);
-        $this->SendDebug(__FUNCTION__. 'Topic', $Data['Topic'],0);
+        $DataJSON = json_encode($Data, JSON_UNESCAPED_SLASHES);
+        $this->SendDebug(__FUNCTION__ . 'Topic', $Data['Topic'], 0);
         $this->SendDebug(__FUNCTION__, $DataJSON, 0);
         $this->SendDataToParent($DataJSON);
     }
@@ -100,8 +100,8 @@ trait ShellyRollerAction
         $Data['Retain'] = false;
         $Data['Topic'] = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/roller/0/command';
         $Data['Payload'] = $position;
-        $DataJSON = json_encode($Data,JSON_UNESCAPED_SLASHES);
-        $this->SendDebug(__FUNCTION__. 'Topic', $Data['Topic'],0);
+        $DataJSON = json_encode($Data, JSON_UNESCAPED_SLASHES);
+        $this->SendDebug(__FUNCTION__ . 'Topic', $Data['Topic'], 0);
         $this->SendDebug(__FUNCTION__, $DataJSON, 0);
         $this->SendDataToParent($DataJSON);
     }
@@ -114,8 +114,8 @@ trait ShellyRollerAction
         $Data['Retain'] = false;
         $Data['Topic'] = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/roller/0/command';
         $Data['Payload'] = 'stop';
-        $DataJSON = json_encode($Data,JSON_UNESCAPED_SLASHES);
-        $this->SendDebug(__FUNCTION__. 'Topic', $Data['Topic'],0);
+        $DataJSON = json_encode($Data, JSON_UNESCAPED_SLASHES);
+        $this->SendDebug(__FUNCTION__ . 'Topic', $Data['Topic'], 0);
         $this->SendDebug(__FUNCTION__, $DataJSON, 0);
         $this->SendDataToParent($DataJSON);
     }

@@ -145,6 +145,7 @@ class IPS_Shelly2 extends IPSModule
             }
         }
     }
+
     private function RegisterProfileIntegerEx($Name, $Icon, $Prefix, $Suffix, $Associations)
     {
         if (count($Associations) === 0) {
