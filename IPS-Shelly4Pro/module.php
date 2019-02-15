@@ -26,25 +26,25 @@ class IPS_Shelly4Pro extends IPSModule
         $this->SetReceiveDataFilter('.*' . $MQTTTopic . '.*');
 
         $this->SendDebug(__FUNCTION__ . ' Device Type: ', ' Relay', 0);
-        $this->RegisterVariableBoolean('Shelly_State', 'State', '~Switch');
+        $this->RegisterVariableBoolean('Shelly_State', $this->Translate('State'), '~Switch');
         $this->EnableAction('Shelly_State');
-        $this->RegisterVariableFloat('Shelly_Power', 'Power', '');
-        $this->RegisterVariableFloat('Shelly_Energy', 'Energy', '');
+        $this->RegisterVariableFloat('Shelly_Power', $this->Translate('Power'), '');
+        $this->RegisterVariableFloat('Shelly_Energy', $this->Translate('Energy'), '');
 
-        $this->RegisterVariableBoolean('Shelly_State1', 'State 2', '~Switch');
+        $this->RegisterVariableBoolean('Shelly_State1', $this->Translate('State') .' 2', '~Switch');
         $this->EnableAction('Shelly_State1');
-        $this->RegisterVariableFloat('Shelly_Power1', 'Power 2', '');
-        $this->RegisterVariableFloat('Shelly_Energy1', 'Energy 2', '');
+        $this->RegisterVariableFloat('Shelly_Power1', $this->Translate('Power') .' 2', '');
+        $this->RegisterVariableFloat('Shelly_Energy1', $this->Translate('Energy') .' 2', '');
 
-        $this->RegisterVariableBoolean('Shelly_State2', 'State 3', '~Switch');
+        $this->RegisterVariableBoolean('Shelly_State2', $this->Translate('State') .' 3', '~Switch');
         $this->EnableAction('Shelly_State2');
-        $this->RegisterVariableFloat('Shelly_Power2', 'Power 3', '');
-        $this->RegisterVariableFloat('Shelly_Energy2', 'Energy 3', '');
+        $this->RegisterVariableFloat('Shelly_Power2', $this->Translate('Power') .' 3', '');
+        $this->RegisterVariableFloat('Shelly_Energy2', $this->Translate('Energy') .' 3', '');
 
-        $this->RegisterVariableBoolean('Shelly_State3', 'State 4', '~Switch');
+        $this->RegisterVariableBoolean('Shelly_State3', $this->Translate('State') .' 4', '~Switch');
         $this->EnableAction('Shelly_State3');
-        $this->RegisterVariableFloat('Shelly_Power3', 'Power 4', '');
-        $this->RegisterVariableFloat('Shelly_Energy3', 'Energy 4', '');
+        $this->RegisterVariableFloat('Shelly_Power3', $this->Translate('Power') .' 4', '');
+        $this->RegisterVariableFloat('Shelly_Energy3', $this->Translate('Energy ') .' 4', '');
     }
 
     public function ReceiveData($JSONString)

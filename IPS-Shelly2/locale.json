@@ -1,0 +1,15 @@
+{
+  "translations": {
+    "de": {
+      "State": "Status",
+      "Roller" : "Rollo",
+      "Position": "Position",
+      "Power": "Leistung",
+      "Energy": "Energie",
+      "Variable profile type does not match for profile": "Der Profiltyp der Variablen stimmt nicht mit dem Profil überein",
+      "Device Type": "Geräte Typ",
+      "Please set Device Type": "Bitte legen Sie den Gerätetyp fest",
+      "Relay": "Relais"
+    }
+  }
+}

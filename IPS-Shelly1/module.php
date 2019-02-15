@@ -14,7 +14,7 @@ class IPS_Shelly1 extends IPSModule
         $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
 
         $this->RegisterPropertyString('MQTTTopic', '');
-        $this->RegisterVariableBoolean('Shelly_State', 'State', '~Switch');
+        $this->RegisterVariableBoolean('Shelly_State', $this->Translate('State'), '~Switch');
 
         $this->EnableAction('Shelly_State');
     }
@@ -65,7 +65,7 @@ class IPS_Shelly1 extends IPSModule
         } else {
             $profile = IPS_GetVariableProfile($Name);
             if ($profile['ProfileType'] != 0) {
-                throw new Exception('Variable profile type does not match for profile ' . $Name);
+                throw new Exception($this->Translate('Variable profile type does not match for profile') . $Name);
             }
         }
 

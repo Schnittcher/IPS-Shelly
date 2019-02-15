@@ -30,24 +30,24 @@ class IPS_Shelly2 extends IPSModule
         switch ($this->ReadPropertyString('DeviceType')) {
             case 'relay':
                 $this->SendDebug(__FUNCTION__ . ' Device Type: ', ' Relay', 0);
-                $this->RegisterVariableBoolean('Shelly_State', 'State', '~Switch');
+                $this->RegisterVariableBoolean('Shelly_State', $this->Translate('State'), '~Switch');
                 $this->EnableAction('Shelly_State');
-                $this->RegisterVariableBoolean('Shelly_State1', 'State 2', '~Switch');
+                $this->RegisterVariableBoolean('Shelly_State1', $this->Translate('State'). ' 2', '~Switch');
                 $this->EnableAction('Shelly_State1');
                 break;
             case 'roller':
                 $this->SendDebug(__FUNCTION__ . ' Device Type: ', ' Roller', 0);
-                $this->RegisterVariableInteger('Shelly_Roller', 'Roller', '~ShutterMoveStop');
+                $this->RegisterVariableInteger('Shelly_Roller', $this->Translate('Roller'), '~ShutterMoveStop');
                 $this->EnableAction('Shelly_Roller');
-                $this->RegisterVariableInteger('Shelly_RollerPosition', 'Position', '~ShutterPosition.100');
+                $this->RegisterVariableInteger('Shelly_RollerPosition', $this->Translate('Position'), '~ShutterPosition.100');
                 $this->EnableAction('Shelly_RollerPosition');
                 break;
             default:
                 $this->SendDebug(__FUNCTION__ . ' Device Type: ', 'No Device Type', 0);
 
         }
-        $this->RegisterVariableFloat('Shelly_Power', 'Power', '');
-        $this->RegisterVariableFloat('Shelly_Energy', 'Energy', '');
+        $this->RegisterVariableFloat('Shelly_Power', $this->Translate('Power'), '');
+        $this->RegisterVariableFloat('Shelly_Energy', $this->Translate('Energy'), '');
     }
 
     public function ReceiveData($JSONString)
@@ -168,7 +168,7 @@ class IPS_Shelly2 extends IPSModule
         } else {
             $profile = IPS_GetVariableProfile($Name);
             if ($profile['ProfileType'] != 1) {
-                throw new Exception('Variable profile type does not match for profile ' . $Name, E_USER_NOTICE);
+                throw new Exception($this->Translate('Variable profile type does not match for profile') . $Name, E_USER_NOTICE);
             }
         }
         IPS_SetVariableProfileIcon($Name, $Icon);

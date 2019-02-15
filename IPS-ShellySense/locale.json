@@ -1,0 +1,12 @@
+{
+  "translations": {
+    "de": {
+      "Motion" : "Bewegung",
+      "External Charger" : "Externes Ladegerät",
+      "Lux" : "Lux",
+      "Temperature": "Temperatur",
+      "Humidity": "Feuchtigkeit",
+      "Battery": "Batterie"
+    }
+  }
+}

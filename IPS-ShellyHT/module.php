@@ -11,9 +11,9 @@ class IPS_ShellyHT extends IPSModule
         parent::Create();
         $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
 
-        $this->RegisterVariableFloat('Shelly_Temperature', 'Temperature', '~Temperature');
-        $this->RegisterVariableFloat('Shelly_Humidity', 'Humidity', '~Humidity.F');
-        $this->RegisterVariableInteger('Shelly_Battery', 'Battery', '~Battery.100');
+        $this->RegisterVariableFloat('Shelly_Temperature', $this->Translate('Temperature'), '~Temperature');
+        $this->RegisterVariableFloat('Shelly_Humidity', $this->Translate('Humidity'), '~Humidity.F');
+        $this->RegisterVariableInteger('Shelly_Battery', $this->Translate('Battery'), '~Battery.100');
         $this->RegisterPropertyString('MQTTTopic', '');
     }
 

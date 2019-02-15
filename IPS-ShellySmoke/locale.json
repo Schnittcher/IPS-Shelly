@@ -1,0 +1,9 @@
+{
+  "translations": {
+    "de": {
+      "Temperature": "Temperatur",
+      "Smoke": " Rauch",
+      "Battery": "Batterie"
+    }
+  }
+}

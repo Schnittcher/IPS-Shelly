@@ -1,0 +1,8 @@
+{
+  "translations": {
+    "de": {
+      "State": "Status",
+      "Variable profile type does not match for profile": "Der Profiltyp der Variablen stimmt nicht mit dem Profil überein"
+    }
+  }
+}

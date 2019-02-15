@@ -11,9 +11,9 @@ class IPS_ShellySmoke extends IPSModule
         parent::Create();
         $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
 
-        $this->RegisterVariableFloat('Shelly_Temperature', 'Temperature', '~Temperature');
-        $this->RegisterVariableBoolean('Shelly_Smoke', 'Smoke', '~Alert');
-        $this->RegisterVariableInteger('Shelly_Battery', 'Battery', '~Battery.100');
+        $this->RegisterVariableFloat('Shelly_Temperature', $this->Translate('Temperature'), '~Temperature');
+        $this->RegisterVariableBoolean('Shelly_Smoke', $this->Translate('Smoke'), '~Alert');
+        $this->RegisterVariableInteger('Shelly_Battery', $this->Translate('Battery'), '~Battery.100');
         $this->RegisterPropertyString('MQTTTopic', '');
     }
 

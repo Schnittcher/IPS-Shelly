@@ -26,10 +26,10 @@ class IPS_ShellyPlug extends IPSModule
         $this->SetReceiveDataFilter('.*' . $MQTTTopic . '.*');
 
         $this->SendDebug(__FUNCTION__ . ' Device Type: ', ' Relay', 0);
-        $this->RegisterVariableBoolean('Shelly_State', 'State', '~Switch');
+        $this->RegisterVariableBoolean('Shelly_State', $this->Translate('State'), '~Switch');
         $this->EnableAction('Shelly_State');
-        $this->RegisterVariableFloat('Shelly_Power', 'Power', '');
-        $this->RegisterVariableFloat('Shelly_Energy', 'Energy', '');
+        $this->RegisterVariableFloat('Shelly_Power', $this->Translate('Power'), '');
+        $this->RegisterVariableFloat('Shelly_Energy', $this->Translate('Energy'), '');
     }
 
     public function ReceiveData($JSONString)

@@ -1,0 +1,9 @@
+{
+  "translations": {
+    "de": {
+      "State": "Status",
+      "Power": "Leistung",
+      "Energy": "Energie"
+    }
+  }
+}

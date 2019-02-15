@@ -1,0 +1,9 @@
+{
+  "translations": {
+    "de": {
+      "Temperature": "Temperatur",
+      "Humidity": "Feuchtigkeit",
+      "Battery": "Batterie"
+    }
+  }
+}
