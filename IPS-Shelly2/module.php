@@ -32,7 +32,7 @@ class IPS_Shelly2 extends IPSModule
                 $this->SendDebug(__FUNCTION__ . ' Device Type: ', ' Relay', 0);
                 $this->RegisterVariableBoolean('Shelly_State', $this->Translate('State'), '~Switch');
                 $this->EnableAction('Shelly_State');
-                $this->RegisterVariableBoolean('Shelly_State1', $this->Translate('State'). ' 2', '~Switch');
+                $this->RegisterVariableBoolean('Shelly_State1', $this->Translate('State') . ' 2', '~Switch');
                 $this->EnableAction('Shelly_State1');
                 break;
             case 'roller':
