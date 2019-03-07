@@ -98,7 +98,7 @@ trait ShellyRollerAction
         $Data['PacketType'] = 3;
         $Data['QualityOfService'] = 0;
         $Data['Retain'] = false;
-        $Data['Topic'] = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/roller/0/command';
+        $Data['Topic'] = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/roller/0/command/pos';
         $Data['Payload'] = $position;
         $DataJSON = json_encode($Data, JSON_UNESCAPED_SLASHES);
         $this->SendDebug(__FUNCTION__ . 'Topic', $Data['Topic'], 0);
