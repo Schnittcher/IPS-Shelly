@@ -122,8 +122,8 @@ trait ShellyRollerAction
 }
 trait ShellyRGBW2Action
 {
-
-    public function RequestAction($Ident, $Value) {
+    public function RequestAction($Ident, $Value)
+    {
         if (fnmatch('Shelly_State*', $Ident)) {
             if ($Ident == 'Shelly_State') {
                 $relay = 0;
@@ -135,15 +135,15 @@ trait ShellyRGBW2Action
             $this->SwitchMode(intval($relay), $Value);
             return;
         }
-
     }
 
-    public function setDimmer(int $channel, int $value) {
+    public function setDimmer(int $channel, int $value)
+    {
         $Data['DataID'] = '{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}';
         $Data['PacketType'] = 3;
         $Data['QualityOfService'] = 0;
         $Data['Retain'] = false;
-        $Data['Topic'] = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/white/'.$channel.'/set';
+        $Data['Topic'] = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/white/' . $channel . '/set';
 
         $Payload['brightness'] = strval($value);
 
@@ -155,12 +155,13 @@ trait ShellyRGBW2Action
         $this->SendDataToParent($DataJSON);
     }
 
-    public function SwitchMode(int $channel, bool $value) {
+    public function SwitchMode(int $channel, bool $value)
+    {
         $Data['DataID'] = '{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}';
         $Data['PacketType'] = 3;
         $Data['QualityOfService'] = 0;
         $Data['Retain'] = false;
-        $Data['Topic'] = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/white/'.$channel.'/command';
+        $Data['Topic'] = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/white/' . $channel . '/command';
 
         if ($value) {
             $Data['Payload'] = 'on';
