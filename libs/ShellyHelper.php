@@ -120,3 +120,57 @@ trait ShellyRollerAction
         $this->SendDataToParent($DataJSON);
     }
 }
+trait ShellyRGBW2Action
+{
+
+    public function RequestAction($Ident, $Value) {
+        if (fnmatch('Shelly_State*', $Ident)) {
+            if ($Ident == 'Shelly_State') {
+                $relay = 0;
+            } else {
+                $relay = substr($Ident, -1, 1);
+            }
+            $this->SendDebug(__FUNCTION__ . ' Channel', $relay, 0);
+            $this->SendDebug(__FUNCTION__ . ' Value', $Value, 0);
+            $this->SwitchMode(intval($relay), $Value);
+            return;
+        }
+
+    }
+
+    public function setDimmer(int $channel, int $value) {
+        $Data['DataID'] = '{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}';
+        $Data['PacketType'] = 3;
+        $Data['QualityOfService'] = 0;
+        $Data['Retain'] = false;
+        $Data['Topic'] = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/white/'.$channel.'/set';
+
+        $Payload['brightness'] = strval($value);
+
+        $Data['Payload'] = json_encode($Payload);
+
+        $DataJSON = json_encode($Data, JSON_UNESCAPED_SLASHES);
+        $this->SendDebug(__FUNCTION__ . 'Topic', $Data['Topic'], 0);
+        $this->SendDebug(__FUNCTION__, $DataJSON, 0);
+        $this->SendDataToParent($DataJSON);
+    }
+
+    public function SwitchMode(int $channel, bool $value) {
+        $Data['DataID'] = '{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}';
+        $Data['PacketType'] = 3;
+        $Data['QualityOfService'] = 0;
+        $Data['Retain'] = false;
+        $Data['Topic'] = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/white/'.$channel.'/command';
+
+        if ($value) {
+            $Data['Payload'] = 'on';
+        } else {
+            $Data['Payload'] = 'off';
+        }
+
+        $DataJSON = json_encode($Data, JSON_UNESCAPED_SLASHES);
+        $this->SendDebug(__FUNCTION__ . 'Topic', $Data['Topic'], 0);
+        $this->SendDebug(__FUNCTION__, $DataJSON, 0);
+        $this->SendDataToParent($DataJSON);
+    }
+}

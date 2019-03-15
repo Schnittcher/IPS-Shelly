@@ -1,0 +1,13 @@
+{
+    "elements":
+    [
+      { "type": "ValidationTextBox", "name": "MQTTTopic", "caption": "MQTT Topic" },
+      { "type": "Select", "name": "Mode", "caption": "Mode",
+        "options": [
+          { "caption": "Color", "value": "Color" },
+          { "caption": "White", "value": "White" }
+        ]
+      }
+
+    ]
+}

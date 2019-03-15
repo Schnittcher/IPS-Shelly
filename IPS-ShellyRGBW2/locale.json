@@ -1,0 +1,10 @@
+{
+  "translations": {
+    "de": {
+      "State": "Status",
+      "Mode": "Modus",
+      "Color": "Farbe",
+      "White": "Weiß"
+    }
+  }
+}
