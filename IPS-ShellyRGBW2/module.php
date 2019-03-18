@@ -5,7 +5,8 @@ require_once __DIR__ . '/../libs/ShellyHelper.php';
 
 class IPS_ShellyRGBW2 extends IPSModule
 {
-    use ShellyRGBW2Action;
+    use Shelly,
+        ShellyRGBW2Action;
 
     public function Create()
     {
@@ -25,6 +26,45 @@ class IPS_ShellyRGBW2 extends IPSModule
 
         switch ($this->ReadPropertyString('Mode')) {
             case 'Color':
+                $this->RegisterVariableBoolean('Shelly_State', $this->Translate('State'), '~Switch');
+                $this->EnableAction('Shelly_State');
+
+                $this->RegisterVariableInteger('Shelly_Color', $this->Translate('Color'), '~HexColor');
+                $this->EnableAction('Shelly_Color');
+
+                $this->RegisterVariableInteger('Shelly_White', $this->Translate('White'), 'Intensity.255');
+                $this->EnableAction('Shelly_White');
+
+                $this->RegisterVariableInteger('Shelly_Gain', $this->Translate('Gain'), 'Intensity.100');
+                $this->EnableAction('Shelly_Gain');
+
+                //TODO Effect
+                $this->RegisterProfileAssociation(
+                    'Shelly.Effect',
+                    'Bulb',
+                    '',
+                    '',
+                    0,
+                    6,
+                    0,
+                    0,
+                    1,
+                    [
+                        [0, $this->Translate('Off'), 'Bulb', -1],
+                        [1, $this->Translate('Meteor Shower'), 'Bulb', -1],
+                        [2, $this->Translate('Gradual Change'), 'Bulb', -1],
+                        [3, $this->Translate('Breath'), 'Bulb', -1],
+                        [4, $this->Translate('Flash'), 'Bulb', -1],
+                        [5, $this->Translate('On/Off Gradual'), 'Bulb', -1],
+                        [6, $this->Translate('Red/Green Change'), 'Bulb', -1]
+                    ]
+                );
+                $this->RegisterVariableInteger("Shelly_Effect", $this->Translate("Effect"), "Shelly.Effect");
+                $this->EnableAction("Shelly_Effect");
+
+                $this->RegisterVariableFloat('Shelly_Power', $this->Translate('Power'), '');
+                $this->RegisterVariableBoolean('Shelly_Overpower', $this->Translate('Overpower'), '');
+
                 break;
             case 'White':
                 $this->RegisterVariableBoolean('Shelly_State', $this->Translate('State 1'), '~Switch');
@@ -71,48 +111,66 @@ class IPS_ShellyRGBW2 extends IPSModule
             $Buffer = json_decode($JSONString);
             // Buffer decodieren und in eine Variable schreiben
             $this->SendDebug('MQTT Topic', $Buffer->Topic, 0);
-            //Power Variable prüfen
             if (property_exists($Buffer, 'Topic')) {
+                $channel = $this->getChannelRelay($Buffer->Topic);
                 //Ist es ein ShellyRGBW2? Wenn ja weiter machen!
-                $ShellyTopic = explode('/', $Buffer->Topic);
-                $LastKey = count($ShellyTopic) - 1;
-                $channel = $ShellyTopic[$LastKey];
                 if (fnmatch('*shellyrgbw2*', $Buffer->Topic)) {
                     $this->SendDebug('ShellyRGBW2 Topic', $Buffer->Topic, 0);
                     $this->SendDebug('ShellyRGBW2 Payload', $Buffer->Payload, 0);
                     $Payload = json_decode($Buffer->Payload);
                     if (fnmatch('*status*', $Buffer->Topic)) {
-                        if ($Payload->mode == 'white') {
-                            //shellies/shellyrgbw2-2B906F/white/1/status
-                            //{"ison":false,"mode":"white","brightness":16,"power":0.00,"overpower":false}
-                            switch ($channel) {
-                            case 0:
-                                SetValue($this->GetIDForIdent('Shelly_State'), $Payload->ison);
-                                SetValue($this->GetIDForIdent('Shelly_Brightness'), $Payload->brightness);
-                                SetValue($this->GetIDForIdent('Shelly_Power'), $Payload->power);
-                                SetValue($this->GetIDForIdent('Shelly_Overpower'), $Payload->overpower);
+                        switch ($Payload->mode) {
+                            case 'white':
+                                if (strtolower($this->ReadPropertyString('Mode')) != $Payload->mode){
+                                    $this->SendDebug("Mode",strtolower($this->ReadPropertyString('Mode')) ." ". $Payload->mode,0 );
+                                    break;
+                                }
+                                switch ($channel) {
+                                    case 0:
+                                        SetValue($this->GetIDForIdent('Shelly_State'),$Payload->ison);
+                                        SetValue($this->GetIDForIdent('Shelly_Brightness'),$Payload->brightness);
+                                        SetValue($this->GetIDForIdent('Shelly_Power'),$Payload->power);
+                                        SetValue($this->GetIDForIdent('Shelly_Overpower'),$Payload->overpower);
+                                        break;
+                                    case 1:
+                                        SetValue($this->GetIDForIdent('Shelly_State2'), $Payload->ison);
+                                        SetValue($this->GetIDForIdent('Shelly_Brightness2'),$Payload->brightness);
+                                        SetValue($this->GetIDForIdent('Shelly_Power2'),$Payload->power);
+                                        SetValue($this->GetIDForIdent('Shelly_Overpower2'),$Payload->overpower);
+                                        break;
+                                    case 2:
+                                        SetValue($this->GetIDForIdent('Shelly_State3'), $Payload->ison);
+                                        SetValue($this->GetIDForIdent('Shelly_Brightness3'),$Payload->brightness);
+                                        SetValue($this->GetIDForIdent('Shelly_Power3'),$Payload->power);
+                                        SetValue($this->GetIDForIdent('Shelly_Overpower3'),$Payload->overpower);
+                                        break;
+                                    case 3:
+                                        SetValue($this->GetIDForIdent('Shelly_State4'), $Payload->ison);
+                                        SetValue($this->GetIDForIdent('Shelly_Brightness4'),$Payload->brightness);
+                                        SetValue($this->GetIDForIdent('Shelly_Power4'),$Payload->power);
+                                        SetValue($this->GetIDForIdent('Shelly_Overpower4'),$Payload->overpower);
+                                        break;
+                                    default:
+                                        break;
+                                }
                                 break;
-                            case 1:
-                                SetValue($this->GetIDForIdent('Shelly_State2'), $Payload->ison);
-                                SetValue($this->GetIDForIdent('Shelly_Brightness2'), $Payload->brightness);
-                                SetValue($this->GetIDForIdent('Shelly_Power2'), $Payload->power);
-                                SetValue($this->GetIDForIdent('Shelly_Overpower2'), $Payload->overpower);
-                                break;
-                            case 2:
-                                SetValue($this->GetIDForIdent('Shelly_State3'), $Payload->ison);
-                                SetValue($this->GetIDForIdent('Shelly_Brightness3'), $Payload->brightness);
-                                SetValue($this->GetIDForIdent('Shelly_Power3'), $Payload->power);
-                                SetValue($this->GetIDForIdent('Shelly_Overpower3'), $Payload->overpower);
-                                break;
-                            case 3:
-                                SetValue($this->GetIDForIdent('Shelly_State4'), $Payload->ison);
-                                SetValue($this->GetIDForIdent('Shelly_Brightness4'), $Payload->brightness);
-                                SetValue($this->GetIDForIdent('Shelly_Power4'), $Payload->power);
-                                SetValue($this->GetIDForIdent('Shelly_Overpower4'), $Payload->overpower);
+                            case 'color':
+                                if (strtolower($this->ReadPropertyString('Mode')) != $Payload->mode){
+                                    $this->SendDebug("Mode",strtolower($this->ReadPropertyString('Mode')) ." ". $Payload->mode,0 );
+                                    break;
+                                }
+                                // {"ison":true,"mode":"color","red":255,"green":251,"blue":241,"white":0,"gain":100,"effect":0,"power":5.90,"overpower":false}
+                                SetValue($this->GetIDForIdent('Shelly_State'),$Payload->ison);
+                                SetValue($this->GetIDForIdent('Shelly_Color'),$this->rgbToHex($Payload->red, $Payload->green,$Payload->blue));
+                                SetValue($this->GetIDForIdent('Shelly_White'),$Payload->white);
+                                SetValue($this->GetIDForIdent('Shelly_Gain'),$Payload->gain);
+                                SetValue($this->GetIDForIdent('Shelly_Effect'),$Payload->effect);
+                                SetValue($this->GetIDForIdent('Shelly_Power'),$Payload->power);
+                                SetValue($this->GetIDForIdent('Shelly_Overpower'),$Payload->overpower);
                                 break;
                             default:
+                                $this->SendDebug('Invalid Mode', $Payload->mode,0);
                                 break;
-                            }
                         }
                     }
                 }

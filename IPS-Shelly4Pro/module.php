@@ -5,7 +5,8 @@ require_once __DIR__ . '/../libs/ShellyHelper.php';
 
 class IPS_Shelly4Pro extends IPSModule
 {
-    use ShellyRelayAction;
+    use Shelly,
+        ShellyRelayAction;
 
     public function Create()
     {
@@ -70,9 +71,7 @@ class IPS_Shelly4Pro extends IPSModule
                 if (fnmatch('*/relay/[0123]', $Buffer->Topic)) {
                     $this->SendDebug('State Topic', $Buffer->Topic, 0);
                     $this->SendDebug('State Payload', $Buffer->Payload, 0);
-                    $ShellyTopic = explode('/', $Buffer->Topic);
-                    $LastKey = count($ShellyTopic) - 1;
-                    $relay = $ShellyTopic[$LastKey];
+                    $relay = $this->getChannelRelay($Buffer->Topic);
                     $this->SendDebug(__FUNCTION__ . ' Relay', $relay, 0);
 
                     //Power prüfen und in IPS setzen
