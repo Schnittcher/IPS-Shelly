@@ -65,7 +65,6 @@ class IPS_ShellyRGBW2 extends IPSModule
 
     public function ReceiveData($JSONString)
     {
-
         $this->SendDebug('ShlleyRGBW2 Mode', $this->ReadPropertyString('Mode'), 0);
         $this->SendDebug('JSON', $JSONString, 0);
         if (!empty($this->ReadPropertyString('MQTTTopic'))) {
@@ -79,7 +78,6 @@ class IPS_ShellyRGBW2 extends IPSModule
                 $LastKey = count($ShellyTopic) - 1;
                 $channel = $ShellyTopic[$LastKey];
                 if (fnmatch('*shellyrgbw2*', $Buffer->Topic)) {
-
                     $this->SendDebug('ShellyRGBW2 Topic', $Buffer->Topic, 0);
                     $this->SendDebug('ShellyRGBW2 Payload', $Buffer->Payload, 0);
                     $Payload = json_decode($Buffer->Payload);
@@ -89,28 +87,28 @@ class IPS_ShellyRGBW2 extends IPSModule
                             //{"ison":false,"mode":"white","brightness":16,"power":0.00,"overpower":false}
                             switch ($channel) {
                             case 0:
-                                SetValue($this->GetIDForIdent('Shelly_State'),$Payload->ison);
-                                SetValue($this->GetIDForIdent('Shelly_Brightness'),$Payload->brightness);
-                                SetValue($this->GetIDForIdent('Shelly_Power'),$Payload->power);
-                                SetValue($this->GetIDForIdent('Shelly_Overpower'),$Payload->overpower);
+                                SetValue($this->GetIDForIdent('Shelly_State'), $Payload->ison);
+                                SetValue($this->GetIDForIdent('Shelly_Brightness'), $Payload->brightness);
+                                SetValue($this->GetIDForIdent('Shelly_Power'), $Payload->power);
+                                SetValue($this->GetIDForIdent('Shelly_Overpower'), $Payload->overpower);
                                 break;
                             case 1:
                                 SetValue($this->GetIDForIdent('Shelly_State2'), $Payload->ison);
-                                SetValue($this->GetIDForIdent('Shelly_Brightness2'),$Payload->brightness);
-                                SetValue($this->GetIDForIdent('Shelly_Power2'),$Payload->power);
-                                SetValue($this->GetIDForIdent('Shelly_Overpower2'),$Payload->overpower);
+                                SetValue($this->GetIDForIdent('Shelly_Brightness2'), $Payload->brightness);
+                                SetValue($this->GetIDForIdent('Shelly_Power2'), $Payload->power);
+                                SetValue($this->GetIDForIdent('Shelly_Overpower2'), $Payload->overpower);
                                 break;
                             case 2:
                                 SetValue($this->GetIDForIdent('Shelly_State3'), $Payload->ison);
-                                SetValue($this->GetIDForIdent('Shelly_Brightness3'),$Payload->brightness);
-                                SetValue($this->GetIDForIdent('Shelly_Power3'),$Payload->power);
-                                SetValue($this->GetIDForIdent('Shelly_Overpower3'),$Payload->overpower);
+                                SetValue($this->GetIDForIdent('Shelly_Brightness3'), $Payload->brightness);
+                                SetValue($this->GetIDForIdent('Shelly_Power3'), $Payload->power);
+                                SetValue($this->GetIDForIdent('Shelly_Overpower3'), $Payload->overpower);
                                 break;
                             case 3:
                                 SetValue($this->GetIDForIdent('Shelly_State4'), $Payload->ison);
-                                SetValue($this->GetIDForIdent('Shelly_Brightness4'),$Payload->brightness);
-                                SetValue($this->GetIDForIdent('Shelly_Power4'),$Payload->power);
-                                SetValue($this->GetIDForIdent('Shelly_Overpower4'),$Payload->overpower);
+                                SetValue($this->GetIDForIdent('Shelly_Brightness4'), $Payload->brightness);
+                                SetValue($this->GetIDForIdent('Shelly_Power4'), $Payload->power);
+                                SetValue($this->GetIDForIdent('Shelly_Overpower4'), $Payload->overpower);
                                 break;
                             default:
                                 break;
