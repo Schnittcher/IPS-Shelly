@@ -5,7 +5,8 @@ define('MQTT_GROUP_TOPIC', 'shellies');
 
 trait Shelly
 {
-    protected function getChannelRelay(string $topic) {
+    protected function getChannelRelay(string $topic)
+    {
         $ShellyTopic = explode('/', $topic);
         $LastKey = count($ShellyTopic) - 1;
         $relay = $ShellyTopic[$LastKey];
@@ -19,7 +20,7 @@ trait Shelly
         } else {
             $profile = IPS_GetVariableProfile($Name);
             if ($profile['ProfileType'] != $Vartype) {
-                $this->SendDebug("Profile", 'Variable profile type does not match for profile ' . $Name, 0);
+                $this->SendDebug('Profile', 'Variable profile type does not match for profile ' . $Name, 0);
             }
         }
         IPS_SetVariableProfileIcon($Name, $Icon);
@@ -32,24 +33,22 @@ trait Shelly
 
     private function RegisterProfileAssociation($Name, $Icon, $Prefix, $Suffix, $MinValue, $MaxValue, $Stepsize, $Digits, $Vartype, $Associations)
     {
-        if (is_array($Associations) && sizeof($Associations) === 0) {
+        if (is_array($Associations) && count($Associations) === 0) {
             $MinValue = 0;
             $MaxValue = 0;
         }
         $this->RegisterProfile($Name, $Icon, $Prefix, $Suffix, $MinValue, $MaxValue, $Stepsize, $Digits, $Vartype);
         if (is_array($Associations)) {
-            foreach ($Associations AS $Association) {
+            foreach ($Associations as $Association) {
                 IPS_SetVariableProfileAssociation($Name, $Association[0], $Association[1], $Association[2], $Association[3]);
             }
         } else {
             $Associations = $this->$Associations;
-            foreach ($Associations AS $code => $association) {
+            foreach ($Associations as $code => $association) {
                 IPS_SetVariableProfileAssociation($Name, $code, $this->Translate($association), $Icon, -1);
             }
         }
     }
-
-
 }
 
 trait ShellyRelayAction
@@ -309,7 +308,7 @@ trait ShellyRGBW2Action
         $Data['PacketType'] = 3;
         $Data['QualityOfService'] = 0;
         $Data['Retain'] = false;
-        $Data['Topic'] = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/'.$Mode.'/' . $channel . '/command';
+        $Data['Topic'] = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/' . $Mode . '/' . $channel . '/command';
 
         if ($value) {
             $Data['Payload'] = 'on';
@@ -328,14 +327,12 @@ trait ShellyRGBW2Action
         return ($r << 16) + ($g << 8) + $b;
     }
 
-    protected function HexToRGB($value) {
-        $RGB = array();
+    protected function HexToRGB($value)
+    {
+        $RGB = [];
         $RGB[0] = (($value >> 16) & 0xFF);
         $RGB[1] = (($value >> 8) & 0xFF);
         $RGB[2] = ($value & 0xFF);
         return $RGB;
     }
-
-
-
 }
