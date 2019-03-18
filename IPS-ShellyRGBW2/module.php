@@ -56,6 +56,7 @@ class IPS_ShellyRGBW2 extends IPSModule
 
     public function ReceiveData($JSONString)
     {
+
         $this->SendDebug('ShlleyRGBW2 Mode', $this->ReadPropertyString('Mode'), 0);
         $this->SendDebug('JSON', $JSONString, 0);
         if (!empty($this->ReadPropertyString('MQTTTopic'))) {
@@ -66,10 +67,18 @@ class IPS_ShellyRGBW2 extends IPSModule
             if (property_exists($Buffer, 'Topic')) {
                 //Ist es ein ShellyRGBW2? Wenn ja weiter machen!
                 if (fnmatch('*shellyrgbw2*', $Buffer->Topic)) {
+
                     $this->SendDebug('ShellyRGBW2 Topic', $Buffer->Topic, 0);
                     $this->SendDebug('ShellyRGBW2 Payload', $Buffer->Payload, 0);
+                    if (fnmatch('*status*', $Buffer->Topic)) {
+                        //shellies/shellyrgbw2-2B906F/white/1/status
+                        //{"ison":false,"mode":"white","brightness":16,"power":0.00,"overpower":false}
+
+
+                    }
                 }
             }
+
         }
     }
 }
