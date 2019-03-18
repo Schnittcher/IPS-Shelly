@@ -14,8 +14,7 @@ class IPS_ShellyRGBW2 extends IPSModule
         $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
 
         $this->RegisterPropertyString('MQTTTopic', '');
-        $this->RegisterPropertyString("Mode", 'Color');
-
+        $this->RegisterPropertyString('Mode', 'Color');
     }
 
     public function ApplyChanges()
