@@ -135,6 +135,17 @@ trait ShellyRGBW2Action
             $this->SwitchMode(intval($relay), $Value);
             return;
         }
+        if (fnmatch('Shelly_Brightness*', $Ident)) {
+            if ($Ident == 'Shelly_Brightness') {
+                $relay = 0;
+            } else {
+                $relay = substr($Ident, -1, 1);
+            }
+            $this->SendDebug(__FUNCTION__ . ' Channel', $relay, 0);
+            $this->SendDebug(__FUNCTION__ . ' Value', $Value, 0);
+            $this->setDimmer(intval($relay), $Value);
+            return;
+        }
     }
 
     public function setDimmer(int $channel, int $value)
