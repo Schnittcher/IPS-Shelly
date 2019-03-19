@@ -119,6 +119,7 @@ class IPS_ShellyRGBW2 extends IPSModule
                 if (fnmatch('*shellyrgbw2*', $Buffer->Topic)) {
                     $this->SendDebug('ShellyRGBW2 Topic', $Buffer->Topic, 0);
                     $this->SendDebug('ShellyRGBW2 Payload', $Buffer->Payload, 0);
+                    $this->SendDebug('ShellyRGBW2 Channel', $channel, 0);
                     $Payload = json_decode($Buffer->Payload);
                     if (fnmatch('*status*', $Buffer->Topic)) {
                         switch ($Payload->mode) {
