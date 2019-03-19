@@ -114,7 +114,7 @@ class IPS_ShellyRGBW2 extends IPSModule
             // Buffer decodieren und in eine Variable schreiben
             $this->SendDebug('MQTT Topic', $Buffer->Topic, 0);
             if (property_exists($Buffer, 'Topic')) {
-                $channel = $this->getChannelRelay($Buffer->Topic);
+                $channel = $this->getChannel($Buffer->Topic);
                 //Ist es ein ShellyRGBW2? Wenn ja weiter machen!
                 if (fnmatch('*shellyrgbw2*', $Buffer->Topic)) {
                     $this->SendDebug('ShellyRGBW2 Topic', $Buffer->Topic, 0);

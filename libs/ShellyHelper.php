@@ -13,6 +13,14 @@ trait Shelly
         return $relay;
     }
 
+    protected function getChannel(string $topic)
+    {
+        $ShellyTopic = explode('/', $topic);
+        $LastKey = count($ShellyTopic) - 2;
+        $relay = $ShellyTopic[$LastKey];
+        return $relay;
+    }
+
     private function RegisterProfile($Name, $Icon, $Prefix, $Suffix, $MinValue, $MaxValue, $StepSize, $Digits, $Vartype)
     {
         if (!IPS_VariableProfileExists($Name)) {
