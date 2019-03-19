@@ -26,7 +26,7 @@ class IPS_ShellyRGBW2 extends IPSModule
 
         switch ($this->ReadPropertyString('Mode')) {
             case '-':
-                $this->SendDebug(__FUNCTION__, 'No Mode set',0);
+                $this->SendDebug(__FUNCTION__, 'No Mode set', 0);
                 break;
             case 'Color':
                 $this->RegisterVariableBoolean('Shelly_State', $this->Translate('State'), '~Switch');
