@@ -88,14 +88,14 @@ class IPS_ShellyRGBW2 extends IPSModule
                 $this->EnableAction('Shelly_Brightness3');
 
                 $this->RegisterVariableFloat('Shelly_Power', $this->Translate('Power 1'), '');
-                $this->RegisterVariableFloat('Shelly_Power2', $this->Translate('Power 2'), '');
-                $this->RegisterVariableFloat('Shelly_Power3', $this->Translate('Power 3'), '');
-                $this->RegisterVariableFloat('Shelly_Power4', $this->Translate('Power 4'), '');
+                $this->RegisterVariableFloat('Shelly_Power1', $this->Translate('Power 2'), '');
+                $this->RegisterVariableFloat('Shelly_Power2', $this->Translate('Power 3'), '');
+                $this->RegisterVariableFloat('Shelly_Power3', $this->Translate('Power 4'), '');
 
                 $this->RegisterVariableBoolean('Shelly_Overpower', $this->Translate('Overpower 1'), '');
-                $this->RegisterVariableBoolean('Shelly_Overpower2', $this->Translate('Overpower 2'), '');
-                $this->RegisterVariableBoolean('Shelly_Overpower3', $this->Translate('Overpower 3'), '');
-                $this->RegisterVariableBoolean('Shelly_Overpower4', $this->Translate('Overpower 4'), '');
+                $this->RegisterVariableBoolean('Shelly_Overpower1', $this->Translate('Overpower 2'), '');
+                $this->RegisterVariableBoolean('Shelly_Overpower2', $this->Translate('Overpower 3'), '');
+                $this->RegisterVariableBoolean('Shelly_Overpower3', $this->Translate('Overpower 4'), '');
                 break;
         }
         //Setze Filter für ReceiveData
@@ -133,22 +133,22 @@ class IPS_ShellyRGBW2 extends IPSModule
                                         SetValue($this->GetIDForIdent('Shelly_Overpower'), $Payload->overpower);
                                         break;
                                     case 1:
+                                        SetValue($this->GetIDForIdent('Shelly_State1'), $Payload->ison);
+                                        SetValue($this->GetIDForIdent('Shelly_Brightness1'), $Payload->brightness);
+                                        SetValue($this->GetIDForIdent('Shelly_Power1'), $Payload->power);
+                                        SetValue($this->GetIDForIdent('Shelly_Overpower1'), $Payload->overpower);
+                                        break;
+                                    case 2:
                                         SetValue($this->GetIDForIdent('Shelly_State2'), $Payload->ison);
                                         SetValue($this->GetIDForIdent('Shelly_Brightness2'), $Payload->brightness);
                                         SetValue($this->GetIDForIdent('Shelly_Power2'), $Payload->power);
                                         SetValue($this->GetIDForIdent('Shelly_Overpower2'), $Payload->overpower);
                                         break;
-                                    case 2:
+                                    case 3:
                                         SetValue($this->GetIDForIdent('Shelly_State3'), $Payload->ison);
                                         SetValue($this->GetIDForIdent('Shelly_Brightness3'), $Payload->brightness);
                                         SetValue($this->GetIDForIdent('Shelly_Power3'), $Payload->power);
                                         SetValue($this->GetIDForIdent('Shelly_Overpower3'), $Payload->overpower);
-                                        break;
-                                    case 3:
-                                        SetValue($this->GetIDForIdent('Shelly_State4'), $Payload->ison);
-                                        SetValue($this->GetIDForIdent('Shelly_Brightness4'), $Payload->brightness);
-                                        SetValue($this->GetIDForIdent('Shelly_Power4'), $Payload->power);
-                                        SetValue($this->GetIDForIdent('Shelly_Overpower4'), $Payload->overpower);
                                         break;
                                     default:
                                         break;
