@@ -15,7 +15,7 @@ class IPS_ShellyRGBW2 extends IPSModule
         $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
 
         $this->RegisterPropertyString('MQTTTopic', '');
-        $this->RegisterPropertyString('Mode', 'Color');
+        $this->RegisterPropertyString('Mode', '-');
     }
 
     public function ApplyChanges()
@@ -25,6 +25,9 @@ class IPS_ShellyRGBW2 extends IPSModule
         $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
 
         switch ($this->ReadPropertyString('Mode')) {
+            case '-':
+                $this->SendDebug(__FUNCTION__, 'No Mode set',0);
+                break;
             case 'Color':
                 $this->RegisterVariableBoolean('Shelly_State', $this->Translate('State'), '~Switch');
                 $this->EnableAction('Shelly_State');
@@ -64,7 +67,6 @@ class IPS_ShellyRGBW2 extends IPSModule
 
                 $this->RegisterVariableFloat('Shelly_Power', $this->Translate('Power'), '');
                 $this->RegisterVariableBoolean('Shelly_Overpower', $this->Translate('Overpower'), '');
-
                 break;
             case 'White':
                 $this->RegisterVariableBoolean('Shelly_State', $this->Translate('State 1'), '~Switch');
