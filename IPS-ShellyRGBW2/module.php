@@ -68,24 +68,24 @@ class IPS_ShellyRGBW2 extends IPSModule
                 break;
             case 'White':
                 $this->RegisterVariableBoolean('Shelly_State', $this->Translate('State 1'), '~Switch');
-                $this->RegisterVariableBoolean('Shelly_State2', $this->Translate('State 2'), '~Switch');
-                $this->RegisterVariableBoolean('Shelly_State3', $this->Translate('State 3'), '~Switch');
-                $this->RegisterVariableBoolean('Shelly_State4', $this->Translate('State 4'), '~Switch');
+                $this->RegisterVariableBoolean('Shelly_State1', $this->Translate('State 2'), '~Switch');
+                $this->RegisterVariableBoolean('Shelly_State2', $this->Translate('State 3'), '~Switch');
+                $this->RegisterVariableBoolean('Shelly_State3', $this->Translate('State 4'), '~Switch');
 
                 $this->EnableAction('Shelly_State');
+                $this->EnableAction('Shelly_State1');
                 $this->EnableAction('Shelly_State2');
                 $this->EnableAction('Shelly_State3');
-                $this->EnableAction('Shelly_State4');
 
                 $this->RegisterVariableInteger('Shelly_Brightness', $this->Translate('Brightness 1'), 'Intensity.100');
-                $this->RegisterVariableInteger('Shelly_Brightness2', $this->Translate('Brightness 2'), 'Intensity.100');
-                $this->RegisterVariableInteger('Shelly_Brightness3', $this->Translate('Brightness 3'), 'Intensity.100');
-                $this->RegisterVariableInteger('Shelly_Brightness4', $this->Translate('Brightness 4'), 'Intensity.100');
+                $this->RegisterVariableInteger('Shelly_Brightness1', $this->Translate('Brightness 2'), 'Intensity.100');
+                $this->RegisterVariableInteger('Shelly_Brightness2', $this->Translate('Brightness 3'), 'Intensity.100');
+                $this->RegisterVariableInteger('Shelly_Brightness3', $this->Translate('Brightness 4'), 'Intensity.100');
 
                 $this->EnableAction('Shelly_Brightness');
+                $this->EnableAction('Shelly_Brightness1');
                 $this->EnableAction('Shelly_Brightness2');
                 $this->EnableAction('Shelly_Brightness3');
-                $this->EnableAction('Shelly_Brightness4');
 
                 $this->RegisterVariableFloat('Shelly_Power', $this->Translate('Power 1'), '');
                 $this->RegisterVariableFloat('Shelly_Power2', $this->Translate('Power 2'), '');
