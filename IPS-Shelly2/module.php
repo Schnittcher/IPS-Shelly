@@ -17,6 +17,7 @@ class IPS_Shelly2 extends IPSModule
 
         $this->RegisterPropertyString('MQTTTopic', '');
         $this->RegisterPropertyString('DeviceType', '');
+        $this->RegisterPropertyString('Device', '');
     }
 
     public function ApplyChanges()
@@ -47,8 +48,18 @@ class IPS_Shelly2 extends IPSModule
                 $this->SendDebug(__FUNCTION__ . ' Device Type: ', 'No Device Type', 0);
 
         }
-        $this->RegisterVariableFloat('Shelly_Power', $this->Translate('Power'), '');
-        $this->RegisterVariableFloat('Shelly_Energy', $this->Translate('Energy'), '');
+
+        switch ($this->ReadPropertyString('Device')) {
+            case 'shelly2':
+                $this->RegisterVariableFloat('Shelly_Power', $this->Translate('Power'), '');
+                $this->RegisterVariableFloat('Shelly_Energy', $this->Translate('Energy'), '');
+                break;
+            case 'shelly2.5':
+                $this->RegisterVariableFloat('Shelly_Power1', $this->Translate('Power 1'), '');
+                $this->RegisterVariableFloat('Shelly_Energy1', $this->Translate('Energy 1'), '');
+                $this->RegisterVariableFloat('Shelly_Power2', $this->Translate('Power 2'), '');
+                $this->RegisterVariableFloat('Shelly_Energy2', $this->Translate('Energy 2'), '');
+        }
     }
 
     public function ReceiveData($JSONString)
@@ -131,15 +142,41 @@ class IPS_Shelly2 extends IPSModule
                     $this->SendDebug('Roller Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_RollerPosition'), intval($Buffer->Payload));
                 }
-                if (fnmatch('*/relay/power*', $Buffer->Topic)) {
-                    $this->SendDebug('Power Topic', $Buffer->Topic, 0);
-                    $this->SendDebug('Power Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_Power'), $Buffer->Payload);
-                }
-                if (fnmatch('*/relay/energy*', $Buffer->Topic)) {
-                    $this->SendDebug('Energy Topic', $Buffer->Topic, 0);
-                    $this->SendDebug('Energy Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_Energy'), $Buffer->Payload);
+                switch ($this->ReadPropertyString('Device')) {
+                    case 'shelly2':
+                        if (fnmatch('*/relay/power*', $Buffer->Topic)) {
+                            $this->SendDebug('Power Topic', $Buffer->Topic, 0);
+                            $this->SendDebug('Power Payload', $Buffer->Payload, 0);
+                            SetValue($this->GetIDForIdent('Shelly_Power'), $Buffer->Payload);
+                        }
+                        if (fnmatch('*/relay/energy*', $Buffer->Topic)) {
+                            $this->SendDebug('Energy Topic', $Buffer->Topic, 0);
+                            $this->SendDebug('Energy Payload', $Buffer->Payload, 0);
+                            SetValue($this->GetIDForIdent('Shelly_Energy'), $Buffer->Payload);
+                        }
+                        break;
+                    case 'shelly2.5':
+                        if (fnmatch('*/relay/0/power*', $Buffer->Topic)) {
+                            $this->SendDebug('Power Topic', $Buffer->Topic, 0);
+                            $this->SendDebug('Power Payload', $Buffer->Payload, 0);
+                            SetValue($this->GetIDForIdent('Shelly_Power1'), $Buffer->Payload);
+                        }
+                        if (fnmatch('*/relay/0/energy*', $Buffer->Topic)) {
+                            $this->SendDebug('Energy Topic', $Buffer->Topic, 0);
+                            $this->SendDebug('Energy Payload', $Buffer->Payload, 0);
+                            SetValue($this->GetIDForIdent('Shelly_Energy1'), $Buffer->Payload);
+                        }
+                        if (fnmatch('*/relay/1/power*', $Buffer->Topic)) {
+                            $this->SendDebug('Power Topic', $Buffer->Topic, 0);
+                            $this->SendDebug('Power Payload', $Buffer->Payload, 0);
+                            SetValue($this->GetIDForIdent('Shelly_Power2'), $Buffer->Payload);
+                        }
+                        if (fnmatch('*/relay/1/energy*', $Buffer->Topic)) {
+                            $this->SendDebug('Energy Topic', $Buffer->Topic, 0);
+                            $this->SendDebug('Energy Payload', $Buffer->Payload, 0);
+                            SetValue($this->GetIDForIdent('Shelly_Energy2'), $Buffer->Payload);
+                        }
+                        break;
                 }
             }
         }

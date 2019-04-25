@@ -2,6 +2,14 @@
     "elements":
     [
       { "type": "ValidationTextBox", "name": "MQTTTopic", "caption": "MQTT Topic" },
+
+      { "type": "Select", "name": "Device", "caption": "Device",
+        "options": [
+          { "caption": "Please select device", "value": "" },
+          { "caption": "Shelly 2", "value": "shelly2" },
+          { "caption": "Shelly 2.5", "value": "shelly2.5" }
+        ]
+      },
       { "type": "Select", "name": "DeviceType", "caption": "Device Type",
         "options": [
           { "caption": "Please set Device Type", "value": "" },

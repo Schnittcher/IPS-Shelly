@@ -6,9 +6,14 @@
       "Position": "Position",
       "Power": "Leistung",
       "Energy": "Energie",
+      "Power 1": "Leistung 1",
+      "Energy 1": "Energie 1",
+      "Power 2": "Leistung 2",
+      "Energy 2": "Energie 2",
       "Variable profile type does not match for profile": "Der Profiltyp der Variablen stimmt nicht mit dem Profil überein",
       "Device Type": "Geräte Typ",
       "Please set Device Type": "Bitte legen Sie den Gerätetyp fest",
+      "Please select device": "Bitte wählen Sie das Gerät aus",
       "Relay": "Relais"
     }
   }
