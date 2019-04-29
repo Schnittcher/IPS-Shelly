@@ -309,14 +309,14 @@ trait ShellyRGBW2Action
         $this->SendDataToParent($DataJSON);
     }
 
-    public function SwitchMode(int $channel, bool $value)
+    public function SwitchMode(int $relay, bool $Value)
     {
         $Mode = strtolower($this->ReadPropertyString('Mode'));
         $Data['DataID'] = '{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}';
         $Data['PacketType'] = 3;
         $Data['QualityOfService'] = 0;
         $Data['Retain'] = false;
-        $Data['Topic'] = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/' . $Mode . '/' . $channel . '/command';
+        $Data['Topic'] = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/' . $Mode . '/' . $relay . '/command';
 
         if ($value) {
             $Data['Payload'] = 'on';
