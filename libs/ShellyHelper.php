@@ -318,7 +318,7 @@ trait ShellyRGBW2Action
         $Data['Retain'] = false;
         $Data['Topic'] = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/' . $Mode . '/' . $relay . '/command';
 
-        if ($value) {
+        if ($Value) {
             $Data['Payload'] = 'on';
         } else {
             $Data['Payload'] = 'off';
