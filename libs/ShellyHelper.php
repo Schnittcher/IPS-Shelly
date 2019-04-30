@@ -3,6 +3,13 @@
 declare(strict_types=1);
 define('MQTT_GROUP_TOPIC', 'shellies');
 
+if(!function_exists('fnmatch')) {
+
+    function fnmatch($pattern, $string) {
+        return preg_match("#^".strtr(preg_quote($pattern, '#'), array('\*' => '.*', '\?' => '.'))."$#i", $string);
+    }
+}
+
 trait Shelly
 {
     protected function getChannelRelay(string $topic)
