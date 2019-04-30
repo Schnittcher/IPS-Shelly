@@ -28,6 +28,20 @@ trait Shelly
         return $relay;
     }
 
+    protected function sendMQTT($Topic,$Payload) {
+        $Data['DataID'] = '{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}';
+        $Data['PacketType'] = 3;
+        $Data['QualityOfService'] = 0;
+        $Data['Retain'] = false;
+        $Data['Topic'] = $Topic;
+        $Data['Payload'] = $Payload;
+
+        $DataJSON = json_encode($Data, JSON_UNESCAPED_SLASHES);
+        $this->SendDebug(__FUNCTION__ . 'Topic', $Data['Topic'], 0);
+        $this->SendDebug(__FUNCTION__, $DataJSON, 0);
+        $this->SendDataToParent($DataJSON);
+    }
+
     private function RegisterProfile($Name, $Icon, $Prefix, $Suffix, $MinValue, $MaxValue, $StepSize, $Digits, $Vartype)
     {
         if (!IPS_VariableProfileExists($Name)) {
@@ -107,21 +121,13 @@ trait ShellyRelayAction
 
     public function SwitchMode(int $relay, bool $Value)
     {
-        $Data['DataID'] = '{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}';
-        $Data['PacketType'] = 3;
-        $Data['QualityOfService'] = 0;
-        $Data['Retain'] = false;
-        $Data['Topic'] = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/relay/' . $relay . '/command';
-
+       $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/relay/' . $relay . '/command';
         if ($Value) {
-            $Data['Payload'] = 'on';
+            $Payload = 'on';
         } else {
-            $Data['Payload'] = 'off';
+            $Payload = 'off';
         }
-        $DataJSON = json_encode($Data, JSON_UNESCAPED_SLASHES);
-        $this->SendDebug(__FUNCTION__ . 'Topic', $Data['Topic'], 0);
-        $this->SendDebug(__FUNCTION__, $DataJSON, 0);
-        $this->SendDataToParent($DataJSON);
+        $this->sendMQTT($Topic,$Payload);
     }
 }
 
@@ -129,58 +135,30 @@ trait ShellyRollerAction
 {
     public function MoveDown()
     {
-        $Data['DataID'] = '{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}';
-        $Data['PacketType'] = 3;
-        $Data['QualityOfService'] = 0;
-        $Data['Retain'] = false;
-        $Data['Topic'] = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/roller/0/command';
-        $Data['Payload'] = 'close';
-        $DataJSON = json_encode($Data, JSON_UNESCAPED_SLASHES);
-        $this->SendDebug(__FUNCTION__ . 'Topic', $Data['Topic'], 0);
-        $this->SendDebug(__FUNCTION__, $DataJSON, 0);
-        $this->SendDataToParent($DataJSON);
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/roller/0/command';
+        $Payload = 'close';
+        $this->sendMQTT($Topic,$Payload);
     }
 
     public function MoveUp()
     {
-        $Data['DataID'] = '{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}';
-        $Data['PacketType'] = 3;
-        $Data['QualityOfService'] = 0;
-        $Data['Retain'] = false;
-        $Data['Topic'] = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/roller/0/command';
-        $Data['Payload'] = 'open';
-        $DataJSON = json_encode($Data, JSON_UNESCAPED_SLASHES);
-        $this->SendDebug(__FUNCTION__ . 'Topic', $Data['Topic'], 0);
-        $this->SendDebug(__FUNCTION__, $DataJSON, 0);
-        $this->SendDataToParent($DataJSON);
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/roller/0/command';
+        $Payload = 'open';
+        $this->sendMQTT($Topic,$Payload);
     }
 
     public function Move($position)
     {
-        $Data['DataID'] = '{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}';
-        $Data['PacketType'] = 3;
-        $Data['QualityOfService'] = 0;
-        $Data['Retain'] = false;
-        $Data['Topic'] = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/roller/0/command/pos';
-        $Data['Payload'] = strval($position);
-        $DataJSON = json_encode($Data, JSON_UNESCAPED_SLASHES);
-        $this->SendDebug(__FUNCTION__ . 'Topic', $Data['Topic'], 0);
-        $this->SendDebug(__FUNCTION__, $DataJSON, 0);
-        $this->SendDataToParent($DataJSON);
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/roller/0/command/pos';
+        $Payload = strval($position);
+        $this->sendMQTT($Topic,$Payload);
     }
 
     public function Stop()
     {
-        $Data['DataID'] = '{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}';
-        $Data['PacketType'] = 3;
-        $Data['QualityOfService'] = 0;
-        $Data['Retain'] = false;
-        $Data['Topic'] = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/roller/0/command';
-        $Data['Payload'] = 'stop';
-        $DataJSON = json_encode($Data, JSON_UNESCAPED_SLASHES);
-        $this->SendDebug(__FUNCTION__ . 'Topic', $Data['Topic'], 0);
-        $this->SendDebug(__FUNCTION__, $DataJSON, 0);
-        $this->SendDataToParent($DataJSON);
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/roller/0/command';
+        $Payload = 'stop';
+        $this->sendMQTT($Topic,$Payload);
     }
 }
 trait ShellyRGBW2Action
@@ -225,116 +203,65 @@ trait ShellyRGBW2Action
 
     public function setDimmer(int $channel, int $value)
     {
-        $Data['DataID'] = '{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}';
-        $Data['PacketType'] = 3;
-        $Data['QualityOfService'] = 0;
-        $Data['Retain'] = false;
-        $Data['Topic'] = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/white/' . $channel . '/set';
 
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/white/' . $channel . '/set';
         $Payload['brightness'] = strval($value);
-
-        $Data['Payload'] = json_encode($Payload);
-
-        $DataJSON = json_encode($Data, JSON_UNESCAPED_SLASHES);
-        $this->SendDebug(__FUNCTION__ . 'Topic', $Data['Topic'], 0);
-        $this->SendDebug(__FUNCTION__, $DataJSON, 0);
-        $this->SendDataToParent($DataJSON);
+        $Payload = json_encode($Payload);
+        $this->sendMQTT($Topic,$Payload);
     }
 
     public function setColor(int $color)
     {
-        $Data['DataID'] = '{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}';
-        $Data['PacketType'] = 3;
-        $Data['QualityOfService'] = 0;
-        $Data['Retain'] = false;
-        $Data['Topic'] = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/color/0/set';
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/color/0/set';
 
         $RGB = $this->HexToRGB($color);
         $Payload['red'] = strval($RGB[0]);
         $Payload['green'] = strval($RGB[1]);
         $Payload['blue'] = strval($RGB[2]);
 
-        $Data['Payload'] = json_encode($Payload);
+        $Payload = json_encode($Payload);
 
-        $DataJSON = json_encode($Data, JSON_UNESCAPED_SLASHES);
-        $this->SendDebug(__FUNCTION__ . 'Topic', $Data['Topic'], 0);
-        $this->SendDebug(__FUNCTION__, $DataJSON, 0);
-        $this->SendDataToParent($DataJSON);
+        $this->sendMQTT($Topic,$Payload);
     }
 
     public function setGain(int $value)
     {
-        $Data['DataID'] = '{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}';
-        $Data['PacketType'] = 3;
-        $Data['QualityOfService'] = 0;
-        $Data['Retain'] = false;
-        $Data['Topic'] = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/color/0/set';
-
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/color/0/set';
         $Payload['gain'] = strval($value);
+        $Payload = json_encode($Payload);
 
-        $Data['Payload'] = json_encode($Payload);
-
-        $DataJSON = json_encode($Data, JSON_UNESCAPED_SLASHES);
-        $this->SendDebug(__FUNCTION__ . 'Topic', $Data['Topic'], 0);
-        $this->SendDebug(__FUNCTION__, $DataJSON, 0);
-        $this->SendDataToParent($DataJSON);
+        $this->sendMQTT($Topic,$Payload);
     }
 
     public function setWhite(int $value)
     {
-        $Data['DataID'] = '{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}';
-        $Data['PacketType'] = 3;
-        $Data['QualityOfService'] = 0;
-        $Data['Retain'] = false;
-        $Data['Topic'] = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/color/0/set';
-
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/color/0/set';
         $Payload['white'] = strval($value);
+        $Payload = json_encode($Payload);
 
-        $Data['Payload'] = json_encode($Payload);
-
-        $DataJSON = json_encode($Data, JSON_UNESCAPED_SLASHES);
-        $this->SendDebug(__FUNCTION__ . 'Topic', $Data['Topic'], 0);
-        $this->SendDebug(__FUNCTION__, $DataJSON, 0);
-        $this->SendDataToParent($DataJSON);
+        $this->sendMQTT($Topic,$Payload);
     }
 
     public function setEffect(int $value)
     {
-        $Data['DataID'] = '{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}';
-        $Data['PacketType'] = 3;
-        $Data['QualityOfService'] = 0;
-        $Data['Retain'] = false;
-        $Data['Topic'] = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/color/0/set';
-
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/color/0/set';
         $Payload['effect'] = strval($value);
+        $Payload = json_encode($Payload);
 
-        $Data['Payload'] = json_encode($Payload);
-
-        $DataJSON = json_encode($Data, JSON_UNESCAPED_SLASHES);
-        $this->SendDebug(__FUNCTION__ . 'Topic', $Data['Topic'], 0);
-        $this->SendDebug(__FUNCTION__, $DataJSON, 0);
-        $this->SendDataToParent($DataJSON);
+        $this->sendMQTT($Topic,$Payload);
     }
 
     public function SwitchMode(int $relay, bool $Value)
     {
         $Mode = strtolower($this->ReadPropertyString('Mode'));
-        $Data['DataID'] = '{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}';
-        $Data['PacketType'] = 3;
-        $Data['QualityOfService'] = 0;
-        $Data['Retain'] = false;
-        $Data['Topic'] = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/' . $Mode . '/' . $relay . '/command';
-
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/' . $Mode . '/' . $relay . '/command';
         if ($Value) {
-            $Data['Payload'] = 'on';
+            $Payload = 'on';
         } else {
-            $Data['Payload'] = 'off';
+            $Payload = 'off';
         }
 
-        $DataJSON = json_encode($Data, JSON_UNESCAPED_SLASHES);
-        $this->SendDebug(__FUNCTION__ . 'Topic', $Data['Topic'], 0);
-        $this->SendDebug(__FUNCTION__, $DataJSON, 0);
-        $this->SendDataToParent($DataJSON);
+        $this->sendMQTT($Topic,$Payload);
     }
 
     protected function rgbToHex($r, $g, $b)
