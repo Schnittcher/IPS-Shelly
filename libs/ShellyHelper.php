@@ -28,7 +28,8 @@ trait Shelly
         return $relay;
     }
 
-    protected function sendMQTT($Topic,$Payload) {
+    protected function sendMQTT($Topic, $Payload)
+    {
         $Data['DataID'] = '{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}';
         $Data['PacketType'] = 3;
         $Data['QualityOfService'] = 0;
@@ -121,13 +122,13 @@ trait ShellyRelayAction
 
     public function SwitchMode(int $relay, bool $Value)
     {
-       $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/relay/' . $relay . '/command';
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/relay/' . $relay . '/command';
         if ($Value) {
             $Payload = 'on';
         } else {
             $Payload = 'off';
         }
-        $this->sendMQTT($Topic,$Payload);
+        $this->sendMQTT($Topic, $Payload);
     }
 }
 
@@ -137,28 +138,28 @@ trait ShellyRollerAction
     {
         $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/roller/0/command';
         $Payload = 'close';
-        $this->sendMQTT($Topic,$Payload);
+        $this->sendMQTT($Topic, $Payload);
     }
 
     public function MoveUp()
     {
         $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/roller/0/command';
         $Payload = 'open';
-        $this->sendMQTT($Topic,$Payload);
+        $this->sendMQTT($Topic, $Payload);
     }
 
     public function Move($position)
     {
         $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/roller/0/command/pos';
         $Payload = strval($position);
-        $this->sendMQTT($Topic,$Payload);
+        $this->sendMQTT($Topic, $Payload);
     }
 
     public function Stop()
     {
         $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/roller/0/command';
         $Payload = 'stop';
-        $this->sendMQTT($Topic,$Payload);
+        $this->sendMQTT($Topic, $Payload);
     }
 }
 trait ShellyRGBW2Action
@@ -203,11 +204,10 @@ trait ShellyRGBW2Action
 
     public function setDimmer(int $channel, int $value)
     {
-
         $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/white/' . $channel . '/set';
         $Payload['brightness'] = strval($value);
         $Payload = json_encode($Payload);
-        $this->sendMQTT($Topic,$Payload);
+        $this->sendMQTT($Topic, $Payload);
     }
 
     public function setColor(int $color)
@@ -221,7 +221,7 @@ trait ShellyRGBW2Action
 
         $Payload = json_encode($Payload);
 
-        $this->sendMQTT($Topic,$Payload);
+        $this->sendMQTT($Topic, $Payload);
     }
 
     public function setGain(int $value)
@@ -230,7 +230,7 @@ trait ShellyRGBW2Action
         $Payload['gain'] = strval($value);
         $Payload = json_encode($Payload);
 
-        $this->sendMQTT($Topic,$Payload);
+        $this->sendMQTT($Topic, $Payload);
     }
 
     public function setWhite(int $value)
@@ -239,7 +239,7 @@ trait ShellyRGBW2Action
         $Payload['white'] = strval($value);
         $Payload = json_encode($Payload);
 
-        $this->sendMQTT($Topic,$Payload);
+        $this->sendMQTT($Topic, $Payload);
     }
 
     public function setEffect(int $value)
@@ -248,7 +248,7 @@ trait ShellyRGBW2Action
         $Payload['effect'] = strval($value);
         $Payload = json_encode($Payload);
 
-        $this->sendMQTT($Topic,$Payload);
+        $this->sendMQTT($Topic, $Payload);
     }
 
     public function SwitchMode(int $relay, bool $Value)
@@ -261,7 +261,7 @@ trait ShellyRGBW2Action
             $Payload = 'off';
         }
 
-        $this->sendMQTT($Topic,$Payload);
+        $this->sendMQTT($Topic, $Payload);
     }
 
     protected function rgbToHex($r, $g, $b)
