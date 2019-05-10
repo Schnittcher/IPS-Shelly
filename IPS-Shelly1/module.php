@@ -65,19 +65,18 @@ class IPS_Shelly1 extends IPSModule
                 if (fnmatch('*/temperature', $Buffer->Topic)) {
                     $this->SendDebug('Power Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Power Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_Temperature'),$Buffer->Payload);
+                    SetValue($this->GetIDForIdent('Shelly_Temperature'), $Buffer->Payload);
                 }
                 if (fnmatch('*/overtemperature', $Buffer->Topic)) {
                     $this->SendDebug('Power Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Power Payload', $Buffer->Payload, 0);
-                   SetValue($this->GetIDForIdent('Shelly_Overtemperature'),boolval($Buffer->Payload));
+                    SetValue($this->GetIDForIdent('Shelly_Overtemperature'), boolval($Buffer->Payload));
                 }
                 if (fnmatch('*/relay/0/power', $Buffer->Topic)) {
                     $this->SendDebug('Power Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Power Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_Power'),$Buffer->Payload);
+                    SetValue($this->GetIDForIdent('Shelly_Power'), $Buffer->Payload);
                 }
-
             }
         }
     }
