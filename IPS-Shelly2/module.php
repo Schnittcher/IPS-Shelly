@@ -41,12 +41,11 @@ class IPS_Shelly2 extends IPSModule
                 $this->SendDebug(__FUNCTION__ . ' Device Type: ', ' Roller', 0);
                 $this->RegisterVariableInteger('Shelly_Roller', $this->Translate('Roller'), '~ShutterMoveStop');
                 $this->EnableAction('Shelly_Roller');
-                $this->RegisterVariableInteger('Shelly_RollerPosition', $this->Translate('Position'), '~ShutterPosition.100');
+                $this->RegisterVariableInteger('Shelly_RollerPosition', $this->Translate('Position'), '~Shutter');
                 $this->EnableAction('Shelly_RollerPosition');
                 break;
             default:
                 $this->SendDebug(__FUNCTION__ . ' Device Type: ', 'No Device Type', 0);
-
         }
 
         switch ($this->ReadPropertyString('Device')) {
