@@ -17,6 +17,6 @@
    ### Shelly_SwitchMode($InstanceID, $Relay, $Value)
    It is possible to switch the device on or off with this function.
    ```php
-   Shelly_SwitchMode(25537, 0, true) //Switch On Relay;
-   Shelly_SwitchMode(25537, 0, false) //Switch Off Relay;
+   Shelly_SwitchMode(25537, 0, true); //Switch On Relay;
+   Shelly_SwitchMode(25537, 0, false); //Switch Off Relay;
    ```

@@ -1,5 +1,5 @@
 # IPS-Shelly2
-   Dieses Modul ermöglicht es, ein Shelly 2 in IP-Symcon zu integrieren.\
+   Dieses Modul ermöglicht es, ein Shelly2 in IP-Symcon zu integrieren.\
    Das Modul kann in IP-Symcon als Relay oder als Rollo eingerichtet werden.
      
    ## Inhaltverzeichnis
@@ -9,8 +9,8 @@
    ## 1. Konfiguration
    
    Feld | Beschreibung
-   ------------ | -------------
-   MQTT Topic | Hier wird das Topic (shellyswitch-deviceid) des Shelly 2 eingetragen. Dazu muss zur Zeit die folgende URL aufgerufen werden: http://ShellyIP/settings dort ist derHostname zu finden. Der Hostname ist die DeviceID!
+   ------------ | ----------------
+   MQTT Topic | Hier wird das Topic (shellyswitch-deviceid) des Shelly2 eingetragen. Dazu muss zur Zeit die folgende URL aufgerufen werden: http://ShellyIP/settings dort ist derHostname zu finden. Der Hostname ist die DeviceID!
    Device Type | Relay oder Rolladen
    
    ## 2. Funktionen

@@ -27,13 +27,12 @@
 * [IPS-Shelly4Pro](IPS-Shelly4Pro/README_en.md)
 * [IPS-ShellyHT](IPS-ShellyHT/README_en.md)
 * [IPS-ShellyPlug](IPS-ShellyPlug/README_en.md)
+* [IPS-ShellyRGBW2](IPS-ShellyRGBW2/README_en.md)
 * [IPS-ShellySense](IPS-ShellySense/README_en.md)
+* [IPS-ShellySmoke](IPS-ShellySmoke/README_en.md)
 
 ## 3. Installation
-IPS-Shelly (Branch 5.1):
-```
-https://github.com/Schnittcher/IPS-Shelly.git
-```
+Installation via the IP-Symcon module store.
 
 ## 4. Configuration in IP-Symcon
 Check the individual modules please.

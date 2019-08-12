@@ -9,7 +9,7 @@
    ## 1. Konfiguration
    
    Feld | Beschreibung
-   ------------ | -------------
+   ------------ | ----------------
    MQTT Topic | Hier wird das Topic (shelly1-deviceid) des Shelly Smoke eingetragen. Dazu muss zur Zeit die folgende URL aufgerufen werden: http://ShellyIP/settings dort ist derHostname zu finden. Der Hostname ist die DeviceID!
    
    ## 2. Funktionen
