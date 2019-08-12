@@ -23,7 +23,7 @@
    ```
    
    **Shelly_setDimmer($InstanceID, $Channel, $Value)**\
-   It is possible to switch the device on or off with this function.
+   It is possible to dim the device to a given percentage.
    Function is only available in the mode White!
    ```php
    Shelly_setDimmer(25537, 0, 50); //Dim to 50%
@@ -43,11 +43,11 @@
    Shelly_setWhite(25537,50); //50% white
    ```
    
-   **Shelly_Gain($InstanceID, $Value)**\
+   **Shelly_setGain($InstanceID, $Value)**\
    It is possible to change the value Gain with this function.
    Function is only available in the mode Color!
    ```php
-   Shelly_setColor(25537,50); //50%
+   Shelly_setGain(25537,50); //50%
    ```
    
    **Shelly_setEffect($InstanceID, $Value)**\

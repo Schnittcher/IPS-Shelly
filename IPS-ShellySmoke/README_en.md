@@ -1,6 +1,6 @@
 # IPS-ShellySmoke
    This module enables the integration of the Shelly Smoke in IP-Symcon.\
-   The sensor values of the Shelly Smoke are transmitted into IP-Symcon.
+   The sensor values of a Shelly Smoke are transmitted into IP-Symcon.
      
    ## Table of Contents
    1. [Configuration](#1-configuration)
