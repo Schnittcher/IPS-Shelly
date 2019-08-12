@@ -16,9 +16,7 @@
    
 ## 1. Voraussetzungen
 
-* mindestens IPS Version 5.1 Ninja
-* MQTT Server (IPS Modul) 
-
+* mindestens IPS Version 5.1
 
 ## 2. Enthaltene Module
 
@@ -27,13 +25,12 @@
 * [IPS-Shelly4Pro](IPS-Shelly4Pro/README.md)
 * [IPS-ShellyHT](IPS-ShellyHT/README.md)
 * [IPS-ShellyPlug](IPS-ShellyPlug/README.md)
+* [IPS-ShellyRGBW2](IPS-ShellyRGBW2/README.md)
 * [IPS-ShellySense](IPS-ShellySense/README.md)
+* [IPS-ShellySmoke](IPS-ShellySmoke/README.md)
 
 ## 3. Installation
-IPS-Shelly (Branch 5.1):
-```
-https://github.com/Schnittcher/IPS-Shelly.git
-```
+Installation über den IP-Symcon Module Store.
 
 ## 4. Konfiguration in IP-Symcon
 Bitte den einzelnen Modulen entnehmen.
