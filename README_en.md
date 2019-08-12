@@ -40,7 +40,7 @@ Check the individual modules please.
 
 ## 5. Donate
 
-This module is free for non-commercial use. Donations as support for the author are accepted here:
+This module is free for non-commercial use. Gifts as support for the author are accepted here:
 
 <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=EK4JRP87XLSHW" target="_blank"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" /></a>
 

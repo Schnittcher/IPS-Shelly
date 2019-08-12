@@ -9,7 +9,7 @@
    
    Feld | Beschreibung
    ------------ | -------------
-   MQTT Topic | Hier wird das Topic (shelly1-deviceid) des Shelly 1 eingetragen. Dazu muss zur Zeit die folgende URL aufgerufen werden: http://ShellyIP/settings dort ist derHostname zu finden. Der Hostname ist die DeviceID!
+   MQTT Topic | Hier wird das Topic (shelly1-deviceid) des Shelly1 eingetragen. Dazu muss zur Zeit die folgende URL aufgerufen werden: http://ShellyIP/settings dort ist derHostname zu finden. Der Hostname ist die DeviceID!
    
    ## 2. Funktionen
    

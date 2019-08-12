@@ -14,7 +14,7 @@
         "options": [
           { "caption": "Please set Device Type", "value": "" },
           { "caption": "Relay", "value": "relay" },
-          { "caption": "Roller", "value": "roller" }
+          { "caption": "Shutter", "value": "roller" }
         ]
       }
     ]
