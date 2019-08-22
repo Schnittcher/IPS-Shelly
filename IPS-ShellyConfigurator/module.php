@@ -136,7 +136,6 @@ class IPSShellyConfigurator extends IPSModule
                     case 'shellyplug':
                         $moduleID = '{ED5E1057-C47A-4D73-A130-B4E2912A026C}';
                         $DeviceType = 'Shelly Plug';
-                        break;
                         $AddValue['create'] = [
                             [
                                 'moduleID'      => $moduleID,
@@ -145,6 +144,7 @@ class IPSShellyConfigurator extends IPSModule
                                 ]
                             ]
                         ];
+                        break;
                     case 'shellyrgbw2':
                         $moduleID = '{3286C438-2174-E03B-85CE-B6B7C1A685D0}';
                         $DeviceType = 'Shelly RGBW2';
