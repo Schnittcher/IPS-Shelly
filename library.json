@@ -3,6 +3,9 @@
 	"author": "Kai Schnittcher",
 	"name": "IPS-Shelly",
 	"url": "https://github.com/Schnittcher/IPS-Shelly",
+	"compatibility": {
+        "version": "5.3"
+    },
 	"version": "3.0",
 	"build": 0,
 	"date": 0
