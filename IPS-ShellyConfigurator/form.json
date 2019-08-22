@@ -1,0 +1,38 @@
+{
+  "actions":
+  [
+    {
+      "type": "Configurator",
+      "name": "Configurator",
+      "caption": "Shelly Configurator",
+      "delete": false,
+      "sort": {
+        "column": "name",
+        "direction": "ascending"
+      },
+      "columns": [
+        {
+          "caption": "Devicename",
+          "name": "name",
+          "width": "auto"
+        },
+        {
+          "caption": "Device Type",
+          "name": "DeviceType",
+          "width": "250px"
+        },        
+        {
+          "caption": "IP Address",
+          "name": "IPAddress",
+          "width": "250px"
+        },
+        {
+          "caption": "Firmware",
+          "name": "Firmware",
+          "width": "250px"
+        }
+      ],
+      "values": []
+    }
+  ]
+}
