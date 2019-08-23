@@ -1,0 +1,9 @@
+{
+  "translations": {
+    "de": {
+      "Temperature": "Temperatur",
+      "Flood": "Wassereinbruch",
+      "Battery": "Batterie"
+    }
+  }
+}

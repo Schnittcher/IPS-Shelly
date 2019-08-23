@@ -21,6 +21,10 @@ class IPSShellyConfigurator extends IPSModule
         $Form = json_decode(file_get_contents(__DIR__ . '/form.json'), true);
         $Shellys = $this->findShellysOnNetwork();
 
+        if (floatval(IPS_GetKernelVersion()) <= 5.3) {
+            return $Form;
+        }
+
         $Values = [];
 
         if (count($Shellys) > 0) {
