@@ -4,7 +4,7 @@
 	"name": "IPS-Shelly",
 	"url": "https://github.com/Schnittcher/IPS-Shelly",
 	"compatibility": {
-        "version": "5.2"
+        "version": "5.1"
     },
 	"version": "3.0",
 	"build": 0,
