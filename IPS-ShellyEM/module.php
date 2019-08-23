@@ -5,7 +5,8 @@ require_once __DIR__ . '/../libs/ShellyHelper.php';
 
 class IPS_ShellyEM extends IPSModule
 {
-    use Shelly,
+    use Shelly;
+    use
         ShellyRelayAction;
 
     public function Create()
@@ -16,18 +17,18 @@ class IPS_ShellyEM extends IPSModule
 
         $this->RegisterPropertyString('MQTTTopic', '');
 
-        $this->RegisterVariableFloat('Shelly_Energy0',$this->Translate('Energy'). ' 0', '');
-        $this->RegisterVariableFloat('Shelly_ReturnedEnergy0',$this->Translate('Returned Energy'). ' 0', '');
-        $this->RegisterVariableFloat('Shelly_Power0',$this->Translate('Power'). ' 0', '');
-        $this->RegisterVariableFloat('Shelly_ReactivePower0',$this->Translate('Reactive Power'). ' 0', '');
-        $this->RegisterVariableFloat('Shelly_Voltage0',$this->Translate('Voltage'). ' 0', '');
+        $this->RegisterVariableFloat('Shelly_Energy0', $this->Translate('Energy') . ' 0', '');
+        $this->RegisterVariableFloat('Shelly_ReturnedEnergy0', $this->Translate('Returned Energy') . ' 0', '');
+        $this->RegisterVariableFloat('Shelly_Power0', $this->Translate('Power') . ' 0', '');
+        $this->RegisterVariableFloat('Shelly_ReactivePower0', $this->Translate('Reactive Power') . ' 0', '');
+        $this->RegisterVariableFloat('Shelly_Voltage0', $this->Translate('Voltage') . ' 0', '');
 
-        $this->RegisterVariableFloat('Shelly_Energy1',$this->Translate('Energy'). ' 1', '');
-        $this->RegisterVariableFloat('Shelly_ReturnedEnergy1',$this->Translate('Returned Energy'). ' 1', '');
-        $this->RegisterVariableFloat('Shelly_Power1',$this->Translate('Power'). ' 1', '');
-        $this->RegisterVariableFloat('Shelly_ReactivePower1',$this->Translate('Reactive Power'). ' 1', '');
-        $this->RegisterVariableFloat('Shelly_Voltage1',$this->Translate('Voltage'). ' 1', '');
-        
+        $this->RegisterVariableFloat('Shelly_Energy1', $this->Translate('Energy') . ' 1', '');
+        $this->RegisterVariableFloat('Shelly_ReturnedEnergy1', $this->Translate('Returned Energy') . ' 1', '');
+        $this->RegisterVariableFloat('Shelly_Power1', $this->Translate('Power') . ' 1', '');
+        $this->RegisterVariableFloat('Shelly_ReactivePower1', $this->Translate('Reactive Power') . ' 1', '');
+        $this->RegisterVariableFloat('Shelly_Voltage1', $this->Translate('Voltage') . ' 1', '');
+
         $this->RegisterVariableBoolean('Shelly_State', $this->Translate('State'), '~Switch');
         $this->EnableAction('Shelly_State');
     }
@@ -37,7 +38,7 @@ class IPS_ShellyEM extends IPSModule
         //Never delete this line!
         parent::ApplyChanges();
         $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
-        
+
         //Setze Filter für ReceiveData
         $MQTTTopic = $this->ReadPropertyString('MQTTTopic');
         $this->SetReceiveDataFilter('.*' . $MQTTTopic . '.*');
@@ -119,7 +120,7 @@ class IPS_ShellyEM extends IPSModule
                     $this->SendDebug('Voltage Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Voltage Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_Voltage1'), $Buffer->Payload);
-                }                
+                }
             }
         }
     }
