@@ -1,0 +1,11 @@
+{
+  "id": "{BE86AD40-3F66-E34D-98FC-ED69A12DB131}",
+  "name": "ShellyConfigurator",
+  "type": 5,
+  "vendor": "Shelly",
+  "aliases": ["Shelly Configurator"],
+  "parentRequirements": [],
+  "childRequirements": [],
+  "implemented": [],
+  "prefix": "SHELLY"
+}
