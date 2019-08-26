@@ -16,9 +16,20 @@
    
 ## 1. Voraussetzungen
 
-* mindestens IPS Version 5.1 Ninja
-* MQTT Server (IPS Modul) 
+* mindestens IPS Version 5.1
+* Aktiviertes MQTT Protkoll beim Shelly Gerät
 
+### 1.1 Aktiviertes MQTT protokoll
+Das MQTT Protokoll muss bei jedem Shelly aktiviert sein, damit das Gerät von IP-Symcon mit diesem Modul bedient werden kann.
+Die Einrichtung wird über das Shelly Webinterface vorgenommen:
+
+Internet & Security -> ADVANCED - DEVELOPER SETTINGS -> Enable action execution via MQTT
+
+Unter Server wird die IP von IP-Symcon und der MQTT Port eingetragen.
+Der Standard Port für MQTT ist 1883, sollte dieser in IP-Symcon geändert worden sein ist er unter I/O Instanzen -> Server Socket (MQTT Server #InstanzID) zu finden.
+
+Sollen Username und Passwort verwendet werden müssen diese Daten in IP-Symcon unter Splitter Instanzen -> MQTT Server hinterlegt werden.
+Die selben Zugangsdaten müssen über das Shelly Webinterface unter Internet & Security -> ADVANCED - DEVELOPER SETTINGS hinterlegt werden.
 
 ## 2. Enthaltene Module
 
@@ -27,13 +38,14 @@
 * [IPS-Shelly4Pro](IPS-Shelly4Pro/README.md)
 * [IPS-ShellyHT](IPS-ShellyHT/README.md)
 * [IPS-ShellyPlug](IPS-ShellyPlug/README.md)
+* [IPS-ShellyRGBW2](IPS-ShellyRGBW2/README.md)
 * [IPS-ShellySense](IPS-ShellySense/README.md)
+* [IPS-ShellySmoke](IPS-ShellySmoke/README.md)
+* [IPS-ShellyEM](IPS-ShellyEM/README.md)
+* [IPS-ShellyFlood](IPS-ShellyFlood/README.md)
 
 ## 3. Installation
-IPS-Shelly (Branch 5.1):
-```
-https://github.com/Schnittcher/IPS-Shelly.git
-```
+Installation über den IP-Symcon Module Store.
 
 ## 4. Konfiguration in IP-Symcon
 Bitte den einzelnen Modulen entnehmen.
