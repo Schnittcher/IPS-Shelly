@@ -8,6 +8,15 @@
           { "caption": "Shelly 1", "value": "shelly1" },
           { "caption": "Shelly 1PM", "value": "shelly1pm" }
         ]
-      }
+      },
+      {
+        "type": "ExpansionPanel",
+        "caption": "Testbereich",
+        "items": [
+          {
+            "type": "TestCenter"
+          }
+        ]
+    }
     ]
 }

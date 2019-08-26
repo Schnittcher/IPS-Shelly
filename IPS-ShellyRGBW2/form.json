@@ -8,7 +8,15 @@
           { "caption": "Color", "value": "Color" },
           { "caption": "White", "value": "White" }
         ]
-      }
-
+      },
+      {
+        "type": "ExpansionPanel",
+        "caption": "Testbereich",
+        "items": [
+          {
+            "type": "TestCenter"
+          }
+        ]
+    }
     ]
 }

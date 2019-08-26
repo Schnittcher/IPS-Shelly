@@ -16,6 +16,15 @@
           { "caption": "Relay", "value": "relay" },
           { "caption": "Roller", "value": "roller" }
         ]
-      }
+      },
+      {
+        "type": "ExpansionPanel",
+        "caption": "Testbereich",
+        "items": [
+          {
+            "type": "TestCenter"
+          }
+        ]
+    }
     ]
 }
