@@ -44,7 +44,6 @@ class IPSShellyConfigurator extends IPSModule
                     case 'shelly1':
                         $moduleID = '{9E5FA0B2-AA98-48D5-AE07-78DEA4B0370A}';
                         $DeviceType = 'Shelly 1';
-
                         $AddValue['create'] = [
                             [
                                 'moduleID'      => $moduleID,
@@ -58,7 +57,6 @@ class IPSShellyConfigurator extends IPSModule
                     case 'shelly1pm':
                         $moduleID = '{9E5FA0B2-AA98-48D5-AE07-78DEA4B0370A}';
                         $DeviceType = 'Shelly 1 PM';
-
                         $AddValue['create'] = [
                             [
                                 'moduleID'      => $moduleID,
@@ -76,41 +74,42 @@ class IPSShellyConfigurator extends IPSModule
                             'Shelly 2 Relay' => [
                                 'moduleID'      => $moduleID,
                                 'configuration' => [
-                                    'MQTTTopic' => $Shelly['Name'],
-                                    'Device'    => 'shelly2',
-                                    'DeviceTyp' => 'relay'
+                                    'MQTTTopic'  => $Shelly['Name'],
+                                    'Device'     => 'shelly2',
+                                    'DeviceType' => 'relay'
                                 ]
                             ],
                             'Shelly 2 Shutter' => [
                                 'moduleID'      => $moduleID,
                                 'configuration' => [
-                                    'MQTTTopic' => $Shelly['Name'],
-                                    'Device'    => 'shelly2',
-                                    'DeviceTyp' => 'roller'
+                                    'MQTTTopic'  => $Shelly['Name'],
+                                    'Device'     => 'shelly2',
+                                    'DeviceType' => 'roller'
                                 ]
-                            ],
+                            ]
                         ];
                         break;
                     case 'shellyswitch25':
+                        $this->SendDebug('Name', $Shelly['Name'], 0);
                         $moduleID = '{BE266877-6642-4A80-9BAA-8C5B3B4DAF80}';
                         $DeviceType = 'Shelly 2.5';
                         $AddValue['create'] = [
                             'Shelly 2.5 Relay' => [
                                 'moduleID'      => $moduleID,
                                 'configuration' => [
-                                    'MQTTTopic' => $Shelly['Name'],
-                                    'Device'    => 'shelly2.5',
-                                    'DeviceTyp' => 'relay'
+                                    'MQTTTopic'  => $Shelly['Name'],
+                                    'Device'     => 'shelly2.5',
+                                    'DeviceType' => 'relay'
                                 ]
                             ],
                             'Shelly 2.5 Shutter' => [
                                 'moduleID'      => $moduleID,
                                 'configuration' => [
-                                    'MQTTTopic' => $Shelly['Name'],
-                                    'Device'    => 'shelly2.5',
-                                    'DeviceTyp' => 'roller'
+                                    'MQTTTopic'  => $Shelly['Name'],
+                                    'Device'     => 'shelly2.5',
+                                    'DeviceType' => 'roller'
                                 ]
-                            ],
+                            ]
                         ];
                         break;
                     case 'shelly4pro':
@@ -166,7 +165,7 @@ class IPSShellyConfigurator extends IPSModule
                                     'MQTTTopic' => $Shelly['Name'],
                                     'Mode'      => 'White'
                                 ]
-                            ],
+                            ]
                         ];
                         break;
                     case 'shellysense':
@@ -199,6 +198,7 @@ class IPSShellyConfigurator extends IPSModule
                     }
 
                 $Values[] = $AddValue;
+                IPS_LogMessage('test', print_r($AddValue, true));
             }
             $Form['actions'][0]['values'] = $Values;
         }
