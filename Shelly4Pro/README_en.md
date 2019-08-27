@@ -1,4 +1,4 @@
-# IPS-Shelly4Pro
+# Shelly4Pro
    This module enables the integration of a Shelly4Pro in IP-Symcon.\
    The channels can be switched and the sensor data is visualized in IP-Symcon.   
     

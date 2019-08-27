@@ -1,4 +1,4 @@
-# IPS-ShellyConfigurator
+# ShellyConfigurator
    Der Shelly Configurator dient dazu alle Shellys im Netzwerk zu finden.
    Über den mDNS Dienst versucht der Konfigurator alle Shellys im Netzwerk zu finden, dazu müssen sich die Geräte im selben Netzwerk wie IP-Symcon befinden.
       
@@ -12,7 +12,7 @@
    Über den Erstellen Button wird die Instanz in IP-Symcon angelegt und die vordefienierte Konfiguration übernommen.
    
    Bei nachstendene Geräten kann eine Auswahl erfolgen, mit welcher Konfiguration die Geräte in IP-Symcon angelegt werden sollen:
-   
+
 | Gerät  | Auswahl |
 | ------------- | ------------- |
 | Shelly 1  | Shelly 1 oder Shelly 1 PM  |

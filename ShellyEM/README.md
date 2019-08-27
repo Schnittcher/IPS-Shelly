@@ -1,4 +1,4 @@
-# IPS-ShellyEM
+# ShellyEM
    Dieses Modul ermöglicht es, ein Shelly EM in IP-Symcon zu integrieren.
      
    ## Inhaltverzeichnis

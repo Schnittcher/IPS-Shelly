@@ -1,4 +1,4 @@
-# IPS-ShellySense
+# ShellySense
    This module enables the integration of the Shelly Sense in IP-Symcon.\
    The sensor values of a Shelly Sense are transmitted into IP-Symcon.
      

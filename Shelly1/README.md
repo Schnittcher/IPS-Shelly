@@ -1,4 +1,4 @@
-# IPS-Shelly1
+# Shelly1
    Dieses Modul ermöglicht es, ein Shelly1 in IP-Symcon zu integrieren.
      
    ## Inhaltverzeichnis

@@ -1,4 +1,4 @@
-# IPS-ShellyPlug
+# ShellyPlug
    This module enables the integration of a ShellyPlug in IP-Symcon.\
    The relay can be switched and the sensor data is visualized in IP-Symcon.   
       

@@ -1,4 +1,4 @@
-# IPS-ShellyFlood
+# ShellyFlood
    Dieses Modul integriert den Shelly Flood in IP-Symcon.\
    Die Messwerte von dem Shelly Flood werden in IP-Symcon übertragen.
       

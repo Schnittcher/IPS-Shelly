@@ -1,4 +1,4 @@
-# IPS-Shelly4Pro
+# Shelly4Pro
    Dieses Modul ermöglicht es, ein Shelly4Pro in IP-Symcon zu integrieren.\
    Es können die Kanäle geschaltet werden und die Messwerte werden in IP-Symcon dargestellt.   
     

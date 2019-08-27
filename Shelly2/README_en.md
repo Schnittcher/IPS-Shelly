@@ -1,4 +1,4 @@
-# IPS-Shelly2
+# Shelly2
    This module enables the integration of a Shelly2 in IP-Symcon.\
    The module can be configured as relay or roller in IP-Symcon.
      

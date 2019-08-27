@@ -1,4 +1,4 @@
-# IPS-ShellySmoke
+# ShellySmoke
    Dieses Modul integriert den Shelly Smoke in IP-Symcon.\
    Die Messwerte und Alarmmeldungen von einem Shelly Smoke werden in IP-Symcon übertragen.
      

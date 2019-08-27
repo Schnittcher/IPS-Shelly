@@ -1,4 +1,4 @@
-# IPS-ShellyHT
+# ShellyHT
    This module enables the integration of a Shelly H&T in IP-Symcon.\
    The sensor values of the Shelly H&T are transmitted into IP-Symcon.
       

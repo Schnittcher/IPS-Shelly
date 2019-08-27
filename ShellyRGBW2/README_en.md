@@ -1,4 +1,4 @@
-# IPS-ShellyRGBW2
+# ShellyRGBW2
    This module enables the integration of a ShellyRGBW2 in IP-Symcon.
        
    ## Table of Contents

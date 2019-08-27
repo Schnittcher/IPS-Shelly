@@ -1,4 +1,4 @@
-# IPS-ShellySense
+# ShellySense
    Dieses Modul integriert das Shelly Sense in IP-Symcon.\
    Die Messwerte von einem Shelly Sense werden in IP-Symcon übertragen.
      

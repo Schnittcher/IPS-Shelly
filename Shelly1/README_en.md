@@ -1,4 +1,4 @@
-# IPS-Shelly1
+# Shelly1
    This module enables the integration of a Shelly1 in IP-Symcon.
      
    ## Table of Contents

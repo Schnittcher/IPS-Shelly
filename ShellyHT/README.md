@@ -1,4 +1,4 @@
-# IPS-ShellyHT
+# ShellyHT
    Dieses Modul integriert das Shelly H&T in IP-Symcon.\
    Die Messwerte von einem Shelly H&T werden in IP-Symcon übertragen.
       
