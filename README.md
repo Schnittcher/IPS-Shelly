@@ -33,16 +33,16 @@ Die selben Zugangsdaten müssen über das Shelly Webinterface unter Internet & S
 
 ## 2. Enthaltene Module
 
-* [IPS-Shelly1](IPS-Shelly1/README.md)
-* [IPS-Shelly2](IPS-Shelly2/README.md)
-* [IPS-Shelly4Pro](IPS-Shelly4Pro/README.md)
-* [IPS-ShellyHT](IPS-ShellyHT/README.md)
-* [IPS-ShellyPlug](IPS-ShellyPlug/README.md)
-* [IPS-ShellyRGBW2](IPS-ShellyRGBW2/README.md)
-* [IPS-ShellySense](IPS-ShellySense/README.md)
-* [IPS-ShellySmoke](IPS-ShellySmoke/README.md)
-* [IPS-ShellyEM](IPS-ShellyEM/README.md)
-* [IPS-ShellyFlood](IPS-ShellyFlood/README.md)
+* [Shelly1](Shelly1/README.md)
+* [Shelly2](Shelly2/README.md)
+* [Shelly4Pro](Shelly4Pro/README.md)
+* [ShellyHT](ShellyHT/README.md)
+* [ShellyPlug](ShellyPlug/README.md)
+* [ShellyRGBW2](ShellyRGBW2/README.md)
+* [ShellySense](ShellySense/README.md)
+* [ShellySmoke](ShellySmoke/README.md)
+* [ShellyEM](ShellyEM/README.md)
+* [ShellyFlood](ShellyFlood/README.md)
 
 ## 3. Installation
 Installation über den IP-Symcon Module Store.
