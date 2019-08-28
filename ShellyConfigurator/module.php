@@ -14,7 +14,7 @@ class ShellyConfigurator extends IPSModule
     {
         //Never delete this line!
         parent::ApplyChanges();
-        
+
         $this->SetReceiveDataFilter('this-will-never-match');
     }
 
