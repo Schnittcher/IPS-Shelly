@@ -2,7 +2,7 @@
 	"id": "{53A4EF84-0CF9-44D4-B70E-4B84E0DCE9B3}",
 	"name": "ShellyEM",
 	"type": 3,
-	"vendor": "",
+	"vendor": "Shelly",
 	"aliases": ["Shelly EM"],
 	"parentRequirements": ["{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}"],
 	"childRequirements": [],

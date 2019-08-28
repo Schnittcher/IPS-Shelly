@@ -2,7 +2,7 @@
 	"id": "{C360BA67-99A3-4F37-932B-B851D4E10AD6}",
 	"name": "ShellyFlood",
 	"type": 3,
-	"vendor": "",
+	"vendor": "Shelly",
 	"aliases": ["Shelly Flood"],
 	"parentRequirements": ["{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}"],
 	"childRequirements": [],

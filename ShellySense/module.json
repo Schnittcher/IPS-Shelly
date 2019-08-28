@@ -2,7 +2,7 @@
 	"id": "{F86F268B-BC23-41AC-B107-16EEF661A4D7}",
 	"name": "ShellySense",
 	"type": 3,
-	"vendor": "",
+	"vendor": "Shelly",
 	"aliases": ["Shelly Sense"],
 	"parentRequirements": ["{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}"],
 	"childRequirements": [],

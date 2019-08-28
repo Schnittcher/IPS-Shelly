@@ -2,7 +2,7 @@
 	"id": "{ED5E1057-C47A-4D73-A130-B4E2912A026C}",
 	"name": "ShellyPlug",
 	"type": 3,
-	"vendor": "",
+	"vendor": "Shelly",
 	"aliases": ["Shelly Plug"],
 	"parentRequirements": ["{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}"],
 	"childRequirements": [],
