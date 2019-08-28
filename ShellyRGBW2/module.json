@@ -2,7 +2,7 @@
 	"id": "{3286C438-2174-E03B-85CE-B6B7C1A685D0}",
 	"name": "ShellyRGBW2",
 	"type": 3,
-	"vendor": "",
+	"vendor": "Shelly",
 	"aliases": ["Shelly RGBW2"],
 	"parentRequirements": ["{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}"],
 	"childRequirements": [],
