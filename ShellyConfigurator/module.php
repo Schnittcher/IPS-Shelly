@@ -16,7 +16,6 @@ class ShellyConfigurator extends IPSModule
         parent::ApplyChanges();
         
         $this->SetReceiveDataFilter('this-will-never-match');
-
     }
 
     public function GetConfigurationForm()
