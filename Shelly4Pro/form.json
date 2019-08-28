@@ -1,15 +1,11 @@
 {
     "elements":
     [
-      { "type": "ValidationTextBox", "name": "MQTTTopic", "caption": "MQTT Topic" },
-      {
-        "type": "ExpansionPanel",
-        "caption": "Testbereich",
-        "items": [
-          {
+      { "type": "ValidationTextBox", "name": "MQTTTopic", "caption": "MQTT Topic" }
+    ],
+    "actions": [
+        {
             "type": "TestCenter"
-          }
-        ]
-    }
+        }
     ]
 }
