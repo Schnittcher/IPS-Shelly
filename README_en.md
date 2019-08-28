@@ -17,7 +17,16 @@
 ## 1. Requirements
 
 * at least IPS Version 5.1
+* enabled MQTT protocol on each shelly device
 
+### 1.1 Enabling MQTT
+It is required to enable MQTT on each shelly device to allow communication with IP-Symcon. Configuration is done through the Shelly web-interface:
+
+Internet & Security -> ADVANCED - DEVELOPER SETTINGS -> Enable action execution via MQTT
+
+Please enter the IP and MQTT port of IP-Symcon in the server field. The default port for MQTT is 1883. If you changed the port within IP-Symcon you can check the configured port under I/O instances -> Server Socket (MQTT Server #InstanceID).
+
+If you would like to use the username/password settings you need to configure it in Splitter instances -> MQTT server. The same username/password must be used for each shelly device on the web-interface: Internet & Security -> ADVANCED - DEVELOPER SETTINGS.
 
 ## 2. Included Modules
 
