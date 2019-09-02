@@ -10,7 +10,7 @@
    
    Field        | Description
    ------------ | -------------
-   MQTT Topic   | The Topic (shelly1-deviceid) of the Shelly Sense is entered here. Currently, the following URL needs to be called for this: http://ShellyIP/settings The host name is found there. The host name is the DeviceID!
+   MQTT Topic   | The Topic (shellysense-deviceid) of the Shelly Sense is entered here. Currently, the following URL needs to be called for this: http://ShellyIP/settings The host name is found there. The host name is the DeviceID!
    
    ## 2. Functions
    
