@@ -26,7 +26,7 @@ class ShellyConfigurator extends IPSModule
         if (floatval(IPS_GetKernelVersion()) < 5.3) {
             return json_encode($Form);
         }
-        
+
         $Shellys = $this->findShellysOnNetwork();
         $Values = [];
 
