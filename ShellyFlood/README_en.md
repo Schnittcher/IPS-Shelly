@@ -1,5 +1,6 @@
-# ShellyEM
+# ShellyFlood
    This module enables the integration of a Shelly Flood in IP-Symcon.
+   The sensor values of the Shelly Flood are transmitted into IP-Symcon.
      
    ## Table of Contents
    1. [Configuration](#1-configuration)
