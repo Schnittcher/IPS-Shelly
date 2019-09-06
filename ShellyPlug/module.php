@@ -29,8 +29,8 @@ class ShellyPlug extends IPSModule
         $this->SendDebug(__FUNCTION__ . ' Device Type: ', ' Relay', 0);
         $this->RegisterVariableBoolean('Shelly_State', $this->Translate('State'), '~Switch');
         $this->EnableAction('Shelly_State');
-        $this->RegisterVariableFloat('Shelly_Power', $this->Translate('Power'), '');
-        $this->RegisterVariableFloat('Shelly_Energy', $this->Translate('Energy'), '');
+        $this->RegisterVariableFloat('Shelly_Power', $this->Translate('Power'), '~Watt.3680');
+        $this->RegisterVariableFloat('Shelly_Energy', $this->Translate('Energy'), '~Electricity');
     }
 
     public function ReceiveData($JSONString)
@@ -69,7 +69,7 @@ class ShellyPlug extends IPSModule
                 if (fnmatch('*/relay/0/energy*', $Buffer->Topic)) {
                     $this->SendDebug('Energy Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Energy Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_Energy'), $Buffer->Payload);
+                    SetValue($this->GetIDForIdent('Shelly_Energy'), $Buffer->Payload / 60000);
                 }
             }
         }

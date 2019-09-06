@@ -50,14 +50,14 @@ class Shelly2 extends IPSModule
 
         switch ($this->ReadPropertyString('Device')) {
             case 'shelly2':
-                $this->RegisterVariableFloat('Shelly_Power', $this->Translate('Power'), '');
-                $this->RegisterVariableFloat('Shelly_Energy', $this->Translate('Energy'), '');
+                $this->RegisterVariableFloat('Shelly_Power', $this->Translate('Power'), '~Watt.3680');
+                $this->RegisterVariableFloat('Shelly_Energy', $this->Translate('Energy'), '~Electricity');
                 break;
             case 'shelly2.5':
-                $this->RegisterVariableFloat('Shelly_Power1', $this->Translate('Power 1'), '');
-                $this->RegisterVariableFloat('Shelly_Energy1', $this->Translate('Energy 1'), '');
-                $this->RegisterVariableFloat('Shelly_Power2', $this->Translate('Power 2'), '');
-                $this->RegisterVariableFloat('Shelly_Energy2', $this->Translate('Energy 2'), '');
+                $this->RegisterVariableFloat('Shelly_Power1', $this->Translate('Power 1'), '~Watt.3680');
+                $this->RegisterVariableFloat('Shelly_Energy1', $this->Translate('Energy 1'), '~Electricity');
+                $this->RegisterVariableFloat('Shelly_Power2', $this->Translate('Power 2'), '~Watt.3680');
+                $this->RegisterVariableFloat('Shelly_Energy2', $this->Translate('Energy 2'), '~Electricity');
         }
     }
 
@@ -146,17 +146,17 @@ class Shelly2 extends IPSModule
                         }
                         if (fnmatch('*/relay/energy*', $Buffer->Topic)) {
                             $this->SendDebug('Energy Payload', $Buffer->Payload, 0);
-                            SetValue($this->GetIDForIdent('Shelly_Energy'), $Buffer->Payload);
+                            SetValue($this->GetIDForIdent('Shelly_Energy'), $Buffer->Payload / 60000);
                         }
                         break;
                     case 'shelly2.5':
                         if (fnmatch('*/0/power*', $Buffer->Topic)) {
                             $this->SendDebug('Power 0 Payload', $Buffer->Payload, 0);
-                            SetValue($this->GetIDForIdent('Shelly_Power1'), $Buffer->Payload);
+                            SetValue($this->GetIDForIdent('Shelly_Power1'), $Buffer->Payload / 60000);
                         }
                         if (fnmatch('*/0/energy*', $Buffer->Topic)) {
                             $this->SendDebug('Energy 0 Payload', $Buffer->Payload, 0);
-                            SetValue($this->GetIDForIdent('Shelly_Energy1'), $Buffer->Payload);
+                            SetValue($this->GetIDForIdent('Shelly_Energy1'), $Buffer->Payload / 60000);
                         }
                         if (fnmatch('*/1/power*', $Buffer->Topic)) {
                             $this->SendDebug('Power 1 Payload', $Buffer->Payload, 0);
@@ -164,7 +164,7 @@ class Shelly2 extends IPSModule
                         }
                         if (fnmatch('*/1/energy*', $Buffer->Topic)) {
                             $this->SendDebug('Energy 1 Payload', $Buffer->Payload, 0);
-                            SetValue($this->GetIDForIdent('Shelly_Energy2'), $Buffer->Payload);
+                            SetValue($this->GetIDForIdent('Shelly_Energy2'), $Buffer->Payload / 60000);
                         }
                         break;
                 }

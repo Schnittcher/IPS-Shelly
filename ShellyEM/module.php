@@ -17,17 +17,17 @@ class ShellyEM extends IPSModule
 
         $this->RegisterPropertyString('MQTTTopic', '');
 
-        $this->RegisterVariableFloat('Shelly_Energy0', $this->Translate('Energy') . ' 0', '');
-        $this->RegisterVariableFloat('Shelly_ReturnedEnergy0', $this->Translate('Returned Energy') . ' 0', '');
-        $this->RegisterVariableFloat('Shelly_Power0', $this->Translate('Power') . ' 0', '');
-        $this->RegisterVariableFloat('Shelly_ReactivePower0', $this->Translate('Reactive Power') . ' 0', '');
-        $this->RegisterVariableFloat('Shelly_Voltage0', $this->Translate('Voltage') . ' 0', '');
+        $this->RegisterVariableFloat('Shelly_Energy0', $this->Translate('Energy') . ' 0', '~Electricity');
+        $this->RegisterVariableFloat('Shelly_ReturnedEnergy0', $this->Translate('Returned Energy') . ' 0', '~Electricity');
+        $this->RegisterVariableFloat('Shelly_Power0', $this->Translate('Power') . ' 0', '~Watt.3680');
+        $this->RegisterVariableFloat('Shelly_ReactivePower0', $this->Translate('Reactive Power') . ' 0', '~Watt.3680');
+        $this->RegisterVariableFloat('Shelly_Voltage0', $this->Translate('Voltage') . ' 0', '~Volt');
 
-        $this->RegisterVariableFloat('Shelly_Energy1', $this->Translate('Energy') . ' 1', '');
-        $this->RegisterVariableFloat('Shelly_ReturnedEnergy1', $this->Translate('Returned Energy') . ' 1', '');
-        $this->RegisterVariableFloat('Shelly_Power1', $this->Translate('Power') . ' 1', '');
-        $this->RegisterVariableFloat('Shelly_ReactivePower1', $this->Translate('Reactive Power') . ' 1', '');
-        $this->RegisterVariableFloat('Shelly_Voltage1', $this->Translate('Voltage') . ' 1', '');
+        $this->RegisterVariableFloat('Shelly_Energy1', $this->Translate('Energy') . ' 1', '~Electricity');
+        $this->RegisterVariableFloat('Shelly_ReturnedEnergy1', $this->Translate('Returned Energy') . ' 1', '~Electricity');
+        $this->RegisterVariableFloat('Shelly_Power1', $this->Translate('Power') . ' 1', '~Watt.3680');
+        $this->RegisterVariableFloat('Shelly_ReactivePower1', $this->Translate('Reactive Power') . ' 1', '~Watt.3680');
+        $this->RegisterVariableFloat('Shelly_Voltage1', $this->Translate('Voltage') . ' 1', '~Volt');
 
         $this->RegisterVariableBoolean('Shelly_State', $this->Translate('State'), '~Switch');
         $this->EnableAction('Shelly_State');
@@ -72,12 +72,12 @@ class ShellyEM extends IPSModule
                 if (fnmatch('*emeter/0/energy', $Buffer->Topic)) {
                     $this->SendDebug('Energy Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Energy Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_Energy0'), floatval($Buffer->Payload));
+                    SetValue($this->GetIDForIdent('Shelly_Energy0'), floatval($Buffer->Payload) / 60000);
                 }
                 if (fnmatch('*emeter/0/returned_energy', $Buffer->Topic)) {
                     $this->SendDebug('Returned Energy Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Returned Energy Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_ReturnedEnergy0'), floatval($Buffer->Payload));
+                    SetValue($this->GetIDForIdent('Shelly_ReturnedEnergy0'), floatval($Buffer->Payload) / 60000);
                 }
                 if (fnmatch('*emeter/0/power', $Buffer->Topic)) {
                     $this->SendDebug('Power Topic', $Buffer->Topic, 0);
@@ -99,12 +99,12 @@ class ShellyEM extends IPSModule
                 if (fnmatch('*emeter/1/energy', $Buffer->Topic)) {
                     $this->SendDebug('Energy Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Energy Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_Energy1'), floatval($Buffer->Payload));
+                    SetValue($this->GetIDForIdent('Shelly_Energy1'), floatval($Buffer->Payload) / 60000);
                 }
                 if (fnmatch('*emeter/1/returned_energy', $Buffer->Topic)) {
                     $this->SendDebug('Returned Energy Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Returned Energy Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_ReturnedEnergy1'), floatval($Buffer->Payload));
+                    SetValue($this->GetIDForIdent('Shelly_ReturnedEnergy1'), floatval($Buffer->Payload) / 60000);
                 }
                 if (fnmatch('*emeter/1/power', $Buffer->Topic)) {
                     $this->SendDebug('Power Topic', $Buffer->Topic, 0);

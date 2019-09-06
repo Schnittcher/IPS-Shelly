@@ -31,7 +31,7 @@ class Shelly1 extends IPSModule
         $this->SetReceiveDataFilter('.*' . $MQTTTopic . '.*');
 
         if (($this->ReadPropertyString('Device') == 'shelly1pm')) {
-            $this->RegisterVariableFloat('Shelly_Power', $this->Translate('Power'), '');
+            $this->RegisterVariableFloat('Shelly_Power', $this->Translate('Power'), '~Watt.3680');
             $this->RegisterVariableBoolean('Shelly_Overtemperature', $this->Translate('Overtemperature'), '');
             $this->RegisterVariableFloat('Shelly_Temperature', $this->Translate('Temperature'), '~Temperature');
         }
