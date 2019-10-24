@@ -152,7 +152,7 @@ class Shelly2 extends IPSModule
                     case 'shelly2.5':
                         if (fnmatch('*/0/power*', $Buffer->Topic)) {
                             $this->SendDebug('Power 0 Payload', $Buffer->Payload, 0);
-                            SetValue($this->GetIDForIdent('Shelly_Power1'), $Buffer->Payload / 60000);
+                            SetValue($this->GetIDForIdent('Shelly_Power1'), $Buffer->Payload);
                         }
                         if (fnmatch('*/0/energy*', $Buffer->Topic)) {
                             $this->SendDebug('Energy 0 Payload', $Buffer->Payload, 0);
