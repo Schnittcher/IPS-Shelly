@@ -5,8 +5,10 @@ require_once __DIR__ . '/../libs/ShellyHelper.php';
 
 class Shelly2 extends IPSModule
 {
-    use Shelly,
-        ShellyRelayAction,
+    use Shelly;
+    use
+        ShellyRelayAction;
+    use
         ShellyRollerAction;
 
     public function Create()

@@ -5,7 +5,8 @@ require_once __DIR__ . '/../libs/ShellyHelper.php';
 
 class Shelly4Pro extends IPSModule
 {
-    use Shelly,
+    use Shelly;
+    use
         ShellyRelayAction;
 
     public function Create()
@@ -111,6 +112,7 @@ class Shelly4Pro extends IPSModule
                                 default:
                                     break;
                             }
+                            // FIXME: No break. Please add proper comment if intentional
                         case 'overpower':
                             switch ($relay) {
                                 case 0:

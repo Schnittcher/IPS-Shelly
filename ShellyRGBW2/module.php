@@ -5,7 +5,8 @@ require_once __DIR__ . '/../libs/ShellyHelper.php';
 
 class ShellyRGBW2 extends IPSModule
 {
-    use Shelly,
+    use Shelly;
+    use
         ShellyRGBW2Action;
 
     public function Create()

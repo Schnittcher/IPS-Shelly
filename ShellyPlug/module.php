@@ -5,7 +5,8 @@ require_once __DIR__ . '/../libs/ShellyHelper.php';
 
 class ShellyPlug extends IPSModule
 {
-    use Shelly,
+    use Shelly;
+    use
         ShellyRelayAction;
 
     public function Create()
