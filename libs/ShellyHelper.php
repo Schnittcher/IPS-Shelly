@@ -278,3 +278,35 @@ trait ShellyRGBW2Action
         return $RGB;
     }
 }
+
+trait ShellyDimmerAction
+{
+    public function RequestAction($Ident, $Value)
+    {
+        if (fnmatch('Shelly_State', $Ident)) {
+            $this->SwitchMode(intval($relay), $Value);
+        }
+        if (fnmatch('Shelly_Dimmer', $Ident)) {
+            $this->setDimmer(intval($Value));
+        }
+    }
+
+    public function SwitchMode(bool $Value)
+    {
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/light/0/command';
+        if ($Value) {
+            $Payload = 'on';
+        } else {
+            $Payload = 'off';
+        }
+        $this->sendMQTT($Topic, $Payload);
+    }
+
+    public function setDimmer(int $value)
+    {
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/light/0/set';
+        $Payload['brightness'] = strval($value);
+        $Payload = json_encode($Payload);
+        $this->sendMQTT($Topic, $Payload);
+    }
+}

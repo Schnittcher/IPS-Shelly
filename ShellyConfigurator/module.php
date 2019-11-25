@@ -201,7 +201,6 @@ class ShellyConfigurator extends IPSModule
                     }
 
                 $Values[] = $AddValue;
-                IPS_LogMessage('test', print_r($AddValue, true));
             }
             $Form['actions'][0]['values'] = $Values;
         }
