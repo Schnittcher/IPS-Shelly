@@ -284,7 +284,7 @@ trait ShellyDimmerAction
     public function RequestAction($Ident, $Value)
     {
         if (fnmatch('Shelly_State', $Ident)) {
-            $this->SwitchMode(intval($relay), $Value);
+            $this->SwitchMode($Value);
         }
         if (fnmatch('Shelly_Dimmer', $Ident)) {
             $this->setDimmer(intval($Value));
