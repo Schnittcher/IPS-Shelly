@@ -112,7 +112,7 @@ class Shelly4Pro extends IPSModule
                                 default:
                                     break;
                             }
-                            // FIXME: No break. Please add proper comment if intentional
+                            break;
                         case 'overpower':
                             switch ($relay) {
                                 case 0:
