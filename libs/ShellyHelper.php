@@ -284,14 +284,14 @@ trait ShellyDimmerAction
     public function RequestAction($Ident, $Value)
     {
         if (fnmatch('Shelly_State', $Ident)) {
-            $this->SwitchMode($Value);
+            $this->DimSwitchMode($Value);
         }
         if (fnmatch('Shelly_Brightness', $Ident)) {
             $this->setDimmer(intval($Value));
         }
     }
 
-    public function SwitchMode(bool $Value)
+    public function DimmerSwitchMode(bool $Value)
     {
         $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/light/0/command';
         if ($Value) {
