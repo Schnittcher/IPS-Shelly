@@ -1,7 +1,9 @@
 {
   "translations": {
     "de": {
-      "State": "Status"
+      "State": "Status",
+      "Lux": "Lux",
+      "Battery": "Batterie"
     }
   }
 }
