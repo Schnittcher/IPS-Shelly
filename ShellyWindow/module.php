@@ -15,7 +15,7 @@ class ShellyWindow extends IPSModule
 
         $this->RegisterPropertyString('MQTTTopic', '');
         $this->RegisterPropertyString('Device', '');
-        $this->RegisterVariableBoolean('Shelly_Window', $this->Translate('State'), '~Window');
+        $this->RegisterVariableBoolean('Shelly_State', $this->Translate('State'), '~Window');
         $this->RegisterVariableInteger('Shelly_Lux', $this->Translate('Lux'), '~Illumination');
         $this->RegisterVariableInteger('Shelly_Battery', $this->Translate('Battery'), '');
     }
