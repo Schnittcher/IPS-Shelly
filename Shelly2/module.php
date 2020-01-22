@@ -61,6 +61,12 @@ class Shelly2 extends IPSModule
                 $this->RegisterVariableFloat('Shelly_Power2', $this->Translate('Power 2'), '~Watt.3680');
                 $this->RegisterVariableFloat('Shelly_Energy2', $this->Translate('Energy 2'), '~Electricity');
         }
+        //Input
+        $this->RegisterVariableBoolean('Shelly_Input', $this->Translate('Input 1'), '~Switch');
+        $this->RegisterVariableBoolean('Shelly_Input1', $this->Translate('Input 2'), '~Switch');
+        //Longpush
+        $this->RegisterVariableBoolean('Shelly_Longpush', $this->Translate('Longpush Input 1'), '~Switch');
+        $this->RegisterVariableBoolean('Shelly_Longpush1', $this->Translate('Longpush Input 2'), '~Switch');
     }
 
     public function ReceiveData($JSONString)
@@ -80,9 +86,71 @@ class Shelly2 extends IPSModule
             $Buffer = $data;
             $this->SendDebug('MQTT Topic', $Buffer->Topic, 0);
 
-            //Power Variable prüfen
             if (property_exists($Buffer, 'Topic')) {
-                //Ist es ein Relay?
+                if (fnmatch('*/input/[01]', $Buffer->Topic)) {
+                    $this->SendDebug('Input Topic', $Buffer->Topic, 0);
+                    $this->SendDebug('Input Payload', $Buffer->Payload, 0);
+                    $input = $this->getChannelRelay($Buffer->Topic);
+                    switch ($Buffer->Payload) {
+                        case 0:
+                            switch ($input) {
+                                case 0:
+                                    SetValue($this->GetIDForIdent('Shelly_Input'), 0);
+                                    break;
+                                case 1:
+                                    SetValue($this->GetIDForIdent('Shelly_Input1'), 0);
+                                    break;
+                                default:
+                                    break;
+                            }
+                            break;
+                        case 1:
+                            switch ($input) {
+                                case 0:
+                                    SetValue($this->GetIDForIdent('Shelly_Input'), 1);
+                                    break;
+                                case 1:
+                                    SetValue($this->GetIDForIdent('Shelly_Input1'), 1);
+                                    break;
+                                default:
+                                    break;
+                            }
+                            break;
+                    }
+                }
+
+                if (fnmatch('*/longpush/[01]', $Buffer->Topic)) {
+                    $this->SendDebug('Longpush Topic', $Buffer->Topic, 0);
+                    $this->SendDebug('Longpush Payload', $Buffer->Payload, 0);
+                    $longpush = $this->getChannelRelay($Buffer->Topic);
+                    switch ($Buffer->Payload) {
+                        case 0:
+                            switch ($longpush) {
+                                case 0:
+                                    SetValue($this->GetIDForIdent('Shelly_Longpush'), 0);
+                                    break;
+                                case 1:
+                                    SetValue($this->GetIDForIdent('Shelly_Longpush1'), 0);
+                                    break;
+                                default:
+                                    break;
+                            }
+                            break;
+                        case 1:
+                            switch ($longpush) {
+                                case 0:
+                                    SetValue($this->GetIDForIdent('Shelly_Longpush'), 1);
+                                    break;
+                                case 1:
+                                    SetValue($this->GetIDForIdent('Shelly_Longpush1'), 1);
+                                    break;
+                                default:
+                                    break;
+                            }
+                            break;
+                    }
+                }
+
                 if (fnmatch('*/relay/[01]', $Buffer->Topic)) {
                     $this->SendDebug('State Payload', $Buffer->Payload, 0);
                     $relay = $this->getChannelRelay($Buffer->Topic);

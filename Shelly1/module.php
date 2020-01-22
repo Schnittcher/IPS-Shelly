@@ -20,6 +20,9 @@ class Shelly1 extends IPSModule
         $this->RegisterVariableBoolean('Shelly_State', $this->Translate('State'), '~Switch');
 
         $this->EnableAction('Shelly_State');
+
+        $this->RegisterVariableBoolean('Shelly_Input', $this->Translate('Input'), '~Switch');
+        $this->RegisterVariableBoolean('Shelly_Longpush', $this->Translate('Longpush'), '~Switch');
     }
 
     public function ApplyChanges()
@@ -60,6 +63,30 @@ class Shelly1 extends IPSModule
                             break;
                         case 'on':
                             SetValue($this->GetIDForIdent('Shelly_State'), 1);
+                            break;
+                    }
+                }
+                if (fnmatch('*/input/0', $Buffer->Topic)) {
+                    $this->SendDebug('Input Topic', $Buffer->Topic, 0);
+                    $this->SendDebug('Input Payload', $Buffer->Payload, 0);
+                    switch ($Buffer->Payload) {
+                        case 0:
+                            SetValue($this->GetIDForIdent('Shelly_Input'), 0);
+                            break;
+                        case 1:
+                            SetValue($this->GetIDForIdent('Shelly_Input'), 1);
+                            break;
+                    }
+                }
+                if (fnmatch('*/longpush/0', $Buffer->Topic)) {
+                    $this->SendDebug('Longpush Topic', $Buffer->Topic, 0);
+                    $this->SendDebug('Longpush Payload', $Buffer->Payload, 0);
+                    switch ($Buffer->Payload) {
+                        case 0:
+                            SetValue($this->GetIDForIdent('Shelly_Longpush'), 0);
+                            break;
+                        case 1:
+                            SetValue($this->GetIDForIdent('Shelly_Longpush'), 1);
                             break;
                     }
                 }
