@@ -287,7 +287,7 @@ trait ShellyDimmerAction
             $this->DimmerSwitchMode($Value);
         }
         if (fnmatch('Shelly_Brightness', $Ident)) {
-            $this->setDimmer(intval($Value));
+            $this->DimSet(intval($Value));
         }
     }
 
@@ -302,7 +302,7 @@ trait ShellyDimmerAction
         $this->sendMQTT($Topic, $Payload);
     }
 
-    public function setDimmer(int $value)
+    public function DimSet(int $value)
     {
         $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/light/0/set';
         $Payload['brightness'] = strval($value);

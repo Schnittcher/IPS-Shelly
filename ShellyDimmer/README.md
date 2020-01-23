@@ -20,9 +20,9 @@
    Shelly_DimmerSwitchMode(25537, false); //Ausschalten
    ```
 
-   **Shelly_setDimmer($InstanceID, $Value)**\
+   **Shelly_DimSet($InstanceID, $Value)**\
    Mit dieser Funktion ist es möglich das Gerät ein- bzw. auszuschalten.
    ```php
-   Shelly_setDimmer(25537, 50); //auf 50% setzen
-   Shelly_setDimmer(25537, 40); //auf 40% setzen
+   Shelly_DimSet(25537, 50); //auf 50% setzen
+   Shelly_DimSet(25537, 40); //auf 40% setzen
    ```

@@ -20,7 +20,7 @@
    Shelly_SwitchMode(25537, false) //Switch Off;
    ```
 
-   **Shelly_setDimmer($InstanceID, $Value)**\
+   **Shelly_DimSet($InstanceID, $Value)**\
    It is possible to dim the device to a given percentage.
    ```php
-   Shelly_setDimmer(25537, 50); //Dim to 50%
+   Shelly_DimSet(25537, 50); //Dim to 50%
