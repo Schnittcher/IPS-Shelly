@@ -256,7 +256,7 @@ class ShellyConfigurator extends IPSModule
         $InstanceIDs[] = IPS_GetInstanceListByModuleID('{88A5611C-CD57-4255-9F57-E420CE784C81}');
 
         //ShellyWindow
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{24BDCF16-A370-6F72-8CBD-9B9968899FED}');        
+        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{24BDCF16-A370-6F72-8CBD-9B9968899FED}');
 
         foreach ($InstanceIDs as $IDs) {
             foreach ($IDs as $id) {
