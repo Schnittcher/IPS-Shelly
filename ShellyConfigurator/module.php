@@ -231,6 +231,15 @@ class ShellyConfigurator extends IPSModule
         //Shelly 4Pro
         $InstanceIDs[] = IPS_GetInstanceListByModuleID('{F56CC544-581D-42EB-AAF0-F5E9E908916C}');
 
+        //ShellyDimmer
+        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{69B501C7-DCE8-4A4A-910C-D3954473E654}');
+
+        //ShellyEM
+        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{53A4EF84-0CF9-44D4-B70E-4B84E0DCE9B3}');
+
+        //ShellyFlood
+        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{C360BA67-99A3-4F37-932B-B851D4E10AD6}');
+
         //ShellyHT
         $InstanceIDs[] = IPS_GetInstanceListByModuleID('{F2EE9948-94F6-4BA6-BDC9-E59E440F3DB0}');
 
@@ -245,6 +254,9 @@ class ShellyConfigurator extends IPSModule
 
         //ShellySmoke
         $InstanceIDs[] = IPS_GetInstanceListByModuleID('{88A5611C-CD57-4255-9F57-E420CE784C81}');
+
+        //ShellyWindow
+        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{24BDCF16-A370-6F72-8CBD-9B9968899FED}');        
 
         foreach ($InstanceIDs as $IDs) {
             foreach ($IDs as $id) {
