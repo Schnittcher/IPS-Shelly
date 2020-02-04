@@ -268,11 +268,13 @@ class ShellyConfigurator extends IPSModule
 
                 $deviceInfo = ZC_QueryService($mDNSInstanceIDs[0], $device['Name'], '_http._tcp', 'local.');
 
-                $shelly['Name'] = $device['Name'];
-                $shelly['DeviceType'] = strstr($device['Name'], '-', true);
-                $shelly['Firmware'] = $deviceInfo[0]['TXTRecords'][1];
-                $shelly['IPv4'] = $deviceInfo[0]['IPv4'][0];
-
+                $type = strstr($device['Name'], '-', true);
+                if ($type != 'shellysense') {
+                    $shelly['Name'] = $device['Name'];
+                    $shelly['DeviceType'] = strstr($device['Name'], '-', true);
+                    $shelly['Firmware'] = $deviceInfo[0]['TXTRecords'][1];
+                    $shelly['IPv4'] = $deviceInfo[0]['IPv4'][0];
+                }
                 $shellys[] = $shelly;
             }
         }
