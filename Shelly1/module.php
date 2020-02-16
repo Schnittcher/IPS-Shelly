@@ -38,6 +38,7 @@ class Shelly1 extends IPSModule
             $this->RegisterVariableFloat('Shelly_Power', $this->Translate('Power'), '~Watt.3680');
             $this->RegisterVariableBoolean('Shelly_Overtemperature', $this->Translate('Overtemperature'), '');
             $this->RegisterVariableFloat('Shelly_Temperature', $this->Translate('Temperature'), '~Temperature');
+            $this->RegisterVariableFloat('Shelly_Energy', $this->Translate('Energy'), '~Electricity');
         }
     }
 
@@ -104,6 +105,10 @@ class Shelly1 extends IPSModule
                     $this->SendDebug('Power Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Power Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_Power'), $Buffer->Payload);
+                }
+                if (fnmatch('*/relay/0/energy*', $Buffer->Topic)) {
+                    $this->SendDebug('Energy Payload', $Buffer->Payload, 0);
+                    SetValue($this->GetIDForIdent('Shelly_Energy'), $Buffer->Payload / 60000);
                 }
             }
         }

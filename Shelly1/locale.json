@@ -9,6 +9,7 @@
       "Temperature": "Temperatur",
       "Overtemperature": "Übertemperatur",
       "Device": "Geräte",
+      "Energy": "Energie",
       "Please select device": "Bitte wählen Sie das Gerät aus"
     }
   }
