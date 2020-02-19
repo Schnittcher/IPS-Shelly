@@ -22,10 +22,10 @@ class Shelly3EM extends IPSModule
         $this->RegisterVariableFloat('Shelly_Current0', $this->Translate('Current') . ' A', '~Ampere');
         $this->RegisterVariableFloat('Shelly_Voltage0', $this->Translate('Voltage') . ' A', '~Volt');
 
-        $this->RegisterVariableFloat('Shelly_Power0', $this->Translate('Power') . ' B', '~Watt.3680');
-        $this->RegisterVariableFloat('Shelly_PowerFactor0', $this->Translate('Power Factor') . ' B', '');
-        $this->RegisterVariableFloat('Shelly_Current0', $this->Translate('Current') . ' B', '~Ampere');
-        $this->RegisterVariableFloat('Shelly_Voltage0', $this->Translate('Voltage') . ' B', '~Volt');
+        $this->RegisterVariableFloat('Shelly_Power1', $this->Translate('Power') . ' B', '~Watt.3680');
+        $this->RegisterVariableFloat('Shelly_PowerFactor1', $this->Translate('Power Factor') . ' B', '');
+        $this->RegisterVariableFloat('Shelly_Current1', $this->Translate('Current') . ' B', '~Ampere');
+        $this->RegisterVariableFloat('Shelly_Voltage1', $this->Translate('Voltage') . ' B', '~Volt');
 
         $this->RegisterVariableFloat('Shelly_Power2', $this->Translate('Power') . ' C', '~Watt.3680');
         $this->RegisterVariableFloat('Shelly_PowerFactor2', $this->Translate('Power Factor') . ' C', '');
