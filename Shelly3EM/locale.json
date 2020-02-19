@@ -1,6 +1,7 @@
 {
   "translations": {
     "de": {
+      "State": "Status",
       "Power": "Leistung",
       "Power Factor": "Leistungsfaktor",
       "Voltage": "Stromspannung",
