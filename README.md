@@ -42,6 +42,7 @@ Die selben Zugangsdaten müssen über das Shelly Webinterface unter Internet & S
 * [ShellySense](ShellySense/README.md)
 * [ShellySmoke](ShellySmoke/README.md)
 * [ShellyEM](ShellyEM/README.md)
+* [Shelly3EM](Shelly3EM/README.md)
 * [ShellyFlood](ShellyFlood/README.md)
 
 ## 3. Installation

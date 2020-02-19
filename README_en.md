@@ -39,6 +39,7 @@ If you would like to use the username/password settings you need to configure it
 * [ShellySense](ShellySense/README_en.md)
 * [ShellySmoke](ShellySmoke/README_en.md)
 * [ShellyEM](ShellyEM/README_en.md)
+* [Shelly3EM](Shelly3EM/README_en.md)
 * [ShellyFlood](ShellyFlood/README_en.md)
 
 ## 3. Installation
