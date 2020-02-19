@@ -18,22 +18,25 @@ class Shelly3EM extends IPSModule
         $this->RegisterPropertyString('MQTTTopic', '');
 
         $this->RegisterVariableFloat('Shelly_Power0', $this->Translate('Power') . ' A', '~Watt.3680');
-        $this->RegisterVariableFloat('Shelly_PowerFactor0', $this->Translate('Power Factor') . ' A', '~Watt.3680');
+        $this->RegisterVariableFloat('Shelly_PowerFactor0', $this->Translate('Power Factor') . ' A', '');
         $this->RegisterVariableFloat('Shelly_Current0', $this->Translate('Current') . ' A', '~Ampere');
         $this->RegisterVariableFloat('Shelly_Voltage0', $this->Translate('Voltage') . ' A', '~Volt');
 
         $this->RegisterVariableFloat('Shelly_Power0', $this->Translate('Power') . ' B', '~Watt.3680');
-        $this->RegisterVariableFloat('Shelly_PowerFactor0', $this->Translate('Power Factor') . ' B', '~Watt.3680');
+        $this->RegisterVariableFloat('Shelly_PowerFactor0', $this->Translate('Power Factor') . ' B', '');
         $this->RegisterVariableFloat('Shelly_Current0', $this->Translate('Current') . ' B', '~Ampere');
         $this->RegisterVariableFloat('Shelly_Voltage0', $this->Translate('Voltage') . ' B', '~Volt');
 
         $this->RegisterVariableFloat('Shelly_Power2', $this->Translate('Power') . ' C', '~Watt.3680');
-        $this->RegisterVariableFloat('Shelly_PowerFactor2', $this->Translate('Power Factor') . ' C', '~Watt.3680');
+        $this->RegisterVariableFloat('Shelly_PowerFactor2', $this->Translate('Power Factor') . ' C', '');
         $this->RegisterVariableFloat('Shelly_Current2', $this->Translate('Current') . ' C', '~Ampere');
         $this->RegisterVariableFloat('Shelly_Voltage2', $this->Translate('Voltage') . ' C', '~Volt');
 
-        $this->RegisterVariableBoolean('Shelly_State', $this->Translate('State'), '~Switch');
+        $this->RegisterVariableBoolean('Shelly_State', $this->Translate('State') . '1', '~Switch');
         $this->EnableAction('Shelly_State');
+
+        $this->RegisterVariableBoolean('Shelly_State2', $this->Translate('State') . '2', '~Switch');
+        $this->EnableAction('Shelly_State2');
     }
 
     public function ApplyChanges()
@@ -58,8 +61,8 @@ class Shelly3EM extends IPSModule
 
             if (property_exists($Buffer, 'Topic')) {
                 if (fnmatch('*/relay/0', $Buffer->Topic)) {
-                    $this->SendDebug('Relay Topic', $Buffer->Topic, 0);
-                    $this->SendDebug('Relay Payload', $Buffer->Payload, 0);
+                    $this->SendDebug('Relay 0 Topic', $Buffer->Topic, 0);
+                    $this->SendDebug('Relay 0 Payload', $Buffer->Payload, 0);
                     //Power prüfen und in IPS setzen
                     switch ($Buffer->Payload) {
                         case 'off':
@@ -70,6 +73,21 @@ class Shelly3EM extends IPSModule
                             break;
                     }
                 }
+
+                if (fnmatch('*/relay/1', $Buffer->Topic)) {
+                    $this->SendDebug('Relay 1 Topic', $Buffer->Topic, 0);
+                    $this->SendDebug('Relay 1 Payload', $Buffer->Payload, 0);
+                    //Power prüfen und in IPS setzen
+                    switch ($Buffer->Payload) {
+                        case 'off':
+                            SetValue($this->GetIDForIdent('Shelly_State2'), 0);
+                            break;
+                        case 'on':
+                            SetValue($this->GetIDForIdent('Shelly_State2'), 1);
+                            break;
+                    }
+                }
+
                 //Phase A
                 if (fnmatch('*emeter/0/power', $Buffer->Topic)) {
                     $this->SendDebug('Power Topic', $Buffer->Topic, 0);
