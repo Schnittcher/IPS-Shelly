@@ -163,6 +163,30 @@ class ShellyConfigurator extends IPSModule
                             ]
                         ];
                         break;
+                    case 'shellyem':
+                        $moduleID = '{53A4EF84-0CF9-44D4-B70E-4B84E0DCE9B3}';
+                        $DeviceType = 'Shelly EM';
+                        $AddValue['create'] = [
+                            [
+                                'moduleID'      => $moduleID,
+                                'configuration' => [
+                                    'MQTTTopic' => $Shelly['Name'],
+                                ]
+                            ]
+                        ];
+                        break;
+                    case 'shelly3em':
+                        $moduleID = '{108ECEFF-642A-4B1F-9608-E592E31DBA11}';
+                        $DeviceType = 'Shelly 3EM';
+                        $AddValue['create'] = [
+                            [
+                                'moduleID'      => $moduleID,
+                                'configuration' => [
+                                    'MQTTTopic' => $Shelly['Name'],
+                                ]
+                            ]
+                        ];
+                        break;
                     case 'shellyrgbw2':
                         $moduleID = '{3286C438-2174-E03B-85CE-B6B7C1A685D0}';
                         $DeviceType = 'Shelly RGBW2';
@@ -237,6 +261,9 @@ class ShellyConfigurator extends IPSModule
         //ShellyEM
         $InstanceIDs[] = IPS_GetInstanceListByModuleID('{53A4EF84-0CF9-44D4-B70E-4B84E0DCE9B3}');
 
+        //Shelly3EM
+        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{108ECEFF-642A-4B1F-9608-E592E31DBA11}');
+
         //ShellyFlood
         $InstanceIDs[] = IPS_GetInstanceListByModuleID('{C360BA67-99A3-4F37-932B-B851D4E10AD6}');
 
@@ -281,11 +308,14 @@ class ShellyConfigurator extends IPSModule
                 $deviceInfo = ZC_QueryService($mDNSInstanceIDs[0], $device['Name'], '_http._tcp', 'local.');
 
                 $type = strstr($device['Name'], '-', true);
+                $shelly['Name'] = $device['Name'];
+                $shelly['IPv4'] = $deviceInfo[0]['IPv4'][0];
                 if ($type != 'shellysense') {
-                    $shelly['Name'] = $device['Name'];
                     $shelly['DeviceType'] = strstr($device['Name'], '-', true);
                     $shelly['Firmware'] = $deviceInfo[0]['TXTRecords'][1];
-                    $shelly['IPv4'] = $deviceInfo[0]['IPv4'][0];
+                } else {
+                    $shelly['DeviceType'] = '-';
+                    $shelly['Firmware'] = '-';
                 }
                 $shellys[] = $shelly;
             }
