@@ -16,6 +16,7 @@ class Shelly2 extends IPSModule
         //Never delete this line!
         parent::Create();
         $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
+        $this->RegisterAttributeInteger('GatewayMode', 0); // 0 = MQTTServer 1 = MQTTClient
 
         $this->RegisterPropertyString('MQTTTopic', '');
         $this->RegisterPropertyString('DeviceType', '');
@@ -25,6 +26,8 @@ class Shelly2 extends IPSModule
     public function ApplyChanges()
     {
         //Never delete this line!
+        $this->RegisterMessage($this->InstanceID, FM_CONNECT);
+        $this->RegisterMessage($this->InstanceID, FM_DISCONNECT);
         parent::ApplyChanges();
         $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
         //Setze Filter für ReceiveData
@@ -69,21 +72,40 @@ class Shelly2 extends IPSModule
         $this->RegisterVariableBoolean('Shelly_Longpush1', $this->Translate('Longpush Input 2'), '~Switch');
     }
 
+    public function MessageSink($TimeStamp, $SenderID, $Message, $Data)
+    {
+        switch ($Message) {
+            case FM_CONNECT:
+                //$this->LogMessage('parentGUID '. print_r($Data),KL_DEBUG);
+                $parentGUID = IPS_GetInstance($Data[0])['ModuleInfo']['ModuleID'];
+                switch ($parentGUID) {
+                    case '{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}':
+                        $this->WriteAttributeInteger('GatewayMode', 0);
+                        break;
+                    case '{EE0D345A-CF31-428A-A613-33CE98E752DD}':
+                        $this->WriteAttributeInteger('GatewayMode', 1);
+                        break;
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
     public function ReceiveData($JSONString)
     {
-        // Relay
-        //shellies/shellyswitch-<deviceid>/relay/<i>
-        //shellies/shellyswitch-<deviceid>/relay/power
-        //shellies/shellyswitch-<deviceid>/relay/energy
-
-        //Roller
-        //shellies/shellyswitch-<deviceid>/roller/0
-
+        $GatewayMode = $this->ReadAttributeInteger('GatewayMode');
         $this->SendDebug('JSON', $JSONString, 0);
         if (!empty($this->ReadPropertyString('MQTTTopic'))) {
             $data = json_decode($JSONString);
-            // Buffer decodieren und in eine Variable schreiben
-            $Buffer = $data;
+
+            $this->SendDebug('GatewayMode', $GatewayMode, 0);
+            if ($GatewayMode == 0) {
+                $Buffer = $data;
+            } else {
+                $Buffer = json_decode($data->Buffer);
+            }
+
             $this->SendDebug('MQTT Topic', $Buffer->Topic, 0);
 
             if (property_exists($Buffer, 'Topic')) {
@@ -185,7 +207,6 @@ class Shelly2 extends IPSModule
                     }
                 }
                 if (fnmatch('*/roller/0/command*', $Buffer->Topic)) {
-                    //TODO ROLLER
                     $this->SendDebug('Roller Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 'open':
