@@ -55,6 +55,7 @@ class ShellyDimmer extends IPSModule
                     $this->LogMessage('Invalid Parent', KL_ERROR);
                     return;
             }
+
             $this->SendDebug('MQTT Topic', $Buffer->Topic, 0);
 
             if (property_exists($Buffer, 'Topic')) {

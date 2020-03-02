@@ -49,7 +49,6 @@ class Shelly4Pro extends IPSModule
         $this->RegisterVariableFloat('Shelly_Energy3', $this->Translate('Energy ') . ' 4', '~Electricity');
     }
 
-
     public function ReceiveData($JSONString)
     {
         $GatewayMode = $this->ReadAttributeInteger('GatewayMode');
