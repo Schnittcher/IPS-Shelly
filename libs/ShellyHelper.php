@@ -30,9 +30,10 @@ trait Shelly
 
     protected function sendMQTT($Topic, $Payload)
     {
-        $GatewayMode = $this->ReadAttributeInteger('GatewayMode');
-        switch ($GatewayMode) {
-            case 0: //MQTTServer
+        $parentID = IPS_GetInstance($this->InstanceID)['ConnectionID'];
+        $parentGUID = IPS_GetInstance($parentID)['ModuleInfo']['ModuleID'];
+        switch ($parentGUID) {
+            case '{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}': //MQTTServer
                 $Data['DataID'] = '{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}';
                 $Data['PacketType'] = 3;
                 $Data['QualityOfService'] = 0;
@@ -41,7 +42,7 @@ trait Shelly
                 $Data['Payload'] = $Payload;
                 $DataJSON = json_encode($Data, JSON_UNESCAPED_SLASHES);
                 break;
-            case 1: //MQTTClient
+                case '{EE0D345A-CF31-428A-A613-33CE98E752DD}': //MQTTClient
                 $Buffer['PacketType'] = 3;
                 $Buffer['QualityOfService'] = 0;
                 $Buffer['Retain'] = false;
@@ -61,7 +62,6 @@ trait Shelly
         }
 
         //$DataJSON = json_encode($Data, JSON_UNESCAPED_SLASHES);
-        $this->SendDebug(__FUNCTION__ . 'GatewayMode', $GatewayMode, 0);
         $this->SendDebug(__FUNCTION__ . 'Topic', $Topic, 0);
         $this->SendDebug(__FUNCTION__, $DataJSON, 0);
         $this->SendDataToParent($DataJSON);
