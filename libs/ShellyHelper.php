@@ -231,11 +231,16 @@ trait ShellyRGBW2Action
         $this->sendMQTT($Topic, $Payload);
     }
 
-    public function setColor(string $color)
+    public function setColor($color)
     {
         $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/color/0/set';
 
-        $RGB = $this->HexToRGB($color);
+        //If $Value Hex Color convert to Decimal
+        if (preg_match('/^#[a-f0-9]{6}$/i', strval($color))) {
+            $color = hexdec($color);
+        }
+
+        $RGB = $this->HexToRGB(intval($color));
         $Payload['red'] = strval($RGB[0]);
         $Payload['green'] = strval($RGB[1]);
         $Payload['blue'] = strval($RGB[2]);
@@ -290,7 +295,7 @@ trait ShellyRGBW2Action
         return ($r << 16) + ($g << 8) + $b;
     }
 
-    protected function HexToRGB($value)
+    protected function HexToRGB(int $value)
     {
         $RGB = [];
         $RGB[0] = (($value >> 16) & 0xFF);
