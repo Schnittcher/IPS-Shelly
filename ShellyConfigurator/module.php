@@ -312,7 +312,10 @@ class ShellyConfigurator extends IPSModule
                 $shelly['IPv4'] = $deviceInfo[0]['IPv4'][0];
                 if ($type != 'shellysense') {
                     $shelly['DeviceType'] = strstr($device['Name'], '-', true);
-                    $shelly['Firmware'] = $deviceInfo[0]['TXTRecords'][1];
+                    if (array_key_exists(1, $deviceInfo[0]['TXTRecords'])) {
+                        $shelly['Firmware'] = $deviceInfo[0]['TXTRecords'][1];
+                    }
+                    $shelly['Firmware'] = '-';
                 } else {
                     $shelly['DeviceType'] = '-';
                     $shelly['Firmware'] = '-';
