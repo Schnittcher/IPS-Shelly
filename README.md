@@ -18,6 +18,7 @@
 
 * mindestens IPS Version 5.1
 * Aktiviertes MQTT Protkoll beim Shelly Gerät
+* MQTT Server oder MQTT Client
 
 ### 1.1 Aktiviertes MQTT protokoll
 Das MQTT Protokoll muss bei jedem Shelly aktiviert sein, damit das Gerät von IP-Symcon mit diesem Modul bedient werden kann.
@@ -49,7 +50,12 @@ Die selben Zugangsdaten müssen über das Shelly Webinterface unter Internet & S
 Installation über den IP-Symcon Module Store.
 
 ## 4. Konfiguration in IP-Symcon
-Bitte den einzelnen Modulen entnehmen.
+Das Modul kann mit dem internen MQTT Server betrieben werden, oder aber mit einem externen MQTT Broker.
+Wenn ein externer MQTT Broker verwendet werden soll, dann muss aus dem Module Store der MQTTClient installiert werden.
+
+Standardmäßig wird der MQTT Server bei den Geräteinstanzen als Parent hinterlegt, wenn aber ein externer Broker verwendet werden soll, muss der MQTT Client per Hand angelegt werden und in der Geräteinstanz unter "Gateway ändern" ausgewählt werden.
+
+Die weitere Dokumentation bitte den einzelnen Modulen entnehmen.
 
 ## 5. Spenden
 
