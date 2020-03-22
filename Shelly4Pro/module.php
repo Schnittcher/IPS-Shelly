@@ -51,7 +51,6 @@ class Shelly4Pro extends IPSModule
 
     public function ReceiveData($JSONString)
     {
-        $GatewayMode = $this->ReadAttributeInteger('GatewayMode');
         $this->SendDebug('JSON', $JSONString, 0);
         if (!empty($this->ReadPropertyString('MQTTTopic'))) {
             $data = json_decode($JSONString);
