@@ -3,7 +3,9 @@
     "de": {
       "State": "Status",
       "Power": "Leistung",
-      "Energy": "Energie"
+      "Energy": "Energie",
+      "Temperature": "Temperatur",
+      "Overtemperature": "Übertemperatur"
     }
   }
 }

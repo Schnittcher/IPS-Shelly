@@ -32,6 +32,9 @@ class ShellyPlug extends IPSModule
         $this->EnableAction('Shelly_State');
         $this->RegisterVariableFloat('Shelly_Power', $this->Translate('Power'), '~Watt.3680');
         $this->RegisterVariableFloat('Shelly_Energy', $this->Translate('Energy'), '~Electricity');
+
+        $this->RegisterVariableBoolean('Shelly_Overtemperature', $this->Translate('Overtemperature'), '');
+        $this->RegisterVariableFloat('Shelly_Temperature', $this->Translate('Temperature'), '~Temperature');
     }
 
     public function ReceiveData($JSONString)
@@ -82,6 +85,16 @@ class ShellyPlug extends IPSModule
                     $this->SendDebug('Energy Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Energy Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_Energy'), $Buffer->Payload / 60000);
+                }
+                if (fnmatch('*/temperature', $Buffer->Topic)) {
+                    $this->SendDebug('Temperature Topic', $Buffer->Topic, 0);
+                    $this->SendDebug('Temperature Payload', $Buffer->Payload, 0);
+                    SetValue($this->GetIDForIdent('Shelly_Temperature'), $Buffer->Payload);
+                }
+                if (fnmatch('*/overtemperature', $Buffer->Topic)) {
+                    $this->SendDebug('Overtemperature Topic', $Buffer->Topic, 0);
+                    $this->SendDebug('Overtemperature Payload', $Buffer->Payload, 0);
+                    SetValue($this->GetIDForIdent('Shelly_Overtemperature'), boolval($Buffer->Payload));
                 }
             }
         }
