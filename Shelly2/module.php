@@ -187,7 +187,7 @@ class Shelly2 extends IPSModule
                             break;
                     }
                 }
-                if (fnmatch('*/roller/0/command*', $Buffer->Topic)) {
+                if (fnmatch('*/roller/0*', $Buffer->Topic)) {
                     $this->SendDebug('Roller Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 'open':
