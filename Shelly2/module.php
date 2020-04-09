@@ -60,6 +60,8 @@ class Shelly2 extends IPSModule
                 $this->RegisterVariableFloat('Shelly_Energy1', $this->Translate('Energy 1'), '~Electricity');
                 $this->RegisterVariableFloat('Shelly_Power2', $this->Translate('Power 2'), '~Watt.3680');
                 $this->RegisterVariableFloat('Shelly_Energy2', $this->Translate('Energy 2'), '~Electricity');
+                $this->RegisterVariableFloat('Shelly_Temperature', $this->Translate('Device Temperature'), '~Temperature');
+                $this->RegisterVariableBoolean('Shelly_Overtemperature', $this->Translate('Overtemperature'), '');
         }
         //Input
         $this->RegisterVariableBoolean('Shelly_Input', $this->Translate('Input 1'), '~Switch');
@@ -200,8 +202,8 @@ class Shelly2 extends IPSModule
                             SetValue($this->GetIDForIdent('Shelly_Roller'), 4);
                             break;
                         default:
-                            if (!fnmatch('*/roller/0/command/pos*', $Buffer->Topic)) {
-                                $this->SendDebug(__FUNCTION__ . ' Roller', 'Invalid Value: ' . $Buffer->MSG, 0);
+                            if (!fnmatch('*/roller/0/pos*', $Buffer->Topic)) {
+                                $this->SendDebug(__FUNCTION__ . ' Roller', 'Invalid Value: ' . $Buffer->Payload, 0);
                             }
                             break;
                     }
@@ -209,6 +211,16 @@ class Shelly2 extends IPSModule
                 if (fnmatch('*/roller/0/pos*', $Buffer->Topic)) {
                     $this->SendDebug('Roller Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_RollerPosition'), intval($Buffer->Payload));
+                }
+                if (fnmatch('*/temperature', $Buffer->Topic)) {
+                    $this->SendDebug('Temperature Topic', $Buffer->Topic, 0);
+                    $this->SendDebug('Temperature Payload', $Buffer->Payload, 0);
+                    SetValue($this->GetIDForIdent('Shelly_Temperature'), $Buffer->Payload);
+                }
+                if (fnmatch('*/overtemperature', $Buffer->Topic)) {
+                    $this->SendDebug('Overtemperature Topic', $Buffer->Topic, 0);
+                    $this->SendDebug('Overtemperature Payload', $Buffer->Payload, 0);
+                    SetValue($this->GetIDForIdent('Shelly_Overtemperature'), boolval($Buffer->Payload));
                 }
                 switch ($this->ReadPropertyString('Device')) {
                     case 'shelly2':
