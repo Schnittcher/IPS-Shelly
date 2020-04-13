@@ -6,7 +6,7 @@ require_once __DIR__ . '/../libs/ShellyHelper.php';
 class ShellyFlood extends IPSModule
 {
     use Shelly;
-    
+
     public function Create()
     {
         //Never delete this line!
