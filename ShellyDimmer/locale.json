@@ -2,6 +2,7 @@
   "translations": {
     "de": {
       "State": "Status",
+      "Reachable": "Erreichbar",
       "Variable profile type does not match for profile": "Der Profiltyp der Variablen stimmt nicht mit dem Profil überein",
       "Power": "Leistung",
       "Temperature": "Temperatur",

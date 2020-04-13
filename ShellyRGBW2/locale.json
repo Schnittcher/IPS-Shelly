@@ -2,6 +2,7 @@
   "translations": {
     "de": {
       "State": "Status",
+      "Reachable": "Erreichbar",
       "Mode": "Modus",
       "Color": "Farbe",
       "White": "Weiß",

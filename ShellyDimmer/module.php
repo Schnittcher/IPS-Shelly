@@ -19,10 +19,17 @@ class ShellyDimmer extends IPSModule
         $this->RegisterVariableBoolean('Shelly_State', $this->Translate('State'), '~Switch');
         $this->RegisterVariableInteger('Shelly_Brightness', $this->Translate('Brightness'), 'Intensity.100');
         $this->RegisterVariableFloat('Shelly_Power', $this->Translate('Power'), '~Watt.3680');
-        $this->RegisterVariableFloat('Shelly_Temperature', $this->Translate('Device Temperature'), '~Temperature');
+        $this->RegisterVariableFloat('Shelly_Temperature', $this->Translate('Temperature'), '~Temperature');
         $this->RegisterVariableBoolean('Shelly_Overtemperature', $this->Translate('Overtemperature'), '');
         $this->RegisterVariableBoolean('Shelly_Overload', $this->Translate('Overload'), '');
         $this->RegisterVariableBoolean('Shelly_Loaderror', $this->Translate('Loaderror'), '');
+
+        $this->RegisterProfileBooleanEx('Shelly.Reachable', 'Network', '', '', [
+            [false, 'Offline',  '', 0xFF0000],
+            [true, 'Online',  '', 0x00FF00]
+        ]);
+
+        $this->RegisterVariableBoolean('Shelly_Reachable', $this->Translate('Reachable'), 'Shelly.Reachable');
 
         $this->EnableAction('Shelly_State');
         $this->EnableAction('Shelly_Brightness');
@@ -100,6 +107,18 @@ class ShellyDimmer extends IPSModule
                     $this->SendDebug('Loaderror Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Loaderror Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_Loaderror'), $Buffer->Payload);
+                }
+                if (fnmatch('*/online', $Buffer->Topic)) {
+                    $this->SendDebug('Online Topic', $Buffer->Topic, 0);
+                    $this->SendDebug('Online Payload', $Buffer->Payload, 0);
+                    switch ($Buffer->Payload) {
+                        case 'true':
+                            SetValue($this->GetIDForIdent('Shelly_Reachable'), true);
+                            break;
+                        case 'false':
+                            SetValue($this->GetIDForIdent('Shelly_Reachable'), false);
+                            break;
+                    }
                 }
             }
         }

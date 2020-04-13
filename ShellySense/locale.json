@@ -2,6 +2,7 @@
   "translations": {
     "de": {
       "Motion" : "Bewegung",
+      "Reachable": "Erreichbar",
       "External Charger" : "Externes Ladegerät",
       "Lux" : "Lux",
       "Temperature": "Temperatur",

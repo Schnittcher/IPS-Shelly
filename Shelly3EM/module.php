@@ -37,6 +37,13 @@ class Shelly3EM extends IPSModule
 
         $this->RegisterVariableBoolean('Shelly_State2', $this->Translate('State') . '2', '~Switch');
         $this->EnableAction('Shelly_State2');
+
+        $this->RegisterProfileBooleanEx('Shelly.Reachable', 'Network', '', '', [
+            [false, 'Offline',  '', 0xFF0000],
+            [true, 'Online',  '', 0x00FF00]
+        ]);
+
+        $this->RegisterVariableBoolean('Shelly_Reachable', $this->Translate('Reachable'), 'Shelly.Reachable');
     }
 
     public function ApplyChanges()
@@ -95,6 +102,19 @@ class Shelly3EM extends IPSModule
                             break;
                         case 'on':
                             SetValue($this->GetIDForIdent('Shelly_State2'), 1);
+                            break;
+                    }
+                }
+
+                if (fnmatch('*/online', $Buffer->Topic)) {
+                    $this->SendDebug('Online Topic', $Buffer->Topic, 0);
+                    $this->SendDebug('Online Payload', $Buffer->Payload, 0);
+                    switch ($Buffer->Payload) {
+                        case 'true':
+                            SetValue($this->GetIDForIdent('Shelly_Reachable'), true);
+                            break;
+                        case 'false':
+                            SetValue($this->GetIDForIdent('Shelly_Reachable'), false);
                             break;
                     }
                 }

@@ -31,6 +31,13 @@ class ShellyEM extends IPSModule
 
         $this->RegisterVariableBoolean('Shelly_State', $this->Translate('State'), '~Switch');
         $this->EnableAction('Shelly_State');
+
+        $this->RegisterProfileBooleanEx('Shelly.Reachable', 'Network', '', '', [
+            [false, 'Offline',  '', 0xFF0000],
+            [true, 'Online',  '', 0x00FF00]
+        ]);
+
+        $this->RegisterVariableBoolean('Shelly_Reachable', $this->Translate('Reachable'), 'Shelly.Reachable');
     }
 
     public function ApplyChanges()
@@ -131,6 +138,18 @@ class ShellyEM extends IPSModule
                     $this->SendDebug('Voltage Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Voltage Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_Voltage1'), $Buffer->Payload);
+                }
+                if (fnmatch('*/online', $Buffer->Topic)) {
+                    $this->SendDebug('Online Topic', $Buffer->Topic, 0);
+                    $this->SendDebug('Online Payload', $Buffer->Payload, 0);
+                    switch ($Buffer->Payload) {
+                        case 'true':
+                            SetValue($this->GetIDForIdent('Shelly_Reachable'), true);
+                            break;
+                        case 'false':
+                            SetValue($this->GetIDForIdent('Shelly_Reachable'), false);
+                            break;
+                    }
                 }
             }
         }

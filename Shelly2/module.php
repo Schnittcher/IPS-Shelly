@@ -20,6 +20,13 @@ class Shelly2 extends IPSModule
         $this->RegisterPropertyString('MQTTTopic', '');
         $this->RegisterPropertyString('DeviceType', '');
         $this->RegisterPropertyString('Device', '');
+
+        $this->RegisterProfileBooleanEx('Shelly.Reachable', 'Network', '', '', [
+            [false, 'Offline',  '', 0xFF0000],
+            [true, 'Online',  '', 0x00FF00]
+        ]);
+
+        $this->RegisterVariableBoolean('Shelly_Reachable', $this->Translate('Reachable'), 'Shelly.Reachable');
     }
 
     public function ApplyChanges()
@@ -221,6 +228,18 @@ class Shelly2 extends IPSModule
                     $this->SendDebug('Overtemperature Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Overtemperature Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_Overtemperature'), boolval($Buffer->Payload));
+                }
+                if (fnmatch('*/online', $Buffer->Topic)) {
+                    $this->SendDebug('Online Topic', $Buffer->Topic, 0);
+                    $this->SendDebug('Online Payload', $Buffer->Payload, 0);
+                    switch ($Buffer->Payload) {
+                        case 'true':
+                            SetValue($this->GetIDForIdent('Shelly_Reachable'), true);
+                            break;
+                        case 'false':
+                            SetValue($this->GetIDForIdent('Shelly_Reachable'), false);
+                            break;
+                    }
                 }
                 switch ($this->ReadPropertyString('Device')) {
                     case 'shelly2':

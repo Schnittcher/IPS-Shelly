@@ -47,6 +47,13 @@ class Shelly4Pro extends IPSModule
         $this->EnableAction('Shelly_State3');
         $this->RegisterVariableFloat('Shelly_Power3', $this->Translate('Power') . ' 4', '~Watt.3680');
         $this->RegisterVariableFloat('Shelly_Energy3', $this->Translate('Energy ') . ' 4', '~Electricity');
+
+        $this->RegisterProfileBooleanEx('Shelly.Reachable', 'Network', '', '', [
+            [false, 'Offline',  '', 0xFF0000],
+            [true, 'Online',  '', 0x00FF00]
+        ]);
+
+        $this->RegisterVariableBoolean('Shelly_Reachable', $this->Translate('Reachable'), 'Shelly.Reachable');
     }
 
     public function ReceiveData($JSONString)
@@ -183,6 +190,18 @@ class Shelly4Pro extends IPSModule
                             break;
                         default:
                             $this->SendDebug('Relay Energy', 'Undefined Relay: ' . $relay, 0);
+                            break;
+                    }
+                }
+                if (fnmatch('*/online', $Buffer->Topic)) {
+                    $this->SendDebug('Online Topic', $Buffer->Topic, 0);
+                    $this->SendDebug('Online Payload', $Buffer->Payload, 0);
+                    switch ($Buffer->Payload) {
+                        case 'true':
+                            SetValue($this->GetIDForIdent('Shelly_Reachable'), true);
+                            break;
+                        case 'false':
+                            SetValue($this->GetIDForIdent('Shelly_Reachable'), false);
                             break;
                     }
                 }

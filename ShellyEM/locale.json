@@ -2,6 +2,7 @@
   "translations": {
     "de": {
       "Energy": "Energie",
+      "Reachable": "Erreichbar",
       "Returned Energy": "Zurückgegebene Energie",
       "Power": "Leistung",
       "Reactive Power": "Blindleistung",

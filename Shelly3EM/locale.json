@@ -2,6 +2,7 @@
   "translations": {
     "de": {
       "State": "Status",
+      "Reachable": "Erreichbar",
       "Power": "Leistung",
       "Power Factor": "Leistungsfaktor",
       "Voltage": "Stromspannung",

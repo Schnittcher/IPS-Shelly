@@ -18,6 +18,13 @@ class ShellyWindow extends IPSModule
         $this->RegisterVariableBoolean('Shelly_State', $this->Translate('State'), '~Window');
         $this->RegisterVariableInteger('Shelly_Lux', $this->Translate('Lux'), '~Illumination');
         $this->RegisterVariableInteger('Shelly_Battery', $this->Translate('Battery'), '');
+
+        $this->RegisterProfileBooleanEx('Shelly.Reachable', 'Network', '', '', [
+            [false, 'Offline',  '', 0xFF0000],
+            [true, 'Online',  '', 0x00FF00]
+        ]);
+
+        $this->RegisterVariableBoolean('Shelly_Reachable', $this->Translate('Reachable'), 'Shelly.Reachable');
     }
 
     public function ApplyChanges()
@@ -75,6 +82,18 @@ class ShellyWindow extends IPSModule
                     $this->SendDebug('Battery Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Battery Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_Battery'), $Buffer->Payload);
+                }
+                if (fnmatch('*/online', $Buffer->Topic)) {
+                    $this->SendDebug('Online Topic', $Buffer->Topic, 0);
+                    $this->SendDebug('Online Payload', $Buffer->Payload, 0);
+                    switch ($Buffer->Payload) {
+                        case 'true':
+                            SetValue($this->GetIDForIdent('Shelly_Reachable'), true);
+                            break;
+                        case 'false':
+                            SetValue($this->GetIDForIdent('Shelly_Reachable'), false);
+                            break;
+                    }
                 }
             }
         }

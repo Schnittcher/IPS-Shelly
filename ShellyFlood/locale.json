@@ -2,6 +2,7 @@
   "translations": {
     "de": {
       "Temperature": "Temperatur",
+      "Reachable": "Erreichbar",
       "Flood": "Wassereinbruch",
       "Battery": "Batterie"
     }

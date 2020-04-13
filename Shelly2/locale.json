@@ -2,6 +2,7 @@
   "translations": {
     "de": {
       "State": "Status",
+      "Reachable": "Erreichbar",
       "Roller" : "Rollo",
       "Position": "Position",
       "Power": "Leistung",
