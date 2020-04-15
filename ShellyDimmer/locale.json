@@ -8,7 +8,8 @@
       "Temperature": "Temperatur",
       "Overtemperature": "Übertemperatur",
       "Device": "Geräte",
-      "Please select device": "Bitte wählen Sie das Gerät aus"
+      "Please select device": "Bitte wählen Sie das Gerät aus",
+      "Brightness": "Helligkeit"
     }
   }
 }
