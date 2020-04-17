@@ -2,12 +2,14 @@
 
 declare(strict_types=1);
 require_once __DIR__ . '/../libs/ShellyHelper.php';
+require_once __DIR__ . '/../libs/VariableProfileHelper.php';
+require_once __DIR__ . '/../libs/MQTTHelper.php';
 
 class ShellyRGBW2 extends IPSModule
 {
     use Shelly;
-    use
-        ShellyRGBW2Action;
+    use VariableProfileHelper;
+    use MQTTHelper;
 
     public function Create()
     {
@@ -49,27 +51,15 @@ class ShellyRGBW2 extends IPSModule
                 $this->RegisterVariableInteger('Shelly_Gain', $this->Translate('Gain'), 'Intensity.100');
                 $this->EnableAction('Shelly_Gain');
 
-                //TODO Effect
-                $this->RegisterProfileAssociation(
-                    'Shelly.Effect',
-                    'Bulb',
-                    '',
-                    '',
-                    0,
-                    6,
-                    0,
-                    0,
-                    1,
-                    [
-                        [0, $this->Translate('Off'), 'Bulb', -1],
-                        [1, $this->Translate('Meteor Shower'), 'Bulb', -1],
-                        [2, $this->Translate('Gradual Change'), 'Bulb', -1],
-                        [3, $this->Translate('Breath'), 'Bulb', -1],
-                        [4, $this->Translate('Flash'), 'Bulb', -1],
-                        [5, $this->Translate('On/Off Gradual'), 'Bulb', -1],
-                        [6, $this->Translate('Red/Green Change'), 'Bulb', -1]
-                    ]
-                );
+                $this->RegisterProfileIntegerEx('Shelly.Effect', 'Bulb', '', '', [
+                    [0, $this->Translate('Off'), 'Bulb', -1],
+                    [1, $this->Translate('Meteor Shower'), 'Bulb', -1],
+                    [2, $this->Translate('Gradual Change'), 'Bulb', -1],
+                    [3, $this->Translate('Breath'), 'Bulb', -1],
+                    [4, $this->Translate('Flash'), 'Bulb', -1],
+                    [5, $this->Translate('On/Off Gradual'), 'Bulb', -1],
+                    [6, $this->Translate('Red/Green Change'), 'Bulb', -1]
+                ]);
                 $this->RegisterVariableInteger('Shelly_Effect', $this->Translate('Effect'), 'Shelly.Effect');
                 $this->EnableAction('Shelly_Effect');
 
@@ -111,6 +101,48 @@ class ShellyRGBW2 extends IPSModule
         //Setze Filter für ReceiveData
         $MQTTTopic = $this->ReadPropertyString('MQTTTopic');
         $this->SetReceiveDataFilter('.*' . $MQTTTopic . '.*');
+    }
+
+    public function RequestAction($Ident, $Value)
+    {
+        switch ($Ident) {
+            case 'Shelly_State':
+                $this->SwitchMode(0, $Value);
+                break;
+            case 'Shelly_State1':
+                $this->SwitchMode(1, $Value);
+                break;
+            case 'Shelly_State2':
+                $this->SwitchMode(2, $Value);
+                break;
+            case 'Shelly_State3':
+                $this->SwitchMode(3, $Value);
+                break;
+            case 'Shelly_Brightness':
+                $this->SetDimmer(0, $Value);
+                break;
+            case 'Shelly_Brightness1':
+                $this->SetDimmer(1, $Value);
+                break;
+            case 'Shelly_Brightness2':
+                $this->SetDimmer(2, $Value);
+                break;
+            case 'Shelly_Brightness3':
+                $this->SetDimmer(3, $Value);
+                break;
+            case 'Shelly_Color':
+                $this->SetColor($Value);
+                break;
+            case 'Shelly_White':
+                $this->SetWhite($Value);
+                break;
+            case 'Shelly_Gain':
+                $this->SetGain($Value);
+                break;
+            case 'Shelly_Effect':
+                $this->SetEffect($Value);
+                break;
+            }
     }
 
     public function ReceiveData($JSONString)
@@ -208,5 +240,72 @@ class ShellyRGBW2 extends IPSModule
                 }
             }
         }
+    }
+
+    private function SetDimmer(int $channel, int $value)
+    {
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/white/' . $channel . '/set';
+        $Payload['brightness'] = strval($value);
+        $Payload = json_encode($Payload);
+        $this->sendMQTT($Topic, $Payload);
+    }
+
+    private function SwitchMode(int $relay, bool $Value)
+    {
+        $Mode = strtolower($this->ReadPropertyString('Mode'));
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/' . $Mode . '/' . $relay . '/command';
+        if ($Value) {
+            $Payload = 'on';
+        } else {
+            $Payload = 'off';
+        }
+
+        $this->sendMQTT($Topic, $Payload);
+    }
+
+    private function SetColor($color)
+    {
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/color/0/set';
+
+        //If $Value Hex Color convert to Decimal
+        if (preg_match('/^#[a-f0-9]{6}$/i', strval($color))) {
+            $color = hexdec($color);
+        }
+
+        $RGB = $this->HexToRGB(intval($color));
+        $Payload['red'] = strval($RGB[0]);
+        $Payload['green'] = strval($RGB[1]);
+        $Payload['blue'] = strval($RGB[2]);
+
+        $Payload = json_encode($Payload);
+
+        $this->sendMQTT($Topic, $Payload);
+    }
+
+    private function SetGain(int $value)
+    {
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/color/0/set';
+        $Payload['gain'] = strval($value);
+        $Payload = json_encode($Payload);
+
+        $this->sendMQTT($Topic, $Payload);
+    }
+
+    private function SetWhite(int $value)
+    {
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/color/0/set';
+        $Payload['white'] = strval($value);
+        $Payload = json_encode($Payload);
+
+        $this->sendMQTT($Topic, $Payload);
+    }
+
+    private function SetEffect(int $value)
+    {
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/color/0/set';
+        $Payload['effect'] = strval($value);
+        $Payload = json_encode($Payload);
+
+        $this->sendMQTT($Topic, $Payload);
     }
 }
