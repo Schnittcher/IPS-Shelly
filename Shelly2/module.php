@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 require_once __DIR__ . '/../libs/ShellyHelper.php';
+require_once __DIR__ . '/../libs/VariableProfileHelper.php';
+require_once __DIR__ . '/../libs/MQTTHelper.php';
 
 class Shelly2 extends IPSModule
 {
     use Shelly;
-    use
-        ShellyRelayAction;
-    use
-        ShellyRollerAction;
+    use VariableProfileHelper;
+    use MQTTHelper;
 
     public function Create()
     {
@@ -76,6 +76,37 @@ class Shelly2 extends IPSModule
         //Longpush
         $this->RegisterVariableBoolean('Shelly_Longpush', $this->Translate('Longpush Input 1'), '~Switch');
         $this->RegisterVariableBoolean('Shelly_Longpush1', $this->Translate('Longpush Input 2'), '~Switch');
+    }
+
+    public function RequestAction($Ident, $Value)
+    {
+        switch ($Ident) {
+            case 'Shelly_State':
+                $this->SwitchMode(0, $Value);
+                break;
+            case 'Shelly_State1':
+                $this->SwitchMode(1, $Value);
+                break;
+            case 'Shelly_Roller':
+                switch ($Value) {
+                    case 0:
+                        $this->MoveUp();
+                        break;
+                    case 2:
+                        $this->Stop();
+                        break;
+                    case 4:
+                        $this->MoveDown();
+                        break;
+                    default:
+                        $this->SendDebug(__FUNCTION__ . 'Ident: Shelly_Roller', 'Invalid Value:' . $Value, 0);
+                }
+            break;
+            case 'Shelly_RollerPosition':
+                $this->SendDebug(__FUNCTION__ . ' Value Shelly_RollerPosition', $Value, 0);
+                $this->Move($Value);
+                break;
+            }
     }
 
     public function ReceiveData($JSONString)
@@ -270,33 +301,42 @@ class Shelly2 extends IPSModule
         }
     }
 
-    private function RegisterProfileIntegerEx($Name, $Icon, $Prefix, $Suffix, $Associations)
+    private function MoveDown()
     {
-        if (count($Associations) === 0) {
-            $MinValue = 0;
-            $MaxValue = 0;
-        } else {
-            $MinValue = $Associations[0][0];
-            $MaxValue = $Associations[count($Associations) - 1][0];
-        }
-        $this->RegisterProfileInteger($Name, $Icon, $Prefix, $Suffix, $MinValue, $MaxValue, 0);
-        foreach ($Associations as $Association) {
-            IPS_SetVariableProfileAssociation($Name, $Association[0], $Association[1], $Association[2], $Association[3]);
-        }
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/roller/0/command';
+        $Payload = 'close';
+        $this->sendMQTT($Topic, $Payload);
     }
 
-    private function RegisterProfileInteger($Name, $Icon, $Prefix, $Suffix, $MinValue, $MaxValue, $StepSize)
+    private function MoveUp()
     {
-        if (!IPS_VariableProfileExists($Name)) {
-            IPS_CreateVariableProfile($Name, 1);
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/roller/0/command';
+        $Payload = 'open';
+        $this->sendMQTT($Topic, $Payload);
+    }
+
+    private function Move($position)
+    {
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/roller/0/command/pos';
+        $Payload = strval($position);
+        $this->sendMQTT($Topic, $Payload);
+    }
+
+    private function Stop()
+    {
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/roller/0/command';
+        $Payload = 'stop';
+        $this->sendMQTT($Topic, $Payload);
+    }
+
+    private function SwitchMode(int $relay, bool $Value)
+    {
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/relay/' . $relay . '/command';
+        if ($Value) {
+            $Payload = 'on';
         } else {
-            $profile = IPS_GetVariableProfile($Name);
-            if ($profile['ProfileType'] != 1) {
-                throw new Exception($this->Translate('Variable profile type does not match for profile') . $Name, E_USER_NOTICE);
-            }
+            $Payload = 'off';
         }
-        IPS_SetVariableProfileIcon($Name, $Icon);
-        IPS_SetVariableProfileText($Name, $Prefix, $Suffix);
-        IPS_SetVariableProfileValues($Name, $MinValue, $MaxValue, $StepSize);
+        $this->sendMQTT($Topic, $Payload);
     }
 }

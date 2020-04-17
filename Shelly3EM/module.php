@@ -2,12 +2,14 @@
 
 declare(strict_types=1);
 require_once __DIR__ . '/../libs/ShellyHelper.php';
+require_once __DIR__ . '/../libs/VariableProfileHelper.php';
+require_once __DIR__ . '/../libs/MQTTHelper.php';
 
 class Shelly3EM extends IPSModule
 {
     use Shelly;
-    use
-        ShellyRelayAction;
+    use VariableProfileHelper;
+    use MQTTHelper;
 
     public function Create()
     {
@@ -55,6 +57,18 @@ class Shelly3EM extends IPSModule
         //Setze Filter für ReceiveData
         $MQTTTopic = $this->ReadPropertyString('MQTTTopic');
         $this->SetReceiveDataFilter('.*' . $MQTTTopic . '.*');
+    }
+
+    public function RequestAction($Ident, $Value)
+    {
+        switch ($Ident) {
+            case 'Shelly_State':
+                $this->SwitchMode(0, $Value);
+                break;
+            case 'Shelly_State2':
+                $this->SwitchMode(1, $Value);
+                break;
+            }
     }
 
     public function ReceiveData($JSONString)
@@ -171,5 +185,16 @@ class Shelly3EM extends IPSModule
                 }
             }
         }
+    }
+
+    private function SwitchMode(int $relay, bool $Value)
+    {
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/relay/' . $relay . '/command';
+        if ($Value) {
+            $Payload = 'on';
+        } else {
+            $Payload = 'off';
+        }
+        $this->sendMQTT($Topic, $Payload);
     }
 }
