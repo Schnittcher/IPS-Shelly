@@ -2,12 +2,14 @@
 
 declare(strict_types=1);
 require_once __DIR__ . '/../libs/ShellyHelper.php';
+require_once __DIR__ . '/../libs/VariableProfileHelper.php';
+require_once __DIR__ . '/../libs/MQTTHelper.php';
 
 class Shelly4Pro extends IPSModule
 {
     use Shelly;
-    use
-        ShellyRelayAction;
+    use VariableProfileHelper;
+    use MQTTHelper;
 
     public function Create()
     {
@@ -56,6 +58,23 @@ class Shelly4Pro extends IPSModule
         $this->RegisterVariableBoolean('Shelly_Reachable', $this->Translate('Reachable'), 'Shelly.Reachable');
     }
 
+    public function RequestAction($Ident, $Value)
+    {
+        switch ($Ident) {
+            case 'Shelly_State':
+                $this->SwitchMode(0, $Value);
+                break;
+            case 'Shelly_State1':
+                $this->SwitchMode(1, $Value);
+                break;
+            case 'Shelly_State2':
+                $this->SwitchMode(2, $Value);
+                break;
+            case 'Shelly_State3':
+                $this->SwitchMode(3, $Value);
+                break;
+            }
+    }
     public function ReceiveData($JSONString)
     {
         $this->SendDebug('JSON', $JSONString, 0);
@@ -203,5 +222,16 @@ class Shelly4Pro extends IPSModule
                 }
             }
         }
+    }
+
+    private function SwitchMode(int $relay, bool $Value)
+    {
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/relay/' . $relay . '/command';
+        if ($Value) {
+            $Payload = 'on';
+        } else {
+            $Payload = 'off';
+        }
+        $this->sendMQTT($Topic, $Payload);
     }
 }
