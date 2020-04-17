@@ -2,10 +2,12 @@
 
 declare(strict_types=1);
 require_once __DIR__ . '/../libs/ShellyHelper.php';
+require_once __DIR__ . '/../libs/VariableProfileHelper.php';
 
 class ShellySense extends IPSModule
 {
     use Shelly;
+    use VariableProfileHelper;
 
     public function Create()
     {
