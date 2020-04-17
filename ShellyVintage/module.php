@@ -2,11 +2,14 @@
 
 declare(strict_types=1);
 require_once __DIR__ . '/../libs/ShellyHelper.php';
+require_once __DIR__ . '/../libs/VariableProfileHelper.php';
+require_once __DIR__ . '/../libs/MQTTHelper.php';
 
 class ShellyVintage extends IPSModule
 {
     use Shelly;
-    use ShellyDimmerAction;
+    use VariableProfileHelper;
+    use MQTTHelper;
 
     public function Create()
     {
@@ -39,6 +42,18 @@ class ShellyVintage extends IPSModule
         //Setze Filter für ReceiveData
         $MQTTTopic = $this->ReadPropertyString('MQTTTopic');
         $this->SetReceiveDataFilter('.*' . $MQTTTopic . '.*');
+    }
+
+    public function RequestAction($Ident, $Value)
+    {
+        switch ($Ident) {
+            case 'Shelly_State':
+                $this->SwitchMode($Value);
+                break;
+            case 'Shelly_Brightness':
+                $this->DimSet(intval($Value));
+                break;
+            }
     }
 
     public function ReceiveData($JSONString)
@@ -101,36 +116,22 @@ class ShellyVintage extends IPSModule
         }
     }
 
-    private function RegisterProfileBoolean($Name, $Icon, $Prefix, $Suffix, $MinValue, $MaxValue, $StepSize)
+    private function SwitchMode(bool $Value)
     {
-        if (!IPS_VariableProfileExists($Name)) {
-            IPS_CreateVariableProfile($Name, 0);
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/light/0/command';
+        if ($Value) {
+            $Payload = 'on';
         } else {
-            $profile = IPS_GetVariableProfile($Name);
-            if ($profile['ProfileType'] != 0) {
-                throw new Exception($this->Translate('Variable profile type does not match for profile') . $Name);
-            }
+            $Payload = 'off';
         }
-
-        IPS_SetVariableProfileIcon($Name, $Icon);
-        IPS_SetVariableProfileText($Name, $Prefix, $Suffix);
-        IPS_SetVariableProfileValues($Name, $MinValue, $MaxValue, $StepSize);
+        $this->sendMQTT($Topic, $Payload);
     }
 
-    private function RegisterProfileBooleanEx($Name, $Icon, $Prefix, $Suffix, $Associations)
+    private function DimSet(int $value)
     {
-        if (count($Associations) === 0) {
-            $MinValue = 0;
-            $MaxValue = 0;
-        } else {
-            $MinValue = $Associations[0][0];
-            $MaxValue = $Associations[count($Associations) - 1][0];
-        }
-
-        $this->RegisterProfileBoolean($Name, $Icon, $Prefix, $Suffix, $MinValue, $MaxValue, 0);
-
-        foreach ($Associations as $Association) {
-            IPS_SetVariableProfileAssociation($Name, $Association[0], $Association[1], $Association[2], $Association[3]);
-        }
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/light/0/set';
+        $Payload['brightness'] = strval($value);
+        $Payload = json_encode($Payload);
+        $this->sendMQTT($Topic, $Payload);
     }
 }
