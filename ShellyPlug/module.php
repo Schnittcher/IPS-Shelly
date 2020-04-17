@@ -2,12 +2,14 @@
 
 declare(strict_types=1);
 require_once __DIR__ . '/../libs/ShellyHelper.php';
+require_once __DIR__ . '/../libs/VariableProfileHelper.php';
+require_once __DIR__ . '/../libs/MQTTHelper.php';
 
 class ShellyPlug extends IPSModule
 {
     use Shelly;
-    use
-        ShellyRelayAction;
+    use VariableProfileHelper;
+    use MQTTHelper;
 
     public function Create()
     {
@@ -44,6 +46,15 @@ class ShellyPlug extends IPSModule
         $this->RegisterVariableBoolean('Shelly_Reachable', $this->Translate('Reachable'), 'Shelly.Reachable');
     }
 
+    public function RequestAction($Ident, $Value)
+    {
+        switch ($Ident) {
+            case 'Shelly_State':
+                $this->SwitchMode($Value);
+                break;
+            }
+    }
+
     public function ReceiveData($JSONString)
     {
         $this->SendDebug('JSON', $JSONString, 0);
@@ -64,12 +75,9 @@ class ShellyPlug extends IPSModule
 
             $this->SendDebug('MQTT Topic', $Buffer->Topic, 0);
 
-            //Power Variable prüfen
             if (property_exists($Buffer, 'Topic')) {
-                //Ist es ein Relay?
                 if (fnmatch('*/relay/0', $Buffer->Topic)) {
                     $this->SendDebug('State Payload', $Buffer->Payload, 0);
-                    //Power prüfen und in IPS setzen
                     switch ($Buffer->Payload) {
                         case 'off':
                             SetValue($this->GetIDForIdent('Shelly_State'), 0);
@@ -111,5 +119,16 @@ class ShellyPlug extends IPSModule
                 }
             }
         }
+    }
+
+    private function SwitchMode(bool $Value)
+    {
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/relay/0/command';
+        if ($Value) {
+            $Payload = 'on';
+        } else {
+            $Payload = 'off';
+        }
+        $this->sendMQTT($Topic, $Payload);
     }
 }
