@@ -59,7 +59,6 @@ class ShellyWindow extends IPSModule
 
             if (property_exists($Buffer, 'Topic')) {
                 if (fnmatch('*/state', $Buffer->Topic)) {
-                    $this->SendDebug('State Topic', $Buffer->Topic, 0);
                     $this->SendDebug('State Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 'close':
@@ -74,17 +73,14 @@ class ShellyWindow extends IPSModule
                         }
                 }
                 if (fnmatch('*/lux', $Buffer->Topic)) {
-                    $this->SendDebug('Lux Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Lux Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_Lux'), boolval($Buffer->Payload));
                 }
                 if (fnmatch('*/battery', $Buffer->Topic)) {
-                    $this->SendDebug('Battery Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Battery Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_Battery'), $Buffer->Payload);
                 }
                 if (fnmatch('*/online', $Buffer->Topic)) {
-                    $this->SendDebug('Online Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Online Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 'true':

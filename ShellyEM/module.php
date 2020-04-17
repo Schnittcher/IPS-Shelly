@@ -74,7 +74,6 @@ class ShellyEM extends IPSModule
             //Power Variable prüfen
             if (property_exists($Buffer, 'Topic')) {
                 if (fnmatch('*/relay/0', $Buffer->Topic)) {
-                    $this->SendDebug('Relay Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Relay Payload', $Buffer->Payload, 0);
                     //Power prüfen und in IPS setzen
                     switch ($Buffer->Payload) {
@@ -88,59 +87,48 @@ class ShellyEM extends IPSModule
                 }
                 //Emter 0
                 if (fnmatch('*emeter/0/energy', $Buffer->Topic)) {
-                    $this->SendDebug('Energy Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Energy Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_Energy0'), floatval($Buffer->Payload) / 60000);
                 }
                 if (fnmatch('*emeter/0/returned_energy', $Buffer->Topic)) {
-                    $this->SendDebug('Returned Energy Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Returned Energy Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_ReturnedEnergy0'), floatval($Buffer->Payload) / 60000);
                 }
                 if (fnmatch('*emeter/0/power', $Buffer->Topic)) {
-                    $this->SendDebug('Power Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Power Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_Power0'), $Buffer->Payload);
                 }
                 if (fnmatch('*emeter/0/reactive_power', $Buffer->Topic)) {
-                    $this->SendDebug('Reactive Power Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Reactive Power Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_ReactivePower0'), $Buffer->Payload);
                 }
                 if (fnmatch('*emeter/0/voltage', $Buffer->Topic)) {
-                    $this->SendDebug('Voltage Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Voltage Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_Voltage0'), $Buffer->Payload);
                 }
 
                 //Emter 1
                 if (fnmatch('*emeter/1/energy', $Buffer->Topic)) {
-                    $this->SendDebug('Energy Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Energy Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_Energy1'), floatval($Buffer->Payload) / 60000);
                 }
                 if (fnmatch('*emeter/1/returned_energy', $Buffer->Topic)) {
-                    $this->SendDebug('Returned Energy Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Returned Energy Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_ReturnedEnergy1'), floatval($Buffer->Payload) / 60000);
                 }
                 if (fnmatch('*emeter/1/power', $Buffer->Topic)) {
-                    $this->SendDebug('Power Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Power Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_Power1'), $Buffer->Payload);
                 }
                 if (fnmatch('*emeter/1/reactive_power', $Buffer->Topic)) {
-                    $this->SendDebug('Reactive Power Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Reactive Power Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_ReactivePower1'), $Buffer->Payload);
                 }
                 if (fnmatch('*emeter/1/voltage', $Buffer->Topic)) {
-                    $this->SendDebug('Voltage Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Voltage Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_Voltage1'), $Buffer->Payload);
                 }
                 if (fnmatch('*/online', $Buffer->Topic)) {
-                    $this->SendDebug('Online Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Online Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 'true':

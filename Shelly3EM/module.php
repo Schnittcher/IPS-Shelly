@@ -79,7 +79,6 @@ class Shelly3EM extends IPSModule
 
             if (property_exists($Buffer, 'Topic')) {
                 if (fnmatch('*/relay/0', $Buffer->Topic)) {
-                    $this->SendDebug('Relay 0 Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Relay 0 Payload', $Buffer->Payload, 0);
                     //Power prüfen und in IPS setzen
                     switch ($Buffer->Payload) {
@@ -93,7 +92,6 @@ class Shelly3EM extends IPSModule
                 }
 
                 if (fnmatch('*/relay/1', $Buffer->Topic)) {
-                    $this->SendDebug('Relay 1 Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Relay 1 Payload', $Buffer->Payload, 0);
                     //Power prüfen und in IPS setzen
                     switch ($Buffer->Payload) {
@@ -107,7 +105,6 @@ class Shelly3EM extends IPSModule
                 }
 
                 if (fnmatch('*/online', $Buffer->Topic)) {
-                    $this->SendDebug('Online Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Online Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 'true':
@@ -121,66 +118,54 @@ class Shelly3EM extends IPSModule
 
                 //Phase A
                 if (fnmatch('*emeter/0/power', $Buffer->Topic)) {
-                    $this->SendDebug('Power Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Power Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_Power0'), floatval($Buffer->Payload));
                 }
                 if (fnmatch('*emeter/0/pf', $Buffer->Topic)) {
-                    $this->SendDebug('Power Factor Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Power Factor Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_PowerFactor0'), floatval($Buffer->Payload));
                 }
                 if (fnmatch('*emeter/0/current', $Buffer->Topic)) {
-                    $this->SendDebug('Current Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Current Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_Current0'), floatval($Buffer->Payload));
                 }
                 if (fnmatch('*emeter/0/voltage', $Buffer->Topic)) {
-                    $this->SendDebug('Voltage Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Voltage Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_Voltage0'), floatval($Buffer->Payload));
                 }
 
                 //Phase B
                 if (fnmatch('*emeter/1/power', $Buffer->Topic)) {
-                    $this->SendDebug('Power Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Power Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_Power1'), floatval($Buffer->Payload));
                 }
                 if (fnmatch('*emeter/1/pf', $Buffer->Topic)) {
-                    $this->SendDebug('Power Factor Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Power Factor Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_PowerFactor1'), floatval($Buffer->Payload));
                 }
                 if (fnmatch('*emeter/1/current', $Buffer->Topic)) {
-                    $this->SendDebug('Current Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Current Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_Current1'), floatval($Buffer->Payload));
                 }
                 if (fnmatch('*emeter/1/voltage', $Buffer->Topic)) {
-                    $this->SendDebug('Voltage Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Voltage Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_Voltage1'), floatval($Buffer->Payload));
                 }
 
                 //Phase C
                 if (fnmatch('*emeter/2/power', $Buffer->Topic)) {
-                    $this->SendDebug('Power Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Power Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_Power2'), floatval($Buffer->Payload));
                 }
                 if (fnmatch('*emeter/2/pf', $Buffer->Topic)) {
-                    $this->SendDebug('Power Factor Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Power Factor Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_PowerFactor2'), floatval($Buffer->Payload));
                 }
                 if (fnmatch('*emeter/2/current', $Buffer->Topic)) {
-                    $this->SendDebug('Current Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Current Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_Current2'), floatval($Buffer->Payload));
                 }
                 if (fnmatch('*emeter/2/voltage', $Buffer->Topic)) {
-                    $this->SendDebug('Voltage Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Voltage Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_Voltage2'), floatval($Buffer->Payload));
                 }

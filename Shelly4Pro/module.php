@@ -80,7 +80,6 @@ class Shelly4Pro extends IPSModule
             if (property_exists($Buffer, 'Topic')) {
                 //Ist es ein Relay?
                 if (fnmatch('*/relay/[0123]', $Buffer->Topic)) {
-                    $this->SendDebug('State Topic', $Buffer->Topic, 0);
                     $this->SendDebug('State Payload', $Buffer->Payload, 0);
                     $relay = $this->getChannelRelay($Buffer->Topic);
                     $this->SendDebug(__FUNCTION__ . ' Relay', $relay, 0);
@@ -144,7 +143,6 @@ class Shelly4Pro extends IPSModule
                     }
                 }
                 if (fnmatch('*/relay/[0123]/power*', $Buffer->Topic)) {
-                    $this->SendDebug('Power Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Power Payload', $Buffer->Payload, 0);
                     $ShellyTopic = explode('/', $Buffer->Topic);
                     $Key = count($ShellyTopic) - 2;
@@ -169,7 +167,6 @@ class Shelly4Pro extends IPSModule
                     }
                 }
                 if (fnmatch('*/relay/[0123]/energy*', $Buffer->Topic)) {
-                    $this->SendDebug('Energy Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Energy Payload', $Buffer->Payload, 0);
                     $ShellyTopic = explode('/', $Buffer->Topic);
                     $Key = count($ShellyTopic) - 2;
@@ -194,7 +191,6 @@ class Shelly4Pro extends IPSModule
                     }
                 }
                 if (fnmatch('*/online', $Buffer->Topic)) {
-                    $this->SendDebug('Online Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Online Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 'true':

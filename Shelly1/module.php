@@ -66,14 +66,12 @@ class Shelly1 extends IPSModule
                     $this->LogMessage('Invalid Parent', KL_ERROR);
                     return;
             }
-
             $this->SendDebug('MQTT Topic', $Buffer->Topic, 0);
 
             //Power Variable prüfen
             if (property_exists($Buffer, 'Topic')) {
                 //Ist es ein Shell1y1? Wenn ja weiter machen!
                 if (fnmatch('*/relay/0', $Buffer->Topic)) {
-                    $this->SendDebug('Power Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Power Payload', $Buffer->Payload, 0);
                     //Power prüfen und in IPS setzen
                     switch ($Buffer->Payload) {
@@ -86,7 +84,6 @@ class Shelly1 extends IPSModule
                     }
                 }
                 if (fnmatch('*/input/0', $Buffer->Topic)) {
-                    $this->SendDebug('Input Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Input Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 0:
@@ -98,7 +95,6 @@ class Shelly1 extends IPSModule
                     }
                 }
                 if (fnmatch('*/longpush/0', $Buffer->Topic)) {
-                    $this->SendDebug('Longpush Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Longpush Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 0:
@@ -110,7 +106,6 @@ class Shelly1 extends IPSModule
                     }
                 }
                 if (fnmatch('*/online', $Buffer->Topic)) {
-                    $this->SendDebug('Online Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Online Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 'true':
@@ -122,17 +117,14 @@ class Shelly1 extends IPSModule
                     }
                 }
                 if (fnmatch('*/temperature', $Buffer->Topic)) {
-                    $this->SendDebug('Power Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Power Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_Temperature'), $Buffer->Payload);
                 }
                 if (fnmatch('*/overtemperature', $Buffer->Topic)) {
-                    $this->SendDebug('Power Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Power Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_Overtemperature'), boolval($Buffer->Payload));
                 }
                 if (fnmatch('*/relay/0/power', $Buffer->Topic)) {
-                    $this->SendDebug('Power Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Power Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_Power'), $Buffer->Payload);
                 }

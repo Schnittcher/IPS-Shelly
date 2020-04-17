@@ -67,7 +67,6 @@ class ShellyDimmer extends IPSModule
 
             if (property_exists($Buffer, 'Topic')) {
                 if (fnmatch('*/light/0', $Buffer->Topic)) {
-                    $this->SendDebug('Power Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Power Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 'off':
@@ -84,32 +83,26 @@ class ShellyDimmer extends IPSModule
                     SetValue($this->GetIDForIdent('Shelly_Brightness'), $Payload->brightness);
                 }
                 if (fnmatch('*/light/0/power', $Buffer->Topic)) {
-                    $this->SendDebug('Power Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Power Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_Power'), $Buffer->Payload);
                 }
                 if (fnmatch('*/temperature', $Buffer->Topic)) {
-                    $this->SendDebug('Temperature Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Temperature Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_Temperature'), $Buffer->Payload);
                 }
                 if (fnmatch('*/overtemperature', $Buffer->Topic)) {
-                    $this->SendDebug('Overtemperature Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Overtemperature Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_Overtemperature'), boolval($Buffer->Payload));
                 }
                 if (fnmatch('*/overload', $Buffer->Topic)) {
-                    $this->SendDebug('Overload Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Overload Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_Overload'), $Buffer->Payload);
                 }
                 if (fnmatch('*/loaderror', $Buffer->Topic)) {
-                    $this->SendDebug('Loaderror Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Loaderror Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_Loaderror'), $Buffer->Payload);
                 }
                 if (fnmatch('*/online', $Buffer->Topic)) {
-                    $this->SendDebug('Online Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Online Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 'true':

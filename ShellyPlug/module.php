@@ -68,7 +68,6 @@ class ShellyPlug extends IPSModule
             if (property_exists($Buffer, 'Topic')) {
                 //Ist es ein Relay?
                 if (fnmatch('*/relay/0', $Buffer->Topic)) {
-                    $this->SendDebug('State Topic', $Buffer->Topic, 0);
                     $this->SendDebug('State Payload', $Buffer->Payload, 0);
                     //Power prüfen und in IPS setzen
                     switch ($Buffer->Payload) {
@@ -84,27 +83,22 @@ class ShellyPlug extends IPSModule
                     }
                 }
                 if (fnmatch('*/relay/0/power*', $Buffer->Topic)) {
-                    $this->SendDebug('Power Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Power Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_Power'), $Buffer->Payload);
                 }
                 if (fnmatch('*/relay/0/energy*', $Buffer->Topic)) {
-                    $this->SendDebug('Energy Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Energy Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_Energy'), $Buffer->Payload / 60000);
                 }
                 if (fnmatch('*/temperature', $Buffer->Topic)) {
-                    $this->SendDebug('Temperature Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Temperature Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_Temperature'), $Buffer->Payload);
                 }
                 if (fnmatch('*/overtemperature', $Buffer->Topic)) {
-                    $this->SendDebug('Overtemperature Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Overtemperature Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_Overtemperature'), boolval($Buffer->Payload));
                 }
                 if (fnmatch('*/online', $Buffer->Topic)) {
-                    $this->SendDebug('Online Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Online Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 'true':

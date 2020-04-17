@@ -133,11 +133,10 @@ class ShellyRGBW2 extends IPSModule
             }
 
             $this->SendDebug('MQTT Topic', $Buffer->Topic, 0);
+
             if (property_exists($Buffer, 'Topic')) {
                 $channel = $this->getChannel($Buffer->Topic);
-                //Ist es ein ShellyRGBW2? Wenn ja weiter machen!
                 if (fnmatch('*shellyrgbw2*', $Buffer->Topic)) {
-                    $this->SendDebug('ShellyRGBW2 Topic', $Buffer->Topic, 0);
                     $this->SendDebug('ShellyRGBW2 Payload', $Buffer->Payload, 0);
                     $this->SendDebug('ShellyRGBW2 Channel', $channel, 0);
                     $Payload = json_decode($Buffer->Payload);
@@ -182,7 +181,6 @@ class ShellyRGBW2 extends IPSModule
                                     $this->SendDebug('Mode', strtolower($this->ReadPropertyString('Mode')) . ' ' . $Payload->mode, 0);
                                     break;
                                 }
-                                // {"ison":true,"mode":"color","red":255,"green":251,"blue":241,"white":0,"gain":100,"effect":0,"power":5.90,"overpower":false}
                                 SetValue($this->GetIDForIdent('Shelly_State'), $Payload->ison);
                                 SetValue($this->GetIDForIdent('Shelly_Color'), $this->rgbToHex($Payload->red, $Payload->green, $Payload->blue));
                                 SetValue($this->GetIDForIdent('Shelly_White'), $Payload->white);
@@ -197,7 +195,6 @@ class ShellyRGBW2 extends IPSModule
                         }
                     }
                     if (fnmatch('*/online', $Buffer->Topic)) {
-                        $this->SendDebug('Online Topic', $Buffer->Topic, 0);
                         $this->SendDebug('Online Payload', $Buffer->Payload, 0);
                         switch ($Buffer->Payload) {
                             case 'true':

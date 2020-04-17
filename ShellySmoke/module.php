@@ -56,16 +56,18 @@ class ShellySmoke extends IPSModule
 
             if (property_exists($Buffer, 'Topic')) {
                 if (fnmatch('*/sensor/temperature*', $Buffer->Topic)) {
+                    $this->SendDebug('Temperature Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_Temperature'), $Buffer->Payload);
                 }
                 if (fnmatch('*/sensor/smoke*', $Buffer->Topic)) {
+                    $this->SendDebug('Smoke Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_Smoke'), $Buffer->Payload);
                 }
                 if (fnmatch('*/sensor/battery*', $Buffer->Topic)) {
+                    $this->SendDebug('Battery Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_Battery'), $Buffer->Payload);
                 }
                 if (fnmatch('*/online', $Buffer->Topic)) {
-                    $this->SendDebug('Online Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Online Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 'true':

@@ -100,7 +100,6 @@ class Shelly2 extends IPSModule
 
             if (property_exists($Buffer, 'Topic')) {
                 if (fnmatch('*/input/[01]', $Buffer->Topic)) {
-                    $this->SendDebug('Input Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Input Payload', $Buffer->Payload, 0);
                     $input = $this->getChannelRelay($Buffer->Topic);
                     switch ($Buffer->Payload) {
@@ -132,7 +131,6 @@ class Shelly2 extends IPSModule
                 }
 
                 if (fnmatch('*/longpush/[01]', $Buffer->Topic)) {
-                    $this->SendDebug('Longpush Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Longpush Payload', $Buffer->Payload, 0);
                     $longpush = $this->getChannelRelay($Buffer->Topic);
                     switch ($Buffer->Payload) {
@@ -220,17 +218,14 @@ class Shelly2 extends IPSModule
                     SetValue($this->GetIDForIdent('Shelly_RollerPosition'), intval($Buffer->Payload));
                 }
                 if (fnmatch('*/temperature', $Buffer->Topic)) {
-                    $this->SendDebug('Temperature Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Temperature Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_Temperature'), $Buffer->Payload);
                 }
                 if (fnmatch('*/overtemperature', $Buffer->Topic)) {
-                    $this->SendDebug('Overtemperature Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Overtemperature Payload', $Buffer->Payload, 0);
                     SetValue($this->GetIDForIdent('Shelly_Overtemperature'), boolval($Buffer->Payload));
                 }
                 if (fnmatch('*/online', $Buffer->Topic)) {
-                    $this->SendDebug('Online Topic', $Buffer->Topic, 0);
                     $this->SendDebug('Online Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 'true':
