@@ -89,16 +89,16 @@ class Shelly4Pro extends IPSModule
                         case 'off':
                             switch ($relay) {
                                 case 0:
-                                    SetValue($this->GetIDForIdent('Shelly_State'), 0);
+                                    $this->SetValue('Shelly_State', 0);
                                     break;
                                 case 1:
-                                    SetValue($this->GetIDForIdent('Shelly_State1'), 0);
+                                    $this->SetValue('Shelly_State1', 0);
                                     break;
                                 case 2:
-                                    SetValue($this->GetIDForIdent('Shelly_State2'), 0);
+                                    $this->SetValue('Shelly_State2', 0);
                                     break;
                                 case 3:
-                                    SetValue($this->GetIDForIdent('Shelly_State3'), 0);
+                                    $this->SetValue('Shelly_State3', 0);
                                     break;
                                 default:
                                     break;
@@ -107,16 +107,16 @@ class Shelly4Pro extends IPSModule
                         case 'on':
                             switch ($relay) {
                                 case 0:
-                                    SetValue($this->GetIDForIdent('Shelly_State'), 1);
+                                    $this->SetValue('Shelly_State', 1);
                                     break;
                                 case 1:
-                                    SetValue($this->GetIDForIdent('Shelly_State1'), 1);
+                                    $this->SetValue('Shelly_State1', 1);
                                     break;
                                 case 2:
-                                    SetValue($this->GetIDForIdent('Shelly_State2'), 1);
+                                    $this->SetValue('Shelly_State2', 1);
                                     break;
                                 case 3:
-                                    SetValue($this->GetIDForIdent('Shelly_State3'), 1);
+                                    $this->SetValue('Shelly_State3', 1);
                                     break;
                                 default:
                                     break;
@@ -150,16 +150,16 @@ class Shelly4Pro extends IPSModule
 
                     switch ($relay) {
                         case 0:
-                            SetValue($this->GetIDForIdent('Shelly_Power'), $Buffer->Payload);
+                            $this->SetValue('Shelly_Power', $Buffer->Payload);
                             break;
                         case 1:
-                            SetValue($this->GetIDForIdent('Shelly_Power1'), $Buffer->Payload);
+                            $this->SetValue('Shelly_Power1', $Buffer->Payload);
                             break;
                         case 2:
-                            SetValue($this->GetIDForIdent('Shelly_Power2'), $Buffer->Payload);
+                            $this->SetValue('Shelly_Power2', $Buffer->Payload);
                             break;
                         case 3:
-                            SetValue($this->GetIDForIdent('Shelly_Power3'), $Buffer->Payload);
+                            $this->SetValue('Shelly_Power3', $Buffer->Payload);
                             break;
                         default:
                             $this->SendDebug('Relay Power', 'Undefined Relay: ' . $relay, 0);
@@ -174,16 +174,16 @@ class Shelly4Pro extends IPSModule
 
                     switch ($relay) {
                         case 0:
-                            SetValue($this->GetIDForIdent('Shelly_Energy'), $Buffer->Payload / 60000);
+                            $this->SetValue('Shelly_Energy', $Buffer->Payload / 60000);
                             break;
                         case 1:
-                            SetValue($this->GetIDForIdent('Shelly_Energy1'), $Buffer->Payload / 60000);
+                            $this->SetValue('Shelly_Energy1', $Buffer->Payload / 60000);
                             break;
                         case 2:
-                            SetValue($this->GetIDForIdent('Shelly_Energy2'), $Buffer->Payload / 60000);
+                            $this->SetValue('Shelly_Energy2', $Buffer->Payload / 60000);
                             break;
                         case 3:
-                            SetValue($this->GetIDForIdent('Shelly_Energy3'), $Buffer->Payload / 60000);
+                            $this->SetValue('Shelly_Energy3', $Buffer->Payload / 60000);
                             break;
                         default:
                             $this->SendDebug('Relay Energy', 'Undefined Relay: ' . $relay, 0);
@@ -194,10 +194,10 @@ class Shelly4Pro extends IPSModule
                     $this->SendDebug('Online Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 'true':
-                            SetValue($this->GetIDForIdent('Shelly_Reachable'), true);
+                            $this->SetValue('Shelly_Reachable', true);
                             break;
                         case 'false':
-                            SetValue($this->GetIDForIdent('Shelly_Reachable'), false);
+                            $this->SetValue('Shelly_Reachable', false);
                             break;
                     }
                 }

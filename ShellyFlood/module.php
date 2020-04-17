@@ -59,24 +59,24 @@ class ShellyFlood extends IPSModule
             if (property_exists($Buffer, 'Topic')) {
                 if (fnmatch('*/sensor/temperature*', $Buffer->Topic)) {
                     $this->SendDebug('Temperature Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_Temperature'), $Buffer->Payload);
+                    $this->SetValue('Shelly_Temperature', $Buffer->Payload);
                 }
                 if (fnmatch('*/sensor/flood*', $Buffer->Topic)) {
                     $this->SendDebug('Flood Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_Flood'), $Buffer->Payload);
+                    $this->SetValue('Shelly_Flood', $Buffer->Payload);
                 }
                 if (fnmatch('*/sensor/battery*', $Buffer->Topic)) {
                     $this->SendDebug('Battery Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_Battery'), $Buffer->Payload);
+                    $this->SetValue('Shelly_Battery', $Buffer->Payload);
                 }
                 if (fnmatch('*/online', $Buffer->Topic)) {
                     $this->SendDebug('Online Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 'true':
-                            SetValue($this->GetIDForIdent('Shelly_Reachable'), true);
+                            $this->SetValue('Shelly_Reachable', true);
                             break;
                         case 'false':
-                            SetValue($this->GetIDForIdent('Shelly_Reachable'), false);
+                            $this->SetValue('Shelly_Reachable', false);
                             break;
                     }
                 }

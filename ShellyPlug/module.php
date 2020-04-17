@@ -84,28 +84,28 @@ class ShellyPlug extends IPSModule
                 }
                 if (fnmatch('*/relay/0/power*', $Buffer->Topic)) {
                     $this->SendDebug('Power Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_Power'), $Buffer->Payload);
+                    $this->SetValue('Shelly_Power', $Buffer->Payload);
                 }
                 if (fnmatch('*/relay/0/energy*', $Buffer->Topic)) {
                     $this->SendDebug('Energy Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_Energy'), $Buffer->Payload / 60000);
+                    $this->SetValue('Shelly_Energy', $Buffer->Payload / 60000);
                 }
                 if (fnmatch('*/temperature', $Buffer->Topic)) {
                     $this->SendDebug('Temperature Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_Temperature'), $Buffer->Payload);
+                    $this->SetValue('Shelly_Temperature', $Buffer->Payload);
                 }
                 if (fnmatch('*/overtemperature', $Buffer->Topic)) {
                     $this->SendDebug('Overtemperature Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_Overtemperature'), boolval($Buffer->Payload));
+                    $this->SetValue('Shelly_Overtemperature', boolval($Buffer->Payload));
                 }
                 if (fnmatch('*/online', $Buffer->Topic)) {
                     $this->SendDebug('Online Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 'true':
-                            SetValue($this->GetIDForIdent('Shelly_Reachable'), true);
+                            $this->SetValue('Shelly_Reachable', true);
                             break;
                         case 'false':
-                            SetValue($this->GetIDForIdent('Shelly_Reachable'), false);
+                            $this->SetValue('Shelly_Reachable', false);
                             break;
                     }
                 }

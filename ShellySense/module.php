@@ -64,10 +64,10 @@ class ShellySense extends IPSModule
                     $this->SendDebug('Motion Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 'true':
-                            SetValue($this->GetIDForIdent('Shelly_Motion'), true);
+                            $this->SetValue('Shelly_Motion', true);
                             break;
                         case 'false':
-                            SetValue($this->GetIDForIdent('Shelly_Motion'), false);
+                            $this->SetValue('Shelly_Motion', false);
                             break;
                         default:
                             $this->SendDebug('Motion Sensor', 'Undefined Payload: ' . $Buffer->Payload, 0);
@@ -78,10 +78,10 @@ class ShellySense extends IPSModule
                     $this->SendDebug('Charger Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 'true':
-                            SetValue($this->GetIDForIdent('Shelly_Charger'), true);
+                            $this->SetValue('Shelly_Charger', true);
                             break;
                         case 'false':
-                            SetValue($this->GetIDForIdent('Shelly_Charger'), false);
+                            $this->SetValue('Shelly_Charger', false);
                             break;
                         default:
                             $this->SendDebug('External Charger', 'Undefined Payload: ' . $Buffer->Payload, 0);
@@ -90,28 +90,28 @@ class ShellySense extends IPSModule
                 }
                 if (fnmatch('*/sensor/temperature*', $Buffer->Topic)) {
                     $this->SendDebug('Temperature Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_Temperature'), $Buffer->Payload);
+                    $this->SetValue('Shelly_Temperature', $Buffer->Payload);
                 }
                 if (fnmatch('*/sensor/humidity*', $Buffer->Topic)) {
                     $this->SendDebug('Humidity Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_Humidity'), $Buffer->Payload);
+                    $this->SetValue('Shelly_Humidity', $Buffer->Payload);
                 }
                 if (fnmatch('*/sensor/lux*', $Buffer->Topic)) {
                     $this->SendDebug('Lux Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_Lux'), $Buffer->Payload);
+                    $this->SetValue('Shelly_Lux', $Buffer->Payload);
                 }
                 if (fnmatch('*/sensor/battery*', $Buffer->Topic)) {
                     $this->SendDebug('Battery Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_Battery'), $Buffer->Payload);
+                    $this->SetValue('Shelly_Battery', $Buffer->Payload);
                 }
                 if (fnmatch('*/online', $Buffer->Topic)) {
                     $this->SendDebug('Online Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 'true':
-                            SetValue($this->GetIDForIdent('Shelly_Reachable'), true);
+                            $this->SetValue('Shelly_Reachable', true);
                             break;
                         case 'false':
-                            SetValue($this->GetIDForIdent('Shelly_Reachable'), false);
+                            $this->SetValue('Shelly_Reachable', false);
                             break;
                     }
                 }

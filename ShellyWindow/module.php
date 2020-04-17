@@ -62,10 +62,10 @@ class ShellyWindow extends IPSModule
                     $this->SendDebug('State Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 'close':
-                            SetValue($this->GetIDForIdent('Shelly_State'), false);
+                            $this->SetValue('Shelly_State', false);
                             break;
                         case 'open':
-                            SetValue($this->GetIDForIdent('Shelly_State'), true);
+                            $this->SetValue('Shelly_State', true);
                             break;
                         default:
                             $this->SendDebug('Invalid Payload for State', $Buffer->Payload, 0);
@@ -74,20 +74,20 @@ class ShellyWindow extends IPSModule
                 }
                 if (fnmatch('*/lux', $Buffer->Topic)) {
                     $this->SendDebug('Lux Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_Lux'), boolval($Buffer->Payload));
+                    $this->SetValue('Shelly_Lux', boolval($Buffer->Payload));
                 }
                 if (fnmatch('*/battery', $Buffer->Topic)) {
                     $this->SendDebug('Battery Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_Battery'), $Buffer->Payload);
+                    $this->SetValue('Shelly_Battery', $Buffer->Payload);
                 }
                 if (fnmatch('*/online', $Buffer->Topic)) {
                     $this->SendDebug('Online Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 'true':
-                            SetValue($this->GetIDForIdent('Shelly_Reachable'), true);
+                            $this->SetValue('Shelly_Reachable', true);
                             break;
                         case 'false':
-                            SetValue($this->GetIDForIdent('Shelly_Reachable'), false);
+                            $this->SetValue('Shelly_Reachable', false);
                             break;
                     }
                 }

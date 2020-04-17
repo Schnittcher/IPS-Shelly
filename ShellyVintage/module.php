@@ -66,34 +66,34 @@ class ShellyVintage extends IPSModule
                     $this->SendDebug('Power Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 'off':
-                            SetValue($this->GetIDForIdent('Shelly_State'), 0);
+                            $this->SetValue('Shelly_State', 0);
                             break;
                         case 'on':
-                            SetValue($this->GetIDForIdent('Shelly_State'), 1);
+                            $this->SetValue('Shelly_State', 1);
                             break;
                     }
                 }
                 if (fnmatch('*status*', $Buffer->Topic)) {
                     $Payload = json_decode($Buffer->Payload);
-                    SetValue($this->GetIDForIdent('Shelly_State'), $Payload->ison);
-                    SetValue($this->GetIDForIdent('Shelly_Brightness'), $Payload->brightness);
+                    $this->SetValue('Shelly_State', $Payload->ison);
+                    $this->SetValue('Shelly_Brightness', $Payload->brightness);
                 }
                 if (fnmatch('*/light/0/power', $Buffer->Topic)) {
                     $this->SendDebug('Power Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_Power'), $Buffer->Payload);
+                    $this->SetValue('Shelly_Power', $Buffer->Payload);
                 }
                 if (fnmatch('*/energy', $Buffer->Topic)) {
                     $this->SendDebug('Energy Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_Energy'), $Buffer->Payload);
+                    $this->SetValue('Shelly_Energy', $Buffer->Payload);
                 }
                 if (fnmatch('*/online', $Buffer->Topic)) {
                     $this->SendDebug('Online Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 'true':
-                            SetValue($this->GetIDForIdent('Shelly_Reachable'), true);
+                            $this->SetValue('Shelly_Reachable', true);
                             break;
                         case 'false':
-                            SetValue($this->GetIDForIdent('Shelly_Reachable'), false);
+                            $this->SetValue('Shelly_Reachable', false);
                             break;
                     }
                 }

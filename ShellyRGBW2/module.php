@@ -149,28 +149,28 @@ class ShellyRGBW2 extends IPSModule
                                 }
                                 switch ($channel) {
                                     case 0:
-                                        SetValue($this->GetIDForIdent('Shelly_State'), $Payload->ison);
-                                        SetValue($this->GetIDForIdent('Shelly_Brightness'), $Payload->brightness);
-                                        SetValue($this->GetIDForIdent('Shelly_Power'), $Payload->power);
-                                        SetValue($this->GetIDForIdent('Shelly_Overpower'), $Payload->overpower);
+                                        $this->SetValue('Shelly_State', $Payload->ison);
+                                        $this->SetValue('Shelly_Brightness', $Payload->brightness);
+                                        $this->SetValue('Shelly_Power', $Payload->power);
+                                        $this->SetValue('Shelly_Overpower', $Payload->overpower);
                                         break;
                                     case 1:
-                                        SetValue($this->GetIDForIdent('Shelly_State1'), $Payload->ison);
-                                        SetValue($this->GetIDForIdent('Shelly_Brightness1'), $Payload->brightness);
-                                        SetValue($this->GetIDForIdent('Shelly_Power1'), $Payload->power);
-                                        SetValue($this->GetIDForIdent('Shelly_Overpower1'), $Payload->overpower);
+                                        $this->SetValue('Shelly_State1', $Payload->ison);
+                                        $this->SetValue('Shelly_Brightness1', $Payload->brightness);
+                                        $this->SetValue('Shelly_Power1', $Payload->power);
+                                        $this->SetValue('Shelly_Overpower1', $Payload->overpower);
                                         break;
                                     case 2:
-                                        SetValue($this->GetIDForIdent('Shelly_State2'), $Payload->ison);
-                                        SetValue($this->GetIDForIdent('Shelly_Brightness2'), $Payload->brightness);
-                                        SetValue($this->GetIDForIdent('Shelly_Power2'), $Payload->power);
-                                        SetValue($this->GetIDForIdent('Shelly_Overpower2'), $Payload->overpower);
+                                        $this->SetValue('Shelly_State2', $Payload->ison);
+                                        $this->SetValue('Shelly_Brightness2', $Payload->brightness);
+                                        $this->SetValue('Shelly_Power2', $Payload->power);
+                                        $this->SetValue('Shelly_Overpower2', $Payload->overpower);
                                         break;
                                     case 3:
-                                        SetValue($this->GetIDForIdent('Shelly_State3'), $Payload->ison);
-                                        SetValue($this->GetIDForIdent('Shelly_Brightness3'), $Payload->brightness);
-                                        SetValue($this->GetIDForIdent('Shelly_Power3'), $Payload->power);
-                                        SetValue($this->GetIDForIdent('Shelly_Overpower3'), $Payload->overpower);
+                                        $this->SetValue('Shelly_State3', $Payload->ison);
+                                        $this->SetValue('Shelly_Brightness3', $Payload->brightness);
+                                        $this->SetValue('Shelly_Power3', $Payload->power);
+                                        $this->SetValue('Shelly_Overpower3', $Payload->overpower);
                                         break;
                                     default:
                                         break;
@@ -181,13 +181,13 @@ class ShellyRGBW2 extends IPSModule
                                     $this->SendDebug('Mode', strtolower($this->ReadPropertyString('Mode')) . ' ' . $Payload->mode, 0);
                                     break;
                                 }
-                                SetValue($this->GetIDForIdent('Shelly_State'), $Payload->ison);
-                                SetValue($this->GetIDForIdent('Shelly_Color'), $this->rgbToHex($Payload->red, $Payload->green, $Payload->blue));
-                                SetValue($this->GetIDForIdent('Shelly_White'), $Payload->white);
-                                SetValue($this->GetIDForIdent('Shelly_Gain'), $Payload->gain);
-                                SetValue($this->GetIDForIdent('Shelly_Effect'), $Payload->effect);
-                                SetValue($this->GetIDForIdent('Shelly_Power'), $Payload->power);
-                                SetValue($this->GetIDForIdent('Shelly_Overpower'), $Payload->overpower);
+                                $this->SetValue('Shelly_State', $Payload->ison);
+                                $this->SetValue('Shelly_Color', $this->rgbToHex($Payload->red, $Payload->green, $Payload->blue));
+                                $this->SetValue('Shelly_White', $Payload->white);
+                                $this->SetValue('Shelly_Gain', $Payload->gain);
+                                $this->SetValue('Shelly_Effect', $Payload->effect);
+                                $this->SetValue('Shelly_Power', $Payload->power);
+                                $this->SetValue('Shelly_Overpower', $Payload->overpower);
                                 break;
                             default:
                                 $this->SendDebug('Invalid Mode', $Payload->mode, 0);
@@ -198,10 +198,10 @@ class ShellyRGBW2 extends IPSModule
                         $this->SendDebug('Online Payload', $Buffer->Payload, 0);
                         switch ($Buffer->Payload) {
                             case 'true':
-                                SetValue($this->GetIDForIdent('Shelly_Reachable'), true);
+                                $this->SetValue('Shelly_Reachable', true);
                                 break;
                             case 'false':
-                                SetValue($this->GetIDForIdent('Shelly_Reachable'), false);
+                                $this->SetValue('Shelly_Reachable', false);
                                 break;
                         }
                     }

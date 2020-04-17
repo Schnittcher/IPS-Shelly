@@ -78,64 +78,64 @@ class ShellyEM extends IPSModule
                     //Power prüfen und in IPS setzen
                     switch ($Buffer->Payload) {
                         case 'off':
-                            SetValue($this->GetIDForIdent('Shelly_State'), 0);
+                            $this->SetValue('Shelly_State', 0);
                             break;
                         case 'on':
-                            SetValue($this->GetIDForIdent('Shelly_State'), 1);
+                            $this->SetValue('Shelly_State', 1);
                             break;
                     }
                 }
                 //Emter 0
                 if (fnmatch('*emeter/0/energy', $Buffer->Topic)) {
                     $this->SendDebug('Energy Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_Energy0'), floatval($Buffer->Payload) / 60000);
+                    $this->SetValue('Shelly_Energy0', floatval($Buffer->Payload) / 60000);
                 }
                 if (fnmatch('*emeter/0/returned_energy', $Buffer->Topic)) {
                     $this->SendDebug('Returned Energy Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_ReturnedEnergy0'), floatval($Buffer->Payload) / 60000);
+                    $this->SetValue('Shelly_ReturnedEnergy0', floatval($Buffer->Payload) / 60000);
                 }
                 if (fnmatch('*emeter/0/power', $Buffer->Topic)) {
                     $this->SendDebug('Power Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_Power0'), $Buffer->Payload);
+                    $this->SetValue('Shelly_Power0', $Buffer->Payload);
                 }
                 if (fnmatch('*emeter/0/reactive_power', $Buffer->Topic)) {
                     $this->SendDebug('Reactive Power Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_ReactivePower0'), $Buffer->Payload);
+                    $this->SetValue('Shelly_ReactivePower0', $Buffer->Payload);
                 }
                 if (fnmatch('*emeter/0/voltage', $Buffer->Topic)) {
                     $this->SendDebug('Voltage Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_Voltage0'), $Buffer->Payload);
+                    $this->SetValue('Shelly_Voltage0', $Buffer->Payload);
                 }
 
                 //Emter 1
                 if (fnmatch('*emeter/1/energy', $Buffer->Topic)) {
                     $this->SendDebug('Energy Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_Energy1'), floatval($Buffer->Payload) / 60000);
+                    $this->SetValue('Shelly_Energy1', floatval($Buffer->Payload) / 60000);
                 }
                 if (fnmatch('*emeter/1/returned_energy', $Buffer->Topic)) {
                     $this->SendDebug('Returned Energy Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_ReturnedEnergy1'), floatval($Buffer->Payload) / 60000);
+                    $this->SetValue('Shelly_ReturnedEnergy1', floatval($Buffer->Payload) / 60000);
                 }
                 if (fnmatch('*emeter/1/power', $Buffer->Topic)) {
                     $this->SendDebug('Power Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_Power1'), $Buffer->Payload);
+                    $this->SetValue('Shelly_Power1', $Buffer->Payload);
                 }
                 if (fnmatch('*emeter/1/reactive_power', $Buffer->Topic)) {
                     $this->SendDebug('Reactive Power Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_ReactivePower1'), $Buffer->Payload);
+                    $this->SetValue('Shelly_ReactivePower1', $Buffer->Payload);
                 }
                 if (fnmatch('*emeter/1/voltage', $Buffer->Topic)) {
                     $this->SendDebug('Voltage Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_Voltage1'), $Buffer->Payload);
+                    $this->SetValue('Shelly_Voltage1', $Buffer->Payload);
                 }
                 if (fnmatch('*/online', $Buffer->Topic)) {
                     $this->SendDebug('Online Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 'true':
-                            SetValue($this->GetIDForIdent('Shelly_Reachable'), true);
+                            $this->SetValue('Shelly_Reachable', true);
                             break;
                         case 'false':
-                            SetValue($this->GetIDForIdent('Shelly_Reachable'), false);
+                            $this->SetValue('Shelly_Reachable', false);
                             break;
                     }
                 }

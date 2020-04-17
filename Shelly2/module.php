@@ -106,10 +106,10 @@ class Shelly2 extends IPSModule
                         case 0:
                             switch ($input) {
                                 case 0:
-                                    SetValue($this->GetIDForIdent('Shelly_Input'), 0);
+                                    $this->SetValue('Shelly_Input', 0);
                                     break;
                                 case 1:
-                                    SetValue($this->GetIDForIdent('Shelly_Input1'), 0);
+                                    $this->SetValue('Shelly_Input1', 0);
                                     break;
                                 default:
                                     break;
@@ -118,10 +118,10 @@ class Shelly2 extends IPSModule
                         case 1:
                             switch ($input) {
                                 case 0:
-                                    SetValue($this->GetIDForIdent('Shelly_Input'), 1);
+                                    $this->SetValue('Shelly_Input', 1);
                                     break;
                                 case 1:
-                                    SetValue($this->GetIDForIdent('Shelly_Input1'), 1);
+                                    $this->SetValue('Shelly_Input1', 1);
                                     break;
                                 default:
                                     break;
@@ -137,10 +137,10 @@ class Shelly2 extends IPSModule
                         case 0:
                             switch ($longpush) {
                                 case 0:
-                                    SetValue($this->GetIDForIdent('Shelly_Longpush'), 0);
+                                    $this->SetValue('Shelly_Longpush', 0);
                                     break;
                                 case 1:
-                                    SetValue($this->GetIDForIdent('Shelly_Longpush1'), 0);
+                                    $this->SetValue('Shelly_Longpush1', 0);
                                     break;
                                 default:
                                     break;
@@ -149,10 +149,10 @@ class Shelly2 extends IPSModule
                         case 1:
                             switch ($longpush) {
                                 case 0:
-                                    SetValue($this->GetIDForIdent('Shelly_Longpush'), 1);
+                                    $this->SetValue('Shelly_Longpush', 1);
                                     break;
                                 case 1:
-                                    SetValue($this->GetIDForIdent('Shelly_Longpush1'), 1);
+                                    $this->SetValue('Shelly_Longpush1', 1);
                                     break;
                                 default:
                                     break;
@@ -171,10 +171,10 @@ class Shelly2 extends IPSModule
                         case 'off':
                             switch ($relay) {
                                 case 0:
-                                    SetValue($this->GetIDForIdent('Shelly_State'), 0);
+                                    $this->SetValue('Shelly_State', 0);
                                     break;
                                 case 1:
-                                    SetValue($this->GetIDForIdent('Shelly_State1'), 0);
+                                    $this->SetValue('Shelly_State1', 0);
                                     break;
                                 default:
                                     break;
@@ -183,10 +183,10 @@ class Shelly2 extends IPSModule
                         case 'on':
                             switch ($relay) {
                                 case 0:
-                                    SetValue($this->GetIDForIdent('Shelly_State'), 1);
+                                    $this->SetValue('Shelly_State', 1);
                                     break;
                                 case 1:
-                                    SetValue($this->GetIDForIdent('Shelly_State1'), 1);
+                                    $this->SetValue('Shelly_State1', 1);
                                     break;
                                 default:
                                     break;
@@ -198,13 +198,13 @@ class Shelly2 extends IPSModule
                     $this->SendDebug('Roller Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 'open':
-                            SetValue($this->GetIDForIdent('Shelly_Roller'), 0);
+                            $this->SetValue('Shelly_Roller', 0);
                             break;
                         case 'stop':
-                            SetValue($this->GetIDForIdent('Shelly_Roller'), 2);
+                            $this->SetValue('Shelly_Roller', 2);
                             break;
                         case 'close':
-                            SetValue($this->GetIDForIdent('Shelly_Roller'), 4);
+                            $this->SetValue('Shelly_Roller', 4);
                             break;
                         default:
                             if (!fnmatch('*/roller/0/pos*', $Buffer->Topic)) {
@@ -215,24 +215,24 @@ class Shelly2 extends IPSModule
                 }
                 if (fnmatch('*/roller/0/pos*', $Buffer->Topic)) {
                     $this->SendDebug('Roller Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_RollerPosition'), intval($Buffer->Payload));
+                    $this->SetValue('Shelly_RollerPosition', intval($Buffer->Payload));
                 }
                 if (fnmatch('*/temperature', $Buffer->Topic)) {
                     $this->SendDebug('Temperature Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_Temperature'), $Buffer->Payload);
+                    $this->SetValue('Shelly_Temperature', $Buffer->Payload);
                 }
                 if (fnmatch('*/overtemperature', $Buffer->Topic)) {
                     $this->SendDebug('Overtemperature Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_Overtemperature'), boolval($Buffer->Payload));
+                    $this->SetValue('Shelly_Overtemperature', boolval($Buffer->Payload));
                 }
                 if (fnmatch('*/online', $Buffer->Topic)) {
                     $this->SendDebug('Online Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 'true':
-                            SetValue($this->GetIDForIdent('Shelly_Reachable'), true);
+                            $this->SetValue('Shelly_Reachable', true);
                             break;
                         case 'false':
-                            SetValue($this->GetIDForIdent('Shelly_Reachable'), false);
+                            $this->SetValue('Shelly_Reachable', false);
                             break;
                     }
                 }
@@ -240,29 +240,29 @@ class Shelly2 extends IPSModule
                     case 'shelly2':
                         if (fnmatch('*/relay/power*', $Buffer->Topic)) {
                             $this->SendDebug('Power Payload', $Buffer->Payload, 0);
-                            SetValue($this->GetIDForIdent('Shelly_Power'), $Buffer->Payload);
+                            $this->SetValue('Shelly_Power', $Buffer->Payload);
                         }
                         if (fnmatch('*/relay/energy*', $Buffer->Topic)) {
                             $this->SendDebug('Energy Payload', $Buffer->Payload, 0);
-                            SetValue($this->GetIDForIdent('Shelly_Energy'), $Buffer->Payload / 60000);
+                            $this->SetValue('Shelly_Energy', $Buffer->Payload / 60000);
                         }
                         break;
                     case 'shelly2.5':
                         if (fnmatch('*/0/power*', $Buffer->Topic)) {
                             $this->SendDebug('Power 0 Payload', $Buffer->Payload, 0);
-                            SetValue($this->GetIDForIdent('Shelly_Power1'), $Buffer->Payload);
+                            $this->SetValue('Shelly_Power1', $Buffer->Payload);
                         }
                         if (fnmatch('*/0/energy*', $Buffer->Topic)) {
                             $this->SendDebug('Energy 0 Payload', $Buffer->Payload, 0);
-                            SetValue($this->GetIDForIdent('Shelly_Energy1'), $Buffer->Payload / 60000);
+                            $this->SetValue('Shelly_Energy1', $Buffer->Payload / 60000);
                         }
                         if (fnmatch('*/1/power*', $Buffer->Topic)) {
                             $this->SendDebug('Power 1 Payload', $Buffer->Payload, 0);
-                            SetValue($this->GetIDForIdent('Shelly_Power2'), $Buffer->Payload);
+                            $this->SetValue('Shelly_Power2', $Buffer->Payload);
                         }
                         if (fnmatch('*/1/energy*', $Buffer->Topic)) {
                             $this->SendDebug('Energy 1 Payload', $Buffer->Payload, 0);
-                            SetValue($this->GetIDForIdent('Shelly_Energy2'), $Buffer->Payload / 60000);
+                            $this->SetValue('Shelly_Energy2', $Buffer->Payload / 60000);
                         }
                         break;
                 }

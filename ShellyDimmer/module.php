@@ -70,46 +70,46 @@ class ShellyDimmer extends IPSModule
                     $this->SendDebug('Power Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 'off':
-                            SetValue($this->GetIDForIdent('Shelly_State'), 0);
+                            $this->SetValue('Shelly_State', 0);
                             break;
                         case 'on':
-                            SetValue($this->GetIDForIdent('Shelly_State'), 1);
+                            $this->SetValue('Shelly_State', 1);
                             break;
                     }
                 }
                 if (fnmatch('*status*', $Buffer->Topic)) {
                     $Payload = json_decode($Buffer->Payload);
-                    SetValue($this->GetIDForIdent('Shelly_State'), $Payload->ison);
-                    SetValue($this->GetIDForIdent('Shelly_Brightness'), $Payload->brightness);
+                    $this->SetValue('Shelly_State', $Payload->ison);
+                    $this->SetValue('Shelly_Brightness', $Payload->brightness);
                 }
                 if (fnmatch('*/light/0/power', $Buffer->Topic)) {
                     $this->SendDebug('Power Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_Power'), $Buffer->Payload);
+                    $this->SetValue('Shelly_Power', $Buffer->Payload);
                 }
                 if (fnmatch('*/temperature', $Buffer->Topic)) {
                     $this->SendDebug('Temperature Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_Temperature'), $Buffer->Payload);
+                    $this->SetValue('Shelly_Temperature', $Buffer->Payload);
                 }
                 if (fnmatch('*/overtemperature', $Buffer->Topic)) {
                     $this->SendDebug('Overtemperature Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_Overtemperature'), boolval($Buffer->Payload));
+                    $this->SetValue('Shelly_Overtemperature', boolval($Buffer->Payload));
                 }
                 if (fnmatch('*/overload', $Buffer->Topic)) {
                     $this->SendDebug('Overload Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_Overload'), $Buffer->Payload);
+                    $this->SetValue('Shelly_Overload', $Buffer->Payload);
                 }
                 if (fnmatch('*/loaderror', $Buffer->Topic)) {
                     $this->SendDebug('Loaderror Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_Loaderror'), $Buffer->Payload);
+                    $this->SetValue('Shelly_Loaderror', $Buffer->Payload);
                 }
                 if (fnmatch('*/online', $Buffer->Topic)) {
                     $this->SendDebug('Online Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 'true':
-                            SetValue($this->GetIDForIdent('Shelly_Reachable'), true);
+                            $this->SetValue('Shelly_Reachable', true);
                             break;
                         case 'false':
-                            SetValue($this->GetIDForIdent('Shelly_Reachable'), false);
+                            $this->SetValue('Shelly_Reachable', false);
                             break;
                     }
                 }

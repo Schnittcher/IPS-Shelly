@@ -83,10 +83,10 @@ class Shelly3EM extends IPSModule
                     //Power prüfen und in IPS setzen
                     switch ($Buffer->Payload) {
                         case 'off':
-                            SetValue($this->GetIDForIdent('Shelly_State'), 0);
+                            $this->SetValue('Shelly_State', 0);
                             break;
                         case 'on':
-                            SetValue($this->GetIDForIdent('Shelly_State'), 1);
+                            $this->SetValue('Shelly_State', 1);
                             break;
                     }
                 }
@@ -96,10 +96,10 @@ class Shelly3EM extends IPSModule
                     //Power prüfen und in IPS setzen
                     switch ($Buffer->Payload) {
                         case 'off':
-                            SetValue($this->GetIDForIdent('Shelly_State2'), 0);
+                            $this->SetValue('Shelly_State2', 0);
                             break;
                         case 'on':
-                            SetValue($this->GetIDForIdent('Shelly_State2'), 1);
+                            $this->SetValue('Shelly_State2', 1);
                             break;
                     }
                 }
@@ -108,10 +108,10 @@ class Shelly3EM extends IPSModule
                     $this->SendDebug('Online Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 'true':
-                            SetValue($this->GetIDForIdent('Shelly_Reachable'), true);
+                            $this->SetValue('Shelly_Reachable', true);
                             break;
                         case 'false':
-                            SetValue($this->GetIDForIdent('Shelly_Reachable'), false);
+                            $this->SetValue('Shelly_Reachable', false);
                             break;
                     }
                 }
@@ -119,55 +119,55 @@ class Shelly3EM extends IPSModule
                 //Phase A
                 if (fnmatch('*emeter/0/power', $Buffer->Topic)) {
                     $this->SendDebug('Power Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_Power0'), floatval($Buffer->Payload));
+                    $this->SetValue('Shelly_Power0', floatval($Buffer->Payload));
                 }
                 if (fnmatch('*emeter/0/pf', $Buffer->Topic)) {
                     $this->SendDebug('Power Factor Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_PowerFactor0'), floatval($Buffer->Payload));
+                    $this->SetValue('Shelly_PowerFactor0', floatval($Buffer->Payload));
                 }
                 if (fnmatch('*emeter/0/current', $Buffer->Topic)) {
                     $this->SendDebug('Current Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_Current0'), floatval($Buffer->Payload));
+                    $this->SetValue('Shelly_Current0', floatval($Buffer->Payload));
                 }
                 if (fnmatch('*emeter/0/voltage', $Buffer->Topic)) {
                     $this->SendDebug('Voltage Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_Voltage0'), floatval($Buffer->Payload));
+                    $this->SetValue('Shelly_Voltage0', floatval($Buffer->Payload));
                 }
 
                 //Phase B
                 if (fnmatch('*emeter/1/power', $Buffer->Topic)) {
                     $this->SendDebug('Power Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_Power1'), floatval($Buffer->Payload));
+                    $this->SetValue('Shelly_Power1', floatval($Buffer->Payload));
                 }
                 if (fnmatch('*emeter/1/pf', $Buffer->Topic)) {
                     $this->SendDebug('Power Factor Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_PowerFactor1'), floatval($Buffer->Payload));
+                    $this->SetValue('Shelly_PowerFactor1', floatval($Buffer->Payload));
                 }
                 if (fnmatch('*emeter/1/current', $Buffer->Topic)) {
                     $this->SendDebug('Current Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_Current1'), floatval($Buffer->Payload));
+                    $this->SetValue('Shelly_Current1', floatval($Buffer->Payload));
                 }
                 if (fnmatch('*emeter/1/voltage', $Buffer->Topic)) {
                     $this->SendDebug('Voltage Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_Voltage1'), floatval($Buffer->Payload));
+                    $this->SetValue('Shelly_Voltage1', floatval($Buffer->Payload));
                 }
 
                 //Phase C
                 if (fnmatch('*emeter/2/power', $Buffer->Topic)) {
                     $this->SendDebug('Power Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_Power2'), floatval($Buffer->Payload));
+                    $this->SetValue('Shelly_Power2', floatval($Buffer->Payload));
                 }
                 if (fnmatch('*emeter/2/pf', $Buffer->Topic)) {
                     $this->SendDebug('Power Factor Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_PowerFactor2'), floatval($Buffer->Payload));
+                    $this->SetValue('Shelly_PowerFactor2', floatval($Buffer->Payload));
                 }
                 if (fnmatch('*emeter/2/current', $Buffer->Topic)) {
                     $this->SendDebug('Current Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_Current2'), floatval($Buffer->Payload));
+                    $this->SetValue('Shelly_Current2', floatval($Buffer->Payload));
                 }
                 if (fnmatch('*emeter/2/voltage', $Buffer->Topic)) {
                     $this->SendDebug('Voltage Payload', $Buffer->Payload, 0);
-                    SetValue($this->GetIDForIdent('Shelly_Voltage2'), floatval($Buffer->Payload));
+                    $this->SetValue('Shelly_Voltage2', floatval($Buffer->Payload));
                 }
             }
         }
