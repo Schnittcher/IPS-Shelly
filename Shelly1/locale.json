@@ -11,7 +11,11 @@
       "Device": "Geräte",
       "Energy": "Energie",
       "Please select device": "Bitte wählen Sie das Gerät aus",
-      "Reachable": "Erreichbar"
+      "Reachable": "Erreichbar",
+      "External Temperature 1": "Externe Temperatur 1",
+      "External Temperature 2": "Externe Temperatur 2",
+      "External Temperature 3": "Externe Temperatur 3",
+      "External Humidity": "Externe Luftfeuchte"
     }
   }
 }
