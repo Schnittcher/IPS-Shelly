@@ -15,39 +15,39 @@
    
    ## 2. Funktionen
    
-   ### 2.1 Relay
-   
-   **Shelly_SwitchMode($InstanceID, $Relay, $Value)**\
-   Mit dieser Funktion ist es möglich das Gerät ein- bzw. auszuschalten.
    ```php
-   Shelly_SwitchMode(25537, 0, true); //Relay 1 Einschalten
-   Shelly_SwitchMode(25537, 0, false); //Relay 1 Ausschalten
-   
-   Shelly_SwitchMode(25537, 1, true); //Relay 2 Einschalten
-   Shelly_SwitchMode(25537, 1, false); //Relay 2 Ausschalten
+   RequestAction($VariablenID, $Value);
+   ```
+
+   Mit dieser Funktion können alle Aktionen einer Variable ausgelöst werden.
+  
+   ### 2.1 Relay
+
+   **Beispiel:**
+
+   Variable ID Status 1  = 12345
+
+   Variable ID Status 2  = 56789
+   ```php
+   RequestAction(12345, true); //Einschalten Status 1
+   RequestAction(12345, false); //Ausschalten Status 1
+
+   RequestAction(56789, true); //Einschalten Status 2
+   RequestAction(56789, false); //Ausschalten Status 2
    ```
    
   ### 2.2 Rolladen
-  
-  **Shelly_MoveDown($InstanceID)**\
-  Mit dieser Funktion ist es möglich den Rolladen herunterzufahren.
-  ```php
-  Shelly_MoveDown(25537); //Rolladen herunterfahren
-  ```
-  
-  **Shelly_MoveUp($InstanceID)**\
-  Mit dieser Funktion ist es möglich den Rolladen hochzufahren.
-  ```php
-  Shelly_MoveUp(25537); //Rolladen hochfahren
-  ```
-  **Shelly_Move($InstanceID, $Position)**\
-  Mit dieser Funktion ist es möglich den Rolladen auf eine bestimmte Position zu fahren.
-  ```php
-  Shelly_Move(25537,25); //Rolladen auf 25% fahren!
-  ```
-  
-  **Shelly_Stop($InstanceID)**\
-  Mit dieser Funktion ist es möglich den Rolladen zu stoppen.
-  ```php
-  Shelly_Stop(25537); //Rolladen stoppen
-  ```
+
+   **Beispiel:**
+   
+   Variable ID Roller = 12345
+   ```php
+   RequestAction(12345, 0);  //Rolladen hochfahren
+   RequestAction(12345, 2); //Rolladen stoppen
+   RequestAction(12345, 4); //Rolladen herunterfahren
+   ```
+
+   Variable ID Position = 56789
+   ```php
+   RequestAction(56789, 25);  //Rolladen aus 25% fahren!
+   ```

@@ -13,9 +13,15 @@
    
    ## 2. Functions
    
-   **Shelly_SwitchMode($InstanceID, $Relay, $Value)**\
-   It is possible to switch the device on or off with this function.
    ```php
-   Shelly_SwitchMode(25537, 0, true) //Switch On;
-   Shelly_SwitchMode(25537, 0, false) //Switch Off;
+   RequestAction($VariablenID, $Value);
+   ```
+   It´s possible to use all variable actions with this function.
+
+   **Example:**
+   
+   Variable ID State: 12345
+   ```php
+   RequestAction(12345, true); //Switch on
+   RequestAction(12345, false); //Switch off
    ```

@@ -13,19 +13,31 @@
    MQTT Topic   | The Topic (shelly4pro-deviceid) of the Shelly4Pro is entered here. Currently, the following URL needs to be called for this: http://ShellyIP/settings The host name is found there. The host name is the DeviceID!
    
    ## 2. Functions
-   
-   **Shelly_SwitchMode($InstanceID, $Relay, $Value)**\
-   It is possible to switch the device on or off with this function.
+
    ```php
-   Shelly_SwitchMode(25537, 0, true); //Switch On Relay 1
-   Shelly_SwitchMode(25537, 0, false); //Switch Off Relay 1
+   RequestAction($VariablenID, $Value);
+   ```
+   It´s possible to use all variable actions with this function.
    
-   Shelly_SwitchMode(25537, 1, true); //Switch On Relay 2
-   Shelly_SwitchMode(25537, 1, false); //Switch Off Relay 2
+   **Example:**
+
+   Variable ID Relay 1 = 12345
    
-   Shelly_SwitchMode(25537, 2, true); //Switch On Relay 3
-   Shelly_SwitchMode(25537, 2, false); //Switch Off Relay 3
+   Variable ID Relay 2 = 56789
+   
+   Variable ID Relay 3 = 14725
+
+   Variable ID Relay 4 = 25836
+   ```php
+   RequestAction(12345 true); //Switch On Relay 1
+   RequestAction(12345 false); //Switch Off Relay 1
+   
+   RequestAction(56789, true); //Switch On Relay 2
+   RequestAction(56789, false); //Switch Off Relay 2
+   
+   RequestAction(14725, true); //Switch On Relay 3
+   RequestAction(14725, false); //Switch Off Relay 3
       
-   Shelly_SwitchMode(25537, 3, true); //Switch On Relay 4
-   Shelly_SwitchMode(25537, 3, false); //Switch Off Relay 4
+   RequestAction(25836, true); //Switch On Relay 4
+   RequestAction(25836, false); //Switch Off Relay 4
    ```

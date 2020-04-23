@@ -13,46 +13,42 @@
    Modus | Hier wird der Modus ausgewählt, der im Shelly Modul hinterlegt ist. 
    
    ## 2. Funktionen
-   
-   **Shelly_SwitchMode($InstanceID, $Channel, $Value)**\
-   Mit dieser Funktion ist es möglich das Gerät ein- bzw. auszuschalten.
-   $Channel ist bei dem Modus Farbe immer 0!
+
    ```php
-   Shelly_SwitchMode(25537, 0, true); //Einschalten
-   Shelly_SwitchMode(25537, 0, false); //Ausschalten
+   RequestAction($VariablenID, $Value);
+   ```
+
+   Mit dieser Funktion können alle Aktionen einer Variable ausgelöst werden.
+   
+   **Beispiel:**
+   
+   Variable ID Status: 12345
+   ```php
+   RequestAction(12345, true); //Einschalten
+   RequestAction(12345, false); //Ausschalten
+   ```
+ 
+   Variable ID Helligkeit: 56789
+   ```php
+   RequestAction(56789, 50); //Auf 50% dimmen
+   ```
+
+   Variable ID Farbe: 14725
+   ```php
+   RequestAction(14725, 0xff0000); //Farbe Rot
    ```
    
-   **Shelly_setDimmer($InstanceID, $Channel, $Value)**\
-   Mit dieser Funktion kann das prozentual Gerät gedimmt werden.
-   Funktion nur im Modus White verfügbar!
+   Variable ID Weiß: 58369
    ```php
-   Shelly_setDimmer(25537, 0, 50); //Auf 50% dimmen
+   RequestAction(58369,50); //50% weiß
    ```
-   
-   **Shelly_setColor($InstanceID, $Value)**\
-   Mit dieser Funktion ist es möglich die Farbe zu ändern.
-   Funktion nur im Modus Farbe verfügbar!
+
+   Variable ID Gain: 15935
    ```php
-   Shelly_setColor(25537,"ff0000"); //Farbe Rot
+   RequestAction(15935,50); //50% gain
    ```
-   
-   **Shelly_setWhite($InstanceID, $Value)**\
-   Mit dieser Funktion ist es möglich den Wert Weiß zu ändern.
-   Funktion nur im Modus Farbe verfügbar!
+
+   Variable ID Effekt: 35795
    ```php
-   Shelly_setWhite(25537,50); //50% weiß
-   ```
-   
-   **Shelly_setGain($InstanceID, $Value)**\
-   Mit dieser Funktion ist es möglich den Wert Gain zu ändern.
-   Funktion nur im Modus Farbe verfügbar!
-   ```php
-   Shelly_setGain(25537,50); //50%;
-   ```
-   
-   **Shelly_setEffect($InstanceID, $Value)**\
-   Mit dieser Funktion ist es möglich einen Effekt einzustellen.
-   Funktion nur im Modus Farbe verfügbar!
-   ```php
-   Shelly_setEffect(25537,4); //Effekt Flash
+   RequestAction(35795,4); //Effekt Breath
    ```

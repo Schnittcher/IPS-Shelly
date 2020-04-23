@@ -12,17 +12,22 @@
    MQTT Topic | Hier wird das Topic (shellydimmer-deviceid) des ShellyDimmer eingetragen. Dazu muss zur Zeit die folgende URL aufgerufen werden: http://ShellyIP/settings dort ist der Hostname zu finden. Der Hostname ist die DeviceID!
    
    ## 2. Funktionen
-   
-   **Shelly_DimmerSwitchMode($InstanceID, $Value)**\
-   Mit dieser Funktion ist es möglich das Gerät ein- bzw. auszuschalten.
+
    ```php
-   Shelly_DimmerSwitchMode(25537, true); //Einschalten
-   Shelly_DimmerSwitchMode(25537, false); //Ausschalten
+   RequestAction($VariablenID, $Value);
    ```
 
-   **Shelly_DimSet($InstanceID, $Value)**\
-   Mit dieser Funktion ist es möglich das Gerät ein- bzw. auszuschalten.
+   Mit dieser Funktion können alle Aktionen einer Variable ausgelöst werden.
+   
+   **Beispiel:**
+   Variable ID Status: 12345
    ```php
-   Shelly_DimSet(25537, 50); //auf 50% setzen
-   Shelly_DimSet(25537, 40); //auf 40% setzen
+   RequestAction(12345, true); //Einschalten
+   RequestAction(12345, false); //Auschalten
+   ```
+
+   Variable ID Helligkeit: 56789
+   ```php
+   RequestAction(56789, 50); //auf 50% setzen
+   RequestAction(56789, 40); //auf 40% setzen
    ```

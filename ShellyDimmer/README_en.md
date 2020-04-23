@@ -12,15 +12,21 @@
    MQTT Topic   | The Topic (shellydimmer-deviceid) of the ShellyDimmer is entered here. Currently, the following URL needs to be called for this: http://ShellyIP/settings The host name is found there. The host name is the DeviceID!
    
    ## 2. Functions
-   
-   **Shelly_SwitchMode($InstanceID, $Value)**\
-   It is possible to switch the device on or off with this function.
+
    ```php
-   Shelly_SwitchMode(25537, true) //Switch On;
-   Shelly_SwitchMode(25537, false) //Switch Off;
+   RequestAction($VariablenID, $Value);
+   ```
+   It´s possible to use all variable actions with this function.
+
+   **Example:**
+   Variable ID State: 12345
+   ```php
+   RequestAction(12345, true); //Switch On
+   RequestAction(12345, false); //Switch On
    ```
 
-   **Shelly_DimSet($InstanceID, $Value)**\
-   It is possible to dim the device to a given percentage.
+   Variable ID Brightness: 56789
    ```php
-   Shelly_DimSet(25537, 50); //Dim to 50%
+   RequestAction(56789, 50); //Dim to 50%
+   RequestAction(56789, 40); //Dim to 40%
+   ```

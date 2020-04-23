@@ -14,18 +14,30 @@
    
    ## 2. Funktionen
    
-   **Shelly_SwitchMode($InstanceID, $Relay, $Value)**\
-   Mit dieser Funktion ist es möglich das Gerät ein- bzw. auszuschalten.
    ```php
-   Shelly_SwitchMode(25537, 0, true) //Relay 1 Einschalten;
-   Shelly_SwitchMode(25537, 0, false) //Relay 1 Ausschalten;
+   RequestAction($VariablenID, $Value);
+   ```
+   Mit dieser Funktion können alle Aktionen einer Variable ausgelöst werden.
+
+   **Beispiel:**
+
+   Variable ID Relay 1 = 12345
    
-   Shelly_SwitchMode(25537, 1, true) //Relay 2 Einschalten;
-   Shelly_SwitchMode(25537, 1, false) //Relay 2 Ausschalten;
+   Variable ID Relay 2 = 56789
    
-   Shelly_SwitchMode(25537, 2, true) //Relay 3 Einschalten;
-   Shelly_SwitchMode(25537, 2, false) //Relay 3 Ausschalten;
-      
-   Shelly_SwitchMode(25537, 3, true) //Relay 4 Einschalten;
-   Shelly_SwitchMode(25537, 3, false) //Relay 4 Ausschalten;
+   Variable ID Relay 3 = 14725
+
+   Variable ID Relay 4 = 25836
+   ```php
+   RequestAction(12345, true);  //Relay 1 Einschalten;
+   RequestAction(12345, false); //Relay 1 Ausschalten;
+   
+   RequestAction(56789, true);  //Relay 2 Einschalten;
+   RequestAction(56789, false); //Relay 2 Ausschalten;
+   
+   RequestAction(14725, true);  //Relay 3 Einschalten;
+   RequestAction(14725, false); //Relay 3 Ausschalten;
+
+   RequestAction(25836, true);  //Relay 4 Einschalten;
+   RequestAction(25836, false); //Relay 4 Ausschalten;
    ```
