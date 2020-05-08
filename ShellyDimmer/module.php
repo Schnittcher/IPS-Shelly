@@ -146,11 +146,11 @@ class ShellyDimmer extends IPSModule
     private function DimSet(int $value)
     {
         $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/light/0/set';
-        $Payload['brightness'] = strval($value);
-        if ($value == 0) {
-            $Payload['turn'] = 'off';
+        if ($value > 0) {
+            $Payload['brightness'] = strval($value);
+            $Payload['turn'] = 'on';
         }
-        $Payload['turn'] = 'on';
+        $Payload['turn'] = 'off';
         $Payload = json_encode($Payload);
         $this->sendMQTT($Topic, $Payload);
     }
