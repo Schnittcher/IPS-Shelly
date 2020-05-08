@@ -95,7 +95,11 @@ class ShellyDimmer extends IPSModule
                 if (fnmatch('*status*', $Buffer->Topic)) {
                     $Payload = json_decode($Buffer->Payload);
                     $this->SetValue('Shelly_State', $Payload->ison);
-                    $this->SetValue('Shelly_Brightness', $Payload->brightness);
+                    if ($Payload->ison) {
+                        $this->SetValue('Shelly_Brightness', $Payload->brightness);
+                    } else {
+                        $this->SetValue('Shelly_Brightness', 0);
+                    }
                 }
                 if (fnmatch('*/light/0/power', $Buffer->Topic)) {
                     $this->SendDebug('Power Payload', $Buffer->Payload, 0);
