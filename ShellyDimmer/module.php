@@ -155,9 +155,6 @@ class ShellyDimmer extends IPSModule
             $Payload['brightness'] = strval($value);
             $Payload['turn'] = 'on';
         }
-        if ($value == 0) {
-            $this->SetValue('Shelly_Brightness', 0);
-        }
 
         $Payload = json_encode($Payload);
         $this->sendMQTT($Topic, $Payload);
