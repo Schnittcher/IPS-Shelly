@@ -1,0 +1,11 @@
+{
+	"id": "{55840D9D-BB28-4D66-91B5-66C8859FAE83}",
+	"name": "ShellyAir",
+	"type": 3,
+	"vendor": "Shelly",
+	"aliases": ["Shelly Air"],
+	"parentRequirements": ["{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}","{97475B04-67C3-A74D-C970-E9409B0EFA1D}"],
+	"childRequirements": [],
+	"implemented": ["{7F7632D9-FA40-4F38-8DEA-C83CD4325A32}","{DBDA9DF7-5D04-F49D-370A-2B9153D00D9B}"],
+	"prefix": "SHELLY"
+}
