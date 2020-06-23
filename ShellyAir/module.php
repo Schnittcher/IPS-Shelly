@@ -24,7 +24,7 @@ class ShellyAir extends IPSModule
         $this->RegisterVariableFloat('Shelly_Temperature', $this->Translate('Temperature'), '~Temperature');
         $this->RegisterVariableFloat('Shelly_Energy', $this->Translate('Energy'), '~Electricity');
         $this->RegisterVariableFloat('Shelly_Power', $this->Translate('Power'), '~Watt.3680');
-        $this->RegisterVariableInteger('Shelly_Totalworktime,', $this->Translate('Totalworktime'), '');
+        $this->RegisterVariableInteger('Shelly_Totalworktime', $this->Translate('Totalworktime'), '');
 
         $this->EnableAction('Shelly_State');
 
