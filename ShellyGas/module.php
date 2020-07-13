@@ -95,8 +95,6 @@ class ShellyGas extends IPSModule
                 $this->LogMessage($this->Translate('Invalid Ident for RequestAction: ') . $Ident, KL_ERROR);
                 break;
             }
-
-        $this->sendMQTT($Topic, $Payload);
     }
 
     public function ReceiveData($JSONString)
