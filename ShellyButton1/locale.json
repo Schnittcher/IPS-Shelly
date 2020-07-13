@@ -1,0 +1,11 @@
+{
+  "translations": {
+    "de": {
+      "Input": "Eingang",
+      "Longpush": "Longpush",
+      "Variable profile type does not match for profile": "Der Profiltyp der Variablen stimmt nicht mit dem Profil überein",
+      "Reachable": "Erreichbar",
+      "Battery": "Batterie"
+    }
+  }
+}
