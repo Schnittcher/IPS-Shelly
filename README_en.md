@@ -32,15 +32,21 @@ If you would like to use the username/password settings you need to configure it
 
 * [Shelly1](Shelly1/README_en.md)
 * [Shelly2](Shelly2/README_en.md)
+* [Shelly3EM](Shelly3EM/README_en.md)
 * [Shelly4Pro](Shelly4Pro/README_en.md)
+* [ShellyAir](ShellyAir/README_en.md)
+* [ShellyButton1](ShellyButton1/README_en.md)
+* [ShellyDimmer](ShellyDimmer/README_en.md)
+* [ShellyEM](ShellyEM/README_en.md)
+* [ShellyFlood](ShellyFlood/README_en.md)
+* [ShellyGas](ShellyGas/README_en.md)
 * [ShellyHT](ShellyHT/README_en.md)
 * [ShellyPlug](ShellyPlug/README_en.md)
 * [ShellyRGBW2](ShellyRGBW2/README_en.md)
 * [ShellySense](ShellySense/README_en.md)
 * [ShellySmoke](ShellySmoke/README_en.md)
-* [ShellyEM](ShellyEM/README_en.md)
-* [Shelly3EM](Shelly3EM/README_en.md)
-* [ShellyFlood](ShellyFlood/README_en.md)
+* [ShellyVintge](ShellyVintage/README_en.md)
+* [ShellyWindow](ShellyWindow/README_en.md)
 
 ## 3. Installation
 Installation via the IP-Symcon module store.

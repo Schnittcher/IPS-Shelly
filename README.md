@@ -36,15 +36,21 @@ Die selben Zugangsdaten müssen über das Shelly Webinterface unter Internet & S
 
 * [Shelly1](Shelly1/README.md)
 * [Shelly2](Shelly2/README.md)
+* [Shelly3EM](Shelly3EM/README.md)
 * [Shelly4Pro](Shelly4Pro/README.md)
+* [ShellyAir](ShellyAir/README.md)
+* [ShellyButton1](ShellyButton1/README.md)
+* [ShellyDimmer](ShellyDimmer/README.md)
+* [ShellyEM](ShellyEM/README.md)
+* [ShellyFlood](ShellyFlood/README.md)
+* [ShellyGas](ShellyGas/README.md)
 * [ShellyHT](ShellyHT/README.md)
 * [ShellyPlug](ShellyPlug/README.md)
 * [ShellyRGBW2](ShellyRGBW2/README.md)
 * [ShellySense](ShellySense/README.md)
 * [ShellySmoke](ShellySmoke/README.md)
-* [ShellyEM](ShellyEM/README.md)
-* [Shelly3EM](Shelly3EM/README.md)
-* [ShellyFlood](ShellyFlood/README.md)
+* [ShellyVintge](ShellyVintage/README.md)
+* [ShellyWindow](ShellyWindow/README.md)
 
 ## 3. Installation
 Installation über den IP-Symcon Module Store.
