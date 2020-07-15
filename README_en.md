@@ -41,6 +41,7 @@ If you would like to use the username/password settings you need to configure it
 * [ShellyFlood](ShellyFlood/README_en.md)
 * [ShellyGas](ShellyGas/README_en.md)
 * [ShellyHT](ShellyHT/README_en.md)
+* [Shellyi3](Shellyi3/README_en.md)
 * [ShellyPlug](ShellyPlug/README_en.md)
 * [ShellyRGBW2](ShellyRGBW2/README_en.md)
 * [ShellySense](ShellySense/README_en.md)

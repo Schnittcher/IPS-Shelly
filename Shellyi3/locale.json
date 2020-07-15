@@ -1,0 +1,20 @@
+{
+  "translations": {
+    "de": {
+      "Input 1": " Eingang 1",
+      "Input 2": " Eingang 2",
+      "Input 3": " Eingang 3",
+      "Input 1 Event": "Eingang 1 Ereignis",
+      "Input 2 Event": "Eingang 2 Ereignis",
+      "Input 3 Event": "Eingang 3 Ereignis",
+      "shortpush": "shortpush",
+      "double shortpush": "double shortpush",
+      "triple shortpush": "triple shortpush",
+      "longpush": "longpush",
+      "shortpush + longpush": "shortpush + longpush",
+      "longpush + shortpush": "longpush + shortpush",
+      "Variable profile type does not match for profile": "Der Profiltyp der Variablen stimmt nicht mit dem Profil überein",
+      "Reachable": "Erreichbar"
+    }
+  }
+}

@@ -45,6 +45,7 @@ Die selben Zugangsdaten müssen über das Shelly Webinterface unter Internet & S
 * [ShellyFlood](ShellyFlood/README.md)
 * [ShellyGas](ShellyGas/README.md)
 * [ShellyHT](ShellyHT/README.md)
+* [Shellyi3](Shellyi3/README.md)
 * [ShellyPlug](ShellyPlug/README.md)
 * [ShellyRGBW2](ShellyRGBW2/README.md)
 * [ShellySense](ShellySense/README.md)
