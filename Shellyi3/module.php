@@ -52,7 +52,6 @@ class Shellyi3 extends IPSModule
         //Setze Filter für ReceiveData
         $MQTTTopic = $this->ReadPropertyString('MQTTTopic');
         $this->SetReceiveDataFilter('.*' . $MQTTTopic . '.*');
-
     }
 
     public function ReceiveData($JSONString)
