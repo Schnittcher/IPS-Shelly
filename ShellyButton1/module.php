@@ -45,13 +45,6 @@ class ShellyButton1 extends IPSModule
         //Setze Filter für ReceiveData
         $MQTTTopic = $this->ReadPropertyString('MQTTTopic');
         $this->SetReceiveDataFilter('.*' . $MQTTTopic . '.*');
-
-        if (($this->ReadPropertyString('Device') == 'shelly1pm')) {
-            $this->RegisterVariableFloat('Shelly_Power', $this->Translate('Power'), '~Watt.3680');
-            $this->RegisterVariableBoolean('Shelly_Overtemperature', $this->Translate('Overtemperature'), '');
-            $this->RegisterVariableFloat('Shelly_Temperature', $this->Translate('Temperature'), '~Temperature');
-            $this->RegisterVariableFloat('Shelly_Energy', $this->Translate('Energy'), '~Electricity');
-        }
     }
 
     public function ReceiveData($JSONString)
