@@ -2,7 +2,10 @@
   "translations": {
     "de": {
       "Input": "Eingang",
-      "Longpush": "Longpush",
+      "shortpush": "shortpush",
+      "double shortpush": "double shortpush",
+      "triple shortpush": "triple shortpush",
+      "longpush": "longpush",
       "Variable profile type does not match for profile": "Der Profiltyp der Variablen stimmt nicht mit dem Profil überein",
       "Reachable": "Erreichbar",
       "Battery": "Batterie"
