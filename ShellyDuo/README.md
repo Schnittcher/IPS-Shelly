@@ -1,4 +1,4 @@
-# ShellyVintage
+# ShellyDuo
    Dieses Modul ermöglicht es, eine Shelly Duo Lampe in IP-Symcon zu integrieren.
      
    ## Inhaltverzeichnis
