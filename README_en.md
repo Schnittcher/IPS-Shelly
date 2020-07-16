@@ -37,6 +37,7 @@ If you would like to use the username/password settings you need to configure it
 * [ShellyAir](ShellyAir/README_en.md)
 * [ShellyButton1](ShellyButton1/README_en.md)
 * [ShellyDimmer](ShellyDimmer/README_en.md)
+* [ShellyDuo](ShellyDuo/README_en.md)
 * [ShellyEM](ShellyEM/README_en.md)
 * [ShellyFlood](ShellyFlood/README_en.md)
 * [ShellyGas](ShellyGas/README_en.md)
