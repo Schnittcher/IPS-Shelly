@@ -5,8 +5,10 @@
       "Reachable": "Erreichbar",
       "Power": "Leistung",
       "Power Factor": "Leistungsfaktor",
-      "Voltage": "Stromspannung",
-      "Current": "Stromstärke",
+      "Voltage": "Spannung",
+      "Current": "Strom",
+      "Total": "Gesamtverbrauch",
+      "Total Returned": "Gesamt eingespeist",
       "Variable profile type does not match for profile": "Der Profiltyp der Variablen stimmt nicht mit dem Profil überein"
     }
   }

@@ -19,26 +19,29 @@ class Shelly3EM extends IPSModule
 
         $this->RegisterPropertyString('MQTTTopic', '');
 
-        $this->RegisterVariableFloat('Shelly_Power0', $this->Translate('Power') . ' A', '~Watt.3680');
-        $this->RegisterVariableFloat('Shelly_PowerFactor0', $this->Translate('Power Factor') . ' A', '');
-        $this->RegisterVariableFloat('Shelly_Current0', $this->Translate('Current') . ' A', '~Ampere');
-        $this->RegisterVariableFloat('Shelly_Voltage0', $this->Translate('Voltage') . ' A', '~Volt');
+        $this->RegisterVariableFloat('Shelly_Power0', $this->Translate('Power') . ' L1', '~Watt.3680');
+        $this->RegisterVariableFloat('Shelly_PowerFactor0', $this->Translate('Power Factor') . ' L1', '');
+        $this->RegisterVariableFloat('Shelly_Current0', $this->Translate('Current') . ' L1', '~Ampere');
+        $this->RegisterVariableFloat('Shelly_Voltage0', $this->Translate('Voltage') . ' L1', '~Volt');
+        $this->RegisterVariableFloat('Shelly_Total0', $this->Translate('Total') . ' L1', '~Electricity');
+        $this->RegisterVariableFloat('Shelly_TotalReturned0', $this->Translate('Total Returned') . ' L1', '~Electricity');
 
-        $this->RegisterVariableFloat('Shelly_Power1', $this->Translate('Power') . ' B', '~Watt.3680');
-        $this->RegisterVariableFloat('Shelly_PowerFactor1', $this->Translate('Power Factor') . ' B', '');
-        $this->RegisterVariableFloat('Shelly_Current1', $this->Translate('Current') . ' B', '~Ampere');
-        $this->RegisterVariableFloat('Shelly_Voltage1', $this->Translate('Voltage') . ' B', '~Volt');
+        $this->RegisterVariableFloat('Shelly_Power1', $this->Translate('Power') . ' L2', '~Watt.3680');
+        $this->RegisterVariableFloat('Shelly_PowerFactor1', $this->Translate('Power Factor') . ' L2', '');
+        $this->RegisterVariableFloat('Shelly_Current1', $this->Translate('Current') . ' L2', '~Ampere');
+        $this->RegisterVariableFloat('Shelly_Voltage1', $this->Translate('Voltage') . ' L2', '~Volt');
+        $this->RegisterVariableFloat('Shelly_Total1', $this->Translate('Total') . ' L2', '~Electricity');
+        $this->RegisterVariableFloat('Shelly_TotalReturned1', $this->Translate('Total Returned') . ' L2', '~Electricity');
 
-        $this->RegisterVariableFloat('Shelly_Power2', $this->Translate('Power') . ' C', '~Watt.3680');
-        $this->RegisterVariableFloat('Shelly_PowerFactor2', $this->Translate('Power Factor') . ' C', '');
-        $this->RegisterVariableFloat('Shelly_Current2', $this->Translate('Current') . ' C', '~Ampere');
-        $this->RegisterVariableFloat('Shelly_Voltage2', $this->Translate('Voltage') . ' C', '~Volt');
+        $this->RegisterVariableFloat('Shelly_Power2', $this->Translate('Power') . ' L3', '~Watt.3680');
+        $this->RegisterVariableFloat('Shelly_PowerFactor2', $this->Translate('Power Factor') . ' L3', '');
+        $this->RegisterVariableFloat('Shelly_Current2', $this->Translate('Current') . ' L3', '~Ampere');
+        $this->RegisterVariableFloat('Shelly_Voltage2', $this->Translate('Voltage') . ' L3', '~Volt');
+        $this->RegisterVariableFloat('Shelly_Total2', $this->Translate('Total') . ' L3', '~Electricity');
+        $this->RegisterVariableFloat('Shelly_TotalReturned2', $this->Translate('Total Returned') . ' L3', '~Electricity');
 
-        $this->RegisterVariableBoolean('Shelly_State', $this->Translate('State') . '1', '~Switch');
+        $this->RegisterVariableBoolean('Shelly_State', $this->Translate('State'), '~Switch');
         $this->EnableAction('Shelly_State');
-
-        $this->RegisterVariableBoolean('Shelly_State2', $this->Translate('State') . '2', '~Switch');
-        $this->EnableAction('Shelly_State2');
 
         $this->RegisterProfileBooleanEx('Shelly.Reachable', 'Network', '', '', [
             [false, 'Offline',  '', 0xFF0000],
@@ -105,19 +108,6 @@ class Shelly3EM extends IPSModule
                     }
                 }
 
-                if (fnmatch('*/relay/1', $Buffer->Topic)) {
-                    $this->SendDebug('Relay 1 Payload', $Buffer->Payload, 0);
-                    //Power prüfen und in IPS setzen
-                    switch ($Buffer->Payload) {
-                        case 'off':
-                            $this->SetValue('Shelly_State2', 0);
-                            break;
-                        case 'on':
-                            $this->SetValue('Shelly_State2', 1);
-                            break;
-                    }
-                }
-
                 if (fnmatch('*/online', $Buffer->Topic)) {
                     $this->SendDebug('Online Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
@@ -132,56 +122,80 @@ class Shelly3EM extends IPSModule
 
                 //Phase A
                 if (fnmatch('*emeter/0/power', $Buffer->Topic)) {
-                    $this->SendDebug('Power Payload', $Buffer->Payload, 0);
+                    $this->SendDebug('Power L1 Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_Power0', floatval($Buffer->Payload));
                 }
                 if (fnmatch('*emeter/0/pf', $Buffer->Topic)) {
-                    $this->SendDebug('Power Factor Payload', $Buffer->Payload, 0);
+                    $this->SendDebug('Power Factor L1 Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_PowerFactor0', floatval($Buffer->Payload));
                 }
                 if (fnmatch('*emeter/0/current', $Buffer->Topic)) {
-                    $this->SendDebug('Current Payload', $Buffer->Payload, 0);
+                    $this->SendDebug('Current L1 Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_Current0', floatval($Buffer->Payload));
                 }
                 if (fnmatch('*emeter/0/voltage', $Buffer->Topic)) {
-                    $this->SendDebug('Voltage Payload', $Buffer->Payload, 0);
+                    $this->SendDebug('Voltage L1 Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_Voltage0', floatval($Buffer->Payload));
+                }
+                if (fnmatch('*emeter/0/total', $Buffer->Topic)) {
+                    $this->SendDebug('Total L1 Payload', $Buffer->Payload, 0);
+                    $this->SetValue('Shelly_Total0', floatval($Buffer->Payload) / 1000);
+                }
+                if (fnmatch('*emeter/0/total_returned', $Buffer->Topic)) {
+                    $this->SendDebug('Total Returned L1 Payload', $Buffer->Payload, 0);
+                    $this->SetValue('Shelly_TotalReturned0', floatval($Buffer->Payload) / 1000);
                 }
 
                 //Phase B
                 if (fnmatch('*emeter/1/power', $Buffer->Topic)) {
-                    $this->SendDebug('Power Payload', $Buffer->Payload, 0);
+                    $this->SendDebug('Power L2 Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_Power1', floatval($Buffer->Payload));
                 }
                 if (fnmatch('*emeter/1/pf', $Buffer->Topic)) {
-                    $this->SendDebug('Power Factor Payload', $Buffer->Payload, 0);
+                    $this->SendDebug('Power Factor L2 Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_PowerFactor1', floatval($Buffer->Payload));
                 }
                 if (fnmatch('*emeter/1/current', $Buffer->Topic)) {
-                    $this->SendDebug('Current Payload', $Buffer->Payload, 0);
+                    $this->SendDebug('Current L2 Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_Current1', floatval($Buffer->Payload));
                 }
                 if (fnmatch('*emeter/1/voltage', $Buffer->Topic)) {
-                    $this->SendDebug('Voltage Payload', $Buffer->Payload, 0);
+                    $this->SendDebug('Voltage L2 Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_Voltage1', floatval($Buffer->Payload));
+                }
+                if (fnmatch('*emeter/1/total', $Buffer->Topic)) {
+                    $this->SendDebug('Total L2 Payload', $Buffer->Payload, 0);
+                    $this->SetValue('Shelly_Total1', floatval($Buffer->Payload) / 1000);
+                }
+                if (fnmatch('*emeter/1/total_returned', $Buffer->Topic)) {
+                    $this->SendDebug('Total Returned L2 Payload', $Buffer->Payload, 0);
+                    $this->SetValue('Shelly_TotalReturned1', floatval($Buffer->Payload) / 1000);
                 }
 
                 //Phase C
                 if (fnmatch('*emeter/2/power', $Buffer->Topic)) {
-                    $this->SendDebug('Power Payload', $Buffer->Payload, 0);
+                    $this->SendDebug('Power L3 Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_Power2', floatval($Buffer->Payload));
                 }
                 if (fnmatch('*emeter/2/pf', $Buffer->Topic)) {
-                    $this->SendDebug('Power Factor Payload', $Buffer->Payload, 0);
+                    $this->SendDebug('Power Factor L3 Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_PowerFactor2', floatval($Buffer->Payload));
                 }
                 if (fnmatch('*emeter/2/current', $Buffer->Topic)) {
-                    $this->SendDebug('Current Payload', $Buffer->Payload, 0);
+                    $this->SendDebug('Current L3 Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_Current2', floatval($Buffer->Payload));
                 }
                 if (fnmatch('*emeter/2/voltage', $Buffer->Topic)) {
-                    $this->SendDebug('Voltage Payload', $Buffer->Payload, 0);
+                    $this->SendDebug('Voltage L3 Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_Voltage2', floatval($Buffer->Payload));
+                }
+                if (fnmatch('*emeter/1/total', $Buffer->Topic)) {
+                    $this->SendDebug('Total L3 Payload', $Buffer->Payload, 0);
+                    $this->SetValue('Shelly_Total2', floatval($Buffer->Payload) / 1000);
+                }
+                if (fnmatch('*emeter/1/total_returned', $Buffer->Topic)) {
+                    $this->SendDebug('Total ReturnedL 3 Payload', $Buffer->Payload, 0);
+                    $this->SetValue('Shelly_TotalReturned2', floatval($Buffer->Payload) / 1000);
                 }
             }
         }
