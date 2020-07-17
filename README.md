@@ -41,6 +41,7 @@ Die selben Zugangsdaten müssen über das Shelly Webinterface unter Internet & S
 * [ShellyAir](ShellyAir/README.md)
 * [ShellyButton1](ShellyButton1/README.md)
 * [ShellyDimmer](ShellyDimmer/README.md)
+* [ShellyDuo](ShellyDuo/README.md)
 * [ShellyEM](ShellyEM/README.md)
 * [ShellyFlood](ShellyFlood/README.md)
 * [ShellyGas](ShellyGas/README.md)
