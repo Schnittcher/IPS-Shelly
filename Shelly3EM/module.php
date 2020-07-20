@@ -189,11 +189,11 @@ class Shelly3EM extends IPSModule
                     $this->SendDebug('Voltage L3 Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_Voltage2', floatval($Buffer->Payload));
                 }
-                if (fnmatch('*emeter/1/total', $Buffer->Topic)) {
+                if (fnmatch('*emeter/2/total', $Buffer->Topic)) {
                     $this->SendDebug('Total L3 Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_Total2', floatval($Buffer->Payload) / 1000);
                 }
-                if (fnmatch('*emeter/1/total_returned', $Buffer->Topic)) {
+                if (fnmatch('*emeter/2/total_returned', $Buffer->Topic)) {
                     $this->SendDebug('Total ReturnedL 3 Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_TotalReturned2', floatval($Buffer->Payload) / 1000);
                 }
