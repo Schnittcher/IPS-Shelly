@@ -128,6 +128,7 @@ class ShellyConfigurator extends IPSModule
                         ];
                         break;
                     case 'shellydimmer':
+                    case 'shellydimmer2':
                         $moduleID = '{69B501C7-DCE8-4A4A-910C-D3954473E654}';
                         $DeviceType = 'Shelly Dimmer';
                         $AddValue['create'] = [
@@ -340,6 +341,9 @@ class ShellyConfigurator extends IPSModule
         $InstanceIDs[] = IPS_GetInstanceListByModuleID('{F56CC544-581D-42EB-AAF0-F5E9E908916C}');
 
         //ShellyDimmer
+        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{69B501C7-DCE8-4A4A-910C-D3954473E654}');
+
+        //ShellyDimmer2
         $InstanceIDs[] = IPS_GetInstanceListByModuleID('{69B501C7-DCE8-4A4A-910C-D3954473E654}');
 
         //ShellyEM
