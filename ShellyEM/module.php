@@ -154,7 +154,7 @@ class ShellyEM extends IPSModule
                 if (fnmatch('*emeter/1/total ', $Buffer->Topic)) {
                     $this->SendDebug('Total Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_Total1', floatval($Buffer->Payload) / 1000);
-                }                
+                }
                 if (fnmatch('*emeter/1/total_returned ', $Buffer->Topic)) {
                     $this->SendDebug('Total Returned Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_TotalReturned1', floatval($Buffer->Payload) / 1000);
