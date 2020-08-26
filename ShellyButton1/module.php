@@ -67,7 +67,7 @@ class ShellyButton1 extends IPSModule
             $this->SendDebug('MQTT Topic', $Buffer->Topic, 0);
 
             if (property_exists($Buffer, 'Topic')) {
-                if (fnmatch('*/input/0', $Buffer->Topic)) {
+                if (fnmatch('*/input_event/0', $Buffer->Topic)) {
                     $Payload = json_decode($Buffer->Payload);
                     $this->SendDebug('Input Payload', $Buffer->Payload, 0);
                     switch ($Payload->event) {
