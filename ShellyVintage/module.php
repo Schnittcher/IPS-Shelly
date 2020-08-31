@@ -99,7 +99,7 @@ class ShellyVintage extends IPSModule
                 }
                 if (fnmatch('*/energy', $Buffer->Topic)) {
                     $this->SendDebug('Energy Payload', $Buffer->Payload, 0);
-                    $this->SetValue('Shelly_Energy', $Buffer->Payload);
+                    $this->SetValue('Shelly_Energy', $Buffer->Payload / 60000);
                 }
                 if (fnmatch('*/online', $Buffer->Topic)) {
                     $this->SendDebug('Online Payload', $Buffer->Payload, 0);
