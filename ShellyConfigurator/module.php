@@ -43,7 +43,7 @@ class ShellyConfigurator extends IPSModule
                 ];
 
                 $moduleID = '';
-                switch ($Shelly['DeviceType']) {
+                switch (strtolower($Shelly['DeviceType'])) {
                     case 'shelly1':
                         $moduleID = '{9E5FA0B2-AA98-48D5-AE07-78DEA4B0370A}';
                         $DeviceType = 'Shelly 1';
