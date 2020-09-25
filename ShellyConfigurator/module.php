@@ -408,7 +408,7 @@ class ShellyConfigurator extends IPSModule
 
         $shellys = [];
         foreach ($resultServiceTypes as $key => $device) {
-            if (strpos($device['Name'], 'shelly') !== false) {
+            if (strpos(strtolower($device['Name']), 'shelly') !== false) {
                 $shelly = [];
 
                 $deviceInfo = ZC_QueryService($mDNSInstanceIDs[0], $device['Name'], '_http._tcp', 'local.');
