@@ -41,7 +41,7 @@ class Shelly1 extends IPSModule
         $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
         //Setze Filter für ReceiveData
         $MQTTTopic = $this->ReadPropertyString('MQTTTopic');
-        $this->SetReceiveDataFilter('.*' . $MQTTTopic . '.*');
+        $this->SetReceiveDataFilter(MQTT_GROUP_TOPIC . '/' . $MQTTTopic . '.*');
 
         if (($this->ReadPropertyString('Device') == 'shelly1pm')) {
             $this->RegisterVariableFloat('Shelly_Power', $this->Translate('Power'), '~Watt.3680');
