@@ -176,7 +176,7 @@ class ShellyConfigurator extends IPSModule
                             ]
                         ];
                         break;
-                    case 'shelly3em':
+                    case 'shellyem3':
                         $moduleID = '{108ECEFF-642A-4B1F-9608-E592E31DBA11}';
                         $DeviceType = 'Shelly 3EM';
                         $AddValue['create'] = [
