@@ -279,6 +279,32 @@ class ShellyConfigurator extends IPSModule
                                 ]
                             ];
                             break;
+                        case 'shellydw':
+                            $moduleID = '{24BDCF16-A370-6F72-8CBD-9B9968899FED}';
+                            $DeviceType = 'Shelly Door / Window';
+                            $AddValue['create'] = [
+                                [
+                                    'moduleID'      => $moduleID,
+                                    'configuration' => [
+                                        'MQTTTopic'  => $Shelly['Name'],
+                                        'Device'     => 'DW'
+                                    ]
+                                ]
+                            ];
+                            break;
+                        case 'shellydw2':
+                            $moduleID = '{24BDCF16-A370-6F72-8CBD-9B9968899FED}';
+                            $DeviceType = 'Shelly Door / Window';
+                            $AddValue['create'] = [
+                                [
+                                    'moduleID'      => $moduleID,
+                                    'configuration' => [
+                                        'MQTTTopic'  => $Shelly['Name'],
+                                        'Device'     => 'DW2'
+                                    ]
+                                ]
+                            ];
+                            break;
                         case 'shellygas':
                             $moduleID = '{8725928A-A390-42FA-B045-A182499767C1}';
                             $DeviceType = 'Shelly Gas';

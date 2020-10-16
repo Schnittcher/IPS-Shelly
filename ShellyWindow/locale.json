@@ -4,7 +4,10 @@
       "State": "Status",
       "Reachable": "Erreichbar",
       "Lux": "Lux",
-      "Battery": "Batterie"
+      "Battery": "Batterie",
+      "Temperature": "Temperatur",
+      "Vibration": "Vibration",
+      "Tilt": "Neigung"
     }
   }
 }

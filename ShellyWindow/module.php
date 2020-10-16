@@ -34,6 +34,12 @@ class ShellyWindow extends IPSModule
         //Never delete this line!
         parent::ApplyChanges();
         $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
+
+        if (($this->ReadPropertyString('Device') == 'DW2')) {
+            $this->RegisterVariableFloat('Shelly_Temperature', $this->Translate('Temperature'), '~Temperature');
+            $this->RegisterVariableBoolean('Shelly_Vibration', $this->Translate('Vibration'), '~Alert');
+            $this->RegisterVariableInteger('Shelly_Tilt', $this->Translate('Tilt'), '');
+        }
         //Setze Filter für ReceiveData
         $MQTTTopic = $this->ReadPropertyString('MQTTTopic');
         $this->SetReceiveDataFilter('.*' . $MQTTTopic . '.*');
@@ -81,6 +87,28 @@ class ShellyWindow extends IPSModule
                 if (fnmatch('*/battery', $Buffer->Topic)) {
                     $this->SendDebug('Battery Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_Battery', $Buffer->Payload);
+                }
+                if (fnmatch('*/temperature', $Buffer->Topic)) {
+                    $this->SendDebug('Temperature Payload', $Buffer->Payload, 0);
+                    $this->SetValue('Shelly_Temperature', $Buffer->Payload);
+                }
+                if (fnmatch('*/vibration', $Buffer->Topic)) {
+                    $this->SendDebug('Vibration Payload', $Buffer->Payload, 0);
+                    switch ($Buffer->Payload) {
+                        case 1:
+                            $this->SetValue('Shelly_Vibration', true);
+                            break;
+                        case 0:
+                            $this->SetValue('Shelly_Vibration', false);
+                            break;
+                        default:
+                            $this->SendDebug('Invalid Payload for Vibration', $Buffer->Payload, 0);
+                            break;
+                        }
+                }
+                if (fnmatch('*/tilt', $Buffer->Topic)) {
+                    $this->SendDebug('Tilt Payload', $Buffer->Payload, 0);
+                    $this->SetValue('Shelly_Tilt', $Buffer->Payload);
                 }
                 if (fnmatch('*/online', $Buffer->Topic)) {
                     $this->SendDebug('Online Payload', $Buffer->Payload, 0);
