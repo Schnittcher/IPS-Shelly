@@ -20,6 +20,9 @@ class ShellyRGBW2 extends IPSModule
         $this->RegisterPropertyString('MQTTTopic', '');
         $this->RegisterPropertyString('Mode', '-');
 
+        $this->RegisterVariableBoolean('Shelly_Input', $this->Translate('Input'), '~Switch');
+        $this->RegisterVariableBoolean('Shelly_Longpush', $this->Translate('Longpush'), '~Switch');
+
         $this->RegisterProfileBooleanEx('Shelly.Reachable', 'Network', '', '', [
             [false, 'Offline',  '', 0xFF0000],
             [true, 'Online',  '', 0x00FF00]
@@ -172,6 +175,28 @@ class ShellyRGBW2 extends IPSModule
                     $this->SendDebug('ShellyRGBW2 Payload', $Buffer->Payload, 0);
                     $this->SendDebug('ShellyRGBW2 Channel', $channel, 0);
                     $Payload = json_decode($Buffer->Payload);
+                    if (fnmatch('*/input/0', $Buffer->Topic)) {
+                        $this->SendDebug('Input Payload', $Buffer->Payload, 0);
+                        switch ($Buffer->Payload) {
+                            case 0:
+                                $this->SetValue('Shelly_Input', 0);
+                                break;
+                            case 1:
+                                $this->SetValue('Shelly_Input', 1);
+                                break;
+                        }
+                    }
+                    if (fnmatch('*/longpush/0', $Buffer->Topic)) {
+                        $this->SendDebug('Longpush Payload', $Buffer->Payload, 0);
+                        switch ($Buffer->Payload) {
+                            case 0:
+                                $this->SetValue('Shelly_Longpush', 0);
+                                break;
+                            case 1:
+                                $this->SetValue('Shelly_Longpush', 1);
+                                break;
+                        }
+                    }
                     if (fnmatch('*status*', $Buffer->Topic)) {
                         switch ($Payload->mode) {
                             case 'white':
