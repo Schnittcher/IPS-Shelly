@@ -70,10 +70,10 @@ class ShellyWindow extends IPSModule
                     $this->SendDebug('State Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 'close':
-                            $this->SetValue('Shelly_State', true);
+                            $this->SetValue('Shelly_State', false);
                             break;
                         case 'open':
-                            $this->SetValue('Shelly_State', false);
+                            $this->SetValue('Shelly_State', true);
                             break;
                         default:
                             $this->SendDebug('Invalid Payload for State', $Buffer->Payload, 0);
