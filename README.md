@@ -51,6 +51,7 @@ Die selben Zugangsdaten müssen über das Shelly Webinterface unter Internet & S
 * [ShellyRGBW2](ShellyRGBW2/README.md)
 * [ShellySense](ShellySense/README.md)
 * [ShellySmoke](ShellySmoke/README.md)
+* [ShellyUni](ShellyUni/README.md)
 * [ShellyVintge](ShellyVintage/README.md)
 * [ShellyWindow](ShellyWindow/README.md)
 

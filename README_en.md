@@ -46,6 +46,7 @@ If you would like to use the username/password settings you need to configure it
 * [ShellyPlug](ShellyPlug/README_en.md)
 * [ShellyRGBW2](ShellyRGBW2/README_en.md)
 * [ShellySense](ShellySense/README_en.md)
+* [ShellyUni](ShellyUni/README_en.md)
 * [ShellySmoke](ShellySmoke/README_en.md)
 * [ShellyVintge](ShellyVintage/README_en.md)
 * [ShellyWindow](ShellyWindow/README_en.md)

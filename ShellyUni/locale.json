@@ -1,0 +1,14 @@
+{
+  "translations": {
+    "de": {
+      "State 1": "Status 1",
+      "State 2": "Status 2",
+      "Input 1": "Eingang 1",
+      "Input 2": "Eingang 2",
+      "ADC 1": "ADC 1",
+      "ADC 2": "ADC 2",
+      "Variable profile type does not match for profile": "Der Profiltyp der Variablen stimmt nicht mit dem Profil überein",
+      "Reachable": "Erreichbar"
+    }
+  }
+}
