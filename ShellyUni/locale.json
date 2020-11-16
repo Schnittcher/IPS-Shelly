@@ -8,7 +8,10 @@
       "ADC 1": "ADC 1",
       "ADC 2": "ADC 2",
       "Variable profile type does not match for profile": "Der Profiltyp der Variablen stimmt nicht mit dem Profil überein",
-      "Reachable": "Erreichbar"
+      "Reachable": "Erreichbar",
+      "External Temperature 1": "Externe Temperatur 1",
+      "External Temperature 2": "Externe Temperatur 2",
+      "External Temperature 3": "Externe Temperatur 3"
     }
   }
 }
