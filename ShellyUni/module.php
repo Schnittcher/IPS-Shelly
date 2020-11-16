@@ -156,6 +156,24 @@ class ShellyUni extends IPSModule
                             break;
                     }
                 }
+                if (fnmatch('*/ext_temperature/[012]', $Buffer->Topic)) {
+                    $this->SendDebug('Input Payload', $Buffer->Payload, 0);
+                    $input = $this->getChannelRelay($Buffer->Topic);
+                    switch ($input) {
+                        case 0:
+                            $this->RegisterVariableFloat('Shelly_ExtTemperature0', $this->Translate('External Temperature 1'), '~Temperature');
+                            $this->SetValue('Shelly_ExtTemperature0', $Buffer->Payload);
+                            break;
+                        case 1:
+                            $this->RegisterVariableFloat('Shelly_ExtTemperature1', $this->Translate('External Temperature 2'), '~Temperature');
+                            $this->SetValue('Shelly_ExtTemperature1', $Buffer->Payload);
+                            break;
+                        case 2:
+                            $this->RegisterVariableFloat('Shelly_ExtTemperature2', $this->Translate('External Temperature 3'), '~Temperature');
+                            $this->SetValue('Shelly_ExtTemperature2', $Buffer->Payload);
+                            break;
+                    }
+                }
                 if (fnmatch('*/online', $Buffer->Topic)) {
                     $this->SendDebug('Online Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
