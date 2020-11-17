@@ -157,7 +157,7 @@ class ShellyUni extends IPSModule
                     }
                 }
                 if (fnmatch('*/ext_temperature/[012]', $Buffer->Topic)) {
-                    $this->SendDebug('Input Payload', $Buffer->Payload, 0);
+                    $this->SendDebug('Ext_Temperature Payload', $Buffer->Payload, 0);
                     $input = $this->getChannelRelay($Buffer->Topic);
                     switch ($input) {
                         case 0:
@@ -171,6 +171,24 @@ class ShellyUni extends IPSModule
                         case 2:
                             $this->RegisterVariableFloat('Shelly_ExtTemperature2', $this->Translate('External Temperature 3'), '~Temperature');
                             $this->SetValue('Shelly_ExtTemperature2', $Buffer->Payload);
+                            break;
+                    }
+                }
+                if (fnmatch('*/ext_humidity/[012]', $Buffer->Topic)) {
+                    $this->SendDebug('Ext_Humidity Payload', $Buffer->Payload, 0);
+                    $input = $this->getChannelRelay($Buffer->Topic);
+                    switch ($input) {
+                        case 0:
+                            $this->RegisterVariableFloat('Shelly_ExtHumidity0', $this->Translate('External Humidity 1'), '~Humidity.F');
+                            $this->SetValue('Shelly_ExtHumidity0', $Buffer->Payload);
+                            break;
+                        case 1:
+                            $this->RegisterVariableFloat('Shelly_ExtHumidity1', $this->Translate('External Humidity 2'), '~Humidity.F');
+                            $this->SetValue('Shelly_ExtHumidity1', $Buffer->Payload);
+                            break;
+                        case 2:
+                            $this->RegisterVariableFloat('Shelly_ExtHumidity2', $this->Translate('External Humidity 3'), '~Humidity.F');
+                            $this->SetValue('Shelly_ExtHumidity2', $Buffer->Payload);
                             break;
                     }
                 }
