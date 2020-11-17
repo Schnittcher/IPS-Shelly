@@ -82,7 +82,7 @@ class ShellyWindow extends IPSModule
                 }
                 if (fnmatch('*/lux', $Buffer->Topic)) {
                     $this->SendDebug('Lux Payload', $Buffer->Payload, 0);
-                    $this->SetValue('Shelly_Lux', boolval($Buffer->Payload));
+                    $this->SetValue('Shelly_Lux', $Buffer->Payload);
                 }
                 if (fnmatch('*/battery', $Buffer->Topic)) {
                     $this->SendDebug('Battery Payload', $Buffer->Payload, 0);
