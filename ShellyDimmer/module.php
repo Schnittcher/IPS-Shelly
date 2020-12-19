@@ -27,6 +27,17 @@ class ShellyDimmer extends IPSModule
         $this->RegisterVariableBoolean('Shelly_Overload', $this->Translate('Overload'), '');
         $this->RegisterVariableBoolean('Shelly_Loaderror', $this->Translate('Loaderror'), '');
 
+        $this->RegisterProfileIntegerEx('Shelly.DimmerInput', 'ArrowRight', '', '', [
+            [0, $this->Translate('shortpush'),  '', 0x08f26e],
+            [1, $this->Translate('longpush'),  '', 0x06a94d]
+        ]);
+
+        $this->RegisterVariableBoolean('Shelly_Input0', $this->Translate('Input 1'), '~Switch');
+        $this->RegisterVariableBoolean('Shelly_Input1', $this->Translate('Input 2'), '~Switch');
+
+        $this->RegisterVariableInteger('Shelly_InputEvent0', $this->Translate('Input 1 Event'), 'Shelly.DimmerInput');
+        $this->RegisterVariableInteger('Shelly_InputEvent1', $this->Translate('Input 2 Event'), 'Shelly.DimmerInput');
+
         $this->RegisterProfileBooleanEx('Shelly.Reachable', 'Network', '', '', [
             [false, 'Offline',  '', 0xFF0000],
             [true, 'Online',  '', 0x00FF00]
@@ -116,6 +127,38 @@ class ShellyDimmer extends IPSModule
                 if (fnmatch('*/loaderror', $Buffer->Topic)) {
                     $this->SendDebug('Loaderror Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_Loaderror', $Buffer->Payload);
+                }
+                if (fnmatch('*/input/[01]*', $Buffer->Topic)) {
+                    $this->SendDebug('Input Payload', $Buffer->Payload, 0);
+                    $ShellyTopic = explode('/', $Buffer->Topic);
+                    $Key = count($ShellyTopic) - 1;
+                    $index = $ShellyTopic[$Key];
+
+                    switch ($Buffer->Payload) {
+                        case 0:
+                            $this->SetValue('Shelly_Input' . $index, false);
+                            break;
+                        case 1:
+                            $this->SetValue('Shelly_Input' . $index, true);
+                            break;
+                    }
+                }
+                if (fnmatch('*/input_event/[01]*', $Buffer->Topic)) {
+                    $this->SendDebug('Input Payload', $Buffer->Payload, 0);
+                    $ShellyTopic = explode('/', $Buffer->Topic);
+                    $Key = count($ShellyTopic) - 1;
+                    $index = $ShellyTopic[$Key];
+
+                    $Payload = json_decode($Buffer->Payload);
+                    $this->SendDebug('Input Payload', $Buffer->Payload, 0);
+                    switch ($Payload->event) {
+                        case 'S':
+                            $this->SetValue('Shelly_InputEvent' . $index, 0);
+                            break;
+                        case 'L':
+                            $this->SetValue('Shelly_InputEvent' . $index, 1);
+                            break;
+                    }
                 }
                 if (fnmatch('*/online', $Buffer->Topic)) {
                     $this->SendDebug('Online Payload', $Buffer->Payload, 0);
