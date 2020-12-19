@@ -7,7 +7,8 @@
       "Battery": "Batterie",
       "Temperature": "Temperatur",
       "Vibration": "Vibration",
-      "Tilt": "Neigung"
+      "Tilt": "Neigung",
+      "Please select device": "Bitte wählen Sie ein Gerät aus"
     }
   }
 }
