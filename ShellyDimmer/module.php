@@ -38,6 +38,9 @@ class ShellyDimmer extends IPSModule
         $this->RegisterVariableInteger('Shelly_InputEvent0', $this->Translate('Input 1 Event'), 'Shelly.DimmerInput');
         $this->RegisterVariableInteger('Shelly_InputEvent1', $this->Translate('Input 2 Event'), 'Shelly.DimmerInput');
 
+        $this->RegisterVariableInteger('Shelly_InputEventCount0', $this->Translate('Input 1 Event Count'), '');
+        $this->RegisterVariableInteger('Shelly_InputEventCount1', $this->Translate('Input 2 Event Count'), '');
+
         $this->RegisterProfileBooleanEx('Shelly.Reachable', 'Network', '', '', [
             [false, 'Offline',  '', 0xFF0000],
             [true, 'Online',  '', 0x00FF00]
@@ -159,6 +162,7 @@ class ShellyDimmer extends IPSModule
                             $this->SetValue('Shelly_InputEvent' . $index, 1);
                             break;
                     }
+                    $this->SetValue('Shelly_InputEventCount' . $index, $Payload->event_cnt);
                 }
                 if (fnmatch('*/online', $Buffer->Topic)) {
                     $this->SendDebug('Online Payload', $Buffer->Payload, 0);
