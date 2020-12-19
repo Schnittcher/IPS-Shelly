@@ -9,7 +9,13 @@
       "Overtemperature": "Übertemperatur",
       "Device": "Geräte",
       "Please select device": "Bitte wählen Sie das Gerät aus",
-      "Brightness": "Helligkeit"
+      "Brightness": "Helligkeit",
+      "Input 1": " Eingang 1",
+      "Input 2": " Eingang 2",
+      "Input 1 Event": "Eingang 1 Ereignis",
+      "Input 2 Event": "Eingang 2 Ereignis",
+      "Input 1 Event Count": "Eingang 1 Ereignis Anzahl",
+      "Input 2 Event Count": "Eingang 2 Ereignis Anzahl"
     }
   }
 }
