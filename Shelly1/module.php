@@ -145,15 +145,15 @@ class Shelly1 extends IPSModule
                     $input = $this->getChannelRelay($Buffer->Topic);
                     switch ($input) {
                         case 0:
-                            $this->RegisterVariableFloat('Shelly_ExtSwitch0', $this->Translate('External Switch 1'), '~Switch');
+                            $this->RegisterVariableBoolean('Shelly_ExtSwitch0', $this->Translate('External Switch 1'), '~Switch');
                             $this->SetValue('Shelly_ExtSwitch0', $Buffer->Payload);
                             break;
                         case 1:
-                            $this->RegisterVariableFloat('Shelly_ExtSwitch1', $this->Translate('External Switch 2'), '~Switch');
+                            $this->RegisterVariableBoolean('Shelly_ExtSwitch1', $this->Translate('External Switch 2'), '~Switch');
                             $this->SetValue('Shelly_ExtSwitch1', $Buffer->Payload);
                             break;
                         case 2:
-                            $this->RegisterVariableFloat('Shelly_ExtSwitch2', $this->Translate('External Switch 3'), '~Switch');
+                            $this->RegisterVariableBoolean('Shelly_ExtSwitch2', $this->Translate('External Switch 3'), '~Switch');
                             $this->SetValue('Shelly_ExtSwitch2', $Buffer->Payload);
                             break;
                     }
