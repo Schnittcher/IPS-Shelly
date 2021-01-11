@@ -341,6 +341,18 @@ class ShellyConfigurator extends IPSModule
                                 ]
                             ];
                             break;
+                        case 'shellyuni':
+                            $moduleID = '{D10AF7A0-CBC0-415A-BD3B-FFF0E8BB8B21}';
+                            $DeviceType = 'Shelly Uni';
+                            $AddValue['create'] = [
+                                [
+                                    'moduleID'      => $moduleID,
+                                    'configuration' => [
+                                        'MQTTTopic' => $Shelly['Name'],
+                                    ]
+                                ]
+                            ];
+                            break;
                     default:
                         $this->SendDebug(__FUNCTION__ . ' DeviceType Switch', 'Invalid Device Type:' . strtolower($Shelly['DeviceType']), 0);
                         $DeviceType = 'Invalid';
@@ -416,6 +428,9 @@ class ShellyConfigurator extends IPSModule
 
         //Shelly Duo
         $InstanceIDs[] = IPS_GetInstanceListByModuleID('{6FEE58E6-082D-6934-F49E-EC6642E39992}');
+
+        //Shelly Uni
+        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{D10AF7A0-CBC0-415A-BD3B-FFF0E8BB8B21}');
 
         foreach ($InstanceIDs as $IDs) {
             foreach ($IDs as $id) {
