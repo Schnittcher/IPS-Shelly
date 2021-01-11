@@ -15,7 +15,10 @@
       "External Temperature 1": "Externe Temperatur 1",
       "External Temperature 2": "Externe Temperatur 2",
       "External Temperature 3": "Externe Temperatur 3",
-      "External Humidity": "Externe Luftfeuchte"
+      "External Humidity": "Externe Luftfeuchte",
+      "External Switch 1": "External Switch 1",
+      "External Switch 2": "External Switch 2",
+      "External Switch 3": "External Switch 3"
     }
   }
 }
