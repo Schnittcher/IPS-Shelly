@@ -6,10 +6,13 @@
       "Variable profile type does not match for profile": "Der Profiltyp der Variablen stimmt nicht mit dem Profil überein",
       "Power": "Leistung",
       "Energy": "Energie",
-      "Device": "Geräte",
+      "Device": "Gerät",
       "Brightness": "Helligkeit",
       "Color Temperature": "Farbtemperatur",
-      "White": "Weiß"
+      "White": "Weiß",
+      "Please select device": "Bitte wählen Sie das Gerät aus",
+      "Gain": "Gain",
+      "Color": "Farbe"
     }
   }
 }

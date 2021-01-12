@@ -42,3 +42,13 @@
    RequestAction(76543, 2700); //Set 2700 K
    RequestAction(76543, 2900); //Set 2900 K
    ```
+
+   Variable ID Color: 14725
+   ```php
+   RequestAction(14725, 0xff0000); //Color red
+   ```
+   
+   Variable ID Gain: 15935
+   ```php
+   RequestAction(15935,50); //50% gain
+   ```

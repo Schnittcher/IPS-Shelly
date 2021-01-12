@@ -1,7 +1,14 @@
 {
     "elements":
     [
-      { "type": "ValidationTextBox", "name": "MQTTTopic", "caption": "MQTT Topic" }
+      { "type": "ValidationTextBox", "name": "MQTTTopic", "caption": "MQTT Topic" },
+      { "type": "Select", "name": "Device", "caption": "Device",
+        "options": [
+          { "caption": "Please select device", "value": "" },
+          { "caption": "Shelly Duo", "value": "duo" },
+          { "caption": "Shelly Duo RGBW", "value": "rgbw" }
+        ]
+      }
     ],
     "actions": [
         {

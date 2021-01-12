@@ -139,9 +139,9 @@ class ShellyRGBW2 extends IPSModule
             case 'Shelly_White':
                 $this->SetWhite($Value);
                 break;
-            case 'Shelly_Gain':
-                $this->SetGain($Value);
-                break;
+                case 'Shelly_Gain':
+                    $this->SetGain($Value);
+                    break;
             case 'Shelly_Effect':
                 $this->SetEffect($Value);
                 break;

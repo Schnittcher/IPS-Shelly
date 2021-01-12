@@ -18,9 +18,11 @@ class ShellyDuo extends IPSModule
         $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
 
         $this->RegisterPropertyString('MQTTTopic', '');
+        $this->RegisterPropertyString('Device', '');
 
         $this->RegisterVariableBoolean('Shelly_State', $this->Translate('State'), '~Switch');
         $this->RegisterVariableInteger('Shelly_Brightness', $this->Translate('Brightness'), 'Intensity.100');
+
         $this->RegisterVariableInteger('Shelly_White', $this->Translate('White'), 'Intensity.100');
 
         $this->RegisterProfileInteger('ShellyDuo.ColorTemperature', 'Intensity', '', 'K', 2700, 6500, 1);
@@ -49,6 +51,17 @@ class ShellyDuo extends IPSModule
         //Setze Filter für ReceiveData
         $MQTTTopic = $this->ReadPropertyString('MQTTTopic');
         $this->SetReceiveDataFilter('.*' . $MQTTTopic . '.*');
+
+        switch ($this->ReadPropertyString('DeviceType')) {
+            case 'rgbw':
+                $this->SendDebug(__FUNCTION__ . ' Device Type: ', ' RGBW', 0);
+                $this->RegisterVariableInteger('Shelly_Color', $this->Translate('Color'), '~HexColor');
+                $this->EnableAction('Shelly_Color');
+
+                $this->RegisterVariableInteger('Shelly_Gain', $this->Translate('Gain'), 'Intensity.100');
+                $this->EnableAction('Shelly_Gain');
+                break;
+        }
     }
 
     public function RequestAction($Ident, $Value)
@@ -65,6 +78,12 @@ class ShellyDuo extends IPSModule
                 break;
             case 'Shelly_ColorTemperature':
                 $this->ColorTemperatureSet(intval($Value));
+                break;
+            case 'Shelly_Color':
+                $this->SetColor($Value);
+                break;
+            case 'Shelly_Gain':
+                $this->SetGain($Value);
                 break;
             }
     }
@@ -107,6 +126,10 @@ class ShellyDuo extends IPSModule
                     $this->SetValue('Shelly_Brightness', $Payload->brightness);
                     $this->SetValue('Shelly_White', $Payload->white);
                     $this->SetValue('Shelly_ColorTemperature', $Payload->temp);
+                    if (property_exists($Payload, 'red')) { //wenn red existiert, existieren auch die anderen
+                        $this->SetValue('Shelly_Gain', $Payload->gain);
+                        $this->SetValue('Shelly_Color', $this->rgbToHex($Payload->red, $Payload->green, $Payload->blue));
+                    }
                 }
                 if (fnmatch('*/light/0/power', $Buffer->Topic)) {
                     $this->SendDebug('Power Payload', $Buffer->Payload, 0);
@@ -163,6 +186,34 @@ class ShellyDuo extends IPSModule
         $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/light/0/set';
         $Payload['temp'] = strval($value);
         $Payload = json_encode($Payload);
+        $this->sendMQTT($Topic, $Payload);
+    }
+
+    private function SetColor($color)
+    {
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/color/0/set';
+
+        //If $Value Hex Color convert to Decimal
+        if (preg_match('/^#[a-f0-9]{6}$/i', strval($color))) {
+            $color = hexdec($color);
+        }
+
+        $RGB = $this->HexToRGB(intval($color));
+        $Payload['red'] = strval($RGB[0]);
+        $Payload['green'] = strval($RGB[1]);
+        $Payload['blue'] = strval($RGB[2]);
+
+        $Payload = json_encode($Payload);
+
+        $this->sendMQTT($Topic, $Payload);
+    }
+
+    private function SetGain(int $value)
+    {
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/color/0/set';
+        $Payload['gain'] = strval($value);
+        $Payload = json_encode($Payload);
+
         $this->sendMQTT($Topic, $Payload);
     }
 }
