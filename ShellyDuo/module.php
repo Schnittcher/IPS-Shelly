@@ -52,7 +52,7 @@ class ShellyDuo extends IPSModule
         $MQTTTopic = $this->ReadPropertyString('MQTTTopic');
         $this->SetReceiveDataFilter('.*' . $MQTTTopic . '.*');
 
-        switch ($this->ReadPropertyString('DeviceType')) {
+        switch ($this->ReadPropertyString('Device')) {
             case 'rgbw':
                 $this->SendDebug(__FUNCTION__ . ' Device Type: ', ' RGBW', 0);
                 $this->RegisterVariableInteger('Shelly_Color', $this->Translate('Color'), '~HexColor');
