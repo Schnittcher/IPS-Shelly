@@ -53,7 +53,7 @@ class ShellyDuo extends IPSModule
         $this->SetReceiveDataFilter('.*' . $MQTTTopic . '.*');
 
         switch ($this->ReadPropertyString('Device')) {
-            case 'rgbw':
+            case 'color':
                 $this->SendDebug(__FUNCTION__ . ' Device Type: ', ' RGBW', 0);
                 $this->RegisterVariableInteger('Shelly_Color', $this->Translate('Color'), '~HexColor');
                 $this->EnableAction('Shelly_Color');
@@ -120,6 +120,17 @@ class ShellyDuo extends IPSModule
                             break;
                     }
                 }
+                if (fnmatch('*/color/0', $Buffer->Topic)) {
+                    $this->SendDebug('Power Payload', $Buffer->Payload, 0);
+                    switch ($Buffer->Payload) {
+                        case 'off':
+                            $this->SetValue('Shelly_State', 0);
+                            break;
+                        case 'on':
+                            $this->SetValue('Shelly_State', 1);
+                            break;
+                    }
+                }
                 if (fnmatch('*status*', $Buffer->Topic)) {
                     $Payload = json_decode($Buffer->Payload);
                     $this->SetValue('Shelly_State', $Payload->ison);
@@ -135,6 +146,7 @@ class ShellyDuo extends IPSModule
                     $this->SendDebug('Power Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_Power', $Buffer->Payload);
                 }
+
                 if (fnmatch('*/energy', $Buffer->Topic)) {
                     $this->SendDebug('Energy Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_Energy', $Buffer->Payload);
@@ -156,7 +168,7 @@ class ShellyDuo extends IPSModule
 
     private function SwitchMode(bool $Value)
     {
-        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/light/0/command';
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/' . $this->ReadPropertyString('Device') . '/0/command';
         if ($Value) {
             $Payload = 'on';
         } else {
@@ -167,7 +179,7 @@ class ShellyDuo extends IPSModule
 
     private function DimSet(int $value)
     {
-        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/light/0/set';
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/' . $this->ReadPropertyString('Device') . '/0/set';
         $Payload['brightness'] = strval($value);
         $Payload = json_encode($Payload);
         $this->sendMQTT($Topic, $Payload);
@@ -175,7 +187,7 @@ class ShellyDuo extends IPSModule
 
     private function WhiteSet(int $value)
     {
-        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/light/0/set';
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/' . $this->ReadPropertyString('Device') . '/0/set';
         $Payload['white'] = strval($value);
         $Payload = json_encode($Payload);
         $this->sendMQTT($Topic, $Payload);
@@ -183,7 +195,7 @@ class ShellyDuo extends IPSModule
 
     private function ColorTemperatureSet(int $value)
     {
-        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/light/0/set';
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/' . $this->ReadPropertyString('Device') . '/0/set';
         $Payload['temp'] = strval($value);
         $Payload = json_encode($Payload);
         $this->sendMQTT($Topic, $Payload);
@@ -191,7 +203,7 @@ class ShellyDuo extends IPSModule
 
     private function SetColor($color)
     {
-        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/color/0/set';
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/' . $this->ReadPropertyString('Device') . '/0/set';
 
         //If $Value Hex Color convert to Decimal
         if (preg_match('/^#[a-f0-9]{6}$/i', strval($color))) {
@@ -210,7 +222,7 @@ class ShellyDuo extends IPSModule
 
     private function SetGain(int $value)
     {
-        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/color/0/set';
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/' . $this->ReadPropertyString('Device') . '/0/set';
         $Payload['gain'] = strval($value);
         $Payload = json_encode($Payload);
 

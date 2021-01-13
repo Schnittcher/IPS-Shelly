@@ -5,8 +5,8 @@
       { "type": "Select", "name": "Device", "caption": "Device",
         "options": [
           { "caption": "Please select device", "value": "" },
-          { "caption": "Shelly Duo", "value": "duo" },
-          { "caption": "Shelly Duo RGBW", "value": "rgbw" }
+          { "caption": "Shelly Duo", "value": "light" },
+          { "caption": "Shelly Duo RGBW", "value": "color" }
         ]
       }
     ],

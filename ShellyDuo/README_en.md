@@ -10,6 +10,7 @@
    Field        | Description
    ------------ | -------------
    MQTT Topic   | The Topic (ShellyBulbDuo-deviceid) of the ShellyDuo is entered here. Currently, the following URL needs to be called for this: http://ShellyIP/settings The host name is found there. The host name is the DeviceID!
+   Gerät | Shelly Duo oder Shelly Duo RGBW
    
    ## 2. Functions
 
