@@ -1,7 +1,7 @@
 <?php
 
 declare(strict_types=1);
-
+require_once __DIR__ . '/../libs/ShellyHelper.php';
 require_once __DIR__ . '/../libs/VariableProfileHelper.php';
 require_once __DIR__ . '/../libs/MQTTHelper.php';
 
@@ -163,15 +163,15 @@ class Shelly1 extends IPSModule
                     $input = $this->getChannelRelay($Buffer->Topic);
                     switch ($input) {
                         case 0:
-                            $this->RegisterVariableBoolean('Shelly_ExtTemperature0', $this->Translate('External Temperature 1'), '~Temperature');
+                            $this->RegisterVariableFloat('Shelly_ExtTemperature0', $this->Translate('External Temperature 1'), '~Temperature');
                             $this->SetValue('Shelly_ExtTemperature0', $Buffer->Payload);
                             break;
                         case 1:
-                            $this->RegisterVariableBoolean('Shelly_ExtTemperature1', $this->Translate('External Temperature 2'), '~Temperature');
+                            $this->RegisterVariableFloat('Shelly_ExtTemperature1', $this->Translate('External Temperature 2'), '~Temperature');
                             $this->SetValue('Shelly_ExtTemperature1', $Buffer->Payload);
                             break;
                         case 2:
-                            $this->RegisterVariableBoolean('Shelly_ExtTemperature2', $this->Translate('External Temperature 3'), '~Temperature');
+                            $this->RegisterVariableFloat('Shelly_ExtTemperature2', $this->Translate('External Temperature 3'), '~Temperature');
                             $this->SetValue('Shelly_ExtTemperature2', $Buffer->Payload);
                             break;
                     }
