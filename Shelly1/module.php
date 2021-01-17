@@ -1,7 +1,7 @@
 <?php
 
 declare(strict_types=1);
-require_once __DIR__ . '/../libs/ShellyHelper.php';
+
 require_once __DIR__ . '/../libs/VariableProfileHelper.php';
 require_once __DIR__ . '/../libs/MQTTHelper.php';
 
@@ -140,8 +140,8 @@ class Shelly1 extends IPSModule
                     $this->SendDebug('Energy Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_Energy', $Buffer->Payload / 60000);
                 }
-                if (fnmatch('*/ext_temperature/[012]', $Buffer->Topic)) {
-                    $this->SendDebug('ext_temperature Payload', $Buffer->Payload, 0);
+                if (fnmatch('*/ext_switch/[012]', $Buffer->Topic)) {
+                    $this->SendDebug('ext_switch Payload', $Buffer->Payload, 0);
                     $input = $this->getChannelRelay($Buffer->Topic);
                     switch ($input) {
                         case 0:
@@ -158,8 +158,8 @@ class Shelly1 extends IPSModule
                             break;
                     }
                 }
-                if (fnmatch('*/ext_switch/[012]', $Buffer->Topic)) {
-                    $this->SendDebug('ext_switch Payload', $Buffer->Payload, 0);
+                if (fnmatch('*/ext_temperature/[012]', $Buffer->Topic)) {
+                    $this->SendDebug('ext_temperature Payload', $Buffer->Payload, 0);
                     $input = $this->getChannelRelay($Buffer->Topic);
                     switch ($input) {
                         case 0:
