@@ -367,6 +367,18 @@ class ShellyConfigurator extends IPSModule
                                 ]
                             ];
                             break;
+                        case 'shellymotionsensor':
+                            $moduleID = '{DB241FB8-F26D-4F74-82E4-66F046931B6E}';
+                            $DeviceType = 'Shelly Motion';
+                            $AddValue['create'] = [
+                                [
+                                    'moduleID'      => $moduleID,
+                                    'configuration' => [
+                                        'MQTTTopic' => $Shelly['Name'],
+                                    ]
+                                ]
+                            ];
+                            break;
                     default:
                         $this->SendDebug(__FUNCTION__ . ' DeviceType Switch', 'Invalid Device Type:' . strtolower($Shelly['DeviceType']), 0);
                         $DeviceType = 'Invalid';
@@ -446,6 +458,9 @@ class ShellyConfigurator extends IPSModule
         //Shelly Uni
         $InstanceIDs[] = IPS_GetInstanceListByModuleID('{D10AF7A0-CBC0-415A-BD3B-FFF0E8BB8B21}');
 
+        //ShellyMotion
+        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{DB241FB8-F26D-4F74-82E4-66F046931B6E}');
+        
         foreach ($InstanceIDs as $IDs) {
             foreach ($IDs as $id) {
                 if (IPS_GetProperty($id, 'MQTTTopic') == $ShellyID) {
