@@ -21,8 +21,7 @@ class ShellyUni extends IPSModule
         $this->RegisterVariableBoolean('Shelly_State', $this->Translate('State 1'), '~Switch');
         $this->RegisterVariableBoolean('Shelly_State1', $this->Translate('State 2'), '~Switch');
 
-        $this->RegisterVariableFloat('Shelly_ADC', $this->Translate('ADC 1'), '~Volt');
-        $this->RegisterVariableFloat('Shelly_ADC1', $this->Translate('ADC 2'), '~Volt');
+        $this->RegisterVariableFloat('Shelly_ADC', $this->Translate('ADC'), '~Volt');
 
         $this->RegisterVariableBoolean('Shelly_Input', $this->Translate('Input 1'), '~Switch');
         $this->RegisterVariableBoolean('Shelly_Input1', $this->Translate('Input 2'), '~Switch');
@@ -150,7 +149,8 @@ class ShellyUni extends IPSModule
                             $this->SetValue('Shelly_ADC', $Buffer->Payload);
                             break;
                         case 1:
-                            $this->SetValue('Shelly_ADC1', $Buffer->Payload);
+                            $this->SendDebug('ADC 2', $Buffer->Payload, 0);
+                            //$this->SetValue('Shelly_ADC1', $Buffer->Payload);
                             break;
                         default:
                             break;
