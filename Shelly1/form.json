@@ -6,7 +6,8 @@
         "options": [
           { "caption": "Please select device", "value": "" },
           { "caption": "Shelly 1", "value": "shelly1" },
-          { "caption": "Shelly 1PM", "value": "shelly1pm" }
+          { "caption": "Shelly 1PM", "value": "shelly1pm" },
+          { "caption": "Shelly 1L", "value": "shelly1l" }
         ]
       }
     ],
