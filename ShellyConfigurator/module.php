@@ -70,7 +70,7 @@ class ShellyConfigurator extends IPSModule
                             ]
                         ];
                         break;
-                    case 'shelly1pm':
+                    case 'shelly1l':
                         $moduleID = '{9E5FA0B2-AA98-48D5-AE07-78DEA4B0370A}';
                         $DeviceType = 'Shelly 1L';
                         $AddValue['create'] = [
