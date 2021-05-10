@@ -19,7 +19,7 @@ class ShellyWindow extends IPSModule
         $this->RegisterPropertyString('Device', '');
         $this->RegisterVariableBoolean('Shelly_State', $this->Translate('State'), '~Window');
         $this->RegisterVariableInteger('Shelly_Lux', $this->Translate('Lux'), '~Illumination');
-        $this->RegisterVariableInteger('Shelly_Battery', $this->Translate('Battery'), '');
+        $this->RegisterVariableInteger('Shelly_Battery', $this->Translate('Battery'), '~Battery.100');
 
         $this->RegisterProfileBooleanEx('Shelly.Reachable', 'Network', '', '', [
             [false, 'Offline',  '', 0xFF0000],
