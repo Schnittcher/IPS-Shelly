@@ -368,14 +368,13 @@ class ShellyConfigurator extends IPSModule
                             ];
                             break;
                         case 'shellycolorbulb':
-                            $moduleID = '{6FEE58E6-082D-6934-F49E-EC6642E39992}';
-                            $DeviceType = 'Shelly Duo';
+                            $moduleID = '{65462305-608D-4E48-B532-E3D389F7DF00}';
+                            $DeviceType = 'Shelly Bulb RGBW';
                             $AddValue['create'] = [
                                 [
                                     'moduleID'      => $moduleID,
                                     'configuration' => [
-                                        'MQTTTopic' => $Shelly['Name'],
-                                        'Device'    => 'color',
+                                        'MQTTTopic' => $Shelly['Name']
                                     ]
                                 ]
                             ];
@@ -467,6 +466,9 @@ class ShellyConfigurator extends IPSModule
 
         //Shelly Duo
         $InstanceIDs[] = IPS_GetInstanceListByModuleID('{6FEE58E6-082D-6934-F49E-EC6642E39992}');
+
+        //Shelly Duo
+        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{65462305-608D-4E48-B532-E3D389F7DF00}');
 
         //Shelly Uni
         $InstanceIDs[] = IPS_GetInstanceListByModuleID('{D10AF7A0-CBC0-415A-BD3B-FFF0E8BB8B21}');

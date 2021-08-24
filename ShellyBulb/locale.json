@@ -1,0 +1,19 @@
+{
+  "translations": {
+    "de": {
+      "State": "Status",
+      "Mode": "Modus",
+      "Reachable": "Erreichbar",
+      "Variable profile type does not match for profile": "Der Profiltyp der Variablen stimmt nicht mit dem Profil überein",
+      "Power": "Leistung",
+      "Energy": "Energie",
+      "Device": "Gerät",
+      "Brightness": "Helligkeit",
+      "Color Temperature": "Farbtemperatur",
+      "White": "Weiß",
+      "Please select device": "Bitte wählen Sie das Gerät aus",
+      "Gain": "Gain",
+      "Color": "Farbe"
+    }
+  }
+}
