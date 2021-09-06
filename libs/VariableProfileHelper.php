@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * @addtogroup generic
  * @{
@@ -43,7 +45,7 @@ trait VariableProfileHelper
      * @param string $Suffix       Suffix für die Darstellung.
      * @param array  $Associations Assoziationen der Werte als Array.
      */
-    protected function RegisterProfileIntegerEx($Name, $Icon, $Prefix, $Suffix, $Associations, $MaxValue = -1, $StepSize=0)
+    protected function RegisterProfileIntegerEx($Name, $Icon, $Prefix, $Suffix, $Associations, $MaxValue = -1, $StepSize = 0)
     {
         $this->RegisterProfileEx(VARIABLETYPE_INTEGER, $Name, $Icon, $Prefix, $Suffix, $Associations, $MaxValue, $StepSize);
     }
@@ -57,7 +59,7 @@ trait VariableProfileHelper
      * @param string $Suffix       Suffix für die Darstellung.
      * @param array  $Associations Assoziationen der Werte als Array.
      */
-    protected function RegisterProfileFloatEx($Name, $Icon, $Prefix, $Suffix, $Associations, $MaxValue = -1, $StepSize=0, $Digits=0)
+    protected function RegisterProfileFloatEx($Name, $Icon, $Prefix, $Suffix, $Associations, $MaxValue = -1, $StepSize = 0, $Digits = 0)
     {
         $this->RegisterProfileEx(VARIABLETYPE_FLOAT, $Name, $Icon, $Prefix, $Suffix, $Associations, $MaxValue, $StepSize, $Digits);
     }
@@ -130,7 +132,7 @@ trait VariableProfileHelper
      * @param string $Suffix       Suffix für die Darstellung.
      * @param array  $Associations Assoziationen der Werte als Array.
      */
-    protected function RegisterProfileEx($VarTyp, $Name, $Icon, $Prefix, $Suffix, $Associations, $MaxValue = -1, $StepSize=0, $Digits=0)
+    protected function RegisterProfileEx($VarTyp, $Name, $Icon, $Prefix, $Suffix, $Associations, $MaxValue = -1, $StepSize = 0, $Digits = 0)
     {
         if (count($Associations) === 0) {
             $MinValue = 0;
@@ -184,6 +186,7 @@ trait VariableProfileHelper
             case VARIABLETYPE_FLOAT:
                 IPS_SetVariableProfileDigits($Name, $Digits);
                 // no break
+                // FIXME: No break. Please add proper comment if intentional
             case VARIABLETYPE_INTEGER:
                 IPS_SetVariableProfileValues($Name, $MinValue, $MaxValue, $StepSize);
                 break;
