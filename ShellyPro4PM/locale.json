@@ -1,0 +1,16 @@
+{
+  "translations": {
+    "de": {
+      "State": "Status",
+      "Reachable": "Erreichbar",
+      "Power": "Leistung",
+      "Energy": "Energie",
+      "Current": "Stromstärke",
+      "Voltage": "Volt",
+      "Total consumption": "Gesamtverbrauch",
+      "Overvoltage": "Überspannung",
+      "Overpower": "Überlastung",
+      "Overtemp": "Übertemperatur"
+    }
+  }
+}

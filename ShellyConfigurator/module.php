@@ -476,6 +476,12 @@ class ShellyConfigurator extends IPSModule
         //ShellyMotion
         $InstanceIDs[] = IPS_GetInstanceListByModuleID('{DB241FB8-F26D-4F74-82E4-66F046931B6E}');
 
+        //Shelly Plus 1 PM
+        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{AF5127F4-4929-49AF-9894-D7B8627667A7}');
+
+        //Shelly Pro 4PM
+        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{4E416C32-833A-4469-97B3-D4A41413A272}');
+
         foreach ($InstanceIDs as $IDs) {
             foreach ($IDs as $id) {
                 if (IPS_GetProperty($id, 'MQTTTopic') == $ShellyID) {
