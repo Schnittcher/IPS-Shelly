@@ -391,6 +391,30 @@ class ShellyConfigurator extends IPSModule
                                 ]
                             ];
                             break;
+                        case 'shellypro4pm':
+                            $moduleID = '{4E416C32-833A-4469-97B3-D4A41413A272}';
+                            $DeviceType = 'Shelly Pro 4PM';
+                            $AddValue['create'] = [
+                                [
+                                    'moduleID'      => $moduleID,
+                                    'configuration' => [
+                                        'MQTTTopic' => $Shelly['Name'],
+                                    ]
+                                ]
+                            ];
+                            break;
+                        case 'shellyplus1pm':
+                            $moduleID = '{AF5127F4-4929-49AF-9894-D7B8627667A7}';
+                            $DeviceType = 'Shelly Plus 1PM';
+                            $AddValue['create'] = [
+                                [
+                                    'moduleID'      => $moduleID,
+                                    'configuration' => [
+                                        'MQTTTopic' => $Shelly['Name'],
+                                    ]
+                                ]
+                            ];
+                            break;
                     default:
                         $this->SendDebug(__FUNCTION__ . ' DeviceType Switch', 'Invalid Device Type:' . strtolower($Shelly['DeviceType']), 0);
                         $DeviceType = 'Invalid';
