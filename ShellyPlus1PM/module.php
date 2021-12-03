@@ -95,24 +95,24 @@ class ShellyPlus1PM extends IPSModule
                             }
                             if (array_key_exists('aenergy', $switch)) {
                                 if (array_key_exists('total', $switch['aenergy'])) {
-                                    $this->SetValue('TotalEnergy' . $i, $switch['aenergy']['total'] / 60000);
+                                    $this->SetValue('TotalEnergy', $switch['aenergy']['total'] / 60000);
                                 }
                             }
                             if (array_key_exists('errors', $switch)) {
-                                $this->SetValue('Overtemp' . $i, false);
-                                $this->SetValue('Overpower' . $i, false);
-                                $this->SetValue('Overvoltage' . $i, false);
+                                $this->SetValue('Overtemp', false);
+                                $this->SetValue('Overpower', false);
+                                $this->SetValue('Overvoltage', false);
                                 $errors = '';
                                 foreach ($switch['errors'] as $key => $error) {
                                     switch ($error) {
                                             case 'overtemp':
-                                                $this->SetValue('Overtemp' . $i, true);
+                                                $this->SetValue('Overtemp', true);
                                                 break;
                                             case 'overpower':
-                                                $this->SetValue('Overpower' . $i, true);
+                                                $this->SetValue('Overpower', true);
                                                 break;
                                             case 'Overvoltage':
-                                                $this->SetValue('Overvoltage' . $i, true);
+                                                $this->SetValue('Overvoltage', true);
                                                 break;
                                             default:
                                                 $this->LogMessage('Missing Variable for Error State "' . $error . '"', KL_ERROR);
