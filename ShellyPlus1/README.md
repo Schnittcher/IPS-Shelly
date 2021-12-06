@@ -1,5 +1,5 @@
-# ShellyPlus1PM
-   Dieses Modul ermöglicht es, ein Shelly Plus 1PM in IP-Symcon zu integrieren.\
+# ShellyPlus1
+   Dieses Modul ermöglicht es, ein Shelly Plus 1 / Shelly Plus 1PM in IP-Symcon zu integrieren.\
    Es können die Kanäle geschaltet werden und die Messwerte werden in IP-Symcon dargestellt.   
     
    ## Inhaltverzeichnis
@@ -10,8 +10,8 @@
    
    Feld | Beschreibung
    ------------ | ----------------
-   MQTT Topic | Hier wird das Topic (shellyplus1pm-deviceid) des Shelly Plus 1PM eingetragen.
-   
+   MQTT Topic | Hier wird das Topic (shellyplus1-deviceid / shellyplus1pm-deviceid) des Shelly Plus 1 / Shelly Plus 1PM  eingetragen.
+   Gerät      | Hier wird hinterlegt, um welches Shelly Plus 1 es sich handelt.
    ## 2. Funktionen
    
    ```php

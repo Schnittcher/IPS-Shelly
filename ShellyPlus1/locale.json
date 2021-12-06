@@ -10,7 +10,8 @@
       "Total consumption": "Gesamtverbrauch",
       "Overvoltage": "Überspannung",
       "Overpower": "Überlastung",
-      "Overtemp": "Übertemperatur"
+      "Overtemp": "Übertemperatur",
+      "Please select device": "Bitte wählen Sie das Gerät aus"
     }
   }
 }

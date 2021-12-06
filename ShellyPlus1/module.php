@@ -4,7 +4,7 @@ declare(strict_types=1);
 require_once __DIR__ . '/../libs/VariableProfileHelper.php';
 require_once __DIR__ . '/../libs/MQTTHelper.php';
 
-class ShellyPlus1PM extends IPSModule
+class ShellyPlus1 extends IPSModule
 {
     use VariableProfileHelper;
     use MQTTHelper;
@@ -16,6 +16,7 @@ class ShellyPlus1PM extends IPSModule
         $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
 
         $this->RegisterPropertyString('MQTTTopic', '');
+        $this->RegisterPropertyString('Device', '');
     }
 
     public function ApplyChanges()
@@ -29,10 +30,10 @@ class ShellyPlus1PM extends IPSModule
 
         $this->RegisterVariableBoolean('State', $this->Translate('State'), '~Switch', 0);
         $this->EnableAction('State');
-        $this->RegisterVariableFloat('Power', $this->Translate('Power'), '~Watt.3680', 1);
-        $this->RegisterVariableFloat('TotalEnergy', $this->Translate('Total consumption'), '~Electricity', 2);
-        $this->RegisterVariableFloat('Current', $this->Translate('Current'), '~Ampere', 3);
-        $this->RegisterVariableFloat('Voltage', $this->Translate('Voltage'), '~Volt.230', 4);
+        $this->MaintainVariable('Power', $this->Translate('Power'), 2, '~Watt.3680', 2, $this->ReadPropertyString('Device') == 'shellyplus1pm');
+        $this->MaintainVariable('TotalEnergy', $this->Translate('TotalEnergy'), 2, '~Electricity', 2, $this->ReadPropertyString('Device') == 'shellyplus1pm');
+        $this->MaintainVariable('Current', $this->Translate('Current'), 2, '~Ampere', 3, $this->ReadPropertyString('Device') == 'shellyplus1pm');
+        $this->MaintainVariable('Voltage', $this->Translate('Voltage'), 2, '~Volt.230', 4, $this->ReadPropertyString('Device') == 'shellyplus1pm');
         $this->RegisterVariableBoolean('Overtemp', $this->Translate('Overtemp'), '~Alert', 5);
         $this->RegisterVariableBoolean('Overpower', $this->Translate('Overpower'), '~Alert', 6);
         $this->RegisterVariableBoolean('Overvoltage', $this->Translate('Overvoltage'), '~Alert', 7);

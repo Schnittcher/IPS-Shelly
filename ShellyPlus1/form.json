@@ -4,7 +4,14 @@
             "type": "ValidationTextBox",
             "name": "MQTTTopic",
             "caption": "MQTT Topic"
-        }
+        },
+        { "type": "Select", "name": "Device", "caption": "Device",
+            "options": [
+              { "caption": "Please select device", "value": "" },
+              { "caption": "Shelly Plus 1", "value": "shellyplus1" },
+              { "caption": "Shelly Plus 1PM", "value": "shellyplus1pm" }
+            ]
+          }
     ],
     "actions": [
         {
