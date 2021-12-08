@@ -44,7 +44,7 @@ class ShellyPro4PM extends IPSModule
         $this->RegisterVariableFloat('Current1', $this->Translate('Current') . ' 2', '~Ampere', 13);
         $this->RegisterVariableFloat('Voltage1', $this->Translate('Voltage') . ' 2', '~Volt.230', 14);
         $this->RegisterVariableBoolean('Overtemp1', $this->Translate('Overtemp') . ' 2', '~Alert', 15);
-        $this->RegisterVariableBoolean('Overpower1', $this->Translate('Overpowe') . ' 2', '~Alert', 16);
+        $this->RegisterVariableBoolean('Overpower1', $this->Translate('Overpower') . ' 2', '~Alert', 16);
         $this->RegisterVariableBoolean('Overvoltage1', $this->Translate('Overvoltage') . ' 2', '~Alert', 17);
 
         $this->RegisterVariableBoolean('State2', $this->Translate('State') . ' 3', '~Switch', 20);
