@@ -11,6 +11,7 @@
    Field        | Description
    ------------ | -------------
    MQTT Topic   | The Topic (shellyplus1pm-deviceid) of the Shelly Plus 1PM is entered here.
+   Device       | The Type of the Shelly Plus 1.
    
    ## 2. Functions
 
