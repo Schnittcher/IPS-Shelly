@@ -137,7 +137,7 @@ class ShellyPro4PM extends IPSModule
                                 }
                                 if (array_key_exists('aenergy', $switch)) {
                                     if (array_key_exists('total', $switch['aenergy'])) {
-                                        $this->SetValue('TotalEnergy' . $i, $switch['aenergy']['total'] / 60000);
+                                        $this->SetValue('TotalEnergy' . $i, $switch['aenergy']['total'] / 1000);
                                     }
                                 }
                                 if (array_key_exists('errors', $switch)) {

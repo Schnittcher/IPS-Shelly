@@ -31,7 +31,7 @@ class ShellyPlus1 extends IPSModule
         $this->RegisterVariableBoolean('State', $this->Translate('State'), '~Switch', 0);
         $this->EnableAction('State');
         $this->MaintainVariable('Power', $this->Translate('Power'), 2, '~Watt.3680', 2, $this->ReadPropertyString('Device') == 'shellyplus1pm');
-        $this->MaintainVariable('TotalEnergy', $this->Translate('TotalEnergy'), 2, '~Electricity', 2, $this->ReadPropertyString('Device') == 'shellyplus1pm');
+        $this->MaintainVariable('TotalEnergy', $this->Translate('Total Energy'), 2, '~Electricity', 2, $this->ReadPropertyString('Device') == 'shellyplus1pm');
         $this->MaintainVariable('Current', $this->Translate('Current'), 2, '~Ampere', 3, $this->ReadPropertyString('Device') == 'shellyplus1pm');
         $this->MaintainVariable('Voltage', $this->Translate('Voltage'), 2, '~Volt.230', 4, $this->ReadPropertyString('Device') == 'shellyplus1pm');
         $this->RegisterVariableBoolean('Overtemp', $this->Translate('Overtemp'), '~Alert', 5);
@@ -96,7 +96,7 @@ class ShellyPlus1 extends IPSModule
                             }
                             if (array_key_exists('aenergy', $switch)) {
                                 if (array_key_exists('total', $switch['aenergy'])) {
-                                    $this->SetValue('TotalEnergy', $switch['aenergy']['total'] / 60000);
+                                    $this->SetValue('TotalEnergy', $switch['aenergy']['total'] / 1000);
                                 }
                             }
                             if (array_key_exists('errors', $switch)) {
