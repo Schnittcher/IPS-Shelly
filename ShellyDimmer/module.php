@@ -22,6 +22,7 @@ class ShellyDimmer extends IPSModule
         $this->RegisterVariableBoolean('Shelly_State', $this->Translate('State'), '~Switch');
         $this->RegisterVariableInteger('Shelly_Brightness', $this->Translate('Brightness'), 'Intensity.100');
         $this->RegisterVariableFloat('Shelly_Power', $this->Translate('Power'), '~Watt.3680');
+		$this->RegisterVariableFloat('Shelly_Energy', $this->Translate('Energy'), '~Electricity',4);
         $this->RegisterVariableFloat('Shelly_Temperature', $this->Translate('Temperature'), '~Temperature');
         $this->RegisterVariableBoolean('Shelly_Overtemperature', $this->Translate('Overtemperature'), '');
         $this->RegisterVariableBoolean('Shelly_Overload', $this->Translate('Overload'), '');
@@ -115,6 +116,11 @@ class ShellyDimmer extends IPSModule
                     $this->SendDebug('Power Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_Power', $Buffer->Payload);
                 }
+				if (fnmatch('*/light/0/energy', $Buffer->Topic)) {
+                    $this->SendDebug('Energy Payload', $Buffer->Payload, 0);
+                    $this->SetValue('Shelly_Energy', $Buffer->Payload / 60000);
+                }
+
                 if (fnmatch('*/temperature', $Buffer->Topic)) {
                     $this->SendDebug('Temperature Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_Temperature', $Buffer->Payload);
@@ -131,7 +137,7 @@ class ShellyDimmer extends IPSModule
                     $this->SendDebug('Loaderror Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_Loaderror', $Buffer->Payload);
                 }
-                if (fnmatch('*/input/[01]*', $Buffer->Topic)) {
+                if (fnmatch('*/input/[01]', $Buffer->Topic)) {
                     $this->SendDebug('Input Payload', $Buffer->Payload, 0);
                     $ShellyTopic = explode('/', $Buffer->Topic);
                     $Key = count($ShellyTopic) - 1;
@@ -146,7 +152,7 @@ class ShellyDimmer extends IPSModule
                             break;
                     }
                 }
-                if (fnmatch('*/input_event/[01]*', $Buffer->Topic)) {
+                if (fnmatch('*/input_event/[01]', $Buffer->Topic)) {
                     $this->SendDebug('Input Payload', $Buffer->Payload, 0);
                     $ShellyTopic = explode('/', $Buffer->Topic);
                     $Key = count($ShellyTopic) - 1;
