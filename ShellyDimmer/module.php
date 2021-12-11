@@ -23,6 +23,12 @@ class ShellyDimmer extends IPSModule
         $this->RegisterVariableInteger('Shelly_Brightness', $this->Translate('Brightness'), 'Intensity.100');
         $this->RegisterVariableFloat('Shelly_Power', $this->Translate('Power'), '~Watt.3680');
 		$this->RegisterVariableFloat('Shelly_Energy', $this->Translate('Energy'), '~Electricity',4);
+		$this->RegisterVariableFloat('Shelly_EnergyBase', $this->Translate('Energy Base'), '',4);
+		$this->RegisterVariableFloat('Shelly_EnergyDelta', $this->Translate('Energy Delta'), '',4);
+		AC_SetLoggingStatus(IPS_GetInstanceListByModuleID("{43192F0B-135B-4CE7-A0A7-1475603F3060}")[0],$this->GetIDForIdent('Shelly_Energy'),1);
+		AC_SetAggregationType(IPS_GetInstanceListByModuleID("{43192F0B-135B-4CE7-A0A7-1475603F3060}")[0],$this->GetIDForIdent('Shelly_Energy'),1);
+		IPS_SetHidden($this->GetIDForIdent('Shelly_EnergyBase'), true);
+		IPS_SetHidden($this->GetIDForIdent('Shelly_EnergyDelta'), true);
         $this->RegisterVariableFloat('Shelly_Temperature', $this->Translate('Temperature'), '~Temperature');
         $this->RegisterVariableBoolean('Shelly_Overtemperature', $this->Translate('Overtemperature'), '');
         $this->RegisterVariableBoolean('Shelly_Overload', $this->Translate('Overload'), '');
@@ -116,8 +122,13 @@ class ShellyDimmer extends IPSModule
                     $this->SendDebug('Power Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_Power', $Buffer->Payload);
                 }
+				// Gesamtverbrauch beim Neustart speichern
 				if (fnmatch('*/light/0/energy', $Buffer->Topic)) {
                     $this->SendDebug('Energy Payload', $Buffer->Payload, 0);
+					if ($Buffer->Payload < GetValue($this->GetIDForIdent('Shelly_EnergyDelta')))
+						$this->SetValue('Shelly_EnergyBase', GetValue($this->GetIDForIdent('Shelly_EnergyBase')) + GetValue($this->GetIDForIdent('Shelly_EnergyDelta')));
+                    $this->SetValue('Shelly_EnergyDelta', $Buffer->Payload);
+					$this->SetValue('Shelly_Energy', ( GetValue($this->GetIDForIdent('Shelly_EnergyBase')) + GetValue($this->GetIDForIdent('Shelly_EnergyDelta')) ) / 60000);
                     $this->SetValue('Shelly_Energy', $Buffer->Payload / 60000);
                 }
 
