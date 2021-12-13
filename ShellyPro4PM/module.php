@@ -1,11 +1,13 @@
 <?php
 
 declare(strict_types=1);
+require_once __DIR__ . '/../libs/ShellyHelper.php';
 require_once __DIR__ . '/../libs/VariableProfileHelper.php';
 require_once __DIR__ . '/../libs/MQTTHelper.php';
 
 class ShellyPro4PM extends IPSModule
 {
+    use Shelly;
     use VariableProfileHelper;
     use MQTTHelper;
 
