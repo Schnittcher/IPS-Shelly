@@ -1,11 +1,13 @@
 <?php
 
 declare(strict_types=1);
+require_once __DIR__ . '/../libs/ShellyHelper.php';
 require_once __DIR__ . '/../libs/VariableProfileHelper.php';
 require_once __DIR__ . '/../libs/MQTTHelper.php';
 
 class ShellyPlus1 extends IPSModule
 {
+    use Shelly;
     use VariableProfileHelper;
     use MQTTHelper;
 
@@ -83,16 +85,16 @@ class ShellyPlus1 extends IPSModule
                         if (array_key_exists('switch:0', $Payload['params'])) {
                             $switch = $Payload['params']['switch:0'];
                             if (array_key_exists('output', $switch)) {
-                                $this->SetValue('State' . $i, $switch['output']);
+                                $this->SetValue('State', $switch['output']);
                             }
                             if (array_key_exists('apower', $switch)) {
-                                $this->SetValue('Power' . $i, $switch['apower']);
+                                $this->SetValue('Power', $switch['apower']);
                             }
                             if (array_key_exists('voltage', $switch)) {
-                                $this->SetValue('Voltage' . $i, $switch['voltage']);
+                                $this->SetValue('Voltage', $switch['voltage']);
                             }
                             if (array_key_exists('current', $switch)) {
-                                $this->SetValue('Current' . $i, $switch['current']);
+                                $this->SetValue('Current', $switch['current']);
                             }
                             if (array_key_exists('aenergy', $switch)) {
                                 if (array_key_exists('total', $switch['aenergy'])) {
