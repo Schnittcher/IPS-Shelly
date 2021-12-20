@@ -33,9 +33,7 @@ class ShellyConfigurator extends IPSModule
         if (count($Shellys) > 0) {
             foreach ($Shellys as $key => $Shelly) {
                 $DeviceType = '';
-                $this->SendDebug('Shelly Name', $Shelly['Name'], 0);
-                $this->SendDebug('Shelly Name strtolower', strtolower($Shelly['Name']), 0);
-                $instanceID = $this->getShellyInstances(strtolower($Shelly['Name']));
+                $instanceID = $this->getShellyInstances($Shelly['Name']);
                 $AddValue = [
                     'name'                  => $Shelly['Name'],
                     'DeviceType'            => $Shelly['DeviceType'],
@@ -523,7 +521,7 @@ class ShellyConfigurator extends IPSModule
 
         foreach ($InstanceIDs as $IDs) {
             foreach ($IDs as $id) {
-                if (IPS_GetProperty($id, 'MQTTTopic') == $ShellyID) {
+                if (strtolower(IPS_GetProperty($id, 'MQTTTopic')) == strtolower($ShellyID)) {
                     return $id;
                 }
             }
