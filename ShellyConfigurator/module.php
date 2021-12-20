@@ -33,6 +33,8 @@ class ShellyConfigurator extends IPSModule
         if (count($Shellys) > 0) {
             foreach ($Shellys as $key => $Shelly) {
                 $DeviceType = '';
+                $this->SendDebug('Shelly Name', $Shelly['Name'], 0);
+                $this->SendDebug('Shelly Name strtolower', strtolower($Shelly['Name']), 0);
                 $instanceID = $this->getShellyInstances(strtolower($Shelly['Name']));
                 $AddValue = [
                     'name'                  => $Shelly['Name'],
