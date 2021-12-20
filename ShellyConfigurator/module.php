@@ -534,7 +534,7 @@ class ShellyConfigurator extends IPSModule
         $mDNSInstanceIDs = IPS_GetInstanceListByModuleID('{780B2D48-916C-4D59-AD35-5A429B2355A5}');
         $resultServiceTypes = ZC_QueryServiceType($mDNSInstanceIDs[0], '_http._tcp', '');
 
-        $this->SendDebug('deviceInfo', print_r($resultServiceTypes, true), 0);
+        $this->SendDebug('resultServiceTypes', print_r($resultServiceTypes, true), 0);
 
         $shellys = [];
         foreach ($resultServiceTypes as $key => $device) {
