@@ -555,13 +555,13 @@ class ShellyConfigurator extends IPSModule
                         $shelly['Firmware'] = $deviceInfo[0]['TXTRecords'][1];
                     }
                 } else {
-                    $this->SendDebug('mDNS TXTRecords', print_r($deviceInfo[0]['TXTRecords'], true), 0);
                     $shelly['DeviceType'] = '-';
                     $shelly['Firmware'] = '-';
                 }
                 $shellys[] = $shelly;
             }
         }
+        $this->SendDebug('Shellys', print_r($shellys, true), 0);
         return $shellys;
     }
 }
