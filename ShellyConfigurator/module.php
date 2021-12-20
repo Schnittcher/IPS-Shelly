@@ -106,7 +106,6 @@ class ShellyConfigurator extends IPSModule
                         ];
                         break;
                     case 'shellyswitch25':
-                        $this->SendDebug('Name', $Shelly['Name'], 0);
                         $moduleID = '{BE266877-6642-4A80-9BAA-8C5B3B4DAF80}';
                         $DeviceType = 'Shelly 2.5';
                         $AddValue['create'] = [
@@ -541,7 +540,8 @@ class ShellyConfigurator extends IPSModule
                 $shelly = [];
 
                 $deviceInfo = ZC_QueryService($mDNSInstanceIDs[0], $device['Name'], '_http._tcp', 'local.');
-
+                
+                $this->SendDebug('deviceInfo', print_r($deviceInfo[0]['TXTRecords'], true), 0);
                 $type = strstr($device['Name'], '-', true);
                 $shelly['Name'] = $device['Name'];
                 $shelly['IPv4'] = $deviceInfo[0]['IPv4'][0];
