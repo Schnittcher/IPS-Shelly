@@ -33,7 +33,7 @@ class ShellyConfigurator extends IPSModule
         if (count($Shellys) > 0) {
             foreach ($Shellys as $key => $Shelly) {
                 $DeviceType = '';
-                $instanceID = $this->getShellyInstances($Shelly['Name']);
+                $instanceID = $this->getShellyInstances(strtolower($Shelly['Name']));
                 $AddValue = [
                     'name'                  => $Shelly['Name'],
                     'DeviceType'            => $Shelly['DeviceType'],
@@ -404,7 +404,7 @@ class ShellyConfigurator extends IPSModule
                             break;
                         case 'shellyplus1':
                             $moduleID = '{AF5127F4-4929-49AF-9894-D7B8627667A7}';
-                            $DeviceType = 'Shelly Plus PM';
+                            $DeviceType = 'Shelly Plus 1';
                             $AddValue['create'] = [
                                 [
                                     'moduleID'      => $moduleID,
@@ -542,7 +542,6 @@ class ShellyConfigurator extends IPSModule
                 $shelly = [];
 
                 $deviceInfo = ZC_QueryService($mDNSInstanceIDs[0], $device['Name'], '_http._tcp', 'local.');
-                
 
                 $type = strstr($device['Name'], '-', true);
                 $shelly['Name'] = $device['Name'];
@@ -561,7 +560,6 @@ class ShellyConfigurator extends IPSModule
                 $shellys[] = $shelly;
             }
         }
-        $this->SendDebug('Shellys', print_r($shellys, true), 0);
         return $shellys;
     }
 }
