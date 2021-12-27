@@ -559,9 +559,14 @@ class ShellyConfigurator extends IPSModule
                     $shelly['DeviceType'] = strstr($device['Name'], '-', true);
                     $shelly['Firmware'] = '-';
                     $this->SendDebug('mDNS TXTRecords', print_r($deviceInfo, true), 0);
-                    if (is_array($deviceInfo[0])) {
-                        if (array_key_exists(1, $deviceInfo[0]['TXTRecords'])) {
-                            $shelly['Firmware'] = $deviceInfo[0]['TXTRecords'][1];
+                    if (array_key_exists(0, $deviceInfo)) {
+                        if (is_array($deviceInfo[0])) {
+                            if (array_key_exists(1, $deviceInfo[0]['TXTRecords'])) {
+                                $shelly['Firmware'] = $deviceInfo[0]['TXTRecords'][1];
+                            } else {
+                                $shelly['DeviceType'] = '-';
+                                $shelly['Firmware'] = '-';
+                            }
                         } else {
                             $shelly['DeviceType'] = '-';
                             $shelly['Firmware'] = '-';
