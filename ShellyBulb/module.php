@@ -160,6 +160,9 @@ class ShellyBulb extends IPSModule
                         $this->SetValue('Shelly_Gain', $Payload->gain);
                         $this->SetValue('Shelly_Color', $this->rgbToHex($Payload->red, $Payload->green, $Payload->blue));
                     }
+                    if (property_exists($Payload, 'mode')) {
+                        $this->SetValue('Shelly_Mode', $Payload->gain);
+                    }
                 }
                 if (fnmatch('*/light/0/power', $Buffer->Topic)) {
                     $this->SendDebug('Power Payload', $Buffer->Payload, 0);
