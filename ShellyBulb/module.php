@@ -251,6 +251,7 @@ class ShellyBulb extends IPSModule
     private function WhiteSet(int $value)
     {
         $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/color/0/set';
+        $Payload['mode'] = 'white';
         $Payload['white'] = strval($value);
         $Payload = json_encode($Payload);
         $this->sendMQTT($Topic, $Payload);
@@ -288,6 +289,7 @@ class ShellyBulb extends IPSModule
     private function SetGain(int $value)
     {
         $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/color/0/set';
+        $Payload['mode'] = 'color';
         $Payload['gain'] = strval($value);
         $Payload = json_encode($Payload);
 
