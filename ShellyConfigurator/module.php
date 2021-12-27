@@ -545,11 +545,13 @@ class ShellyConfigurator extends IPSModule
 
                 $type = strstr($device['Name'], '-', true);
                 $shelly['Name'] = $device['Name'];
-                if (array_key_exists(0, $deviceInfo[0]['IPv4'])) {
-                    $this->LogMessage(print_r($deviceInfo, true), KL_NOTIFY);
-                    $shelly['IPv4'] = $deviceInfo[0]['IPv4'][0];
-                } else {
-                    $shelly['IPv4'] = '-';
+                if (array_key_exists(0, $deviceInfo)) {
+                    if (array_key_exists(0, $deviceInfo[0]['IPv4'])) {
+                        $this->LogMessage(print_r($deviceInfo, true), KL_NOTIFY);
+                        $shelly['IPv4'] = $deviceInfo[0]['IPv4'][0];
+                    } else {
+                        $shelly['IPv4'] = '-';
+                    }
                 }
                 if ($type != 'shellysense') {
                     $shelly['DeviceType'] = strstr($device['Name'], '-', true);
