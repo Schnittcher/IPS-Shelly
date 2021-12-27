@@ -545,7 +545,7 @@ class ShellyConfigurator extends IPSModule
 
                 $type = strstr($device['Name'], '-', true);
                 $shelly['Name'] = $device['Name'];
-                if (is_array($deviceInfo)) {
+                if (array_key_exists(0, $deviceInfo[0]['IPv4'])) {
                     $shelly['IPv4'] = $deviceInfo[0]['IPv4'][0];
                 } else {
                     $shelly['IPv4'] = '-';
@@ -554,7 +554,7 @@ class ShellyConfigurator extends IPSModule
                     $shelly['DeviceType'] = strstr($device['Name'], '-', true);
                     $shelly['Firmware'] = '-';
                     $this->SendDebug('mDNS TXTRecords', print_r($deviceInfo, true), 0);
-                    if (is_array($deviceInfo)) {
+                    if (is_array($deviceInfo[0])) {
                         if (array_key_exists(1, $deviceInfo[0]['TXTRecords'])) {
                             $shelly['Firmware'] = $deviceInfo[0]['TXTRecords'][1];
                         } else {
