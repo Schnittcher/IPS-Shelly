@@ -552,6 +552,8 @@ class ShellyConfigurator extends IPSModule
                     } else {
                         $shelly['IPv4'] = '-';
                     }
+                } else {
+                    $shelly['IPv4'] = '-';
                 }
                 if ($type != 'shellysense') {
                     $shelly['DeviceType'] = strstr($device['Name'], '-', true);
