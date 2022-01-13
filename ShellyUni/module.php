@@ -172,6 +172,14 @@ class ShellyUni extends IPSModule
                             $this->RegisterVariableFloat('Shelly_ExtTemperature2', $this->Translate('External Temperature 3'), '~Temperature');
                             $this->SetValue('Shelly_ExtTemperature2', $Buffer->Payload);
                             break;
+                        case 3:
+                            $this->RegisterVariableFloat('Shelly_ExtTemperature3', $this->Translate('External Temperature 4'), '~Temperature');
+                            $this->SetValue('Shelly_ExtTemperature3', $Buffer->Payload);
+                            break;
+                        case 4:
+                            $this->RegisterVariableFloat('Shelly_ExtTemperature4', $this->Translate('External Temperature 5'), '~Temperature');
+                            $this->SetValue('Shelly_ExtTemperature4', $Buffer->Payload);
+                            break;
                     }
                 }
                 if (fnmatch('*/ext_humidity/[012]', $Buffer->Topic)) {
@@ -189,6 +197,14 @@ class ShellyUni extends IPSModule
                         case 2:
                             $this->RegisterVariableFloat('Shelly_ExtHumidity2', $this->Translate('External Humidity 3'), '~Humidity.F');
                             $this->SetValue('Shelly_ExtHumidity2', $Buffer->Payload);
+                            break;
+                        case 1:
+                            $this->RegisterVariableFloat('Shelly_ExtHumidity3', $this->Translate('External Humidity 4'), '~Humidity.F');
+                            $this->SetValue('Shelly_ExtHumidity3', $Buffer->Payload);
+                            break;
+                        case 2:
+                            $this->RegisterVariableFloat('Shelly_ExtHumidity4', $this->Translate('External Humidity 5'), '~Humidity.F');
+                            $this->SetValue('Shelly_ExtHumidity4', $Buffer->Payload);
                             break;
                     }
                 }
