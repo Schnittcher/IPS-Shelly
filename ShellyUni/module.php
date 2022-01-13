@@ -156,7 +156,7 @@ class ShellyUni extends IPSModule
                             break;
                     }
                 }
-                if (fnmatch('*/ext_temperature/[012]', $Buffer->Topic)) {
+                if (fnmatch('*/ext_temperature/[01234]', $Buffer->Topic)) {
                     $this->SendDebug('Ext_Temperature Payload', $Buffer->Payload, 0);
                     $input = $this->getChannelRelay($Buffer->Topic);
                     switch ($input) {
@@ -182,7 +182,7 @@ class ShellyUni extends IPSModule
                             break;
                     }
                 }
-                if (fnmatch('*/ext_humidity/[012]', $Buffer->Topic)) {
+                if (fnmatch('*/ext_humidity/[01234]', $Buffer->Topic)) {
                     $this->SendDebug('Ext_Humidity Payload', $Buffer->Payload, 0);
                     $input = $this->getChannelRelay($Buffer->Topic);
                     switch ($input) {
@@ -204,7 +204,7 @@ class ShellyUni extends IPSModule
                             break;
                         case 2:
                             $this->RegisterVariableFloat('Shelly_ExtHumidity4', $this->Translate('External Humidity 5'), '~Humidity.F');
-                            $this->SetValue('Shelly_ExtHumidity4', $Buffer->Payload);
+                            $this->SetValue('Shelly_ExtHumidity4s', $Buffer->Payload);
                             break;
                     }
                 }
