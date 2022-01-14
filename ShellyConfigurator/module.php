@@ -435,8 +435,7 @@ class ShellyConfigurator extends IPSModule
                                 [
                                     'moduleID'      => $moduleID,
                                     'configuration' => [
-                                        'MQTTTopic' => strtolower($Shelly['Name']),
-                                        'Device'    => 'shellytrv'
+                                        'MQTTTopic' => strtolower($Shelly['Name'])
                                     ]
                                 ]
                             ];
