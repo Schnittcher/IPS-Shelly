@@ -428,6 +428,19 @@ class ShellyConfigurator extends IPSModule
                                 ]
                             ];
                             break;
+                        case 'shellytrv':
+                            $moduleID = '{FEBA9798-EB8E-4703-A9BC-C1B3EE711D1B}';
+                            $DeviceType = 'Shelly TRV';
+                            $AddValue['create'] = [
+                                [
+                                    'moduleID'      => $moduleID,
+                                    'configuration' => [
+                                        'MQTTTopic' => strtolower($Shelly['Name']),
+                                        'Device'    => 'shellytrv'
+                                    ]
+                                ]
+                            ];
+                            break;
                     default:
                         $this->SendDebug(__FUNCTION__ . ' DeviceType Switch', 'Invalid Device Type:' . strtolower($Shelly['DeviceType']), 0);
                         $DeviceType = 'Invalid';
@@ -519,6 +532,9 @@ class ShellyConfigurator extends IPSModule
         //Shelly Pro 4PM
         $InstanceIDs[] = IPS_GetInstanceListByModuleID('{4E416C32-833A-4469-97B3-D4A41413A272}');
 
+        //Shelly TRV
+        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{FEBA9798-EB8E-4703-A9BC-C1B3EE711D1B}');
+
         foreach ($InstanceIDs as $IDs) {
             foreach ($IDs as $id) {
                 if (strtolower(IPS_GetProperty($id, 'MQTTTopic')) == strtolower($ShellyID)) {
@@ -564,15 +580,12 @@ class ShellyConfigurator extends IPSModule
                             if (array_key_exists(1, $deviceInfo[0]['TXTRecords'])) {
                                 $shelly['Firmware'] = $deviceInfo[0]['TXTRecords'][1];
                             } else {
-                                $shelly['DeviceType'] = '-';
                                 $shelly['Firmware'] = '-';
                             }
                         } else {
-                            $shelly['DeviceType'] = '-';
                             $shelly['Firmware'] = '-';
                         }
                     } else {
-                        $shelly['DeviceType'] = '-';
                         $shelly['Firmware'] = '-';
                     }
                 }
