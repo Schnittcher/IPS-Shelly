@@ -1,0 +1,24 @@
+{
+  "translations": {
+    "de": {
+      "State": "Status",
+      "Input": "Eingang",
+      "Longpush": "Longpush",
+      "Variable profile type does not match for profile": "Der Profiltyp der Variablen stimmt nicht mit dem Profil überein",
+      "Power": "Leistung",
+      "Temperature": "Temperatur",
+      "Overtemperature": "Übertemperatur",
+      "Device": "Geräte",
+      "Energy": "Energie",
+      "Please select device": "Bitte wählen Sie das Gerät aus",
+      "Reachable": "Erreichbar",
+      "External Temperature 1": "Externe Temperatur 1",
+      "External Temperature 2": "Externe Temperatur 2",
+      "External Temperature 3": "Externe Temperatur 3",
+      "External Humidity": "Externe Luftfeuchte",
+      "External Switch 1": "External Switch 1",
+      "External Switch 2": "External Switch 2",
+      "External Switch 3": "External Switch 3"
+    }
+  }
+}
