@@ -171,7 +171,6 @@ class ShellyRGBW2 extends IPSModule
 
             if (property_exists($Buffer, 'Topic')) {
                 $channel = $this->getChannel($Buffer->Topic);
-                if (fnmatch('*shellyrgbw2*', $Buffer->Topic)) {
                     $this->SendDebug('ShellyRGBW2 Payload', $Buffer->Payload, 0);
                     $this->SendDebug('ShellyRGBW2 Channel', $channel, 0);
                     $Payload = json_decode($Buffer->Payload);
@@ -262,7 +261,7 @@ class ShellyRGBW2 extends IPSModule
                                 break;
                         }
                     }
-                }
+                
             }
         }
     }
