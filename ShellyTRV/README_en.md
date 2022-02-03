@@ -20,8 +20,18 @@
 
    **Example:**
    
-   Variable ID State: 12345
+   Variable ID Schedule: 12345
    ```php
-   RequestAction(12345, true); //Switch on
-   RequestAction(12345, false); //Switch off
+   RequestAction(12345, true); //Switch schedule on 
+   RequestAction(12345, false); //Switch schedule off
+   ```
+
+   Variable ID target Temperature: 12345
+   ```php
+   RequestAction(12345, 20); //Set target temperature to 20 degrees
+   ```
+
+   Variable ID Schedule Profile: 12345
+   ```php
+   RequestAction(12345, 5); //Set schedule profile to 5
    ```

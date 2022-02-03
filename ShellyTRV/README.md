@@ -1,5 +1,5 @@
-# Shelly1
-   Dieses Modul ermöglicht es, ein Shelly1 in IP-Symcon zu integrieren.
+# ShellyTRV
+   Dieses Modul ermöglicht es, ein ShellyTRV in IP-Symcon zu integrieren.
      
    ## Inhaltverzeichnis
    1. [Konfiguration](#1-konfiguration)
@@ -9,7 +9,7 @@
    
    Feld | Beschreibung
    ------------ | ----------------
-   MQTT Topic | Hier wird das Topic (shelly1-deviceid) des Shelly1 eingetragen. Dazu muss zur Zeit die folgende URL aufgerufen werden: http://ShellyIP/settings dort ist derHostname zu finden. Der Hostname ist die DeviceID!
+   MQTT Topic | Hier wird das Topic (shellytrv-deviceid) des ShellyTRV eingetragen. Dazu muss zur Zeit die folgende URL aufgerufen werden: http://ShellyIP/settings dort ist derHostname zu finden. Der Hostname ist die DeviceID!
    
    ## 2. Funktionen
 
