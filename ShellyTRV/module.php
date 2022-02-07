@@ -34,6 +34,9 @@ class ShellyTRV extends IPSModule
         $this->EnableAction('Schedule');
         $this->RegisterVariableInteger('ScheduleProfile', $this->Translate('Schedule Profile'), '', 5);
         $this->EnableAction('ScheduleProfile');
+
+        $this->RegisterVariableInteger('BatteryValue', $this->Translate('Battery'), '~Battery.100', 6);
+        $this->RegisterVariableFloat('BatteryVoltage', $this->Translate('Battery Voltage'), '~Volt', 7);
     }
 
     public function ApplyChanges()
@@ -100,6 +103,14 @@ class ShellyTRV extends IPSModule
                         }
                         if (property_exists($Payload->thermostats[0], 'schedule_profile')) {
                             $this->SetValue('ScheduleProfile', $Payload->thermostats[0]->schedule_profile);
+                        }
+                    }
+                    if (property_exists($Payload, 'bat')) {
+                        if (property_exists($Payload->bat[0], 'value')) {
+                            $this->SetValue('BatteryValue', $Payload->bat[0]->value);
+                        }
+                        if (property_exists($Payload->bat[0], 'value')) {
+                            $this->SetValue('BatteryVoltage', $Payload->bat[0]->voltage);
                         }
                     }
                 }
