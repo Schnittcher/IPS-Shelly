@@ -106,11 +106,11 @@ class ShellyTRV extends IPSModule
                         }
                     }
                     if (property_exists($Payload, 'bat')) {
-                        if (property_exists($Payload->bat[0], 'value')) {
-                            $this->SetValue('BatteryValue', $Payload->bat[0]->value);
+                        if (property_exists($Payload->bat, 'value')) {
+                            $this->SetValue('BatteryValue', $Payload->bat->value);
                         }
-                        if (property_exists($Payload->bat[0], 'value')) {
-                            $this->SetValue('BatteryVoltage', $Payload->bat[0]->voltage);
+                        if (property_exists($Payload->bat, 'voltage')) {
+                            $this->SetValue('BatteryVoltage', $Payload->bat->voltage);
                         }
                     }
                 }
