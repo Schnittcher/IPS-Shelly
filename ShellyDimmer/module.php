@@ -179,6 +179,20 @@ class ShellyDimmer extends IPSModule
         }
     }
 
+    public function DimSet(int $value, int $transition = 0)
+    {
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/light/0/set';
+        $Payload['turn'] = 'off';
+        if ($value > 0) {
+            $Payload['brightness'] = strval($value);
+            $Payload['turn'] = 'on';
+            $Payload['transition'] = strval($transition);
+        }
+
+        $Payload = json_encode($Payload);
+        $this->sendMQTT($Topic, $Payload);
+    }
+
     private function SwitchMode(bool $Value)
     {
         $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/light/0/command';
@@ -187,19 +201,6 @@ class ShellyDimmer extends IPSModule
         } else {
             $Payload = 'off';
         }
-        $this->sendMQTT($Topic, $Payload);
-    }
-
-    private function DimSet(int $value)
-    {
-        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/light/0/set';
-        $Payload['turn'] = 'off';
-        if ($value > 0) {
-            $Payload['brightness'] = strval($value);
-            $Payload['turn'] = 'on';
-        }
-
-        $Payload = json_encode($Payload);
         $this->sendMQTT($Topic, $Payload);
     }
 }

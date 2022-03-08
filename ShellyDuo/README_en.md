@@ -53,3 +53,7 @@
    ```php
    RequestAction(15935,50); //50% gain
    ```
+
+   ## 3. Actions
+   This module can use the action "set brightness with transition".
+   With this action you can set the brightess with a transition time.

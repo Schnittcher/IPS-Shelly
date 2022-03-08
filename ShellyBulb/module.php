@@ -239,11 +239,12 @@ class ShellyBulb extends IPSModule
         //$this->sendMQTT($Topic, $Payload);
     }
 
-    private function DimSet(int $value)
+    public function DimSet(int $value, int $transition = 0)
     {
         $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/color/0/set';
         $Payload['mode'] = 'white';
         $Payload['brightness'] = strval($value);
+        $Payload['transition'] = strval($transition);
         $Payload = json_encode($Payload);
         $this->sendMQTT($Topic, $Payload);
     }

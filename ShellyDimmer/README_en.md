@@ -30,3 +30,7 @@
    RequestAction(56789, 50); //Dim to 50%
    RequestAction(56789, 40); //Dim to 40%
    ```
+
+   ## 3. Actions
+   This module can use the action "set brightness with transition".
+   With this action you can set the brightess with a transition time.

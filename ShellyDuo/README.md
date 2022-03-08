@@ -54,3 +54,6 @@
    ```php
    RequestAction(15935,50); //50% gain
    ```
+
+   ## 3. Aktionen
+   Dieses Modul kann die Aktion "Setze Helligkeit mit Übergang" benutzen, damit kann die Helligkeit mit einer Übergangszeit gesetzt werden.

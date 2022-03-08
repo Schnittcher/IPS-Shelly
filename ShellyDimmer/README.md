@@ -31,3 +31,6 @@
    RequestAction(56789, 50); //auf 50% setzen
    RequestAction(56789, 40); //auf 40% setzen
    ```
+
+   ## 3. Aktionen
+   Dieses Modul kann die Aktion "Setze Helligkeit mit Übergang" benutzen, damit kann die Helligkeit mit einer Übergangszeit gesetzt werden.
