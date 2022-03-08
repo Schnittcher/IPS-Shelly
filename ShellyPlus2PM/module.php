@@ -57,8 +57,8 @@ class ShellyPlus2PM extends IPSModule
             default:
                 $this->SendDebug(__FUNCTION__ . ' Device Type: ', 'No Device Type', 0);
         }
-        $this->RegisterVariableString('EventComponent', $this->Translate('Event Component'), 8);
-        $this->RegisterVariableString('Event', $this->Translate('Event'), 9);
+        $this->RegisterVariableString('EventComponent', $this->Translate('Event Component'), '');
+        $this->RegisterVariableString('Event', $this->Translate('Event'), '');
 
         $this->RegisterProfileBooleanEx('Shelly.Reachable', 'Network', '', '', [
             [false, 'Offline',  '', 0xFF0000],
