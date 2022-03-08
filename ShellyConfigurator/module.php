@@ -428,6 +428,18 @@ class ShellyConfigurator extends IPSModule
                                 ]
                             ];
                             break;
+                        case 'shellyplus2pm':
+                            $moduleID = '{6AE60C94-A295-4A0F-9AF3-C051C1D72AAA}';
+                            $DeviceType = 'Shelly Plus 2PM';
+                            $AddValue['create'] = [
+                                [
+                                    'moduleID'      => $moduleID,
+                                    'configuration' => [
+                                        'MQTTTopic' => strtolower($Shelly['Name']),
+                                    ]
+                                ]
+                            ];
+                            break;
                         case 'shellytrv':
                             $moduleID = '{FEBA9798-EB8E-4703-A9BC-C1B3EE711D1B}';
                             $DeviceType = 'Shelly TRV';
@@ -527,6 +539,9 @@ class ShellyConfigurator extends IPSModule
 
         //Shelly Plus 1 PM
         $InstanceIDs[] = IPS_GetInstanceListByModuleID('{AF5127F4-4929-49AF-9894-D7B8627667A7}');
+
+        //Shelly Plus 2 PM
+        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{6AE60C94-A295-4A0F-9AF3-C051C1D72AAA}');
 
         //Shelly Pro 4PM
         $InstanceIDs[] = IPS_GetInstanceListByModuleID('{4E416C32-833A-4469-97B3-D4A41413A272}');

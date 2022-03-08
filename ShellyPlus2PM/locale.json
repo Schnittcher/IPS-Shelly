@@ -1,0 +1,18 @@
+{
+  "translations": {
+    "de": {
+      "State": "Status",
+      "Reachable": "Erreichbar",
+      "Power": "Leistung",
+      "Energy": "Energie",
+      "Current": "Stromstärke",
+      "Voltage": "Volt",
+      "Please set Device Type": "Bitte legen Sie den Gerätetyp fest",
+      "Event Component": "Ereignis Komponente",
+      "Event": "Ereignis",
+      "Roller" : "Rollo",
+      "Relay": "Relais",
+      "Position": "Position"
+    }
+  }
+}
