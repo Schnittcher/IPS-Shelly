@@ -39,8 +39,8 @@ class ShellyPlus1 extends IPSModule
         $this->RegisterVariableBoolean('Overtemp', $this->Translate('Overtemp'), '~Alert', 5);
         $this->RegisterVariableBoolean('Overpower', $this->Translate('Overpower'), '~Alert', 6);
         $this->RegisterVariableBoolean('Overvoltage', $this->Translate('Overvoltage'), '~Alert', 7);
-        $this->RegisterStringVariable('EventComponent', $this->Translate('Event Component'), 8);
-        $this->RegisterStringVariable('Event', $this->Translate('Event'), 9);
+        $this->RegisterVariableString('EventComponent', $this->Translate('Event Component'), 8);
+        $this->RegisterVariableString('Event', $this->Translate('Event'), 9);
 
         $this->RegisterProfileBooleanEx('Shelly.Reachable', 'Network', '', '', [
             [false, 'Offline',  '', 0xFF0000],
