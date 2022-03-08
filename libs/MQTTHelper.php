@@ -16,6 +16,7 @@ trait MQTTHelper
         $Server['Topic'] = $Topic;
         $Server['Payload'] = $Payload;
         $ServerJSON = json_encode($Server, JSON_UNESCAPED_SLASHES);
+        $ServerJSON = json_encode($Server);
         $this->SendDebug(__FUNCTION__ . 'MQTT Server', $ServerJSON, 0);
         $resultServer = @$this->SendDataToParent($ServerJSON);
 
@@ -25,10 +26,10 @@ trait MQTTHelper
         $Buffer['Retain'] = false;
         $Buffer['Topic'] = $Topic;
         $Buffer['Payload'] = $Payload;
-        $BufferJSON = json_encode($Buffer, JSON_UNESCAPED_SLASHES);
+        //$BufferJSON = json_encode($Buffer, JSON_UNESCAPED_SLASHES);
 
         $Client['DataID'] = '{97475B04-67C3-A74D-C970-E9409B0EFA1D}';
-        $Client['Buffer'] = $BufferJSON;
+        $Client['Buffer'] = $Buffer;
 
         $ClientJSON = json_encode($Client);
         $this->SendDebug(__FUNCTION__ . 'MQTT Client', $ClientJSON, 0);
