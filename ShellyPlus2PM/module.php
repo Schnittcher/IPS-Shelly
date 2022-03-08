@@ -174,13 +174,13 @@ class ShellyPlus2PM extends IPSModule
                             if (array_key_exists('state', $cover)) {
                                 switch ($cover['state']) {
                                     case 'stopped':
-                                        $this->SetValue('Cover', 4);
+                                        $this->SetValue('Cover', 2);
                                         break;
                                     case 'opening':
                                         $this->SetValue('Cover', 0);
                                         break;
                                     case 'closing':
-                                        $this->SetValue('Cover', 2);
+                                        $this->SetValue('Cover', 4);
                                         break;
                                     default:
                                         $this->SendDebug('Invalid Value for Cover', $cover['state'], 0);
