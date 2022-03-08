@@ -5,7 +5,7 @@ require_once __DIR__ . '/../libs/ShellyHelper.php';
 require_once __DIR__ . '/../libs/VariableProfileHelper.php';
 require_once __DIR__ . '/../libs/MQTTHelper.php';
 
-class ShellyPlus1 extends IPSModule
+class ShellyPlus2PM extends IPSModule
 {
     use Shelly;
     use VariableProfileHelper;
