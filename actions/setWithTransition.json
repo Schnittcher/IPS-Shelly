@@ -1,0 +1,46 @@
+{
+    "id": "{D2FD06BA-C032-4179-BE66-C6ABB4B80F4A}",
+    "caption": "Set brightness with transition",
+    "form": [
+        {
+            "type": "NumberSpinner",
+            "name": "Brightness",
+            "caption": "Brightness",
+            "minimum": 0,
+            "maximum": 100,
+            "suffix": "%"
+        },
+        {
+            "type": "NumberSpinner",
+            "name": "TransitionTime",
+            "caption": "Transition Time",
+            "suffix": "ms"
+        }
+    ],
+    "priority": 1,
+    "action": [
+        "SHELLY_DimSet($_IPS['TARGET'], $_IPS['Brightness'], $_IPS['TransitionTime']);"
+    ],
+    "restrictions": {
+        "objectType": [
+            1
+        ],
+        "includeEnvironments": [
+            "Default",
+            "TestCommands"
+        ],
+        "moduleID": [
+            "{69B501C7-DCE8-4A4A-910C-D3954473E654}",
+            "{65462305-608D-4E48-B532-E3D389F7DF00}",
+            "{6FEE58E6-082D-6934-F49E-EC6642E39992}"
+        ]
+    },
+    "locale": {
+        "de": {
+            "Set brightness with transition": "Setze Helligkeit mit Übergang",
+            "Transition Time": "Übergangszeit",
+            "seconds": "ms",
+            "Brightness": "Helligkeit"
+        }
+    }
+}
