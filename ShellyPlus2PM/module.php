@@ -51,7 +51,7 @@ class ShellyPlus2PM extends IPSModule
                 $this->SendDebug(__FUNCTION__ . ' Device Type: ', ' Roller', 0);
                 $this->RegisterVariableInteger('Cover', $this->Translate('Roller'), '~ShutterMoveStop');
                 $this->EnableAction('Cover');
-                $this->RegisterVariableInteger('Shelly_RollerPosition', $this->Translate('Position'), '~Shutter');
+                $this->RegisterVariableInteger('CoverPosition', $this->Translate('Position'), '~Shutter');
                 $this->EnableAction('CoverPosition');
                 break;
             default:
