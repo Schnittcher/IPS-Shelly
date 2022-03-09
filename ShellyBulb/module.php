@@ -188,6 +188,16 @@ class ShellyBulb extends IPSModule
         }
     }
 
+    public function DimSet(int $value, int $transition = 0)
+    {
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/color/0/set';
+        $Payload['mode'] = 'white';
+        $Payload['brightness'] = strval($value);
+        $Payload['transition'] = strval($transition);
+        $Payload = json_encode($Payload);
+        $this->sendMQTT($Topic, $Payload);
+    }
+
     private function hideVariables($mode)
     {
         switch ($mode) {
@@ -237,16 +247,6 @@ class ShellyBulb extends IPSModule
         //$Payload['mode'] = strval($value);
         //$Payload = json_encode($Payload);
         //$this->sendMQTT($Topic, $Payload);
-    }
-
-    public function DimSet(int $value, int $transition = 0)
-    {
-        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/color/0/set';
-        $Payload['mode'] = 'white';
-        $Payload['brightness'] = strval($value);
-        $Payload['transition'] = strval($transition);
-        $Payload = json_encode($Payload);
-        $this->sendMQTT($Topic, $Payload);
     }
 
     private function WhiteSet(int $value)

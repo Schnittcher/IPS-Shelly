@@ -171,12 +171,12 @@ class ShellyRGBW2 extends IPSModule
 
             if (property_exists($Buffer, 'Topic')) {
                 $channel = $this->getChannel($Buffer->Topic);
-                    $this->SendDebug('ShellyRGBW2 Payload', $Buffer->Payload, 0);
-                    $this->SendDebug('ShellyRGBW2 Channel', $channel, 0);
-                    $Payload = json_decode($Buffer->Payload);
-                    if (fnmatch('*/input/0', $Buffer->Topic)) {
-                        $this->SendDebug('Input Payload', $Buffer->Payload, 0);
-                        switch ($Buffer->Payload) {
+                $this->SendDebug('ShellyRGBW2 Payload', $Buffer->Payload, 0);
+                $this->SendDebug('ShellyRGBW2 Channel', $channel, 0);
+                $Payload = json_decode($Buffer->Payload);
+                if (fnmatch('*/input/0', $Buffer->Topic)) {
+                    $this->SendDebug('Input Payload', $Buffer->Payload, 0);
+                    switch ($Buffer->Payload) {
                             case 0:
                                 $this->SetValue('Shelly_Input', 0);
                                 break;
@@ -184,10 +184,10 @@ class ShellyRGBW2 extends IPSModule
                                 $this->SetValue('Shelly_Input', 1);
                                 break;
                         }
-                    }
-                    if (fnmatch('*/longpush/0', $Buffer->Topic)) {
-                        $this->SendDebug('Longpush Payload', $Buffer->Payload, 0);
-                        switch ($Buffer->Payload) {
+                }
+                if (fnmatch('*/longpush/0', $Buffer->Topic)) {
+                    $this->SendDebug('Longpush Payload', $Buffer->Payload, 0);
+                    switch ($Buffer->Payload) {
                             case 0:
                                 $this->SetValue('Shelly_Longpush', 0);
                                 break;
@@ -195,9 +195,9 @@ class ShellyRGBW2 extends IPSModule
                                 $this->SetValue('Shelly_Longpush', 1);
                                 break;
                         }
-                    }
-                    if (fnmatch('*status*', $Buffer->Topic)) {
-                        switch ($Payload->mode) {
+                }
+                if (fnmatch('*status*', $Buffer->Topic)) {
+                    switch ($Payload->mode) {
                             case 'white':
                                 if (strtolower($this->ReadPropertyString('Mode')) != $Payload->mode) {
                                     $this->SendDebug('Mode', strtolower($this->ReadPropertyString('Mode')) . ' ' . $Payload->mode, 0);
@@ -249,10 +249,10 @@ class ShellyRGBW2 extends IPSModule
                                 $this->SendDebug('Invalid Mode', $Payload->mode, 0);
                                 break;
                         }
-                    }
-                    if (fnmatch('*/online', $Buffer->Topic)) {
-                        $this->SendDebug('Online Payload', $Buffer->Payload, 0);
-                        switch ($Buffer->Payload) {
+                }
+                if (fnmatch('*/online', $Buffer->Topic)) {
+                    $this->SendDebug('Online Payload', $Buffer->Payload, 0);
+                    switch ($Buffer->Payload) {
                             case 'true':
                                 $this->SetValue('Shelly_Reachable', true);
                                 break;
@@ -260,8 +260,7 @@ class ShellyRGBW2 extends IPSModule
                                 $this->SetValue('Shelly_Reachable', false);
                                 break;
                         }
-                    }
-                
+                }
             }
         }
     }

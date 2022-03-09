@@ -166,6 +166,15 @@ class ShellyDuo extends IPSModule
         }
     }
 
+    public function DimSet(int $value, int $trantition = 0)
+    {
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/' . $this->ReadPropertyString('Device') . '/0/set';
+        $Payload['brightness'] = strval($value);
+        $Payload['transition'] = strval($transition);
+        $Payload = json_encode($Payload);
+        $this->sendMQTT($Topic, $Payload);
+    }
+
     private function SwitchMode(bool $Value)
     {
         $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/' . $this->ReadPropertyString('Device') . '/0/command';
@@ -174,15 +183,6 @@ class ShellyDuo extends IPSModule
         } else {
             $Payload = 'off';
         }
-        $this->sendMQTT($Topic, $Payload);
-    }
-
-    public function DimSet(int $value, int $trantition = 0)
-    {
-        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/' . $this->ReadPropertyString('Device') . '/0/set';
-        $Payload['brightness'] = strval($value);
-        $Payload['transition'] = strval($transition);
-        $Payload = json_encode($Payload);
         $this->sendMQTT($Topic, $Payload);
     }
 
