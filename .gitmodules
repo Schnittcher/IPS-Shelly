@@ -1,6 +1,0 @@
-[submodule "libs/helper"]
-	path = libs/helper
-	url = https://github.com/Schnittcher/SymconModulHelper
-[submodule ".style"]
-	path = .style
-	url = https://github.com/Schnittcher/StylePHP
