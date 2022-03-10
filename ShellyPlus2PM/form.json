@@ -5,13 +5,25 @@
             "name": "MQTTTopic",
             "caption": "MQTT Topic"
         },
-        { "type": "Select", "name": "DeviceType", "caption": "Device Type",
+        {
+            "type": "Select",
+            "name": "DeviceType",
+            "caption": "Device Type",
             "options": [
-              { "caption": "Please set Device Type", "value": "" },
-              { "caption": "Relay", "value": "relay" },
-              { "caption": "Roller", "value": "roller" }
+                {
+                    "caption": "Please set Device Type",
+                    "value": ""
+                },
+                {
+                    "caption": "Relay",
+                    "value": "relay"
+                },
+                {
+                    "caption": "Roller",
+                    "value": "roller"
+                }
             ]
-          }
+        }
     ],
     "actions": [
         {
