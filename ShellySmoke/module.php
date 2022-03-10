@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 require_once __DIR__ . '/../libs/ShellyHelper.php';
-require_once __DIR__ . '/../libs/VariableProfileHelper.php';
+require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
 
 class ShellySmoke extends IPSModule
 {
