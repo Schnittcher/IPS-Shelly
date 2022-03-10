@@ -1,23 +1,23 @@
 {
-  "translations": {
-    "de": {
-      "State 1": "Status 1",
-      "State 2": "Status 2",
-      "Input 1": "Eingang 1",
-      "Input 2": "Eingang 2",
-      "ADC 1": "ADC 1",
-      "Variable profile type does not match for profile": "Der Profiltyp der Variablen stimmt nicht mit dem Profil überein",
-      "Reachable": "Erreichbar",
-      "External Temperature 1": "Externe Temperatur 1",
-      "External Temperature 2": "Externe Temperatur 2",
-      "External Temperature 3": "Externe Temperatur 3",
-      "External Temperature 4": "Externe Temperatur 4",
-      "External Temperature 5": "Externe Temperatur 5",
-      "External Humidity 1": "External Humidity 1",
-      "External Humidity 2": "External Humidity 2",
-      "External Humidity 3": "External Humidity 3",
-      "External Humidity 4": "External Humidity 4",
-      "External Humidity 5": "External Humidity 5"
+    "translations": {
+        "de": {
+            "State 1": "Status 1",
+            "State 2": "Status 2",
+            "Input 1": "Eingang 1",
+            "Input 2": "Eingang 2",
+            "ADC 1": "ADC 1",
+            "Variable profile type does not match for profile": "Der Profiltyp der Variablen stimmt nicht mit dem Profil überein",
+            "Reachable": "Erreichbar",
+            "External Temperature 1": "Externe Temperatur 1",
+            "External Temperature 2": "Externe Temperatur 2",
+            "External Temperature 3": "Externe Temperatur 3",
+            "External Temperature 4": "Externe Temperatur 4",
+            "External Temperature 5": "Externe Temperatur 5",
+            "External Humidity 1": "External Humidity 1",
+            "External Humidity 2": "External Humidity 2",
+            "External Humidity 3": "External Humidity 3",
+            "External Humidity 4": "External Humidity 4",
+            "External Humidity 5": "External Humidity 5"
+        }
     }
-  }
 }

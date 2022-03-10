@@ -1,32 +1,32 @@
 {
-  "translations": {
-    "de": {
-      "Reachable": "Erreichbar",
-      "Operation": "Operation",
-      "Unknown" : "Unbekannt",
-      "Warmup" : "Aufwärmen",
-      "Normal" : "Normal",
-      "Fault" : "Fehler",
-      "Gas": "Gas",
-      "No Alarm" : "Kein Alarm",
-      "Mild" : "Leicht",
-      "Heavy" : "Schwer",
-      "Test" : "Test",
-      "Self Test": "Selbsttest",
-      "Not Completed": "Nicht fertiggestellt",
-      "Completed": "Fertiggestellt",
-      "Running": "Aktiv",
-      "Pending": "Steht aus",
-      "Concentration": "Konzentration",
-      "Control": "Steuerung",
-      "Start Self Test": "Starte Selbsttest",
-      "Mute": "Stumm",
-      "Unmute": "Stummschaltung aufheben",
-      "Invalid Value for Control:": "Ungültiger Wert für Steuerung:",
-      "Invalid Ident for RequestAction:": "Ungültiger Ident für RequestAction:",
-      "Invalid Value for Operation:": "Ungültiger Wert für Operation:",
-      "Invalid Value for Gas:": "Ungültiger Wert für Gas:",
-      "Invalid Value for Self Test:": "Ungültiger Wert für Self Test"
+    "translations": {
+        "de": {
+            "Reachable": "Erreichbar",
+            "Operation": "Operation",
+            "Unknown": "Unbekannt",
+            "Warmup": "Aufwärmen",
+            "Normal": "Normal",
+            "Fault": "Fehler",
+            "Gas": "Gas",
+            "No Alarm": "Kein Alarm",
+            "Mild": "Leicht",
+            "Heavy": "Schwer",
+            "Test": "Test",
+            "Self Test": "Selbsttest",
+            "Not Completed": "Nicht fertiggestellt",
+            "Completed": "Fertiggestellt",
+            "Running": "Aktiv",
+            "Pending": "Steht aus",
+            "Concentration": "Konzentration",
+            "Control": "Steuerung",
+            "Start Self Test": "Starte Selbsttest",
+            "Mute": "Stumm",
+            "Unmute": "Stummschaltung aufheben",
+            "Invalid Value for Control:": "Ungültiger Wert für Steuerung:",
+            "Invalid Ident for RequestAction:": "Ungültiger Ident für RequestAction:",
+            "Invalid Value for Operation:": "Ungültiger Wert für Operation:",
+            "Invalid Value for Gas:": "Ungültiger Wert für Gas:",
+            "Invalid Value for Self Test:": "Ungültiger Wert für Self Test"
+        }
     }
-  }
 }

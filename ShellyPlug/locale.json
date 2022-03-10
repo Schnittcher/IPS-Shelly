@@ -1,12 +1,12 @@
 {
-  "translations": {
-    "de": {
-      "State": "Status",
-      "Reachable": "Erreichbar",
-      "Power": "Leistung",
-      "Energy": "Energie",
-      "Temperature": "Temperatur",
-      "Overtemperature": "Übertemperatur"
+    "translations": {
+        "de": {
+            "State": "Status",
+            "Reachable": "Erreichbar",
+            "Power": "Leistung",
+            "Energy": "Energie",
+            "Temperature": "Temperatur",
+            "Overtemperature": "Übertemperatur"
+        }
     }
-  }
 }

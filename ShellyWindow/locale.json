@@ -1,14 +1,14 @@
 {
-  "translations": {
-    "de": {
-      "State": "Status",
-      "Reachable": "Erreichbar",
-      "Lux": "Lux",
-      "Battery": "Batterie",
-      "Temperature": "Temperatur",
-      "Vibration": "Vibration",
-      "Tilt": "Neigung",
-      "Please select device": "Bitte wählen Sie ein Gerät aus"
+    "translations": {
+        "de": {
+            "State": "Status",
+            "Reachable": "Erreichbar",
+            "Lux": "Lux",
+            "Battery": "Batterie",
+            "Temperature": "Temperatur",
+            "Vibration": "Vibration",
+            "Tilt": "Neigung",
+            "Please select device": "Bitte wählen Sie ein Gerät aus"
+        }
     }
-  }
 }

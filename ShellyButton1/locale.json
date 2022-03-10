@@ -1,14 +1,14 @@
 {
-  "translations": {
-    "de": {
-      "Input": "Eingang",
-      "shortpush": "shortpush",
-      "double shortpush": "double shortpush",
-      "triple shortpush": "triple shortpush",
-      "longpush": "longpush",
-      "Variable profile type does not match for profile": "Der Profiltyp der Variablen stimmt nicht mit dem Profil überein",
-      "Reachable": "Erreichbar",
-      "Battery": "Batterie"
+    "translations": {
+        "de": {
+            "Input": "Eingang",
+            "shortpush": "shortpush",
+            "double shortpush": "double shortpush",
+            "triple shortpush": "triple shortpush",
+            "longpush": "longpush",
+            "Variable profile type does not match for profile": "Der Profiltyp der Variablen stimmt nicht mit dem Profil überein",
+            "Reachable": "Erreichbar",
+            "Battery": "Batterie"
+        }
     }
-  }
 }

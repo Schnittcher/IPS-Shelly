@@ -1,17 +1,17 @@
 {
-  "translations": {
-    "de": {
-      "State": "Status",
-      "Input": "Eingang",
-      "Longpush": "Longpush",
-      "Reachable": "Erreichbar",
-      "Mode": "Modus",
-      "Color": "Farbe",
-      "White": "Weiß",
-      "Power 1": "Leistung 1",
-      "Power 2": "Leistung 2",
-      "Power 3": "Leistung 3",
-      "Power 4": "Leistung 4"
+    "translations": {
+        "de": {
+            "State": "Status",
+            "Input": "Eingang",
+            "Longpush": "Longpush",
+            "Reachable": "Erreichbar",
+            "Mode": "Modus",
+            "Color": "Farbe",
+            "White": "Weiß",
+            "Power 1": "Leistung 1",
+            "Power 2": "Leistung 2",
+            "Power 3": "Leistung 3",
+            "Power 4": "Leistung 4"
+        }
     }
-  }
 }

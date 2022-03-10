@@ -1,19 +1,19 @@
 {
-  "translations": {
-    "de": {
-      "State": "Status",
-      "Reachable": "Erreichbar",
-      "Power": "Leistung",
-      "Energy": "Energie",
-      "Current": "Stromstärke",
-      "Voltage": "Volt",
-      "Total consumption": "Gesamtverbrauch",
-      "Overvoltage": "Überspannung",
-      "Overpower": "Überlastung",
-      "Overtemp": "Übertemperatur",
-      "Please select device": "Bitte wählen Sie das Gerät aus",
-      "Event Component": "Ereignis Komponente",
-      "Event": "Ereignis"
+    "translations": {
+        "de": {
+            "State": "Status",
+            "Reachable": "Erreichbar",
+            "Power": "Leistung",
+            "Energy": "Energie",
+            "Current": "Stromstärke",
+            "Voltage": "Volt",
+            "Total consumption": "Gesamtverbrauch",
+            "Overvoltage": "Überspannung",
+            "Overpower": "Überlastung",
+            "Overtemp": "Übertemperatur",
+            "Please select device": "Bitte wählen Sie das Gerät aus",
+            "Event Component": "Ereignis Komponente",
+            "Event": "Ereignis"
+        }
     }
-  }
 }

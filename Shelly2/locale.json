@@ -1,26 +1,26 @@
 {
-  "translations": {
-    "de": {
-      "State": "Status",
-      "Reachable": "Erreichbar",
-      "Roller" : "Rollo",
-      "Position": "Position",
-      "Power": "Leistung",
-      "Energy": "Energie",
-      "Power 1": "Leistung 1",
-      "Energy 1": "Energie 1",
-      "Power 2": "Leistung 2",
-      "Energy 2": "Energie 2",
-      "Variable profile type does not match for profile": "Der Profiltyp der Variablen stimmt nicht mit dem Profil überein",
-      "Device Type": "Geräte Typ",
-      "Device": "Geräte",
-      "Please set Device Type": "Bitte legen Sie den Gerätetyp fest",
-      "Please select device": "Bitte wählen Sie das Gerät aus",
-      "Relay": "Relais",
-      "Input 1": "Eingang 1",
-      "Input 2": "Eingang 2",
-      "Longpush Input 1": "Longpush Eingang 1",
-      "Longpush Input 2": "Longpush Eingang 2"
+    "translations": {
+        "de": {
+            "State": "Status",
+            "Reachable": "Erreichbar",
+            "Roller": "Rollo",
+            "Position": "Position",
+            "Power": "Leistung",
+            "Energy": "Energie",
+            "Power 1": "Leistung 1",
+            "Energy 1": "Energie 1",
+            "Power 2": "Leistung 2",
+            "Energy 2": "Energie 2",
+            "Variable profile type does not match for profile": "Der Profiltyp der Variablen stimmt nicht mit dem Profil überein",
+            "Device Type": "Geräte Typ",
+            "Device": "Geräte",
+            "Please set Device Type": "Bitte legen Sie den Gerätetyp fest",
+            "Please select device": "Bitte wählen Sie das Gerät aus",
+            "Relay": "Relais",
+            "Input 1": "Eingang 1",
+            "Input 2": "Eingang 2",
+            "Longpush Input 1": "Longpush Eingang 1",
+            "Longpush Input 2": "Longpush Eingang 2"
+        }
     }
-  }
 }

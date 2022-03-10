@@ -1,10 +1,10 @@
 {
-  "translations": {
-    "de": {
-      "State": "Status",
-      "Reachable": "Erreichbar",
-      "Power": "Leistung",
-      "Energy": "Energie"
+    "translations": {
+        "de": {
+            "State": "Status",
+            "Reachable": "Erreichbar",
+            "Power": "Leistung",
+            "Energy": "Energie"
+        }
     }
-  }
 }

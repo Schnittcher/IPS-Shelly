@@ -1,13 +1,13 @@
 {
-  "translations": {
-    "de": {
-      "Position": "Position",
-      "Target Temperature": "Zieltemperatur",
-      "Temperature": "Temperatur",
-      "Schedule": "Zeitplan",
-      "Schedule Profile": "Zeitplan Profil",
-      "Battery": "Batterie",
-      "Battery Voltage": "Batterie Spannung"
+    "translations": {
+        "de": {
+            "Position": "Position",
+            "Target Temperature": "Zieltemperatur",
+            "Temperature": "Temperatur",
+            "Schedule": "Zeitplan",
+            "Schedule Profile": "Zeitplan Profil",
+            "Battery": "Batterie",
+            "Battery Voltage": "Batterie Spannung"
+        }
     }
-  }
 }

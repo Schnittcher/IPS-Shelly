@@ -1,10 +1,10 @@
 {
-  "translations": {
-    "de": {
-      "Temperature": "Temperatur",
-      "Reachable": "Erreichbar",
-      "Smoke": " Rauch",
-      "Battery": "Batterie"
+    "translations": {
+        "de": {
+            "Temperature": "Temperatur",
+            "Reachable": "Erreichbar",
+            "Smoke": " Rauch",
+            "Battery": "Batterie"
+        }
     }
-  }
 }

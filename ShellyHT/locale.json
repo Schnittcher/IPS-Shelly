@@ -1,10 +1,10 @@
 {
-  "translations": {
-    "de": {
-      "Temperature": "Temperatur",
-      "Reachable": "Erreichbar",
-      "Humidity": "Feuchtigkeit",
-      "Battery": "Batterie"
+    "translations": {
+        "de": {
+            "Temperature": "Temperatur",
+            "Reachable": "Erreichbar",
+            "Humidity": "Feuchtigkeit",
+            "Battery": "Batterie"
+        }
     }
-  }
 }
