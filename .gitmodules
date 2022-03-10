@@ -3,5 +3,5 @@
 	url = https://github.com/Schnittcher/SymconModulHelper
 [submodule ".style"]
 	path = .style
-	url = git@github.com:Schnittcher/StylePHP.git
+url=https://github.com/Schnittcher/SymconModulHelper/StylePHP
 	branch = master
