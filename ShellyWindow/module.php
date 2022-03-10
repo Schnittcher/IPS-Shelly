@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 require_once __DIR__ . '/../libs/ShellyHelper.php';
-require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
+require_once __DIR__ . '/../libs/vendor/SymconModulHelper/VariableProfileHelper.php';
 
 class ShellyWindow extends IPSModule
 {
