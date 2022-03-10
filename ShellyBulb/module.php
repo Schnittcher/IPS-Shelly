@@ -158,7 +158,7 @@ class ShellyBulb extends IPSModule
 
                     if (property_exists($Payload, 'red')) { //wenn red existiert, existieren auch die anderen
                         $this->SetValue('Shelly_Gain', $Payload->gain);
-                        $this->SetValue('Shelly_Color', $this->rgbToHex($Payload->red, $Payload->green, $Payload->blue));
+                        $this->SetValue('Shelly_Color', $this->RGBToHex($Payload->red, $Payload->green, $Payload->blue));
                     }
                     if (property_exists($Payload, 'mode')) {
                         $this->SetValue('Shelly_Mode', $Payload->mode);

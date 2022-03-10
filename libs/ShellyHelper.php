@@ -83,18 +83,4 @@ trait Shelly
         $relay = $ShellyTopic[$LastKey];
         return $relay;
     }
-
-    protected function rgbToHex($r, $g, $b)
-    {
-        return ($r << 16) + ($g << 8) + $b;
-    }
-
-    protected function HexToRGB(int $value)
-    {
-        $RGB = [];
-        $RGB[0] = (($value >> 16) & 0xFF);
-        $RGB[1] = (($value >> 8) & 0xFF);
-        $RGB[2] = ($value & 0xFF);
-        return $RGB;
-    }
 }

@@ -238,7 +238,7 @@ class ShellyRGBW2 extends IPSModule
                                     break;
                                 }
                                 $this->SetValue('Shelly_State', $Payload->ison);
-                                $this->SetValue('Shelly_Color', $this->rgbToHex($Payload->red, $Payload->green, $Payload->blue));
+                                $this->SetValue('Shelly_Color', $this->RGBToHex($Payload->red, $Payload->green, $Payload->blue));
                                 $this->SetValue('Shelly_White', $Payload->white);
                                 $this->SetValue('Shelly_Gain', $Payload->gain);
                                 $this->SetValue('Shelly_Effect', $Payload->effect);
