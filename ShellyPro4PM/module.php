@@ -69,6 +69,9 @@ class ShellyPro4PM extends IPSModule
         $this->RegisterVariableBoolean('Overpower4', $this->Translate('Overpower') . ' 4', '~Alert', 36);
         $this->RegisterVariableBoolean('Overvoltage4', $this->Translate('Overvoltage') . ' 4', '~Alert', 37);
 
+        $this->RegisterVariableString('EventComponent', $this->Translate('Event Component'), '', 40);
+        $this->RegisterVariableString('Event', $this->Translate('Event'), '', 41);
+
         $this->RegisterProfileBooleanEx('Shelly.Reachable', 'Network', '', '', [
             [false, 'Offline',  '', 0xFF0000],
             [true, 'Online',  '', 0x00FF00]
@@ -141,6 +144,11 @@ class ShellyPro4PM extends IPSModule
                                     if (array_key_exists('total', $switch['aenergy'])) {
                                         $this->SetValue('TotalEnergy' . $i, $switch['aenergy']['total'] / 1000);
                                     }
+                                }
+                                if (array_key_exists('events', $Payload)) {
+                                    $events = $Payload['events'];
+                                    $this->SetValue('EventComponent', $events['component']);
+                                    $this->SetValue('Event', $events['event']);
                                 }
                                 if (array_key_exists('errors', $switch)) {
                                     $this->SetValue('Overtemp' . $i, false);
