@@ -3,6 +3,7 @@
 declare(strict_types=1);
 require_once __DIR__ . '/../libs/ShellyHelper.php';
 require_once __DIR__ . '/../libs/vendor/SymconModulHelper/VariableProfileHelper.php';
+require_once __DIR__ . '/../libs/vendor/SymconModulHelper/ColorHelper.php';
 require_once __DIR__ . '/../libs/MQTTHelper.php';
 
 class ShellyDuo extends IPSModule
@@ -10,6 +11,7 @@ class ShellyDuo extends IPSModule
     use Shelly;
     use VariableProfileHelper;
     use MQTTHelper;
+    use ColorHelper;
 
     public function Create()
     {
