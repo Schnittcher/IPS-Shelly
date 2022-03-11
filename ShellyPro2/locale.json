@@ -1,0 +1,13 @@
+{
+    "translations": {
+        "de": {
+            "State": "Status",
+            "Reachable": "Erreichbar",
+            "Overvoltage": "Überspannung",
+            "Overpower": "Überlastung",
+            "Overtemp": "Übertemperatur",
+            "Event Component": "Ereignis Komponente",
+            "Event": "Ereignis"
+        }
+    }
+}

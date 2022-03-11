@@ -48,6 +48,7 @@ If you would like to use the username/password settings you need to configure it
 * [ShellyMotion](ShellyMotion/README_en.md) 
 * [ShellyPlug](ShellyPlug/README_en.md)
 * [ShellyPlus1](ShellyPlus1/README_en.md)
+* [ShellyPro2](ShellyPro2/README_en.md)
 * [ShellyPro4PM](ShellyPro4PM/README_en.md)
 * [ShellyRGBW2](ShellyRGBW2/README_en.md)
 * [ShellySense](ShellySense/README_en.md)
