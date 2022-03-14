@@ -103,10 +103,12 @@ class ShellyPlus1 extends IPSModule
                                     $this->SetValue('TotalEnergy', $switch['aenergy']['total'] / 1000);
                                 }
                             }
-                            if (array_key_exists('events', $Payload)) {
-                                $events = $Payload['events'];
-                                $this->SetValue('EventComponent', $events['component']);
-                                $this->SetValue('Event', $events['event']);
+                            if (array_key_exists('params', $Payload)) {
+                                if (array_key_exists('events', $Payload['params'])) {
+                                    $events = $Payload['params']['events'];
+                                    $this->SetValue('EventComponent', $events['component']);
+                                    $this->SetValue('Event', $events['event']);
+                                }
                             }
                             if (array_key_exists('errors', $switch)) {
                                 $this->SetValue('Overtemp', false);
