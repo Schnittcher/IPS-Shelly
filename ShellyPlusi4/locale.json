@@ -1,6 +1,7 @@
 {
     "translations": {
         "de": {
+            "Input": "Eingang",
             "Reachable": "Erreichbar",
             "Event Component": "Ereignis Komponente",
             "Event": "Ereignis"

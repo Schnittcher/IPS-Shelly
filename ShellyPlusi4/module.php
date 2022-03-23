@@ -29,6 +29,11 @@ class ShellyPlusi4 extends IPSModule
         $MQTTTopic = $this->ReadPropertyString('MQTTTopic');
         $this->SetReceiveDataFilter('.*' . $MQTTTopic . '.*');
 
+        $this->RegisterVariableBoolean('Input0', $this->Translate('Input') . ' 1', '~Switch');
+        $this->RegisterVariableBoolean('Input1', $this->Translate('Input') . ' 2', '~Switch');
+        $this->RegisterVariableBoolean('Input2', $this->Translate('Input') . ' 3', '~Switch');
+        $this->RegisterVariableBoolean('Input3', $this->Translate('Input') . ' 4', '~Switch');
+
         $this->RegisterVariableString('EventComponent', $this->Translate('Event Component'), '', 1);
         $this->RegisterVariableString('Event', $this->Translate('Event'), '', 2);
 
@@ -70,6 +75,15 @@ class ShellyPlusi4 extends IPSModule
                             $events = $Payload['params']['events'];
                             $this->SetValue('EventComponent', $events['component']);
                             $this->SetValue('Event', $events['event']);
+                        }
+                        for ($i = 0; $i <= 3; $i++) {
+                            $inputIndex = 'input:' . $i;
+                            if (array_key_exists($inputIndex, $Payload['params'])) {
+                                $input = $Payload['params'][$inputIndex];
+                                if (array_key_exists('state', $input)) {
+                                    $this->SetValue('Input' . $i, $input['state']);
+                                }
+                            }
                         }
                     }
                 }
