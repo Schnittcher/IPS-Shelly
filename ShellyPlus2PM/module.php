@@ -124,8 +124,8 @@ class ShellyPlus2PM extends IPSModule
                 }
                 if (fnmatch('*/events/rpc', $Buffer['Topic'])) {
                     if (array_key_exists('params', $Payload)) {
-                        if (array_key_exists('events', $Payload)) {
-                            $events = $Payload['events'];
+                        if (array_key_exists('events', $Payload['params'])) {
+                            $events = $Payload['params']['events'][0];
                             $this->SetValue('EventComponent', $events['component']);
                             $this->SetValue('Event', $events['event']);
                         }

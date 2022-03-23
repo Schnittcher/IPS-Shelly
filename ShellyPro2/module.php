@@ -90,6 +90,11 @@ class ShellyPro2 extends IPSModule
                 }
                 if (fnmatch('*/events/rpc', $Buffer['Topic'])) {
                     if (array_key_exists('params', $Payload)) {
+                        if (array_key_exists('events', $Payload['params'])) {
+                            $events = $Payload['params']['events'][0];
+                            $this->SetValue('EventComponent', $events['component']);
+                            $this->SetValue('Event', $events['event']);
+                        }
                         for ($i = 0; $i <= 1; $i++) {
                             $switchIndex = 'switch:' . $i;
                             if (array_key_exists($switchIndex, $Payload['params'])) {
@@ -110,11 +115,6 @@ class ShellyPro2 extends IPSModule
                                     if (array_key_exists('total', $switch['aenergy'])) {
                                         $this->SetValue('TotalEnergy' . $i, $switch['aenergy']['total'] / 1000);
                                     }
-                                }
-                                if (array_key_exists('events', $Payload)) {
-                                    $events = $Payload['events'];
-                                    $this->SetValue('EventComponent', $events['component']);
-                                    $this->SetValue('Event', $events['event']);
                                 }
                                 if (array_key_exists('errors', $switch)) {
                                     $this->SetValue('Overtemp' . $i, false);

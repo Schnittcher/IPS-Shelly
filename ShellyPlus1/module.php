@@ -84,6 +84,11 @@ class ShellyPlus1 extends IPSModule
                 }
                 if (fnmatch('*/events/rpc', $Buffer['Topic'])) {
                     if (array_key_exists('params', $Payload)) {
+                        if (array_key_exists('events', $Payload['params'])) {
+                            $events = $Payload['params']['events'][0];
+                            $this->SetValue('EventComponent', $events['component']);
+                            $this->SetValue('Event', $events['event']);
+                        }
                         if (array_key_exists('switch:0', $Payload['params'])) {
                             $switch = $Payload['params']['switch:0'];
                             if (array_key_exists('output', $switch)) {
@@ -101,13 +106,6 @@ class ShellyPlus1 extends IPSModule
                             if (array_key_exists('aenergy', $switch)) {
                                 if (array_key_exists('total', $switch['aenergy'])) {
                                     $this->SetValue('TotalEnergy', $switch['aenergy']['total'] / 1000);
-                                }
-                            }
-                            if (array_key_exists('params', $Payload)) {
-                                if (array_key_exists('events', $Payload['params'])) {
-                                    $events = $Payload['params']['events'];
-                                    $this->SetValue('EventComponent', $events['component']);
-                                    $this->SetValue('Event', $events['event']);
                                 }
                             }
                             if (array_key_exists('errors', $switch)) {
