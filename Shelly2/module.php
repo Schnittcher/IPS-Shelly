@@ -52,6 +52,7 @@ class Shelly2 extends IPSModule
                 $this->EnableAction('Shelly_Roller');
                 $this->RegisterVariableInteger('Shelly_RollerPosition', $this->Translate('Position'), '~Shutter');
                 $this->EnableAction('Shelly_RollerPosition');
+                $this->RegisterVariableString('Shelly_RollerStopReason', $this->Translate('Stop Reason'), '');
                 break;
             default:
                 $this->SendDebug(__FUNCTION__ . ' Device Type: ', 'No Device Type', 0);
@@ -225,7 +226,11 @@ class Shelly2 extends IPSModule
                             break;
                     }
                 }
-                if (fnmatch('*/roller/0*', $Buffer->Topic)) {
+                if (fnmatch('*/roller/stop_reason', $Buffer->Topic)) {
+                    $this->SendDebug('Roller Payload', $Buffer->Payload, 0);
+                    $this->SetValue('Shelly_RollerStopReason', $Buffer->Payload);
+                }
+                if (fnmatch('*/roller/0', $Buffer->Topic)) {
                     $this->SendDebug('Roller Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 'open':
