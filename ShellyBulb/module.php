@@ -200,6 +200,13 @@ class ShellyBulb extends IPSModule
         $this->sendMQTT($Topic, $Payload);
     }
 
+    public function setExtOpt($Payload)
+    {
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/color/0/set';
+        $Payload = json_encode($Payload);
+        $this->sendMQTT($Topic, $Payload);
+    }
+
     private function hideVariables($mode)
     {
         switch ($mode) {
