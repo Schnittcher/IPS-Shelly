@@ -170,7 +170,7 @@ class ShellyDuo extends IPSModule
 
     public function setExtOpt($Payload)
     {
-        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/color/0/set';
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/' . $this->ReadPropertyString('Device') . '/0/set';
         $Payload = json_encode($Payload);
         $this->sendMQTT($Topic, $Payload);
     }
