@@ -175,7 +175,7 @@ class ShellyDuo extends IPSModule
         $this->sendMQTT($Topic, $Payload);
     }
 
-    public function DimSet(int $value, int $trantition = 0)
+    public function DimSet(int $value, int $transition = 0)
     {
         $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/' . $this->ReadPropertyString('Device') . '/0/set';
         $Payload['brightness'] = strval($value);
