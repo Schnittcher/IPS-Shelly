@@ -19,7 +19,6 @@ class ShellyBulb extends ShellyModule
         ['Shelly_Brightness', 'Brightness', VARIABLETYPE_INTEGER, '~Intensity.100', [], '', true, true],
         ['Shelly_ColorTemperature', 'Color Temperature', VARIABLETYPE_INTEGER, 'ShellyBulb.ColorTemperature', [], '', true, true],
         ['Shelly_White', 'White', VARIABLETYPE_INTEGER, '~Intensity.100', [], '', false, true],
-        
 
         ['Shelly_Power', 'Power', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true],
         ['Shelly_Energy', 'Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
@@ -36,7 +35,6 @@ class ShellyBulb extends ShellyModule
             ['color', $this->Translate('Color'), '', 0x0000FF]
         ]);
         $this->RegisterProfileInteger('ShellyBulb.ColorTemperature', 'Intensity', '', 'K', 2700, 6500, 1);
-
     }
 
     public function RequestAction($Ident, $Value)
