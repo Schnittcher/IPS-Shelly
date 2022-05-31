@@ -1,29 +1,23 @@
 <?php
 
 declare(strict_types=1);
-require_once __DIR__ . '/../libs/ShellyHelper.php';
-require_once __DIR__ . '/../libs/vendor/SymconModulHelper/VariableProfileHelper.php';
-require_once __DIR__ . '/../libs/MQTTHelper.php';
+require_once __DIR__ . '/../libs/ShellyModule.php';
 
-class ShellyGas extends IPSModule
+class ShellyGas extends ShellyModule
 {
-    use Shelly;
-    use VariableProfileHelper;
-    use MQTTHelper;
+    public static $Variables = [
+        ['Shelly_Operation', 'Operation', VARIABLETYPE_INTEGER, 'Shelly.Gas.Operation', [], '', false, true],
+        ['Shelly_Gas', 'Gas', VARIABLETYPE_INTEGER, 'Shelly.Gas', [], '', false, true],
+        ['Shelly_SelfTest', 'Self Test', VARIABLETYPE_INTEGER, 'Shelly.Gas.SelfTest', [], '', false, true],
+        ['Shelly_Concentration', 'Concentration', VARIABLETYPE_INTEGER, '', [], '', false, true],
+        ['Shelly_Control', 'Control', VARIABLETYPE_INTEGER, 'Shelly.Gas.Control', [], '', true, true],
+        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
+    ];
 
     public function Create()
     {
         //Never delete this line!
         parent::Create();
-        $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
-
-        $this->RegisterPropertyString('MQTTTopic', '');
-
-        $this->RegisterProfileBooleanEx('Shelly.Reachable', 'Network', '', '', [
-            [false, 'Offline',  '', 0xFF0000],
-            [true, 'Online',  '', 0x00FF00]
-        ]);
-
         $this->RegisterProfileIntegerEx('Shelly.Gas.Operation', 'TurnLeft', '', '', [
             [0, $this->Translate('Unknown'),  '', 0xFFA500],
             [1, $this->Translate('Warmup'),  '', 0xDFDF1c],
@@ -51,15 +45,6 @@ class ShellyGas extends IPSModule
             [1, $this->Translate('Mute'),  '', -1],
             [2, $this->Translate('Unmute'),  '', -1],
         ]);
-
-        $this->RegisterVariableInteger('Shelly_Operation', $this->Translate('Operation'), 'Shelly.Gas.Operation');
-        $this->RegisterVariableInteger('Shelly_Gas', $this->Translate('Gas'), 'Shelly.Gas');
-        $this->RegisterVariableInteger('Shelly_SelfTest', $this->Translate('Self Test'), 'Shelly.Gas.SelfTest');
-        $this->RegisterVariableInteger('Shelly_Concentration', $this->Translate('Concentration'));
-        $this->RegisterVariableInteger('Shelly_Control', $this->Translate('Control'), 'Shelly.Gas.Control');
-        $this->RegisterVariableBoolean('Shelly_Reachable', $this->Translate('Reachable'), 'Shelly.Reachable');
-
-        $this->EnableAction('Shelly_Control');
     }
 
     public function ApplyChanges()

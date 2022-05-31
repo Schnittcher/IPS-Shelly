@@ -1,18 +1,23 @@
 {
     "translations": {
         "de": {
-            "State": "Status",
-            "Reachable": "Erreichbar",
-            "Power": "Leistung",
-            "Energy": "Energie",
-            "Current": "Stromstärke",
-            "Voltage": "Volt",
-            "Please set Device Type": "Bitte legen Sie den Gerätetyp fest",
+            "State 1": "Status 1",
+            "State 2": "Status 2",
+            "Power 1": "Leistung 1",
+            "Power 2": "Leistung 2",
+            "Total Energy 1": "Gesamt Energie 1",
+            "Total Energy 2": "Gesamt Energie 2",
+            "Current 1": "Stromstärke 1",
+            "Current 2": "Stromstärke 2",
+            "Voltage 1": "Volt 1",
+            "Voltage 2": "Volt 2",
             "Event Component": "Ereignis Komponente",
             "Event": "Ereignis",
             "Roller": "Rollo",
             "Relay": "Relais",
-            "Position": "Position"
+            "Position": "Position",
+            "Reachable": "Erreichbar",
+            "Please set Device Type": "Bitte legen Sie den Gerätetyp fest"
         }
     }
 }

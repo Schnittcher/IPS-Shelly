@@ -1,52 +1,21 @@
 <?php
 
 declare(strict_types=1);
-require_once __DIR__ . '/../libs/ShellyHelper.php';
-require_once __DIR__ . '/../libs/vendor/SymconModulHelper/VariableProfileHelper.php';
-require_once __DIR__ . '/../libs/MQTTHelper.php';
+require_once __DIR__ . '/../libs/ShellyModule.php';
 
-class ShellyAir extends IPSModule
+class ShellyAir extends ShellyModule
 {
-    use Shelly;
-    use VariableProfileHelper;
-    use MQTTHelper;
+    public static $Variables = [
+        ['Shelly_State', 'State', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true],
+        ['Shelly_Energy', 'Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
+        ['Shelly_Power', 'Power', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true],
+        ['Shelly_Overtemperature', 'Overtemperature', VARIABLETYPE_BOOLEAN, '', [], '', false, true],
+        ['Shelly_Temperature', 'Temperature', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
+        ['Shelly_Totalworktime', 'Total Work Time', VARIABLETYPE_INTEGER, '~Temperature', [], '', false, true],
+        ['Shelly_Input', 'Input', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
 
-    public function Create()
-    {
-        //Never delete this line!
-        parent::Create();
-        $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
-
-        $this->RegisterPropertyString('MQTTTopic', '');
-        $this->RegisterPropertyString('Device', '');
-        $this->RegisterVariableBoolean('Shelly_State', $this->Translate('State'), '~Switch');
-        $this->RegisterVariableBoolean('Shelly_Overtemperature', $this->Translate('Overtemperature'), '');
-        $this->RegisterVariableFloat('Shelly_Temperature', $this->Translate('Temperature'), '~Temperature');
-        $this->RegisterVariableFloat('Shelly_Energy', $this->Translate('Energy'), '~Electricity');
-        $this->RegisterVariableFloat('Shelly_Power', $this->Translate('Power'), '~Watt.3680');
-        $this->RegisterVariableInteger('Shelly_Totalworktime', $this->Translate('Totalworktime'), '');
-
-        $this->EnableAction('Shelly_State');
-
-        $this->RegisterVariableBoolean('Shelly_Input', $this->Translate('Input'), '~Switch');
-
-        $this->RegisterProfileBooleanEx('Shelly.Reachable', 'Network', '', '', [
-            [false, 'Offline',  '', 0xFF0000],
-            [true, 'Online',  '', 0x00FF00]
-        ]);
-
-        $this->RegisterVariableBoolean('Shelly_Reachable', $this->Translate('Reachable'), 'Shelly.Reachable');
-    }
-
-    public function ApplyChanges()
-    {
-        //Never delete this line!
-        parent::ApplyChanges();
-        $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
-        //Setze Filter für ReceiveData
-        $MQTTTopic = $this->ReadPropertyString('MQTTTopic');
-        $this->SetReceiveDataFilter('.*' . $MQTTTopic . '.*');
-    }
+        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
+    ];
 
     public function RequestAction($Ident, $Value)
     {

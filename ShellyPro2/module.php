@@ -1,56 +1,25 @@
 <?php
 
 declare(strict_types=1);
-require_once __DIR__ . '/../libs/ShellyHelper.php';
-require_once __DIR__ . '/../libs/vendor/SymconModulHelper/VariableProfileHelper.php';
-require_once __DIR__ . '/../libs/MQTTHelper.php';
+require_once __DIR__ . '/../libs/ShellyModule.php';
 
-class ShellyPro2 extends IPSModule
+class ShellyPro2 extends ShellyModule
 {
-    use Shelly;
-    use VariableProfileHelper;
-    use MQTTHelper;
+    public static $Variables = [
+        ['State0', 'State 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true],
+        ['Overtemp0', 'Overtemp 1', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
+        ['Overpower0', 'Overpower 1', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
+        ['Overvoltage0', 'Overvoltage 1', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
 
-    public function Create()
-    {
-        //Never delete this line!
-        parent::Create();
-        $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
+        ['State1', 'State 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true],
+        ['Overtemp1', 'Overtemp 2', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
+        ['Overpower1', 'Overpower 2', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
+        ['Overvoltage1', 'Overvoltage 2', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
 
-        $this->RegisterPropertyString('MQTTTopic', '');
-    }
-
-    public function ApplyChanges()
-    {
-        //Never delete this line!
-        parent::ApplyChanges();
-        $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
-        //Setze Filter für ReceiveData
-        $MQTTTopic = $this->ReadPropertyString('MQTTTopic');
-        $this->SetReceiveDataFilter('.*' . $MQTTTopic . '.*');
-
-        $this->RegisterVariableBoolean('State0', $this->Translate('State'), '~Switch', 0);
-        $this->EnableAction('State0');
-        $this->RegisterVariableBoolean('Overtemp0', $this->Translate('Overtemp'), '~Alert', 1);
-        $this->RegisterVariableBoolean('Overpower0', $this->Translate('Overpower'), '~Alert', 2);
-        $this->RegisterVariableBoolean('Overvoltage0', $this->Translate('Overvoltage'), '~Alert', 3);
-
-        $this->RegisterVariableBoolean('State1', $this->Translate('State') . ' 2', '~Switch', 4);
-        $this->EnableAction('State1');
-        $this->RegisterVariableBoolean('Overtemp1', $this->Translate('Overtemp') . ' 2', '~Alert', 5);
-        $this->RegisterVariableBoolean('Overpower1', $this->Translate('Overpower') . ' 2', '~Alert', 6);
-        $this->RegisterVariableBoolean('Overvoltage1', $this->Translate('Overvoltage') . ' 2', '~Alert', 7);
-
-        $this->RegisterVariableString('EventComponent', $this->Translate('Event Component'), '', 8);
-        $this->RegisterVariableString('Event', $this->Translate('Event'), '', 9);
-
-        $this->RegisterProfileBooleanEx('Shelly.Reachable', 'Network', '', '', [
-            [false, 'Offline',  '', 0xFF0000],
-            [true, 'Online',  '', 0x00FF00]
-        ]);
-
-        $this->RegisterVariableBoolean('Reachable', $this->Translate('Reachable'), 'Shelly.Reachable', 150);
-    }
+        ['EventComponent', 'Event Component', VARIABLETYPE_STRING, '', [], '', false, true],
+        ['Event', 'Event', VARIABLETYPE_STRING, '', [], '', false, true],
+        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
+    ];
 
     public function RequestAction($Ident, $Value)
     {

@@ -1,30 +1,25 @@
 <?php
 
 declare(strict_types=1);
-require_once __DIR__ . '/../libs/ShellyHelper.php';
-require_once __DIR__ . '/../libs/vendor/SymconModulHelper/VariableProfileHelper.php';
-require_once __DIR__ . '/../libs/MQTTHelper.php';
 
-class Shellyi3 extends IPSModule
+require_once __DIR__ . '/../libs/ShellyModule.php';
+
+class Shellyi3 extends ShellyModule
 {
-    use Shelly;
-    use VariableProfileHelper;
-    use MQTTHelper;
+    public static $Variables = [
+        ['Shelly_Input0', 'Input 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
+        ['Shelly_Input1', 'Input 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
+        ['Shelly_Input2', 'Input 3', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
+        ['Shelly_InputEvent0', 'Input 1 Event', VARIABLETYPE_INTEGER, 'Shelly.i3Input', [], '', false, true],
+        ['Shelly_InputEvent1', 'Input 2 Event', VARIABLETYPE_INTEGER, 'Shelly.i3Input', [], '', false, true],
+        ['Shelly_InputEvent2', 'Input 3 Event', VARIABLETYPE_INTEGER, 'Shelly.i3Input', [], '', false, true],
+        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', [], '', false, true]
+    ];
 
     public function Create()
     {
         //Never delete this line!
         parent::Create();
-        $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
-
-        $this->RegisterPropertyString('MQTTTopic', '');
-        $this->RegisterPropertyString('Device', '');
-
-        $this->RegisterProfileBooleanEx('Shelly.Reachable', 'Network', '', '', [
-            [false, 'Offline',  '', 0xFF0000],
-            [true, 'Online',  '', 0x00FF00]
-        ]);
-
         $this->RegisterProfileIntegerEx('Shelly.i3Input', 'ArrowRight', '', '', [
             [0, $this->Translate('shortpush'),  '', 0x08f26e],
             [1, $this->Translate('double shortpush'),  '', 0x07da63],
@@ -33,25 +28,6 @@ class Shellyi3 extends IPSModule
             [4, $this->Translate('shortpush + longpush'),  '', 0x59142],
             [5, $this->Translate('longpush + shortpush'),  '', 0x06600],
         ]);
-
-        $this->RegisterVariableBoolean('Shelly_Input0', $this->Translate('Input 1'), '~Switch');
-        $this->RegisterVariableBoolean('Shelly_Input1', $this->Translate('Input 2'), '~Switch');
-        $this->RegisterVariableBoolean('Shelly_Input2', $this->Translate('Input 3'), '~Switch');
-
-        $this->RegisterVariableInteger('Shelly_InputEvent0', $this->Translate('Input 1 Event'), 'Shelly.i3Input');
-        $this->RegisterVariableInteger('Shelly_InputEvent1', $this->Translate('Input 2 Event'), 'Shelly.i3Input');
-        $this->RegisterVariableInteger('Shelly_InputEvent2', $this->Translate('Input 3 Event'), 'Shelly.i3Input');
-        $this->RegisterVariableBoolean('Shelly_Reachable', $this->Translate('Reachable'), 'Shelly.Reachable');
-    }
-
-    public function ApplyChanges()
-    {
-        //Never delete this line!
-        parent::ApplyChanges();
-        $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
-        //Setze Filter für ReceiveData
-        $MQTTTopic = $this->ReadPropertyString('MQTTTopic');
-        $this->SetReceiveDataFilter('.*' . $MQTTTopic . '.*');
     }
 
     public function ReceiveData($JSONString)

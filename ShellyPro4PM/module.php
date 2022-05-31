@@ -1,24 +1,51 @@
 <?php
 
 declare(strict_types=1);
-require_once __DIR__ . '/../libs/ShellyHelper.php';
-require_once __DIR__ . '/../libs/vendor/SymconModulHelper/VariableProfileHelper.php';
-require_once __DIR__ . '/../libs/MQTTHelper.php';
+require_once __DIR__ . '/../libs/ShellyModule.php';
 
-class ShellyPro4PM extends IPSModule
+class ShellyPro4PM extends ShellyModule
 {
-    use Shelly;
-    use VariableProfileHelper;
-    use MQTTHelper;
+    public static $Variables = [
+        ['State0', 'State 1', VARIABLETYPE_BOOLEAN, '~Switch', [], 'relay', true, true],
+        ['Power0', 'Power 1', VARIABLETYPE_FLOAT, '~Watt.3680', [], 'relay', false, true],
+        ['TotalEnergy0', 'Total consumption 1', VARIABLETYPE_FLOAT, '~Electricity', [], 'relay', false, true],
+        ['Current0', 'Current 1', VARIABLETYPE_FLOAT, '~Ampere', [], 'relay', false, true],
+        ['Voltage0', 'Voltage 1', VARIABLETYPE_FLOAT, '~Volt', [], 'relay', false, true],
+        ['Overtemp0', 'Overtemp 1', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
+        ['Overpower0', 'Overpower 1', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
+        ['Overvoltage0', 'Overvoltage 1', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
 
-    public function Create()
-    {
-        //Never delete this line!
-        parent::Create();
-        $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
+        ['State1', 'State 2', VARIABLETYPE_BOOLEAN, '~Switch', [], 'relay', true, true],
+        ['Power1', 'Power 2', VARIABLETYPE_FLOAT, '~Watt.3680', [], 'relay', false, true],
+        ['TotalEnergy1', 'Total consumption 2', VARIABLETYPE_FLOAT, '~Electricity', [], 'relay', false, true],
+        ['Current1', 'Current 2', VARIABLETYPE_FLOAT, '~Ampere', [], 'relay', false, true],
+        ['Voltage1', 'Voltage 2', VARIABLETYPE_FLOAT, '~Volt', [], 'relay', false, true],
+        ['Overtemp1', 'Overtemp 2', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
+        ['Overpower1', 'Overpower 2', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
+        ['Overvoltage1', 'Overvoltage 2', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
 
-        $this->RegisterPropertyString('MQTTTopic', '');
-    }
+        ['State2', 'State 3', VARIABLETYPE_BOOLEAN, '~Switch', [], 'relay', true, true],
+        ['Power2', 'Power 3', VARIABLETYPE_FLOAT, '~Watt.3680', [], 'relay', false, true],
+        ['TotalEnergy2', 'Total consumption 3', VARIABLETYPE_FLOAT, '~Electricity', [], 'relay', false, true],
+        ['Current2', 'Current 3', VARIABLETYPE_FLOAT, '~Ampere', [], 'relay', false, true],
+        ['Voltage2', 'Voltage 3', VARIABLETYPE_FLOAT, '~Volt', [], 'relay', false, true],
+        ['Overtemp2', 'Overtemp 3', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
+        ['Overpower2', 'Overpower 3', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
+        ['Overvoltage2', 'Overvoltage 3', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
+
+        ['State3', 'State 4', VARIABLETYPE_BOOLEAN, '~Switch', [], 'relay', true, true],
+        ['Power3', 'Power 4', VARIABLETYPE_FLOAT, '~Watt.3680', [], 'relay', false, true],
+        ['TotalEnergy3', 'Total consumption 4', VARIABLETYPE_FLOAT, '~Electricity', [], 'relay', false, true],
+        ['Current3', 'Current 4', VARIABLETYPE_FLOAT, '~Ampere', [], 'relay', false, true],
+        ['Voltage3', 'Voltage 4', VARIABLETYPE_FLOAT, '~Volt', [], 'relay', false, true],
+        ['Overtemp3', 'Overtemp 4', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
+        ['Overpower3', 'Overpower 4', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
+        ['Overvoltage3', 'Overvoltage 4', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
+
+        ['EventComponent', 'Event Component', VARIABLETYPE_STRING, '', [], '', false, true],
+        ['Event', 'Event', VARIABLETYPE_STRING, '', [], '', false, true],
+        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
+    ];
 
     public function ApplyChanges()
     {

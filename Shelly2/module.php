@@ -1,82 +1,41 @@
 <?php
 
 declare(strict_types=1);
-require_once __DIR__ . '/../libs/ShellyHelper.php';
-require_once __DIR__ . '/../libs/vendor/SymconModulHelper/VariableProfileHelper.php';
-require_once __DIR__ . '/../libs/MQTTHelper.php';
+require_once __DIR__ . '/../libs/ShellyModule.php';
 
-class Shelly2 extends IPSModule
+class Shelly2 extends ShellyModule
 {
-    use Shelly;
-    use VariableProfileHelper;
-    use MQTTHelper;
+    public static $Variables = [
+        ['Shelly_State', 'State', VARIABLETYPE_BOOLEAN, '~Switch', ['shelly2', 'shelly2.5'], 'relay', true, true],
+        ['Shelly_State1', 'State 2', VARIABLETYPE_BOOLEAN, '~Switch', ['shelly2', 'shelly2.5'], 'relay', true, true],
+
+        ['Shelly_Roller', 'Roller', VARIABLETYPE_INTEGER, '~ShutterMoveStop', ['shelly2', 'shelly2.5'], 'roller', true, true],
+        ['Shelly_RollerPosition', 'Position', VARIABLETYPE_INTEGER, '~Shutter', ['shelly2', 'shelly2.5'], 'roller', true, true],
+        ['Shelly_RollerStopReason', 'Stop Reason', VARIABLETYPE_STRING, '', ['shelly2', 'shelly2.5'], 'roller', false, true],
+
+        ['Shelly_Power', 'Power', VARIABLETYPE_FLOAT, '~Watt.3680', ['shelly2'], '', false, true],
+        ['Shelly_Energy', 'Energy', VARIABLETYPE_FLOAT, '~Electricity', ['shelly2'], '', false, true],
+
+        ['Shelly_Power1', 'Power 1', VARIABLETYPE_FLOAT, '~Watt.3680', ['shelly2.5'], '', false, true],
+        ['Shelly_Energy1', 'Energy 1', VARIABLETYPE_FLOAT, '~Electricity', ['shelly2.5'], '', false, true],
+        ['Shelly_Power2', 'Power 2', VARIABLETYPE_FLOAT, '~Watt.3680', ['shelly2.5'], '', false, true],
+        ['Shelly_Energy2', 'Energy 2', VARIABLETYPE_FLOAT, '~Electricity', ['shelly2.5'], '', false, true],
+        ['Shelly_Temperature', 'Device Temperature', VARIABLETYPE_FLOAT, '~Temperature', ['shelly2.5'], '', false, true],
+        ['Shelly_Overtemperature', 'Overtemperature', VARIABLETYPE_BOOLEAN, '', ['shelly2.5'], '', false, true],
+
+        ['Shelly_Input', 'Input 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
+        ['Shelly_Input1', 'Input 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
+        ['Shelly_Longpush', 'Longpush 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
+        ['Shelly_Longpush1', 'Longpush 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
+
+        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
+    ];
 
     public function Create()
     {
         //Never delete this line!
         parent::Create();
-        $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
-
-        $this->RegisterPropertyString('MQTTTopic', '');
         $this->RegisterPropertyString('DeviceType', '');
-        $this->RegisterPropertyString('Device', '');
-
-        $this->RegisterProfileBooleanEx('Shelly.Reachable', 'Network', '', '', [
-            [false, 'Offline',  '', 0xFF0000],
-            [true, 'Online',  '', 0x00FF00]
-        ]);
-
-        $this->RegisterVariableBoolean('Shelly_Reachable', $this->Translate('Reachable'), 'Shelly.Reachable');
-    }
-
-    public function ApplyChanges()
-    {
-        //Never delete this line!
-        parent::ApplyChanges();
-        $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
-        //Setze Filter für ReceiveData
-        $MQTTTopic = $this->ReadPropertyString('MQTTTopic');
-        $this->SetReceiveDataFilter('.*' . $MQTTTopic . '.*');
-
-        switch ($this->ReadPropertyString('DeviceType')) {
-            case 'relay':
-                $this->SendDebug(__FUNCTION__ . ' Device Type: ', ' Relay', 0);
-                $this->RegisterVariableBoolean('Shelly_State', $this->Translate('State'), '~Switch');
-                $this->EnableAction('Shelly_State');
-                $this->RegisterVariableBoolean('Shelly_State1', $this->Translate('State') . ' 2', '~Switch');
-                $this->EnableAction('Shelly_State1');
-                break;
-            case 'roller':
-                $this->SendDebug(__FUNCTION__ . ' Device Type: ', ' Roller', 0);
-                $this->RegisterVariableInteger('Shelly_Roller', $this->Translate('Roller'), '~ShutterMoveStop');
-                $this->EnableAction('Shelly_Roller');
-                $this->RegisterVariableInteger('Shelly_RollerPosition', $this->Translate('Position'), '~Shutter');
-                $this->EnableAction('Shelly_RollerPosition');
-                $this->RegisterVariableString('Shelly_RollerStopReason', $this->Translate('Stop Reason'), '');
-                break;
-            default:
-                $this->SendDebug(__FUNCTION__ . ' Device Type: ', 'No Device Type', 0);
-        }
-
-        switch ($this->ReadPropertyString('Device')) {
-            case 'shelly2':
-                $this->RegisterVariableFloat('Shelly_Power', $this->Translate('Power'), '~Watt.3680');
-                $this->RegisterVariableFloat('Shelly_Energy', $this->Translate('Energy'), '~Electricity');
-                break;
-            case 'shelly2.5':
-                $this->RegisterVariableFloat('Shelly_Power1', $this->Translate('Power 1'), '~Watt.3680');
-                $this->RegisterVariableFloat('Shelly_Energy1', $this->Translate('Energy 1'), '~Electricity');
-                $this->RegisterVariableFloat('Shelly_Power2', $this->Translate('Power 2'), '~Watt.3680');
-                $this->RegisterVariableFloat('Shelly_Energy2', $this->Translate('Energy 2'), '~Electricity');
-                $this->RegisterVariableFloat('Shelly_Temperature', $this->Translate('Device Temperature'), '~Temperature');
-                $this->RegisterVariableBoolean('Shelly_Overtemperature', $this->Translate('Overtemperature'), '');
-        }
-        //Input
-        $this->RegisterVariableBoolean('Shelly_Input', $this->Translate('Input 1'), '~Switch');
-        $this->RegisterVariableBoolean('Shelly_Input1', $this->Translate('Input 2'), '~Switch');
-        //Longpush
-        $this->RegisterVariableBoolean('Shelly_Longpush', $this->Translate('Longpush Input 1'), '~Switch');
-        $this->RegisterVariableBoolean('Shelly_Longpush1', $this->Translate('Longpush Input 2'), '~Switch');
     }
 
     public function RequestAction($Ident, $Value)

@@ -1,48 +1,19 @@
 <?php
 
 declare(strict_types=1);
-require_once __DIR__ . '/../libs/ShellyHelper.php';
-require_once __DIR__ . '/../libs/vendor/SymconModulHelper/VariableProfileHelper.php';
-require_once __DIR__ . '/../libs/MQTTHelper.php';
+require_once __DIR__ . '/../libs/ShellyModule.php';
 
-class ShellyPlusi4 extends IPSModule
+class ShellyPlusi4 extends ShellyModule
 {
-    use Shelly;
-    use VariableProfileHelper;
-    use MQTTHelper;
-
-    public function Create()
-    {
-        //Never delete this line!
-        parent::Create();
-        $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
-
-        $this->RegisterPropertyString('MQTTTopic', '');
-    }
-
-    public function ApplyChanges()
-    {
-        //Never delete this line!
-        parent::ApplyChanges();
-        $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
-        //Setze Filter für ReceiveData
-        $MQTTTopic = $this->ReadPropertyString('MQTTTopic');
-        $this->SetReceiveDataFilter('.*' . $MQTTTopic . '.*');
-
-        $this->RegisterVariableBoolean('Input0', $this->Translate('Input') . ' 1', '~Switch');
-        $this->RegisterVariableBoolean('Input1', $this->Translate('Input') . ' 2', '~Switch');
-        $this->RegisterVariableBoolean('Input2', $this->Translate('Input') . ' 3', '~Switch');
-        $this->RegisterVariableBoolean('Input3', $this->Translate('Input') . ' 4', '~Switch');
-
-        $this->RegisterVariableString('EventComponent', $this->Translate('Event Component'), '', 1);
-        $this->RegisterVariableString('Event', $this->Translate('Event'), '', 2);
-
-        $this->RegisterProfileBooleanEx('Shelly.Reachable', 'Network', '', '', [
-            [false, 'Offline',  '', 0xFF0000],
-            [true, 'Online',  '', 0x00FF00]
-        ]);
-        $this->RegisterVariableBoolean('Reachable', $this->Translate('Reachable'), 'Shelly.Reachable', 150);
-    }
+    public static $Variables = [
+        ['Input0', 'Input 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
+        ['Input1', 'Input 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
+        ['Input2', 'Input 3', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
+        ['Input3', 'Input 4', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
+        ['EventComponent', 'Event Component', VARIABLETYPE_STRING, '', [], '', false, true],
+        ['Event', 'Event', VARIABLETYPE_STRING, '', [], '', false, true],
+        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
+    ];
 
     public function ReceiveData($JSONString)
     {

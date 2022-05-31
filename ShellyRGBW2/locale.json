@@ -2,16 +2,28 @@
     "translations": {
         "de": {
             "State": "Status",
+            "State 2": "Status 2",
+            "State 3": "Status 3",
+            "State 4": "Status 4",
+            "Effect": "Effekt",
             "Input": "Eingang",
             "Longpush": "Longpush",
             "Reachable": "Erreichbar",
             "Mode": "Modus",
             "Color": "Farbe",
             "White": "Weiß",
-            "Power 1": "Leistung 1",
+            "Power": "Leistung",
             "Power 2": "Leistung 2",
             "Power 3": "Leistung 3",
-            "Power 4": "Leistung 4"
+            "Power 4": "Leistung 4",
+            "Brightness 1": "Helligkeit 1",
+            "Brightness 2": "Helligkeit 2",
+            "Brightness 3": "Helligkeit 3",
+            "Brightness 4": "Helligkeit 4",
+            "Overpower": "Überlastung",
+            "Overpower 2": "Überlastung 2",
+            "Overpower 3": "Überlastung 3",
+            "Overpower 4": "Überlastung 4"
         }
     }
 }

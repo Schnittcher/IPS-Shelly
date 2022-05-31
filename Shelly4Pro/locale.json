@@ -1,10 +1,19 @@
 {
     "translations": {
         "de": {
-            "State": "Status",
-            "Reachable": "Erreichbar",
-            "Power": "Leistung",
-            "Energy": "Energie"
+            "State 1": "Status 1",
+            "State 2": "Status 2",
+            "State 3": "Status 3",
+            "State 4": "Status 4",
+            "Power 1": "Leistung 1",
+            "Power 2": "Leistung 2",
+            "Power 3": "Leistung 3",
+            "Power 4": "Leistung 4",
+            "Energy 1": "Energie 1",
+            "Energy 2": "Energie 2",
+            "Energy 3": "Energie 3",
+            "Energy 4": "Energie 4",
+            "Reachable": "Erreichbar"
         }
     }
 }

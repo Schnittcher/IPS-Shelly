@@ -1,16 +1,23 @@
 {
     "translations": {
         "de": {
-            "Energy": "Energie",
-            "Reachable": "Erreichbar",
-            "Returned Energy": "Zurückgegebene Energie",
-            "Power": "Leistung",
-            "Reactive Power": "Blindleistung",
-            "Voltage": "Spannung",
-            "Total": "Gesamt",
-            "Total Returned": "Gesamt eingespeist",
             "State": "Status",
-            "Variable profile type does not match for profile": "Der Profiltyp der Variablen stimmt nicht mit dem Profil überein"
+            "Energy L1": "Energie L1",
+            "Energy L2": "Energie L2",
+            "Returned Energy L1": "Zurückgegebene Energie L1",
+            "Returned Energy L2": "Zurückgegebene Energie L2",
+            "Power L1": "Leistung L1",
+            "Power L2": "Leistung L2",
+            "Reactive Power L1": "Blindleistung L1",
+            "Reactive Power L2": "Blindleistung L2",
+            "Voltage L1": "Spannung L1",
+            "Voltage L2": "Spannung L2",
+            "Total L1": "Gesamt L1",
+            "Total L2": "Gesamt L2",
+            "Total Returned L1": "Gesamt eingespeist L1",
+            "Total Returned L2": "Gesamt eingespeist L2",
+            "Variable profile type does not match for profile": "Der Profiltyp der Variablen stimmt nicht mit dem Profil überein",
+            "Reachable": "Erreichbar"
         }
     }
 }

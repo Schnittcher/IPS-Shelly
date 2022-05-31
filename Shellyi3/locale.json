@@ -14,7 +14,8 @@
             "shortpush + longpush": "shortpush + longpush",
             "longpush + shortpush": "longpush + shortpush",
             "Variable profile type does not match for profile": "Der Profiltyp der Variablen stimmt nicht mit dem Profil überein",
-            "Reachable": "Erreichbar"
+            "Reachable": "Erreichbar",
+            "Active": "Aktiv"
         }
     }
 }

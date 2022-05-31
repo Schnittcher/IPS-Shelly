@@ -1,71 +1,30 @@
 <?php
 
 declare(strict_types=1);
-require_once __DIR__ . '/../libs/ShellyHelper.php';
-require_once __DIR__ . '/../libs/vendor/SymconModulHelper/VariableProfileHelper.php';
-require_once __DIR__ . '/../libs/MQTTHelper.php';
+require_once __DIR__ . '/../libs/ShellyModule.php';
 
-class ShellyPlus2PM extends IPSModule
+class ShellyPlus2PM extends ShellyModule
 {
-    use Shelly;
-    use VariableProfileHelper;
-    use MQTTHelper;
+    public static $Variables = [
+        ['State0', 'State 1', VARIABLETYPE_BOOLEAN, '~Switch', [], 'relay', true, true],
+        ['Power0', 'Power 1', VARIABLETYPE_FLOAT, '~Watt.3680', [], 'relay', false, true],
+        ['TotalEnergy0', 'Total Energy 1', VARIABLETYPE_FLOAT, '~Electricity', [], 'relay', false, true],
+        ['Current0', 'Current 1', VARIABLETYPE_FLOAT, '~Ampere', [], 'relay', false, true],
+        ['Voltage0', 'Voltage 1', VARIABLETYPE_FLOAT, '~Volt', [], 'relay', false, true],
 
-    public function Create()
-    {
-        //Never delete this line!
-        parent::Create();
-        $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
+        ['State1', 'State 2', VARIABLETYPE_BOOLEAN, '~Switch', [], 'relay', true, true],
+        ['Power1', 'Power 2', VARIABLETYPE_FLOAT, '~Watt.3680', [], 'relay', false, true],
+        ['TotalEnergy1', 'Total Energy 2', VARIABLETYPE_FLOAT, '~Electricity', [], 'relay', false, true],
+        ['Current1', 'Current 2', VARIABLETYPE_FLOAT, '~Ampere', [], 'relay', false, true],
+        ['Voltage1', 'Voltage 2', VARIABLETYPE_FLOAT, '~Volt', [], 'relay', false, true],
 
-        $this->RegisterPropertyString('MQTTTopic', '');
-        $this->RegisterPropertyString('DeviceType', '');
-    }
+        ['Cover', 'Roller', VARIABLETYPE_BOOLEAN, '~ShutterMoveStop', [], 'roller', true, true],
+        ['CoverPosition', 'Position', VARIABLETYPE_BOOLEAN, '~Shutter', [], 'roller', true, true],
 
-    public function ApplyChanges()
-    {
-        //Never delete this line!
-        parent::ApplyChanges();
-        $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
-        //Setze Filter für ReceiveData
-        $MQTTTopic = $this->ReadPropertyString('MQTTTopic');
-        $this->SetReceiveDataFilter('.*' . $MQTTTopic . '.*');
-
-        switch ($this->ReadPropertyString('DeviceType')) {
-            case 'relay':
-                $this->SendDebug(__FUNCTION__ . ' Device Type: ', ' Relay', 0);
-                $this->RegisterVariableBoolean('State0', $this->Translate('State'), '~Switch');
-                $this->EnableAction('State0');
-                $this->RegisterVariableFloat('Power0', $this->Translate('Power') . ' 1', '~Watt.3680');
-                $this->RegisterVariableFloat('TotalEnergy0', $this->Translate('Total Energy') . ' 1', '~Electricity');
-                $this->RegisterVariableFloat('Current0', $this->Translate('Current') . ' 1', '~Ampere');
-                $this->RegisterVariableFloat('Voltage0', $this->Translate('Voltage') . ' 1', '~Volt.230');
-
-                $this->RegisterVariableBoolean('State1', $this->Translate('State') . ' 2', '~Switch');
-                $this->EnableAction('State1');
-                $this->RegisterVariableFloat('Power1', $this->Translate('Power') . ' 2', '~Watt.3680');
-                $this->RegisterVariableFloat('TotalEnergy1', $this->Translate('Total Energy') . ' 1', '~Electricity');
-                $this->RegisterVariableFloat('Current1', $this->Translate('Current') . ' 2', '~Ampere');
-                $this->RegisterVariableFloat('Voltage1', $this->Translate('Voltage') . ' 2', '~Volt.230');
-                break;
-            case 'roller':
-                $this->SendDebug(__FUNCTION__ . ' Device Type: ', ' Roller', 0);
-                $this->RegisterVariableInteger('Cover', $this->Translate('Roller'), '~ShutterMoveStop');
-                $this->EnableAction('Cover');
-                $this->RegisterVariableInteger('CoverPosition', $this->Translate('Position'), '~Shutter');
-                $this->EnableAction('CoverPosition');
-                break;
-            default:
-                $this->SendDebug(__FUNCTION__ . ' Device Type: ', 'No Device Type', 0);
-        }
-        $this->RegisterVariableString('EventComponent', $this->Translate('Event Component'), '');
-        $this->RegisterVariableString('Event', $this->Translate('Event'), '');
-
-        $this->RegisterProfileBooleanEx('Shelly.Reachable', 'Network', '', '', [
-            [false, 'Offline',  '', 0xFF0000],
-            [true, 'Online',  '', 0x00FF00]
-        ]);
-        $this->RegisterVariableBoolean('Reachable', $this->Translate('Reachable'), 'Shelly.Reachable', 150);
-    }
+        ['EventComponent', 'Event Component', VARIABLETYPE_STRING, '', [], '', false, true],
+        ['Event', 'Event', VARIABLETYPE_STRING, '', [], '', false, true],
+        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
+    ];
 
     public function RequestAction($Ident, $Value)
     {

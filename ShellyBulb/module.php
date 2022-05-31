@@ -1,74 +1,42 @@
 <?php
 
 declare(strict_types=1);
-require_once __DIR__ . '/../libs/ShellyHelper.php';
-require_once __DIR__ . '/../libs/vendor/SymconModulHelper/VariableProfileHelper.php';
+require_once __DIR__ . '/../libs/ShellyModule.php';
 require_once __DIR__ . '/../libs/vendor/SymconModulHelper/ColorHelper.php';
-require_once __DIR__ . '/../libs/MQTTHelper.php';
 
-class ShellyBulb extends IPSModule
+class ShellyBulb extends ShellyModule
 {
-    use Shelly;
-    use VariableProfileHelper;
-    use MQTTHelper;
     use ColorHelper;
+
+    public static $Variables = [
+        ['Shelly_Mode', 'Mode', VARIABLETYPE_BOOLEAN, 'ShellyBulb.Mode', [], '', true, true],
+        ['Shelly_State', 'State', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true],
+
+        ['Shelly_Color', 'Color', VARIABLETYPE_INTEGER, '~HexColor', [], '', true, true],
+        ['Shelly_Gain', 'Gain', VARIABLETYPE_INTEGER, '~Intensity.100', [], '', true, true],
+        ['Shelly_White', 'White', VARIABLETYPE_INTEGER, '~Intensity.100', [], '', true, true],
+
+        ['Shelly_Brightness', 'Brightness', VARIABLETYPE_INTEGER, '~Intensity.100', [], '', true, true],
+        ['Shelly_ColorTemperature', 'Color Temperature', VARIABLETYPE_INTEGER, 'ShellyBulb.ColorTemperature', [], '', true, true],
+        ['Shelly_White', 'White', VARIABLETYPE_INTEGER, '~Intensity.100', [], '', false, true],
+        
+
+        ['Shelly_Power', 'Power', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true],
+        ['Shelly_Energy', 'Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
+        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
+    ];
 
     public function Create()
     {
         //Never delete this line!
         parent::Create();
-        $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
-
-        $this->RegisterPropertyString('MQTTTopic', '');
-        $this->RegisterPropertyString('Device', '');
 
         $this->RegisterProfileStringEx('ShellyBulb.Mode', 'Menu', '', '', [
             ['white', $this->Translate('White'), '', 0xFFFFFF],
             ['color', $this->Translate('Color'), '', 0x0000FF]
         ]);
-
-        $this->RegisterVariableString('Shelly_Mode', $this->Translate('Mode'), 'ShellyBulb.Mode', 1);
-        $this->EnableAction('Shelly_Mode');
-        $this->RegisterVariableBoolean('Shelly_State', $this->Translate('State'), '~Switch', 2);
-
-        //Mode Color
-        $this->RegisterVariableInteger('Shelly_Color', $this->Translate('Color'), '~HexColor', 3);
-        $this->RegisterVariableInteger('Shelly_Gain', $this->Translate('Gain'), '~Intensity.100', 4);
-        $this->RegisterVariableInteger('Shelly_White', $this->Translate('White'), '~Intensity.100', 4);
-
-        //Mode White
-        $this->RegisterVariableInteger('Shelly_Brightness', $this->Translate('Brightness'), '~Intensity.100', 6);
         $this->RegisterProfileInteger('ShellyBulb.ColorTemperature', 'Intensity', '', 'K', 2700, 6500, 1);
-        $this->RegisterVariableInteger('Shelly_ColorTemperature', $this->Translate('Color Temperature'), 'ShellyBulb.ColorTemperature', 7);
 
-        //Both modes
-        $this->RegisterVariableFloat('Shelly_Power', $this->Translate('Power'), '~Watt.3680', 8);
-        $this->RegisterVariableFloat('Shelly_Energy', $this->Translate('Energy') . ' 0', '~Electricity', 9);
-
-        $this->RegisterProfileBooleanEx('Shelly.Reachable', 'Network', '', '', [
-            [false, 'Offline',  '', 0xFF0000],
-            [true, 'Online',  '', 0x00FF00]
-        ]);
-        $this->RegisterVariableBoolean('Shelly_Reachable', $this->Translate('Reachable'), 'Shelly.Reachable', 10);
-
-        $this->EnableAction('Shelly_State');
-        $this->EnableAction('Shelly_Brightness');
-        $this->EnableAction('Shelly_White');
-        $this->EnableAction('Shelly_ColorTemperature');
-
-        $this->EnableAction('Shelly_Color');
-        $this->EnableAction('Shelly_Gain');
-        $this->EnableAction('Shelly_White');
-    }
-
-    public function ApplyChanges()
-    {
-        //Never delete this line!
-        parent::ApplyChanges();
-        $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
-        //Setze Filter für ReceiveData
-        $MQTTTopic = $this->ReadPropertyString('MQTTTopic');
-        $this->SetReceiveDataFilter('.*' . $MQTTTopic . '.*');
     }
 
     public function RequestAction($Ident, $Value)

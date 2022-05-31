@@ -1,75 +1,41 @@
 <?php
 
 declare(strict_types=1);
-require_once __DIR__ . '/../libs/ShellyHelper.php';
-require_once __DIR__ . '/../libs/vendor/SymconModulHelper/VariableProfileHelper.php';
-require_once __DIR__ . '/../libs/MQTTHelper.php';
+require_once __DIR__ . '/../libs/ShellyModule.php';
 
-class Shelly3EM extends IPSModule
+class Shelly3EM extends ShellyModule
 {
-    use Shelly;
-    use VariableProfileHelper;
-    use MQTTHelper;
+    public static $Variables = [
+        ['Shelly_State', 'State', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true],
 
-    public function Create()
-    {
-        //Never delete this line!
-        parent::Create();
-        $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
+        ['Shelly_Power0', 'Power L1', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true],
+        ['Shelly_PowerFactor0', 'Power Factor L1', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true],
+        ['Shelly_Current0', 'Current L1', VARIABLETYPE_FLOAT, '~Ampere', [], '', false, true],
+        ['Shelly_Voltage0', 'Voltage L1', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true],
+        ['Shelly_Total0', 'Total L1', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
+        ['Shelly_TotalReturned0', 'Total Returned L1', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
 
-        $this->RegisterPropertyString('MQTTTopic', '');
+        ['Shelly_Power1', 'Power L2', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true],
+        ['Shelly_PowerFactor1', 'Power Factor L2', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true],
+        ['Shelly_Current1', 'Current L2', VARIABLETYPE_FLOAT, '~Ampere', [], '', false, true],
+        ['Shelly_Voltage1', 'Voltage L2', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true],
+        ['Shelly_Total1', 'Total L2', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
+        ['Shelly_TotalReturned1', 'Total Returned L2', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
 
-        $this->RegisterVariableFloat('Shelly_Power0', $this->Translate('Power') . ' L1', '~Watt.3680');
-        $this->RegisterVariableFloat('Shelly_PowerFactor0', $this->Translate('Power Factor') . ' L1', '');
-        $this->RegisterVariableFloat('Shelly_Current0', $this->Translate('Current') . ' L1', '~Ampere');
-        $this->RegisterVariableFloat('Shelly_Voltage0', $this->Translate('Voltage') . ' L1', '~Volt');
-        $this->RegisterVariableFloat('Shelly_Total0', $this->Translate('Total') . ' L1', '~Electricity');
-        $this->RegisterVariableFloat('Shelly_TotalReturned0', $this->Translate('Total Returned') . ' L1', '~Electricity');
+        ['Shelly_Power2', 'Power L3', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true],
+        ['Shelly_PowerFactor2', 'Power Factor L3', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true],
+        ['Shelly_Current2', 'Current L3', VARIABLETYPE_FLOAT, '~Ampere', [], '', false, true],
+        ['Shelly_Voltage2', 'Voltage L3', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true],
+        ['Shelly_Total2', 'Total L3', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
+        ['Shelly_TotalReturned2', 'Total Returned L3', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
 
-        $this->RegisterVariableFloat('Shelly_Power1', $this->Translate('Power') . ' L2', '~Watt.3680');
-        $this->RegisterVariableFloat('Shelly_PowerFactor1', $this->Translate('Power Factor') . ' L2', '');
-        $this->RegisterVariableFloat('Shelly_Current1', $this->Translate('Current') . ' L2', '~Ampere');
-        $this->RegisterVariableFloat('Shelly_Voltage1', $this->Translate('Voltage') . ' L2', '~Volt');
-        $this->RegisterVariableFloat('Shelly_Total1', $this->Translate('Total') . ' L2', '~Electricity');
-        $this->RegisterVariableFloat('Shelly_TotalReturned1', $this->Translate('Total Returned') . ' L2', '~Electricity');
-
-        $this->RegisterVariableFloat('Shelly_Power2', $this->Translate('Power') . ' L3', '~Watt.3680');
-        $this->RegisterVariableFloat('Shelly_PowerFactor2', $this->Translate('Power Factor') . ' L3', '');
-        $this->RegisterVariableFloat('Shelly_Current2', $this->Translate('Current') . ' L3', '~Ampere');
-        $this->RegisterVariableFloat('Shelly_Voltage2', $this->Translate('Voltage') . ' L3', '~Volt');
-        $this->RegisterVariableFloat('Shelly_Total2', $this->Translate('Total') . ' L3', '~Electricity');
-        $this->RegisterVariableFloat('Shelly_TotalReturned2', $this->Translate('Total Returned') . ' L3', '~Electricity');
-
-        $this->RegisterVariableBoolean('Shelly_State', $this->Translate('State'), '~Switch');
-        $this->EnableAction('Shelly_State');
-
-        $this->RegisterProfileBooleanEx('Shelly.Reachable', 'Network', '', '', [
-            [false, 'Offline',  '', 0xFF0000],
-            [true, 'Online',  '', 0x00FF00]
-        ]);
-
-        $this->RegisterVariableBoolean('Shelly_Reachable', $this->Translate('Reachable'), 'Shelly.Reachable');
-    }
-
-    public function ApplyChanges()
-    {
-        //Never delete this line!
-        parent::ApplyChanges();
-        $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
-
-        //Setze Filter für ReceiveData
-        $MQTTTopic = $this->ReadPropertyString('MQTTTopic');
-        $this->SetReceiveDataFilter('.*' . $MQTTTopic . '.*');
-    }
+    ];
 
     public function RequestAction($Ident, $Value)
     {
         switch ($Ident) {
             case 'Shelly_State':
                 $this->SwitchMode(0, $Value);
-                break;
-            case 'Shelly_State2':
-                $this->SwitchMode(1, $Value);
                 break;
             }
     }

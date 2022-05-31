@@ -1,49 +1,19 @@
 <?php
 
 declare(strict_types=1);
-require_once __DIR__ . '/../libs/ShellyHelper.php';
-require_once __DIR__ . '/../libs/vendor/SymconModulHelper/VariableProfileHelper.php';
+require_once __DIR__ . '/../libs/ShellyModule.php';
 
-class ShellyWindow extends IPSModule
+class ShellyWindow extends ShellyModule
 {
-    use Shelly;
-    use VariableProfileHelper;
-
-    public function Create()
-    {
-        //Never delete this line!
-        parent::Create();
-        $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
-
-        $this->RegisterPropertyString('MQTTTopic', '');
-        $this->RegisterPropertyString('Device', '');
-        $this->RegisterVariableBoolean('Shelly_State', $this->Translate('State'), '~Window');
-        $this->RegisterVariableInteger('Shelly_Lux', $this->Translate('Lux'), '~Illumination');
-        $this->RegisterVariableInteger('Shelly_Battery', $this->Translate('Battery'), '~Battery.100');
-
-        $this->RegisterProfileBooleanEx('Shelly.Reachable', 'Network', '', '', [
-            [false, 'Offline',  '', 0xFF0000],
-            [true, 'Online',  '', 0x00FF00]
-        ]);
-
-        $this->RegisterVariableBoolean('Shelly_Reachable', $this->Translate('Reachable'), 'Shelly.Reachable');
-    }
-
-    public function ApplyChanges()
-    {
-        //Never delete this line!
-        parent::ApplyChanges();
-        $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
-
-        if (($this->ReadPropertyString('Device') == 'DW2')) {
-            $this->RegisterVariableFloat('Shelly_Temperature', $this->Translate('Temperature'), '~Temperature');
-            $this->RegisterVariableBoolean('Shelly_Vibration', $this->Translate('Vibration'), '~Alert');
-            $this->RegisterVariableInteger('Shelly_Tilt', $this->Translate('Tilt'), '');
-        }
-        //Setze Filter für ReceiveData
-        $MQTTTopic = $this->ReadPropertyString('MQTTTopic');
-        $this->SetReceiveDataFilter('.*' . $MQTTTopic . '.*');
-    }
+    public static $Variables = [
+        ['Shelly_State', 'State', VARIABLETYPE_BOOLEAN, '~Window', [], '', false, true],
+        ['Shelly_Lux', 'Lux', VARIABLETYPE_INTEGER, '~Illumination', [], '', false, true],
+        ['Shelly_Temperature', 'Temperature', VARIABLETYPE_FLOAT, '~Temperature', ['DW2'], '', false, true],
+        ['Shelly_Vibration', 'Vibration', VARIABLETYPE_BOOLEAN, '~Alert', ['DW2'], '', false, true],
+        ['Shelly_Tilt', 'Tilt', VARIABLETYPE_INTEGER, '', ['DW2'], '', false, true],
+        ['Shelly_Battery', 'Battery', VARIABLETYPE_INTEGER, '~Battery.100', [], '', false, true],
+        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
+    ];
 
     public function ReceiveData($JSONString)
     {

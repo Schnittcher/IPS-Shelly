@@ -5,7 +5,7 @@
             "Reachable": "Erreichbar",
             "Variable profile type does not match for profile": "Der Profiltyp der Variablen stimmt nicht mit dem Profil überein",
             "Power": "Leistung",
-            "Temperature": "Temperatur",
+            "Device Temperature": "Gerätetemperatur",
             "Overtemperature": "Übertemperatur",
             "Device": "Geräte",
             "Please select device": "Bitte wählen Sie das Gerät aus",

@@ -1,53 +1,26 @@
 <?php
 
 declare(strict_types=1);
-require_once __DIR__ . '/../libs/ShellyHelper.php';
-require_once __DIR__ . '/../libs/vendor/SymconModulHelper/VariableProfileHelper.php';
-require_once __DIR__ . '/../libs/MQTTHelper.php';
+require_once __DIR__ . '/../libs/ShellyModule.php';
 
-class ShellyPlus1 extends IPSModule
+class ShellyPlus1 extends ShellyModule
 {
-    use Shelly;
-    use VariableProfileHelper;
-    use MQTTHelper;
+    public static $Variables = [
+        ['State', 'State', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true],
 
-    public function Create()
-    {
-        //Never delete this line!
-        parent::Create();
-        $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
+        ['Power', 'Power', VARIABLETYPE_FLOAT, '~Watt.3680', ['shellyplus1pm'], '', false, true],
+        ['TotalEnergy', 'Total Energy', VARIABLETYPE_FLOAT, '~Electricity', ['shellyplus1pm'], '', false, true],
+        ['Current', 'Current', VARIABLETYPE_FLOAT, '~Ampere', ['shellyplus1pm'], '', false, true],
+        ['Voltage', 'Voltage', VARIABLETYPE_FLOAT, '~Volt', ['shellyplus1pm'], '', false, true],
 
-        $this->RegisterPropertyString('MQTTTopic', '');
-        $this->RegisterPropertyString('Device', '');
-    }
+        ['Overtemp', 'Overtemp', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
+        ['Overpower', 'Overpower', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
+        ['Overvoltage', 'Overvoltage', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
 
-    public function ApplyChanges()
-    {
-        //Never delete this line!
-        parent::ApplyChanges();
-        $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
-        //Setze Filter für ReceiveData
-        $MQTTTopic = $this->ReadPropertyString('MQTTTopic');
-        $this->SetReceiveDataFilter('.*' . $MQTTTopic . '.*');
-
-        $this->RegisterVariableBoolean('State', $this->Translate('State'), '~Switch', 0);
-        $this->EnableAction('State');
-        $this->MaintainVariable('Power', $this->Translate('Power'), 2, '~Watt.3680', 2, $this->ReadPropertyString('Device') == 'shellyplus1pm');
-        $this->MaintainVariable('TotalEnergy', $this->Translate('Total Energy'), 2, '~Electricity', 2, $this->ReadPropertyString('Device') == 'shellyplus1pm');
-        $this->MaintainVariable('Current', $this->Translate('Current'), 2, '~Ampere', 3, $this->ReadPropertyString('Device') == 'shellyplus1pm');
-        $this->MaintainVariable('Voltage', $this->Translate('Voltage'), 2, '~Volt.230', 4, $this->ReadPropertyString('Device') == 'shellyplus1pm');
-        $this->RegisterVariableBoolean('Overtemp', $this->Translate('Overtemp'), '~Alert', 5);
-        $this->RegisterVariableBoolean('Overpower', $this->Translate('Overpower'), '~Alert', 6);
-        $this->RegisterVariableBoolean('Overvoltage', $this->Translate('Overvoltage'), '~Alert', 7);
-        $this->RegisterVariableString('EventComponent', $this->Translate('Event Component'), '', 8);
-        $this->RegisterVariableString('Event', $this->Translate('Event'), '', 9);
-
-        $this->RegisterProfileBooleanEx('Shelly.Reachable', 'Network', '', '', [
-            [false, 'Offline',  '', 0xFF0000],
-            [true, 'Online',  '', 0x00FF00]
-        ]);
-        $this->RegisterVariableBoolean('Reachable', $this->Translate('Reachable'), 'Shelly.Reachable', 150);
-    }
+        ['EventComponent', 'Event Component', VARIABLETYPE_STRING, '', [], '', false, true],
+        ['Event', 'Event', VARIABLETYPE_STRING, '', [], '', false, true],
+        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
+    ];
 
     public function RequestAction($Ident, $Value)
     {

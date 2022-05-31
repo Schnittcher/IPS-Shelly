@@ -1,62 +1,29 @@
 <?php
 
 declare(strict_types=1);
-require_once __DIR__ . '/../libs/ShellyHelper.php';
-require_once __DIR__ . '/../libs/vendor/SymconModulHelper/VariableProfileHelper.php';
-require_once __DIR__ . '/../libs/MQTTHelper.php';
+require_once __DIR__ . '/../libs/ShellyModule.php';
 
-class Shelly4Pro extends IPSModule
+class Shelly4Pro extends ShellyModule
 {
-    use Shelly;
-    use VariableProfileHelper;
-    use MQTTHelper;
+    public static $Variables = [
+        ['Shelly_State', 'State', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true],
+        ['Shelly_Power', 'Power', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true],
+        ['Shelly_Energy', 'Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
 
-    public function Create()
-    {
-        //Never delete this line!
-        parent::Create();
-        $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
+        ['Shelly_State1', 'State 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true],
+        ['Shelly_Power1', 'Power 2', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true],
+        ['Shelly_Energy1', 'Energy 2', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
 
-        $this->RegisterPropertyString('MQTTTopic', '');
-    }
+        ['Shelly_State2', 'State 3', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true],
+        ['Shelly_Power2', 'Power 3', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true],
+        ['Shelly_Energy2', 'Energy 3', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
 
-    public function ApplyChanges()
-    {
-        //Never delete this line!
-        parent::ApplyChanges();
-        $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
-        //Setze Filter für ReceiveData
-        $MQTTTopic = $this->ReadPropertyString('MQTTTopic');
-        $this->SetReceiveDataFilter('.*' . $MQTTTopic . '.*');
+        ['Shelly_State3', 'State 4', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true],
+        ['Shelly_Power3', 'Power 4', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true],
+        ['Shelly_Energy3', 'Energy 4', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
 
-        $this->SendDebug(__FUNCTION__ . ' Device Type: ', ' Relay', 0);
-        $this->RegisterVariableBoolean('Shelly_State', $this->Translate('State'), '~Switch');
-        $this->EnableAction('Shelly_State');
-        $this->RegisterVariableFloat('Shelly_Power', $this->Translate('Power'), '~Watt.3680');
-        $this->RegisterVariableFloat('Shelly_Energy', $this->Translate('Energy'), '~Electricity');
-
-        $this->RegisterVariableBoolean('Shelly_State1', $this->Translate('State') . ' 2', '~Switch');
-        $this->EnableAction('Shelly_State1');
-        $this->RegisterVariableFloat('Shelly_Power1', $this->Translate('Power') . ' 2', '~Watt.3680');
-        $this->RegisterVariableFloat('Shelly_Energy1', $this->Translate('Energy') . ' 2', '~Electricity');
-
-        $this->RegisterVariableBoolean('Shelly_State2', $this->Translate('State') . ' 3', '~Switch');
-        $this->EnableAction('Shelly_State2');
-        $this->RegisterVariableFloat('Shelly_Power2', $this->Translate('Power') . ' 3', '~Watt.3680');
-        $this->RegisterVariableFloat('Shelly_Energy2', $this->Translate('Energy') . ' 3', '~Electricity');
-
-        $this->RegisterVariableBoolean('Shelly_State3', $this->Translate('State') . ' 4', '~Switch');
-        $this->EnableAction('Shelly_State3');
-        $this->RegisterVariableFloat('Shelly_Power3', $this->Translate('Power') . ' 4', '~Watt.3680');
-        $this->RegisterVariableFloat('Shelly_Energy3', $this->Translate('Energy ') . ' 4', '~Electricity');
-
-        $this->RegisterProfileBooleanEx('Shelly.Reachable', 'Network', '', '', [
-            [false, 'Offline',  '', 0xFF0000],
-            [true, 'Online',  '', 0x00FF00]
-        ]);
-
-        $this->RegisterVariableBoolean('Shelly_Reachable', $this->Translate('Reachable'), 'Shelly.Reachable');
-    }
+        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
+    ];
 
     public function RequestAction($Ident, $Value)
     {

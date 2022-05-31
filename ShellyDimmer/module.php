@@ -1,55 +1,40 @@
 <?php
 
 declare(strict_types=1);
-require_once __DIR__ . '/../libs/ShellyHelper.php';
-require_once __DIR__ . '/../libs/vendor/SymconModulHelper/VariableProfileHelper.php';
-require_once __DIR__ . '/../libs/MQTTHelper.php';
+require_once __DIR__ . '/../libs/ShellyModule.php';
 
-class ShellyDimmer extends IPSModule
+class ShellyDimmer extends ShellyModule
 {
-    use Shelly;
-    use VariableProfileHelper;
-    use MQTTHelper;
+    public static $Variables = [
+        ['Shelly_State', 'State', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true],
+        ['Shelly_Brightness', 'Brightness', VARIABLETYPE_INTEGER, '~Intensity.100', [], '', true, true],
 
+        ['Shelly_Power', 'Power', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true],
+
+        ['Shelly_Temperature', 'Device Temperature', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
+        ['Shelly_Overtemperature', 'Overtemperature', VARIABLETYPE_BOOLEAN, '', [], '', false, true],
+        ['Shelly_Overload', 'Overload', VARIABLETYPE_BOOLEAN, '', [], '', false, true],
+        ['Shelly_Loaderror', 'Loaderror', VARIABLETYPE_BOOLEAN, '', [], '', false, true],
+
+        ['Shelly_Input0', 'Input 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
+        ['Shelly_Input1', 'Input 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
+
+        ['Shelly_InputEvent0', 'Input 1 Event', VARIABLETYPE_INTEGER, 'Shelly.DimmerInput', [], '', false, true],
+        ['Shelly_InputEvent1', 'Input 2 Event', VARIABLETYPE_INTEGER, 'Shelly.DimmerInput', [], '', false, true],
+
+        ['Shelly_InputEventCount0', 'Input 1 Event Count', VARIABLETYPE_INTEGER, '', [], '', false, true],
+        ['Shelly_InputEventCount1', 'Input 2 Event Count', VARIABLETYPE_INTEGER, '', [], '', false, true],
+
+        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
+    ];
     public function Create()
     {
         //Never delete this line!
         parent::Create();
-        $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
-
-        $this->RegisterPropertyString('MQTTTopic', '');
-
-        $this->RegisterVariableBoolean('Shelly_State', $this->Translate('State'), '~Switch');
-        $this->RegisterVariableInteger('Shelly_Brightness', $this->Translate('Brightness'), 'Intensity.100');
-        $this->RegisterVariableFloat('Shelly_Power', $this->Translate('Power'), '~Watt.3680');
-        $this->RegisterVariableFloat('Shelly_Temperature', $this->Translate('Temperature'), '~Temperature');
-        $this->RegisterVariableBoolean('Shelly_Overtemperature', $this->Translate('Overtemperature'), '');
-        $this->RegisterVariableBoolean('Shelly_Overload', $this->Translate('Overload'), '');
-        $this->RegisterVariableBoolean('Shelly_Loaderror', $this->Translate('Loaderror'), '');
-
         $this->RegisterProfileIntegerEx('Shelly.DimmerInput', 'ArrowRight', '', '', [
             [0, $this->Translate('shortpush'),  '', 0x08f26e],
             [1, $this->Translate('longpush'),  '', 0x06a94d]
         ]);
-
-        $this->RegisterVariableBoolean('Shelly_Input0', $this->Translate('Input 1'), '~Switch');
-        $this->RegisterVariableBoolean('Shelly_Input1', $this->Translate('Input 2'), '~Switch');
-
-        $this->RegisterVariableInteger('Shelly_InputEvent0', $this->Translate('Input 1 Event'), 'Shelly.DimmerInput');
-        $this->RegisterVariableInteger('Shelly_InputEvent1', $this->Translate('Input 2 Event'), 'Shelly.DimmerInput');
-
-        $this->RegisterVariableInteger('Shelly_InputEventCount0', $this->Translate('Input 1 Event Count'), '');
-        $this->RegisterVariableInteger('Shelly_InputEventCount1', $this->Translate('Input 2 Event Count'), '');
-
-        $this->RegisterProfileBooleanEx('Shelly.Reachable', 'Network', '', '', [
-            [false, 'Offline',  '', 0xFF0000],
-            [true, 'Online',  '', 0x00FF00]
-        ]);
-
-        $this->RegisterVariableBoolean('Shelly_Reachable', $this->Translate('Reachable'), 'Shelly.Reachable');
-
-        $this->EnableAction('Shelly_State');
-        $this->EnableAction('Shelly_Brightness');
     }
 
     public function ApplyChanges()

@@ -4,7 +4,7 @@
             "State": "Status",
             "Reachable": "Erreichbar",
             "Power": "Leistung",
-            "Energy": "Energie",
+            "Total Energy": "Gesamt Energie",
             "Current": "Stromstärke",
             "Voltage": "Volt",
             "Total consumption": "Gesamtverbrauch",

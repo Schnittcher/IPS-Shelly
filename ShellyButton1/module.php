@@ -1,40 +1,26 @@
 <?php
 
 declare(strict_types=1);
-require_once __DIR__ . '/../libs/ShellyHelper.php';
-require_once __DIR__ . '/../libs/vendor/SymconModulHelper/VariableProfileHelper.php';
-require_once __DIR__ . '/../libs/MQTTHelper.php';
+require_once __DIR__ . '/../libs/ShellyModule.php';
 
-class ShellyButton1 extends IPSModule
+class ShellyButton1 extends ShellyModule
 {
-    use Shelly;
-    use VariableProfileHelper;
-    use MQTTHelper;
+    public static $Variables = [
+        ['Shelly_Input', 'Input', VARIABLETYPE_BOOLEAN, 'Shelly.Button1Input', [], '', false, true],
+        ['Shelly_Battery', 'Battery', VARIABLETYPE_INTEGER, '~Battery.100', [], '', false, true],
+        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
+    ];
 
     public function Create()
     {
         //Never delete this line!
         parent::Create();
-        $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
-
-        $this->RegisterPropertyString('MQTTTopic', '');
-        $this->RegisterPropertyString('Device', '');
-        $this->RegisterVariableInteger('Shelly_Battery', $this->Translate('Battery'), '~Battery.100');
-
-        $this->RegisterProfileBooleanEx('Shelly.Reachable', 'Network', '', '', [
-            [false, 'Offline',  '', 0xFF0000],
-            [true, 'Online',  '', 0x00FF00]
-        ]);
-
         $this->RegisterProfileIntegerEx('Shelly.Button1Input', 'ArrowRight', '', '', [
             [0, $this->Translate('shortpush'),  '', 0x08f26e],
             [1, $this->Translate('double shortpush'),  '', 0x07da63],
             [2, $this->Translate('triple shortpush'),  '', 0x06c258],
             [3, $this->Translate('longpush'),  '', 0x06a94d],
         ]);
-
-        $this->RegisterVariableInteger('Shelly_Input', $this->Translate('Input'), 'Shelly.Button1Input');
-        $this->RegisterVariableBoolean('Shelly_Reachable', $this->Translate('Reachable'), 'Shelly.Reachable');
     }
 
     public function ApplyChanges()

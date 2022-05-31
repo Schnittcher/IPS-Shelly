@@ -1,111 +1,49 @@
 <?php
 
 declare(strict_types=1);
-require_once __DIR__ . '/../libs/ShellyHelper.php';
-require_once __DIR__ . '/../libs/vendor/SymconModulHelper/VariableProfileHelper.php';
+require_once __DIR__ . '/../libs/ShellyModule.php';
 require_once __DIR__ . '/../libs/vendor/SymconModulHelper/ColorHelper.php';
-require_once __DIR__ . '/../libs/MQTTHelper.php';
 
-class ShellyRGBW2 extends IPSModule
+class ShellyRGBW2 extends ShellyModule
 {
-    use Shelly;
-    use VariableProfileHelper;
-    use MQTTHelper;
     use ColorHelper;
+
+    public static $Variables = [
+        ['State', 'State', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true],
+        ['State1', 'State 2', VARIABLETYPE_BOOLEAN, '~Switch', ['White'], '', true, true],
+        ['State2', 'State 3', VARIABLETYPE_BOOLEAN, '~Switch', ['White'], '', true, true],
+        ['State3', 'State 4', VARIABLETYPE_BOOLEAN, '~Switch', ['White'], '', true, true],
+        ['Shelly_Color', 'Color', VARIABLETYPE_INTEGER, '~HexColor', ['Color'], '', true, true],
+        ['Shelly_White', 'White', VARIABLETYPE_INTEGER, '~Intensity.100', ['Color'], '', true, true],
+        ['Shelly_Gain', 'Gain', VARIABLETYPE_INTEGER, '~Intensity.100', ['Color'], '', true, true],
+        ['Shelly_Effect', 'Effect', VARIABLETYPE_INTEGER, 'Shelly.Effect', ['Color'], '', true, true],
+        ['Shelly_Brightness', 'Brightness 1', VARIABLETYPE_INTEGER, '~Intensity.100', ['White'], '', true, true],
+        ['Shelly_Brightness1', 'Brightness 2', VARIABLETYPE_INTEGER, '~Intensity.100', ['White'], '', true, true],
+        ['Shelly_Brightness2', 'Brightness 3', VARIABLETYPE_INTEGER, '~Intensity.100', ['White'], '', true, true],
+        ['Shelly_Brightness3', 'Brightness 4', VARIABLETYPE_INTEGER, '~Intensity.100', ['White'], '', true, true],
+        ['Shelly_Power', 'Power', VARIABLETYPE_FLOAT, '', [], '', true, true],
+        ['Shelly_Power1', 'Power 2', VARIABLETYPE_FLOAT, '', ['White'], '', true, true],
+        ['Shelly_Power2', 'Power 3', VARIABLETYPE_FLOAT, '', ['White'], '', true, true],
+        ['Shelly_Power3', 'Power 4', VARIABLETYPE_FLOAT, '', ['White'], '', true, true],
+        ['Shelly_Overpower', 'Overpower', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
+        ['Shelly_Overpower1', 'Overpower 2', VARIABLETYPE_BOOLEAN, '~Alert', ['White'], '', false, true],
+        ['Shelly_Overpower2', 'Overpower 3', VARIABLETYPE_BOOLEAN, '~Alert', ['White'], '', false, true],
+        ['Shelly_Overpower3', 'Overpower 4',  VARIABLETYPE_BOOLEAN, '~Alert', ['White'], '', false, true],
+        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
+    ];
 
     public function Create()
     {
-        //Never delete this line!
         parent::Create();
-        $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
-
-        $this->RegisterPropertyString('MQTTTopic', '');
-        $this->RegisterPropertyString('Mode', '-');
-
-        $this->RegisterVariableBoolean('Shelly_Input', $this->Translate('Input'), '~Switch');
-        $this->RegisterVariableBoolean('Shelly_Longpush', $this->Translate('Longpush'), '~Switch');
-
-        $this->RegisterProfileBooleanEx('Shelly.Reachable', 'Network', '', '', [
-            [false, 'Offline',  '', 0xFF0000],
-            [true, 'Online',  '', 0x00FF00]
+        $this->RegisterProfileIntegerEx('Shelly.Effect', 'Bulb', '', '', [
+            [0, $this->Translate('Off'), 'Bulb', -1],
+            [1, $this->Translate('Meteor Shower'), 'Bulb', -1],
+            [2, $this->Translate('Gradual Change'), 'Bulb', -1],
+            [3, $this->Translate('Breath'), 'Bulb', -1],
+            [4, $this->Translate('Flash'), 'Bulb', -1],
+            [5, $this->Translate('On/Off Gradual'), 'Bulb', -1],
+            [6, $this->Translate('Red/Green Change'), 'Bulb', -1]
         ]);
-
-        $this->RegisterVariableBoolean('Shelly_Reachable', $this->Translate('Reachable'), 'Shelly.Reachable');
-    }
-
-    public function ApplyChanges()
-    {
-        //Never delete this line!
-        parent::ApplyChanges();
-        $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
-
-        switch ($this->ReadPropertyString('Mode')) {
-            case '-':
-                $this->SendDebug(__FUNCTION__, 'No Mode set', 0);
-                break;
-            case 'Color':
-                $this->RegisterVariableBoolean('Shelly_State', $this->Translate('State'), '~Switch');
-                $this->EnableAction('Shelly_State');
-
-                $this->RegisterVariableInteger('Shelly_Color', $this->Translate('Color'), '~HexColor');
-                $this->EnableAction('Shelly_Color');
-
-                $this->RegisterVariableInteger('Shelly_White', $this->Translate('White'), 'Intensity.255');
-                $this->EnableAction('Shelly_White');
-
-                $this->RegisterVariableInteger('Shelly_Gain', $this->Translate('Gain'), 'Intensity.100');
-                $this->EnableAction('Shelly_Gain');
-
-                $this->RegisterProfileIntegerEx('Shelly.Effect', 'Bulb', '', '', [
-                    [0, $this->Translate('Off'), 'Bulb', -1],
-                    [1, $this->Translate('Meteor Shower'), 'Bulb', -1],
-                    [2, $this->Translate('Gradual Change'), 'Bulb', -1],
-                    [3, $this->Translate('Breath'), 'Bulb', -1],
-                    [4, $this->Translate('Flash'), 'Bulb', -1],
-                    [5, $this->Translate('On/Off Gradual'), 'Bulb', -1],
-                    [6, $this->Translate('Red/Green Change'), 'Bulb', -1]
-                ]);
-                $this->RegisterVariableInteger('Shelly_Effect', $this->Translate('Effect'), 'Shelly.Effect');
-                $this->EnableAction('Shelly_Effect');
-
-                $this->RegisterVariableFloat('Shelly_Power', $this->Translate('Power'), '');
-                $this->RegisterVariableBoolean('Shelly_Overpower', $this->Translate('Overpower'), '');
-                break;
-            case 'White':
-                $this->RegisterVariableBoolean('Shelly_State', $this->Translate('State 1'), '~Switch');
-                $this->RegisterVariableBoolean('Shelly_State1', $this->Translate('State 2'), '~Switch');
-                $this->RegisterVariableBoolean('Shelly_State2', $this->Translate('State 3'), '~Switch');
-                $this->RegisterVariableBoolean('Shelly_State3', $this->Translate('State 4'), '~Switch');
-
-                $this->EnableAction('Shelly_State');
-                $this->EnableAction('Shelly_State1');
-                $this->EnableAction('Shelly_State2');
-                $this->EnableAction('Shelly_State3');
-
-                $this->RegisterVariableInteger('Shelly_Brightness', $this->Translate('Brightness 1'), 'Intensity.100');
-                $this->RegisterVariableInteger('Shelly_Brightness1', $this->Translate('Brightness 2'), 'Intensity.100');
-                $this->RegisterVariableInteger('Shelly_Brightness2', $this->Translate('Brightness 3'), 'Intensity.100');
-                $this->RegisterVariableInteger('Shelly_Brightness3', $this->Translate('Brightness 4'), 'Intensity.100');
-
-                $this->EnableAction('Shelly_Brightness');
-                $this->EnableAction('Shelly_Brightness1');
-                $this->EnableAction('Shelly_Brightness2');
-                $this->EnableAction('Shelly_Brightness3');
-
-                $this->RegisterVariableFloat('Shelly_Power', $this->Translate('Power 1'), '');
-                $this->RegisterVariableFloat('Shelly_Power1', $this->Translate('Power 2'), '');
-                $this->RegisterVariableFloat('Shelly_Power2', $this->Translate('Power 3'), '');
-                $this->RegisterVariableFloat('Shelly_Power3', $this->Translate('Power 4'), '');
-
-                $this->RegisterVariableBoolean('Shelly_Overpower', $this->Translate('Overpower 1'), '');
-                $this->RegisterVariableBoolean('Shelly_Overpower1', $this->Translate('Overpower 2'), '');
-                $this->RegisterVariableBoolean('Shelly_Overpower2', $this->Translate('Overpower 3'), '');
-                $this->RegisterVariableBoolean('Shelly_Overpower3', $this->Translate('Overpower 4'), '');
-                break;
-        }
-        //Setze Filter für ReceiveData
-        $MQTTTopic = $this->ReadPropertyString('MQTTTopic');
-        $this->SetReceiveDataFilter('.*' . $MQTTTopic . '.*');
     }
 
     public function RequestAction($Ident, $Value)

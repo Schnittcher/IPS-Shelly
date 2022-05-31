@@ -1,53 +1,20 @@
 <?php
 
 declare(strict_types=1);
-require_once __DIR__ . '/../libs/ShellyHelper.php';
-require_once __DIR__ . '/../libs/vendor/SymconModulHelper/VariableProfileHelper.php';
-require_once __DIR__ . '/../libs/MQTTHelper.php';
+require_once __DIR__ . '/../libs/ShellyModule.php';
 
-class ShellyTRV extends IPSModule
+class ShellyTRV extends ShellyModule
 {
-    use Shelly;
-    use VariableProfileHelper;
-    use MQTTHelper;
-
-    public function Create()
-    {
-        //Never delete this line!
-        parent::Create();
-        $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
-
-        $this->RegisterPropertyString('MQTTTopic', '');
-
-        $this->RegisterProfileBooleanEx('Shelly.Reachable', 'Network', '', '', [
-            [false, 'Offline',  '', 0xFF0000],
-            [true, 'Online',  '', 0x00FF00]
-        ]);
-
-        $this->RegisterVariableBoolean('Shelly_Reachable', $this->Translate('Reachable'), 'Shelly.Reachable');
-
-        $this->RegisterVariableInteger('Position', $this->Translate('Position'), '~Intensity.100', 1);
-        $this->RegisterVariableFloat('TargetTemperature', $this->Translate('Target Temperature'), '~Temperature.Room', 2);
-        $this->EnableAction('TargetTemperature');
-        $this->RegisterVariableFloat('Temperature', $this->Translate('Temperature'), '~Temperature', 3);
-        $this->RegisterVariableBoolean('Schedule', $this->Translate('Schedule'), '~Switch', 4);
-        $this->EnableAction('Schedule');
-        $this->RegisterVariableInteger('ScheduleProfile', $this->Translate('Schedule Profile'), '', 5);
-        $this->EnableAction('ScheduleProfile');
-
-        $this->RegisterVariableInteger('BatteryValue', $this->Translate('Battery'), '~Battery.100', 6);
-        $this->RegisterVariableFloat('BatteryVoltage', $this->Translate('Battery Voltage'), '~Volt', 7);
-    }
-
-    public function ApplyChanges()
-    {
-        //Never delete this line!
-        parent::ApplyChanges();
-        $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
-        //Setze Filter für ReceiveData
-        $MQTTTopic = $this->ReadPropertyString('MQTTTopic');
-        $this->SetReceiveDataFilter('.*' . MQTT_GROUP_TOPIC . '/' . $MQTTTopic . '.*');
-    }
+    public static $Variables = [
+        ['Position', 'Position', VARIABLETYPE_INTEGER, '~Intensity.100', [], '', false, true],
+        ['TargetTemperature', 'Target Temperature', VARIABLETYPE_FLOAT, '~Temperature.Room', [], '', true, true],
+        ['Temperature', 'Temperature', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
+        ['Schedule', 'Schedule', VARIABLETYPE_BOOLEAN, '~Switch', '', '', true, true],
+        ['ScheduleProfile', 'Schedule Profile', VARIABLETYPE_INTEGER, '', '', '', true, true],
+        ['BatteryValue', 'Battery', VARIABLETYPE_INTEGER, '~Battery.100', [], '', false, true],
+        ['BatteryVoltage', 'Battery Voltage', VARIABLETYPE_INTEGER, '~Battery.100', [], '', false, true],
+        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', [], '', false, true]
+    ];
 
     public function RequestAction($Ident, $Value)
     {
