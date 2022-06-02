@@ -85,15 +85,15 @@ class ShellyModule extends IPSModule
         if (count($NewRows) != 0) {
             foreach ($NewRows as $NewVariable) {
                 $Variables[] = [
-                    'Ident'        => str_replace(' ', '', $Variable[0]),
-                    'Name'         => $this->Translate($Variable[1]),
-                    'VarType'      => $Variable[2],
-                    'Profile'      => $Variable[3],
-                    'Devices'      => $Variable[4],
-                    'DeviceType'   => $Variable[5],
-                    'Action'       => $Variable[6],
-                    'Pos'          => $Pos + 1,
-                    'Keep'         => $Variable[7]
+                    'Ident'        => str_replace(' ', '', $NewVariable[0]),
+                    'Name'         => $this->Translate($NewVariable[1]),
+                    'VarType'      => $NewVariable[2],
+                    'Profile'      => $NewVariable[3],
+                    'Devices'      => $NewVariable[4],
+                    'DeviceType'   => $NewVariable[5],
+                    'Action'       => $NewVariable[6],
+                    'Pos'          => ++$NewPos,
+                    'Keep'         => $NewVariable[7]
                 ];
             }
             IPS_SetProperty($this->InstanceID, 'Variables', json_encode($Variables));

@@ -13,15 +13,16 @@ class Shelly1 extends ShellyModule
         ['Shelly_Overtemperature', 'Overtemperature', VARIABLETYPE_FLOAT, '', ['shelly1pm', 'shelly1l'], '', false, true],
         ['Shelly_Temperature', 'Temperature', VARIABLETYPE_FLOAT, '~Temperature', ['shelly1pm', 'shelly1l'], '', false, true],
         ['Shelly_Energy', 'Energy', VARIABLETYPE_FLOAT, '~Electricity', ['shelly1pm', 'shelly1l'], '', false, true],
-        ['Shelly_ExtSwitch0', 'External Switch 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, false],
-        ['Shelly_ExtSwitch1', 'External Switch 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, false],
-        ['Shelly_ExtSwitch2', 'External Switch 3', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, false],
-        ['Shelly_ExtTemperature0', 'External Temperature 1', VARIABLETYPE_FLOAT, '~Temperature', [''], '', false, true],
-        ['Shelly_ExtTemperature1', 'External Temperature 2', VARIABLETYPE_FLOAT, '~Temperature', [''], '', false, true],
-        ['Shelly_ExtTemperature2', 'External Temperature 3', VARIABLETYPE_FLOAT, '~Temperature', [''], '', false, true],
-        ['Shelly_ExtHumidity0', 'External Humidity', VARIABLETYPE_FLOAT, '~Humidity', [''], '', false, true],
-        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
+        ['Shelly_ExtSwitch0', 'External Switch 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
+        ['Shelly_ExtSwitch1', 'External Switch 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
+        ['Shelly_ExtSwitch2', 'External Switch 3', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
+        ['Shelly_ExtTemperature0', 'External Temperature 1', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
+        ['Shelly_ExtTemperature1', 'External Temperature 2', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
+        ['Shelly_ExtTemperature2', 'External Temperature 3', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
+        ['Shelly_ExtHumidity0', 'External Humidity', VARIABLETYPE_FLOAT, '~Humidity.F', [], '', false, true],
+        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', [], '', false, true]
     ];
+
     public function RequestAction($Ident, $Value)
     {
         switch ($Ident) {
