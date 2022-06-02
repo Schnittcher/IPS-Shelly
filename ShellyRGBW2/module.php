@@ -35,6 +35,7 @@ class ShellyRGBW2 extends ShellyModule
     public function Create()
     {
         parent::Create();
+        $this->RegisterPropertyString('Mode', '-');
         $this->RegisterProfileIntegerEx('Shelly.Effect', 'Bulb', '', '', [
             [0, $this->Translate('Off'), 'Bulb', -1],
             [1, $this->Translate('Meteor Shower'), 'Bulb', -1],
