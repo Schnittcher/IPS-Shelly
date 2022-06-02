@@ -9,14 +9,19 @@ class Shelly1 extends ShellyModule
         ['Shelly_State', 'State', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true],
         ['Shelly_Input', 'Input', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
         ['Shelly_Longpush', 'Longpush', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
-
         ['Shelly_Power', 'Power', VARIABLETYPE_FLOAT, '~Watt.3680', ['shelly1pm', 'shelly1l'], '', false, true],
         ['Shelly_Overtemperature', 'Overtemperature', VARIABLETYPE_FLOAT, '', ['shelly1pm', 'shelly1l'], '', false, true],
         ['Shelly_Temperature', 'Temperature', VARIABLETYPE_FLOAT, '~Temperature', ['shelly1pm', 'shelly1l'], '', false, true],
         ['Shelly_Energy', 'Energy', VARIABLETYPE_FLOAT, '~Electricity', ['shelly1pm', 'shelly1l'], '', false, true],
+        ['Shelly_ExtSwitch0', 'External Switch 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, false],
+        ['Shelly_ExtSwitch1', 'External Switch 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, false],
+        ['Shelly_ExtSwitch2', 'External Switch 3', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, false],
+        ['Shelly_ExtTemperature0', 'External Temperature 1', VARIABLETYPE_FLOAT, '~Temperature', [''], '', false, true],
+        ['Shelly_ExtTemperature1', 'External Temperature 2', VARIABLETYPE_FLOAT, '~Temperature', [''], '', false, true],
+        ['Shelly_ExtTemperature2', 'External Temperature 3', VARIABLETYPE_FLOAT, '~Temperature', [''], '', false, true],
+        ['Shelly_ExtHumidity0', 'External Humidity', VARIABLETYPE_FLOAT, '~Humidity', [''], '', false, true],
         ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
     ];
-
     public function RequestAction($Ident, $Value)
     {
         switch ($Ident) {
@@ -111,15 +116,12 @@ class Shelly1 extends ShellyModule
                     $input = $this->getChannelRelay($Buffer->Topic);
                     switch ($input) {
                         case 0:
-                            $this->RegisterVariableBoolean('Shelly_ExtSwitch0', $this->Translate('External Switch 1'), '~Switch');
                             $this->SetValue('Shelly_ExtSwitch0', $Buffer->Payload);
                             break;
                         case 1:
-                            $this->RegisterVariableBoolean('Shelly_ExtSwitch1', $this->Translate('External Switch 2'), '~Switch');
                             $this->SetValue('Shelly_ExtSwitch1', $Buffer->Payload);
                             break;
                         case 2:
-                            $this->RegisterVariableBoolean('Shelly_ExtSwitch2', $this->Translate('External Switch 3'), '~Switch');
                             $this->SetValue('Shelly_ExtSwitch2', $Buffer->Payload);
                             break;
                     }
@@ -129,21 +131,17 @@ class Shelly1 extends ShellyModule
                     $input = $this->getChannelRelay($Buffer->Topic);
                     switch ($input) {
                         case 0:
-                            $this->RegisterVariableFloat('Shelly_ExtTemperature0', $this->Translate('External Temperature 1'), '~Temperature');
                             $this->SetValue('Shelly_ExtTemperature0', $Buffer->Payload);
                             break;
                         case 1:
-                            $this->RegisterVariableFloat('Shelly_ExtTemperature1', $this->Translate('External Temperature 2'), '~Temperature');
                             $this->SetValue('Shelly_ExtTemperature1', $Buffer->Payload);
                             break;
                         case 2:
-                            $this->RegisterVariableFloat('Shelly_ExtTemperature2', $this->Translate('External Temperature 3'), '~Temperature');
                             $this->SetValue('Shelly_ExtTemperature2', $Buffer->Payload);
                             break;
                     }
                 }
                 if (fnmatch('*/ext_humidity/0', $Buffer->Topic)) {
-                    $this->RegisterVariableInteger('Shelly_ExtHumidity0', $this->Translate('External Humidity'), '~Humidity');
                     $this->SetValue('Shelly_ExtHumidity0', $Buffer->Payload);
                 }
             }
