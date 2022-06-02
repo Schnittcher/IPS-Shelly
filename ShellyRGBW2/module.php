@@ -91,7 +91,7 @@ class ShellyRGBW2 extends ShellyModule
 
     public function ReceiveData($JSONString)
     {
-        $this->SendDebug('ShlleyRGBW2 Mode', $this->ReadPropertyString('Mode'), 0);
+        $this->SendDebug('ShlleyRGBW2 DeviceType', $this->ReadPropertyString('DeviceType'), 0);
         $this->SendDebug('JSON', $JSONString, 0);
         if (!empty($this->ReadPropertyString('MQTTTopic'))) {
             $data = json_decode($JSONString);
@@ -140,8 +140,8 @@ class ShellyRGBW2 extends ShellyModule
                 if (fnmatch('*status*', $Buffer->Topic)) {
                     switch ($Payload->mode) {
                             case 'white':
-                                if (strtolower($this->ReadPropertyString('Mode')) != $Payload->mode) {
-                                    $this->SendDebug('Mode', strtolower($this->ReadPropertyString('Mode')) . ' ' . $Payload->mode, 0);
+                                if (strtolower($this->ReadPropertyString('DeviceType')) != $Payload->mode) {
+                                    $this->SendDebug('DeviceType', strtolower($this->ReadPropertyString('DeviceType')) . ' ' . $Payload->mode, 0);
                                     break;
                                 }
                                 switch ($channel) {
@@ -174,8 +174,8 @@ class ShellyRGBW2 extends ShellyModule
                                 }
                                 break;
                             case 'color':
-                                if (strtolower($this->ReadPropertyString('Mode')) != $Payload->mode) {
-                                    $this->SendDebug('Mode', strtolower($this->ReadPropertyString('Mode')) . ' ' . $Payload->mode, 0);
+                                if (strtolower($this->ReadPropertyString('DeviceType')) != $Payload->mode) {
+                                    $this->SendDebug('DeviceType', strtolower($this->ReadPropertyString('DeviceType')) . ' ' . $Payload->mode, 0);
                                     break;
                                 }
                                 $this->SetValue('Shelly_State', $Payload->ison);
@@ -216,7 +216,7 @@ class ShellyRGBW2 extends ShellyModule
 
     private function SwitchMode(int $relay, bool $Value)
     {
-        $Mode = strtolower($this->ReadPropertyString('Mode'));
+        $Mode = strtolower($this->ReadPropertyString('DeviceType'));
         $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/' . $Mode . '/' . $relay . '/command';
         if ($Value) {
             $Payload = 'on';
