@@ -207,15 +207,15 @@ class ShellyConfigurator extends IPSModule
                             'Shelly RGBW2 Color' => [
                                 'moduleID'      => $moduleID,
                                 'configuration' => [
-                                    'MQTTTopic' => $Shelly['Name'],
-                                    'Mode'      => 'Color'
+                                    'MQTTTopic'       => $Shelly['Name'],
+                                    'DeviceType'      => 'Color'
                                 ]
                             ],
                             'Shelly RGBW2 White' => [
                                 'moduleID'      => $moduleID,
                                 'configuration' => [
-                                    'MQTTTopic' => $Shelly['Name'],
-                                    'Mode'      => 'White'
+                                    'MQTTTopic'       => $Shelly['Name'],
+                                    'DeviceType'      => 'White'
                                 ]
                             ]
                         ];
