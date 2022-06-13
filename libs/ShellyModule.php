@@ -105,6 +105,7 @@ class ShellyModule extends IPSModule
     protected function SetValue($Ident, $Value)
     {
         if (@$this->GetIDForIdent($Ident)) {
+            $this->SendDebug('SetValue :: ' . $Ident, $Value, 0);
             parent::SetValue($Ident, $Value);
         }
     }
