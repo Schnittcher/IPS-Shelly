@@ -8,7 +8,6 @@ class ShellyUni extends ShellyModule
     public static $Variables = [
         ['Shelly_State', 'State 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true],
         ['Shelly_State1', 'State 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true],
-
         ['Shelly_ADC', 'ADC', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true],
         ['Shelly_Input', 'Input 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
         ['Shelly_Input1', 'Input 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
