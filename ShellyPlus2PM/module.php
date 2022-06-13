@@ -18,8 +18,8 @@ class ShellyPlus2PM extends ShellyModule
         ['Current1', 'Current 2', VARIABLETYPE_FLOAT, '~Ampere', [], 'relay', false, true],
         ['Voltage1', 'Voltage 2', VARIABLETYPE_FLOAT, '~Volt', [], 'relay', false, true],
 
-        ['Cover', 'Roller', VARIABLETYPE_BOOLEAN, '~ShutterMoveStop', [], 'roller', true, true],
-        ['CoverPosition', 'Position', VARIABLETYPE_BOOLEAN, '~Shutter', [], 'roller', true, true],
+        ['Cover', 'Roller', VARIABLETYPE_INTEGER, '~ShutterMoveStop', [], 'roller', true, true],
+        ['CoverPosition', 'Position', VARIABLETYPE_INTEGER, '~Shutter', [], 'roller', true, true],
 
         ['EventComponent', 'Event Component', VARIABLETYPE_STRING, '', [], '', false, true],
         ['Event', 'Event', VARIABLETYPE_STRING, '', [], '', false, true],
