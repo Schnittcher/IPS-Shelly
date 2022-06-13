@@ -26,6 +26,12 @@ class ShellyPlus2PM extends ShellyModule
         ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
     ];
 
+    public function Create()
+    {
+        parent::Create();
+        $this->RegisterPropertyString('DeviceType', '-');
+    }
+
     public function RequestAction($Ident, $Value)
     {
         switch ($Ident) {
