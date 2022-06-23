@@ -29,6 +29,8 @@ class ShellyRGBW2 extends ShellyModule
         ['Shelly_Overpower1', 'Overpower 2', VARIABLETYPE_BOOLEAN, '~Alert', [], 'White', false, true],
         ['Shelly_Overpower2', 'Overpower 3', VARIABLETYPE_BOOLEAN, '~Alert', [], 'White', false, true],
         ['Shelly_Overpower3', 'Overpower 4',  VARIABLETYPE_BOOLEAN, '~Alert', [], 'White', false, true],
+        ['Shelly_Input', 'Input', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
+        ['Shelly_Longpush', 'Longpush', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
         ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
     ];
 
