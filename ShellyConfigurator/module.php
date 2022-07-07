@@ -402,6 +402,32 @@ class ShellyConfigurator extends IPSModule
                                 ]
                             ];
                             break;
+                        case 'shellypro1':
+                            $moduleID = '{03E01942-F28A-4A91-93DB-EE981EA41507}';
+                            $DeviceType = 'Shelly Pro 1';
+                            $AddValue['create'] = [
+                                [
+                                    'moduleID'      => $moduleID,
+                                    'configuration' => [
+                                        'MQTTTopic' => strtolower($Shelly['Name']),
+                                        'Device'    => 'shellypro1'
+                                    ]
+                                ]
+                            ];
+                            break;
+                        case 'shellypro1pm':
+                            $moduleID = '{03E01942-F28A-4A91-93DB-EE981EA41507}';
+                            $DeviceType = 'Shelly Pro 1PM';
+                            $AddValue['create'] = [
+                                [
+                                    'moduleID'      => $moduleID,
+                                    'configuration' => [
+                                        'MQTTTopic' => strtolower($Shelly['Name']),
+                                        'Device'    => 'shellypropm'
+                                    ]
+                                ]
+                            ];
+                            break;
                             case 'shellypro2':
                                 $moduleID = '{A7B9C446-E5C6-4DE9-AF1E-B9FE20FFF3FF}';
                                 $DeviceType = 'Shelly Pro 2';
@@ -573,6 +599,8 @@ class ShellyConfigurator extends IPSModule
         //Shelly Pro 4PM
         $InstanceIDs[] = IPS_GetInstanceListByModuleID('{4E416C32-833A-4469-97B3-D4A41413A272}');
 
+        //Shelly Pro 1
+        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{03E01942-F28A-4A91-93DB-EE981EA41507}');
         //Shelly Pro 2
         $InstanceIDs[] = IPS_GetInstanceListByModuleID('{A7B9C446-E5C6-4DE9-AF1E-B9FE20FFF3FF}');
 
