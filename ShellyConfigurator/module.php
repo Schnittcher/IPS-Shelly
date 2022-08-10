@@ -52,7 +52,8 @@ class ShellyConfigurator extends IPSModule
                                 'moduleID'      => $moduleID,
                                 'configuration' => [
                                     'MQTTTopic' => $Shelly['Name'],
-                                    'Device'    => 'shelly1'
+                                    'Device'    => 'shelly1',
+                                    'info'      => $Shelly['IPv4']
                                 ]
                             ]
                         ];
@@ -65,7 +66,8 @@ class ShellyConfigurator extends IPSModule
                                 'moduleID'      => $moduleID,
                                 'configuration' => [
                                     'MQTTTopic' => $Shelly['Name'],
-                                    'Device'    => 'shelly1pm'
+                                    'Device'    => 'shelly1pm',
+                                    'info'      => $Shelly['IPv4']
                                 ]
                             ]
                         ];
@@ -78,7 +80,8 @@ class ShellyConfigurator extends IPSModule
                                 'moduleID'      => $moduleID,
                                 'configuration' => [
                                     'MQTTTopic' => $Shelly['Name'],
-                                    'Device'    => 'shelly1l'
+                                    'Device'    => 'shelly1l',
+                                    'info'      => $Shelly['IPv4']
                                 ]
                             ]
                         ];
@@ -92,7 +95,8 @@ class ShellyConfigurator extends IPSModule
                                 'configuration' => [
                                     'MQTTTopic'  => $Shelly['Name'],
                                     'Device'     => 'shelly2',
-                                    'DeviceType' => 'relay'
+                                    'DeviceType' => 'relay',
+                                    'info'       => $Shelly['IPv4']
                                 ]
                             ],
                             'Shelly 2 Shutter' => [
@@ -100,7 +104,8 @@ class ShellyConfigurator extends IPSModule
                                 'configuration' => [
                                     'MQTTTopic'  => $Shelly['Name'],
                                     'Device'     => 'shelly2',
-                                    'DeviceType' => 'roller'
+                                    'DeviceType' => 'roller',
+                                    'info'       => $Shelly['IPv4']
                                 ]
                             ]
                         ];
@@ -114,7 +119,8 @@ class ShellyConfigurator extends IPSModule
                                 'configuration' => [
                                     'MQTTTopic'  => $Shelly['Name'],
                                     'Device'     => 'shelly2.5',
-                                    'DeviceType' => 'relay'
+                                    'DeviceType' => 'relay',
+                                    'info'       => $Shelly['IPv4']
                                 ]
                             ],
                             'Shelly 2.5 Shutter' => [
@@ -122,7 +128,8 @@ class ShellyConfigurator extends IPSModule
                                 'configuration' => [
                                     'MQTTTopic'  => $Shelly['Name'],
                                     'Device'     => 'shelly2.5',
-                                    'DeviceType' => 'roller'
+                                    'DeviceType' => 'roller',
+                                    'info'       => $Shelly['IPv4']
                                 ]
                             ]
                         ];
@@ -134,7 +141,8 @@ class ShellyConfigurator extends IPSModule
                             [
                                 'moduleID'      => $moduleID,
                                 'configuration' => [
-                                    'MQTTTopic' => $Shelly['Name']
+                                    'MQTTTopic' => $Shelly['Name'],
+                                    'info'      => $Shelly['IPv4']
                                 ]
                             ]
                         ];
@@ -147,7 +155,8 @@ class ShellyConfigurator extends IPSModule
                             [
                                 'moduleID'      => $moduleID,
                                 'configuration' => [
-                                    'MQTTTopic' => $Shelly['Name']
+                                    'MQTTTopic' => $Shelly['Name'],
+                                    'info'      => $Shelly['IPv4']
                                 ]
                             ]
                         ];
@@ -160,6 +169,7 @@ class ShellyConfigurator extends IPSModule
                                 'moduleID'      => $moduleID,
                                 'configuration' => [
                                     'MQTTTopic' => $Shelly['Name'],
+                                    'info'      => $Shelly['IPv4']
                                 ]
                             ]
                         ];
@@ -172,6 +182,7 @@ class ShellyConfigurator extends IPSModule
                                 'moduleID'      => $moduleID,
                                 'configuration' => [
                                     'MQTTTopic' => $Shelly['Name'],
+                                    'info'      => $Shelly['IPv4']
                                 ]
                             ]
                         ];
@@ -184,6 +195,7 @@ class ShellyConfigurator extends IPSModule
                                 'moduleID'      => $moduleID,
                                 'configuration' => [
                                     'MQTTTopic' => $Shelly['Name'],
+                                    'info'      => $Shelly['IPv4']
                                 ]
                             ]
                         ];
@@ -196,6 +208,7 @@ class ShellyConfigurator extends IPSModule
                                 'moduleID'      => $moduleID,
                                 'configuration' => [
                                     'MQTTTopic' => $Shelly['Name'],
+                                    'info'      => $Shelly['IPv4']
                                 ]
                             ]
                         ];
@@ -208,14 +221,16 @@ class ShellyConfigurator extends IPSModule
                                 'moduleID'      => $moduleID,
                                 'configuration' => [
                                     'MQTTTopic'       => $Shelly['Name'],
-                                    'DeviceType'      => 'Color'
+                                    'DeviceType'      => 'Color',
+                                    'info'            => $Shelly['IPv4']
                                 ]
                             ],
                             'Shelly RGBW2 White' => [
                                 'moduleID'      => $moduleID,
                                 'configuration' => [
                                     'MQTTTopic'       => $Shelly['Name'],
-                                    'DeviceType'      => 'White'
+                                    'DeviceType'      => 'White',
+                                    'info'            => $Shelly['IPv4']
                                 ]
                             ]
                         ];
@@ -227,6 +242,7 @@ class ShellyConfigurator extends IPSModule
                                 'moduleID'      => $moduleID,
                                 'configuration' => [
                                     'MQTTTopic' => $Shelly['Name'],
+                                    'info'      => $Shelly['IPv4']
                                 ]
                             ]
                         ];
@@ -239,6 +255,7 @@ class ShellyConfigurator extends IPSModule
                                 'moduleID'      => $moduleID,
                                 'configuration' => [
                                     'MQTTTopic' => $Shelly['Name'],
+                                    'info'      => $Shelly['IPv4']
                                 ]
                             ]
                         ];
@@ -251,6 +268,7 @@ class ShellyConfigurator extends IPSModule
                                 'moduleID'      => $moduleID,
                                 'configuration' => [
                                     'MQTTTopic' => $Shelly['Name'],
+                                    'info'      => $Shelly['IPv4']
                                 ]
                             ]
                         ];
@@ -263,6 +281,7 @@ class ShellyConfigurator extends IPSModule
                                 'moduleID'      => $moduleID,
                                 'configuration' => [
                                     'MQTTTopic' => $Shelly['Name'],
+                                    'info'      => $Shelly['IPv4']
                                 ]
                             ]
                         ];
@@ -275,6 +294,7 @@ class ShellyConfigurator extends IPSModule
                                 'moduleID'      => $moduleID,
                                 'configuration' => [
                                     'MQTTTopic' => $Shelly['Name'],
+                                    'info'      => $Shelly['IPv4']
                                 ]
                             ]
                         ];
@@ -287,6 +307,7 @@ class ShellyConfigurator extends IPSModule
                                     'moduleID'      => $moduleID,
                                     'configuration' => [
                                         'MQTTTopic' => $Shelly['Name'],
+                                        'info'      => $Shelly['IPv4']
                                     ]
                                 ]
                             ];
@@ -299,7 +320,8 @@ class ShellyConfigurator extends IPSModule
                                     'moduleID'      => $moduleID,
                                     'configuration' => [
                                         'MQTTTopic'  => $Shelly['Name'],
-                                        'Device'     => 'DW'
+                                        'Device'     => 'DW',
+                                        'info'       => $Shelly['IPv4']
                                     ]
                                 ]
                             ];
@@ -312,7 +334,8 @@ class ShellyConfigurator extends IPSModule
                                     'moduleID'      => $moduleID,
                                     'configuration' => [
                                         'MQTTTopic'  => $Shelly['Name'],
-                                        'Device'     => 'DW2'
+                                        'Device'     => 'DW2',
+                                        'info'       => $Shelly['IPv4']
                                     ]
                                 ]
                             ];
@@ -325,6 +348,7 @@ class ShellyConfigurator extends IPSModule
                                     'moduleID'      => $moduleID,
                                     'configuration' => [
                                         'MQTTTopic' => $Shelly['Name'],
+                                        'info'      => $Shelly['IPv4']
                                     ]
                                 ]
                             ];
@@ -337,6 +361,7 @@ class ShellyConfigurator extends IPSModule
                                     'moduleID'      => $moduleID,
                                     'configuration' => [
                                         'MQTTTopic' => $Shelly['Name'],
+                                        'info'      => $Shelly['IPv4']
                                     ]
                                 ]
                             ];
@@ -350,6 +375,7 @@ class ShellyConfigurator extends IPSModule
                                     'configuration' => [
                                         'MQTTTopic' => $Shelly['Name'],
                                         'Device'    => 'light',
+                                        'info'      => $Shelly['IPv4']
                                     ]
                                 ]
                             ];
@@ -362,6 +388,7 @@ class ShellyConfigurator extends IPSModule
                                     'moduleID'      => $moduleID,
                                     'configuration' => [
                                         'MQTTTopic' => $Shelly['Name'],
+                                        'info'      => $Shelly['IPv4']
                                     ]
                                 ]
                             ];
@@ -373,7 +400,8 @@ class ShellyConfigurator extends IPSModule
                                 [
                                     'moduleID'      => $moduleID,
                                     'configuration' => [
-                                        'MQTTTopic' => $Shelly['Name']
+                                        'MQTTTopic' => $Shelly['Name'],
+                                        'info'      => $Shelly['IPv4']
                                     ]
                                 ]
                             ];
@@ -386,6 +414,7 @@ class ShellyConfigurator extends IPSModule
                                     'moduleID'      => $moduleID,
                                     'configuration' => [
                                         'MQTTTopic' => $Shelly['Name'],
+                                        'info'      => $Shelly['IPv4']
                                     ]
                                 ]
                             ];
@@ -398,6 +427,7 @@ class ShellyConfigurator extends IPSModule
                                     'moduleID'      => $moduleID,
                                     'configuration' => [
                                         'MQTTTopic' => strtolower($Shelly['Name']),
+                                        'info'      => $Shelly['IPv4']
                                     ]
                                 ]
                             ];
@@ -410,7 +440,8 @@ class ShellyConfigurator extends IPSModule
                                     'moduleID'      => $moduleID,
                                     'configuration' => [
                                         'MQTTTopic' => strtolower($Shelly['Name']),
-                                        'Device'    => 'shellypro1'
+                                        'Device'    => 'shellypro1',
+                                        'info'      => $Shelly['IPv4']
                                     ]
                                 ]
                             ];
@@ -423,7 +454,8 @@ class ShellyConfigurator extends IPSModule
                                     'moduleID'      => $moduleID,
                                     'configuration' => [
                                         'MQTTTopic' => strtolower($Shelly['Name']),
-                                        'Device'    => 'shellypropm'
+                                        'Device'    => 'shellypropm',
+                                        'info'      => $Shelly['IPv4']
                                     ]
                                 ]
                             ];
@@ -436,6 +468,7 @@ class ShellyConfigurator extends IPSModule
                                         'moduleID'      => $moduleID,
                                         'configuration' => [
                                             'MQTTTopic' => strtolower($Shelly['Name']),
+                                            'info'      => $Shelly['IPv4']
                                         ]
                                     ]
                                 ];
@@ -448,6 +481,7 @@ class ShellyConfigurator extends IPSModule
                                     'moduleID'      => $moduleID,
                                     'configuration' => [
                                         'MQTTTopic' => strtolower($Shelly['Name']),
+                                        'info'      => $Shelly['IPv4']
                                     ]
                                 ]
                             ];
@@ -460,7 +494,8 @@ class ShellyConfigurator extends IPSModule
                                     'moduleID'      => $moduleID,
                                     'configuration' => [
                                         'MQTTTopic' => strtolower($Shelly['Name']),
-                                        'Device'    => 'shellyplus1'
+                                        'Device'    => 'shellyplus1',
+                                        'info'      => $Shelly['IPv4']
                                     ]
                                 ]
                             ];
@@ -473,7 +508,8 @@ class ShellyConfigurator extends IPSModule
                                     'moduleID'      => $moduleID,
                                     'configuration' => [
                                         'MQTTTopic' => strtolower($Shelly['Name']),
-                                        'Device'    => 'shellyplus1pm'
+                                        'Device'    => 'shellyplus1pm',
+                                        'info'      => $Shelly['IPv4']
                                     ]
                                 ]
                             ];
@@ -486,6 +522,7 @@ class ShellyConfigurator extends IPSModule
                                     'moduleID'      => $moduleID,
                                     'configuration' => [
                                         'MQTTTopic' => strtolower($Shelly['Name']),
+                                        'info'      => $Shelly['IPv4']
                                     ]
                                 ]
                             ];
@@ -497,7 +534,8 @@ class ShellyConfigurator extends IPSModule
                                 [
                                     'moduleID'      => $moduleID,
                                     'configuration' => [
-                                        'MQTTTopic' => $Shelly['Name']
+                                        'MQTTTopic' => $Shelly['Name'],
+                                        'info'      => $Shelly['IPv4']
                                     ]
                                 ]
                             ];
