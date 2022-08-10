@@ -6,7 +6,7 @@ require_once __DIR__ . '/../libs/ShellyModule.php';
 class ShellyButton1 extends ShellyModule
 {
     public static $Variables = [
-        ['Shelly_Input', 'Input', VARIABLETYPE_BOOLEAN, 'Shelly.Button1Input', [], '', false, true],
+        ['Shelly_Input', 'Input', VARIABLETYPE_INTEGER, 'Shelly.Button1Input', [], '', false, true],
         ['Shelly_Battery', 'Battery', VARIABLETYPE_INTEGER, '~Battery.100', [], '', false, true],
         ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
     ];
