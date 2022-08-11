@@ -9,7 +9,7 @@ class ShellyBulb extends ShellyModule
     use ColorHelper;
 
     public static $Variables = [
-        ['Shelly_Mode', 'Mode', VARIABLETYPE_BOOLEAN, 'ShellyBulb.Mode', [], '', true, true],
+        ['Shelly_Mode', 'Mode', VARIABLETYPE_STRING, 'ShellyBulb.Mode', [], '', true, true],
         ['Shelly_State', 'State', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true],
 
         ['Shelly_Color', 'Color', VARIABLETYPE_INTEGER, '~HexColor', [], '', true, true],
