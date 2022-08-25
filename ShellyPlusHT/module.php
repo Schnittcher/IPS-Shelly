@@ -9,7 +9,7 @@ class ShellyPlusHT extends ShellyModule
         ['Shelly_Temperature', 'Temperature', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
         ['Shelly_Humidity', 'Humidity', VARIABLETYPE_FLOAT, '~Humidity.F', [], '', false, true],
         ['Shelly_Battery', 'Battery', VARIABLETYPE_INTEGER, '~Battery.100', [], '', false, true],
-        ['Shelly_BatteryVolt', 'Battery Volt', VARIABLETYPE_INTEGER, '~Volt', [], '', false, true],
+        ['Shelly_BatteryVolt', 'Battery Volt', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true],
         ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
     ];
 
@@ -39,20 +39,15 @@ class ShellyPlusHT extends ShellyModule
                 }
                 if (fnmatch('*/events/rpc', $Buffer['Topic'])) {
                     if (array_key_exists('params', $Payload)) {
-                        if (array_key_exists('temperature:0"', $Payload['params'])) {
-                            $switch = $Payload['params']['temperature:0"'];
-                            if (array_key_exists('tC', $switch)) {
-                                $this->SetValue('Shelly_Temperature', $switch['tC']);
-                            }
-                            if (array_key_exists('humidity:0', $switch)) {
-                                $this->SetValue('Shelly_Humidity', $switch['rh']);
-                            }
-                            if (array_key_exists('devicepower:0', $switch)) {
-                                if (array_key_exists('devicepower:0', $switch['devicepower:0'])) {
-                                    $this->SetValue('Shelly_Battery', $switch['devicepower:0']['percent']);
-                                    $this->SetValue('Shelly_BatteryVolt', $switch['devicepower:0']['V']);
-                                }
-                            }
+                        if (array_key_exists('temperature:0', $Payload['params'])) {
+                            $this->SetValue('Shelly_Temperature', $Payload['params']['temperature:0']['tC']);
+                        }
+                        if (array_key_exists('humidity:0', $Payload['params'])) {
+                            $this->SetValue('Shelly_Humidity', $Payload['params']['humidity:0']['rh']);
+                        }
+                        if (array_key_exists('devicepower:0', $Payload['params'])) {
+                            $this->SetValue('Shelly_Battery', $Payload['params']['devicepower:0']['battery']['percent']);
+                            $this->SetValue('Shelly_BatteryVolt', $Payload['params']['devicepower:0']['battery']['V']);
                         }
                     }
                 }
