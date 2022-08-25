@@ -37,6 +37,8 @@
             "Overtemp 2": "Übertemperatur 2",
             "Overtemp 3": "Übertemperatur 3",
             "Overtemp 4": "Übertemperatur 4",
+            "Event Component": "Ereignis Komponente",
+            "Event": "Ereignis",
             "Reachable": "Erreichbar"
         }
     }
