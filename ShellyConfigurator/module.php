@@ -455,7 +455,7 @@ class ShellyConfigurator extends IPSModule
                                     'info'          => $Shelly['IPv4'],
                                     'configuration' => [
                                         'MQTTTopic' => strtolower($Shelly['Name']),
-                                        'Device'    => 'shellypropm'
+                                        'Device'    => 'shellypro1pm'
                                     ]
                                 ]
                             ];
