@@ -1,19 +1,11 @@
 {
     "translations": {
         "de": {
-            "State": "Status",
+            "Temperature": "Temperatur",
             "Reachable": "Erreichbar",
-            "Power": "Leistung",
-            "Total Energy": "Gesamt Energie",
-            "Current": "Stromstärke",
-            "Voltage": "Volt",
-            "Total consumption": "Gesamtverbrauch",
-            "Overvoltage": "Überspannung",
-            "Overpower": "Überlastung",
-            "Overtemp": "Übertemperatur",
-            "Please select device": "Bitte wählen Sie das Gerät aus",
-            "Event Component": "Ereignis Komponente",
-            "Event": "Ereignis"
+            "Humidity": "Feuchtigkeit",
+            "Battery": "Batterie",
+            "Battery Volt": "Batterie Volt"
         }
     }
 }
