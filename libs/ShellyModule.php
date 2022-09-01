@@ -102,6 +102,28 @@ class ShellyModule extends IPSModule
         }
     }
 
+    public function restVariables()
+    {
+        $NewRows = static::$Variables;
+        $Variables = [];
+        foreach ($NewRows as $Pos => $Variable) {
+            $Variables[] = [
+                'Ident'        => str_replace(' ', '', $Variable[0]),
+                'Name'         => $this->Translate($Variable[1]),
+                'VarType'      => $Variable[2],
+                'Profile'      => $Variable[3],
+                'Devices'      => $Variable[4],
+                'DeviceType'   => $Variable[5],
+                'Action'       => $Variable[6],
+                'Pos'          => $Pos + 1,
+                'Keep'         => $Variable[7]
+            ];
+        }
+        IPS_SetProperty($this->InstanceID, 'Variables', json_encode($Variables));
+        IPS_ApplyChanges($this->InstanceID);
+        return;
+    }
+
     protected function SetValue($Ident, $Value)
     {
         if (@$this->GetIDForIdent($Ident)) {
