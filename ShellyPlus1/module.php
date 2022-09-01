@@ -94,7 +94,7 @@ class ShellyPlus1 extends ShellyModule
                                             case 'overpower':
                                                 $this->SetValue('Overpower', true);
                                                 break;
-                                            case 'Overvoltage':
+                                            case 'overvoltage':
                                                 $this->SetValue('Overvoltage', true);
                                                 break;
                                             default:
