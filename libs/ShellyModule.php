@@ -102,7 +102,7 @@ class ShellyModule extends IPSModule
         }
     }
 
-    public function restVariables()
+    public function resetVariables()
     {
         $NewRows = static::$Variables;
         $Variables = [];
