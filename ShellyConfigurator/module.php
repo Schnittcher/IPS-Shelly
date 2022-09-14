@@ -639,7 +639,7 @@ class ShellyConfigurator extends IPSModule
         $InstanceIDs[] = IPS_GetInstanceListByModuleID('{DB241FB8-F26D-4F74-82E4-66F046931B6E}');
 
         //Shelly Plus H&T
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{41C32508-A08D-40E8-870C-AF051A8DB6B4}');      
+        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{41C32508-A08D-40E8-870C-AF051A8DB6B4}');
 
         //Shelly Plus 1 PM
         $InstanceIDs[] = IPS_GetInstanceListByModuleID('{34DD2E1E-47CD-47BC-938E-071AE60FE2AD}');
