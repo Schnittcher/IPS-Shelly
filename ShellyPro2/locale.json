@@ -2,7 +2,17 @@
     "translations": {
         "de": {
             "State 1": "Status 1",
+            "Power 1": "Leistung 1",
+            "Total Energy 1": "Gesamt Energie 1",
+            "Current 1": "Stromstärke 1",
+            "Voltage 1": "Volt 1",
+            "Total consumption 1": "Gesamtverbrauch 1",
             "State 2": "Status 2",
+            "Power 2": "Leistung 2",
+            "Total Energy 2": "Gesamt Energie 2",
+            "Current 2": "Stromstärke 2",
+            "Voltage 2": "Volt 2",
+            "Total consumption 2": "Gesamtverbrauch 2",
             "Reachable": "Erreichbar",
             "Overvoltage 1": "Überspannung 1",
             "Overvoltage 2": "Überspannung 2",

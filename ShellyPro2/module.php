@@ -7,11 +7,23 @@ class ShellyPro2 extends ShellyModule
 {
     public static $Variables = [
         ['State0', 'State 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true],
+
+        ['Power0', 'Power 1', VARIABLETYPE_FLOAT, '~Watt.3680', ['shellypro2pm'], '', false, true],
+        ['TotalEnergy0', 'Total Energy1 ', VARIABLETYPE_FLOAT, '~Electricity', ['shellypro2pm'], '', false, true],
+        ['Current0', 'Current 1', VARIABLETYPE_FLOAT, '~Ampere', ['shellypro2pm'], '', false, true],
+        ['Voltage0', 'Voltage 1', VARIABLETYPE_FLOAT, '~Volt', ['shellypro2pm'], '', false, true],
+
         ['Overtemp0', 'Overtemp 1', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
         ['Overpower0', 'Overpower 1', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
         ['Overvoltage0', 'Overvoltage 1', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
 
         ['State1', 'State 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true],
+
+        ['Power1', 'Power 2', VARIABLETYPE_FLOAT, '~Watt.3680', ['shellypro2pm'], '', false, true],
+        ['TotalEnergy1', 'Total Energy 2', VARIABLETYPE_FLOAT, '~Electricity', ['shellypro2pm'], '', false, true],
+        ['Current1', 'Current 2', VARIABLETYPE_FLOAT, '~Ampere', ['shellypro2pm'], '', false, true],
+        ['Voltage1', 'Voltage 2', VARIABLETYPE_FLOAT, '~Volt', ['shellypro2pm'], '', false, true],
+
         ['Overtemp1', 'Overtemp 2', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
         ['Overpower1', 'Overpower 2', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
         ['Overvoltage1', 'Overvoltage 2', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],

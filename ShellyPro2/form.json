@@ -6,6 +6,25 @@
             "caption": "MQTT Topic"
         },
         {
+            "type": "Select",
+            "name": "Device",
+            "caption": "Device",
+            "options": [
+                {
+                    "caption": "Please select device",
+                    "value": ""
+                },
+                {
+                    "caption": "Shelly Pro 2",
+                    "value": "shellypro2"
+                },
+                {
+                    "caption": "Shelly Pro 2PM",
+                    "value": "shellypro2pm"
+                }
+            ]
+        },
+        {
             "type": "List",
             "name": "Variables",
             "caption": "",
