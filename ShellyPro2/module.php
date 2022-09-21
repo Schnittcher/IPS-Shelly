@@ -224,7 +224,7 @@ class ShellyPro2 extends ShellyModule
         $this->sendMQTT($Topic, json_encode($Payload));
     }
 
-    private function CoverMode(int $coverID, bool $value)
+    private function CoverMode(int $coverID, string $value)
     {
         $Topic = $this->ReadPropertyString('MQTTTopic') . '/rpc';
 
@@ -236,7 +236,7 @@ class ShellyPro2 extends ShellyModule
         $this->sendMQTT($Topic, json_encode($Payload));
     }
 
-    private function CoverGoToPosition(int $coverID, bool $value)
+    private function CoverGoToPosition(int $coverID, int $value)
     {
         $Topic = $this->ReadPropertyString('MQTTTopic') . '/rpc';
 
