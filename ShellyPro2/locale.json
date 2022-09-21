@@ -21,7 +21,23 @@
             "Overtemp 1": "Übertemperatur 1",
             "Overtemp 2": "Übertemperatur 2",
             "Event Component": "Ereignis Komponente",
-            "Event": "Ereignis"
+            "Event": "Ereignis",
+            "State": "Status",
+            "Running State": "Laufender Zustand",
+            "Current Position": "Aktuelle Position",
+            "Target Position": "Ziel Position",
+            "Open": "Öffnen",
+            "Opening": "Öffnet",
+            "Close": "Schließen",
+            "Closing": "Schließt",
+            "Stop": "Stopp",
+            "Stopped": "Gestoppt",
+            "Calibrating": "Kalibriert",
+            "Power": "Leistung",
+            "Total Energy": "Gesamt Energie",
+            "Current": "Stromstärke",
+            "Voltage": "Volt"
+
         }
     }
 }

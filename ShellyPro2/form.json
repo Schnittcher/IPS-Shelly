@@ -25,6 +25,25 @@
             ]
         },
         {
+            "type": "Select",
+            "name": "DeviceType",
+            "caption": "Device Type",
+            "options": [
+                {
+                    "caption": "Please set Device Type",
+                    "value": ""
+                },
+                {
+                    "caption": "Relay",
+                    "value": "relay"
+                },
+                {
+                    "caption": "Cover",
+                    "value": "cover"
+                }
+            ]
+        },
+        {
             "type": "List",
             "name": "Variables",
             "caption": "",
