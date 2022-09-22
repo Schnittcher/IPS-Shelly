@@ -163,7 +163,7 @@ class ShellyPro2 extends ShellyModule
                             if (array_key_exists('cover:0', $Payload['params'])) {
                                 $cover = $Payload['params']['cover:0'];
                                 if (array_key_exists('state', $cover)) {
-                                    $this->SetValue('CoverState', $cover['state']);
+                                    $this->SetValue('CoverRunningState', $cover['state']);
                                 }
                                 if (array_key_exists('apower', $cover)) {
                                     $this->SetValue('Power', $cover['apower']);
