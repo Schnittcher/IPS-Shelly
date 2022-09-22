@@ -47,7 +47,7 @@ class ShellyPro2 extends ShellyModule
         $this->RegisterPropertyString('DeviceType', '');
         $this->RegisterProfileStringEx('Shelly2ProPM.CoverRunningState', 'Jalousie', '', '', [
             ['open', $this->Translate('Opened'), 'Jalousie', 0xFF0000],
-            ['opening ', $this->Translate('Opening'), 'Jalousie', 0xFF0000],
+            ['opening', $this->Translate('Opening'), 'Jalousie', 0xFF0000],
             ['closed', $this->Translate('Closed'), 'Jalousie', 0x00FF00],
             ['closing', $this->Translate('Closing'), 'Jalousie', 0x00FF00],
             ['stopped', $this->Translate('Stopped'), 'Jalousie', 0xFF8800],
