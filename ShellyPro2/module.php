@@ -182,6 +182,9 @@ class ShellyPro2 extends ShellyModule
                                 if (array_key_exists('current_pos', $cover)) {
                                     $this->SetValue('CurrentPos', $cover['current_pos']);
                                 }
+                                if (array_key_exists('target_pos', $cover)) {
+                                    $this->SetValue('TargetPos ', $cover['target_pos']);
+                                }
                                 if (array_key_exists('errors', $cover)) {
                                     $this->SetValue('Overtemp', false);
                                     $this->SetValue('Overpower', false);
