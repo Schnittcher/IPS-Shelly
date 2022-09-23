@@ -30,7 +30,7 @@ class ShellyPro2 extends ShellyModule
         ['TargetPos', 'Target Position', VARIABLETYPE_INTEGER, '~Shutter', ['shellypro2pm'], 'cover', true, true],
         ['Power', 'Power', VARIABLETYPE_FLOAT, '~Watt.3680', ['shellypro2pm'], 'cover', false, true],
         ['TotalEnergy', 'Total Energy', VARIABLETYPE_FLOAT, '~Electricity', ['shellypro2pm'], 'cover', false, true],
-        ['Current', 'Current', ö, '~Ampere', ['shellypro2pm'], 'cover', false, true],
+        ['Current', 'Current', VARIABLETYPE_FLOAT,'~Ampere', ['shellypro2pm'], 'cover', false, true],
         ['Voltage', 'Voltage', VARIABLETYPE_FLOAT, '~Volt', ['shellypro2pm'], 'cover', false, true],
         ['Overtemp', 'Overtemp', VARIABLETYPE_BOOLEAN, '~Alert', [], 'cover', false, true],
         ['Overpower', 'Overpower', VARIABLETYPE_BOOLEAN, '~Alert', [], 'cover', false, true],
