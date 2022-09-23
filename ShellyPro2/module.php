@@ -223,7 +223,7 @@ class ShellyPro2 extends ShellyModule
                 //Temperatur ist immer vorhanden und soltle immer der selbe Wert sein.
                 if (fnmatch('*/status/*', $Buffer['Topic'])) {
                     if (array_key_exists('tC', $Payload)) {
-                        $this->SetValue('DeviceTemperature', $Payload['tC']);
+                        $this->SetValue('DeviceTemperature', $Payload['temperature']['tC']);
                     }
                 }
                 if (fnmatch('*/status/cover:0', $Buffer['Topic'])) {
