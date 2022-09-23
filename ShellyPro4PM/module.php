@@ -153,8 +153,10 @@ class ShellyPro4PM extends ShellyModule
                 }
                 //Temperatur ist immer vorhanden und soltle immer der selbe Wert sein.
                 if (fnmatch('*/status/*', $Buffer['Topic'])) {
-                    if (array_key_exists('tC', $Payload)) {
-                        $this->SetValue('DeviceTemperature', $Payload['temperature']['tC']);
+                    if (array_key_exists('temperature', $Payload)) {
+                        if (array_key_exists('tC', $Payload['temperature'])) {
+                            $this->SetValue('DeviceTemperature', $Payload['temperature']['tC']);
+                        }
                     }
                 }
                 if (fnmatch('*/status/switch:*', $Buffer['Topic'])) {
@@ -174,7 +176,7 @@ class ShellyPro4PM extends ShellyModule
                         $this->SetValue('Current' . $Payload['id'], $Payload['current']);
                     }
                     if (array_key_exists('aenergy', $Payload)) {
-                        if (array_key_exists('total', $payload['aenergy'])) {
+                        if (array_key_exists('total', $Payload['aenergy'])) {
                             $this->SetValue('TotalEnergy' . $Payload['id'], $Payload['aenergy']['total'] / 1000);
                         }
                     }
