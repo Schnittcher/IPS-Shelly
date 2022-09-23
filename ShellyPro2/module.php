@@ -11,6 +11,7 @@ class ShellyPro2 extends ShellyModule
         ['TotalEnergy0', 'Total Energy 1', VARIABLETYPE_FLOAT, '~Electricity', ['shellypro2pm'], 'relay', false, true],
         ['Current0', 'Current 1', VARIABLETYPE_FLOAT, '~Ampere', ['shellypro2pm'], 'relay', false, true],
         ['Voltage0', 'Voltage 1', VARIABLETYPE_FLOAT, '~Volt', ['shellypro2pm'], 'relay', false, true],
+        ['Powerfactor0', 'Powerfactor 1', VARIABLETYPE_FLOAT, '', ['shellypro2pm'], 'relay', false, true],
         ['Overtemp0', 'Overtemp 1', VARIABLETYPE_BOOLEAN, '~Alert', [], 'relay', false, true],
         ['Overpower0', 'Overpower 1', VARIABLETYPE_BOOLEAN, '~Alert', [], 'relay', false, true],
         ['Overvoltage0', 'Overvoltage 1', VARIABLETYPE_BOOLEAN, '~Alert', [], 'relay', false, true],
@@ -20,6 +21,7 @@ class ShellyPro2 extends ShellyModule
         ['TotalEnergy1', 'Total Energy 2', VARIABLETYPE_FLOAT, '~Electricity', ['shellypro2pm'], 'relay', false, true],
         ['Current1', 'Current 2', VARIABLETYPE_FLOAT, '~Ampere', ['shellypro2pm'], 'relay', false, true],
         ['Voltage1', 'Voltage 2', VARIABLETYPE_FLOAT, '~Volt', ['shellypro2pm'], 'relay', false, true],
+        ['Powerfactor1', 'Powerfactor 2', VARIABLETYPE_FLOAT, '', ['shellypro2pm'], 'relay', false, true],
         ['Overtemp1', 'Overtemp 2', VARIABLETYPE_BOOLEAN, '~Alert', ['shellypro2', 'shellypro2pm'], 'relay', false, true],
         ['Overpower1', 'Overpower 2', VARIABLETYPE_BOOLEAN, '~Alert', ['shellypro2', 'shellypro2pm'], 'relay', false, true],
         ['Overvoltage1', 'Overvoltage 2', VARIABLETYPE_BOOLEAN, '~Alert', ['shellypro2', 'shellypro2pm'], 'relay', false, true],
@@ -30,11 +32,13 @@ class ShellyPro2 extends ShellyModule
         ['TargetPos', 'Target Position', VARIABLETYPE_INTEGER, '~Shutter', ['shellypro2pm'], 'cover', true, true],
         ['Power', 'Power', VARIABLETYPE_FLOAT, '~Watt.3680', ['shellypro2pm'], 'cover', false, true],
         ['TotalEnergy', 'Total Energy', VARIABLETYPE_FLOAT, '~Electricity', ['shellypro2pm'], 'cover', false, true],
-        ['Current', 'Current', VARIABLETYPE_FLOAT,'~Ampere', ['shellypro2pm'], 'cover', false, true],
+        ['Current', 'Current', VARIABLETYPE_FLOAT, '~Ampere', ['shellypro2pm'], 'cover', false, true],
         ['Voltage', 'Voltage', VARIABLETYPE_FLOAT, '~Volt', ['shellypro2pm'], 'cover', false, true],
+        ['Powerfactor', 'Powerfactor', VARIABLETYPE_FLOAT, '', ['shellypro2pm'], 'cover', false, true],
         ['Overtemp', 'Overtemp', VARIABLETYPE_BOOLEAN, '~Alert', [], 'cover', false, true],
         ['Overpower', 'Overpower', VARIABLETYPE_BOOLEAN, '~Alert', [], 'cover', false, true],
         ['Overvoltage', 'Overvoltage', VARIABLETYPE_BOOLEAN, '~Alert', [], 'cover', false, true],
+        ['DeviceTemperature', 'Device Temperature', VARIABLETYPE_BOOLEAN, '~Temperature', [], '', false, true],
 
         ['EventComponent', 'Event Component', VARIABLETYPE_STRING, '', [], '', false, true],
         ['Event', 'Event', VARIABLETYPE_STRING, '', [], '', false, true],
@@ -127,6 +131,9 @@ class ShellyPro2 extends ShellyModule
                                 if (array_key_exists('voltage', $switch)) {
                                     $this->SetValue('Voltage' . $i, $switch['voltage']);
                                 }
+                                if (array_key_exists('pf', $switch)) {
+                                    $this->SetValue('Powerfactor' . $i, $switch['pf']);
+                                }
                                 if (array_key_exists('current', $switch)) {
                                     $this->SetValue('Current' . $i, $switch['current']);
                                 }
@@ -170,6 +177,9 @@ class ShellyPro2 extends ShellyModule
                                 if (array_key_exists('voltage', $cover)) {
                                     $this->SetValue('Voltage', $cover['voltage']);
                                 }
+                                if (array_key_exists('pf', $cover)) {
+                                    $this->SetValue('Powerfactor', $cover['pf']);
+                                }
                                 if (array_key_exists('current', $cover)) {
                                     $this->SetValue('Current', $cover['current']);
                                 }
@@ -210,6 +220,12 @@ class ShellyPro2 extends ShellyModule
                         }
                     }
                 }
+                //Temperatur ist immer vorhanden und soltle immer der selbe Wert sein.
+                if (fnmatch('*/status/*', $Buffer['Topic'])) {
+                    if (array_key_exists('tC', $Payload)) {
+                        $this->SetValue('DeviceTemperature', $Payload['tC']);
+                    }
+                }
                 if (fnmatch('*/status/cover:0', $Buffer['Topic'])) {
                     if (array_key_exists('state', $Payload)) {
                         $this->SetValue('CoverRunningState', $Payload['state']);
@@ -219,6 +235,9 @@ class ShellyPro2 extends ShellyModule
                     }
                     if (array_key_exists('voltage', $Payload)) {
                         $this->SetValue('Voltage', $Payload['voltage']);
+                    }
+                    if (array_key_exists('pf', $Payload)) {
+                        $this->SetValue('Powerfactor' . $Payload['pf']);
                     }
                     if (array_key_exists('current', $Payload)) {
                         $this->SetValue('Current', $Payload['current']);
