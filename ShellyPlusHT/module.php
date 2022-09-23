@@ -6,11 +6,11 @@ require_once __DIR__ . '/../libs/ShellyModule.php';
 class ShellyPlusHT extends ShellyModule
 {
     public static $Variables = [
-        ['Shelly_Temperature', 'Temperature', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
-        ['Shelly_Humidity', 'Humidity', VARIABLETYPE_FLOAT, '~Humidity.F', [], '', false, true],
-        ['Shelly_Battery', 'Battery', VARIABLETYPE_INTEGER, '~Battery.100', [], '', false, true],
-        ['Shelly_BatteryVolt', 'Battery Volt', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true],
-        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
+        ['Temperature', 'Temperature', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
+        ['Humidity', 'Humidity', VARIABLETYPE_FLOAT, '~Humidity.F', [], '', false, true],
+        ['Battery', 'Battery', VARIABLETYPE_INTEGER, '~Battery.100', [], '', false, true],
+        ['BatteryVolt', 'Battery Volt', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true],
+        ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
     ];
 
     public function ReceiveData($JSONString)
@@ -35,19 +35,19 @@ class ShellyPlusHT extends ShellyModule
             $Payload = json_decode($Buffer['Payload'], true);
             if (array_key_exists('Topic', $Buffer)) {
                 if (fnmatch('*/online', $Buffer['Topic'])) {
-                    $this->SetValue('Shelly_Reachable', $Payload);
+                    $this->SetValue('Reachable', $Payload);
                 }
                 if (fnmatch('*/events/rpc', $Buffer['Topic'])) {
                     if (array_key_exists('params', $Payload)) {
                         if (array_key_exists('temperature:0', $Payload['params'])) {
-                            $this->SetValue('Shelly_Temperature', $Payload['params']['temperature:0']['tC']);
+                            $this->SetValue('Temperature', $Payload['params']['temperature:0']['tC']);
                         }
                         if (array_key_exists('humidity:0', $Payload['params'])) {
-                            $this->SetValue('Shelly_Humidity', $Payload['params']['humidity:0']['rh']);
+                            $this->SetValue('Humidity', $Payload['params']['humidity:0']['rh']);
                         }
                         if (array_key_exists('devicepower:0', $Payload['params'])) {
-                            $this->SetValue('Shelly_Battery', $Payload['params']['devicepower:0']['battery']['percent']);
-                            $this->SetValue('Shelly_BatteryVolt', $Payload['params']['devicepower:0']['battery']['V']);
+                            $this->SetValue('Battery', $Payload['params']['devicepower:0']['battery']['percent']);
+                            $this->SetValue('BatteryVolt', $Payload['params']['devicepower:0']['battery']['V']);
                         }
                     }
                 }

@@ -20,7 +20,7 @@ class ShellyPlus1 extends ShellyModule
 
         ['EventComponent', 'Event Component', VARIABLETYPE_STRING, '', [], '', false, true],
         ['Event', 'Event', VARIABLETYPE_STRING, '', [], '', false, true],
-        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
+        ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
     ];
 
     public function RequestAction($Ident, $Value)
@@ -54,7 +54,7 @@ class ShellyPlus1 extends ShellyModule
             $Payload = json_decode($Buffer['Payload'], true);
             if (array_key_exists('Topic', $Buffer)) {
                 if (fnmatch('*/online', $Buffer['Topic'])) {
-                    $this->SetValue('Shelly_Reachable', $Payload);
+                    $this->SetValue('Reachable', $Payload);
                 }
                 if (fnmatch('*/events/rpc', $Buffer['Topic'])) {
                     if (array_key_exists('params', $Payload)) {
