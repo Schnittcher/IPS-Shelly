@@ -237,7 +237,7 @@ class ShellyPro2 extends ShellyModule
                         $this->SetValue('Voltage', $Payload['voltage']);
                     }
                     if (array_key_exists('pf', $Payload)) {
-                        $this->SetValue('Powerfactor' . floatval($Payload['pf']));
+                        $this->SetValue('Powerfactor', floatval($Payload['pf']));
                     }
                     if (array_key_exists('current', $Payload)) {
                         $this->SetValue('Current', $Payload['current']);
