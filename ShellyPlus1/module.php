@@ -16,6 +16,7 @@ class ShellyPlus1 extends ShellyModule
         ['Overtemp', 'Overtemp', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
         ['Overpower', 'Overpower', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
         ['Overvoltage', 'Overvoltage', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
+        ['DeviceTemperature', 'Device Temperature', VARIABLETYPE_BOOLEAN, '~Temperature', [], '', false, true],
 
         ['EventComponent', 'Event Component', VARIABLETYPE_STRING, '', [], '', false, true],
         ['Event', 'Event', VARIABLETYPE_STRING, '', [], '', false, true],
@@ -104,6 +105,12 @@ class ShellyPlus1 extends ShellyModule
                                 }
                             }
                         }
+                    }
+                }
+                //Temperatur ist immer vorhanden und soltle immer der selbe Wert sein.
+                if (fnmatch('*/status/*', $Buffer['Topic'])) {
+                    if (array_key_exists('tC', $Payload)) {
+                        $this->SetValue('DeviceTemperature', $Payload['tC']);
                     }
                 }
             }

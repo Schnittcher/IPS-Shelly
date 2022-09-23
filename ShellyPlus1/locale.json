@@ -11,6 +11,7 @@
             "Overvoltage": "Überspannung",
             "Overpower": "Überlastung",
             "Overtemp": "Übertemperatur",
+            "Device Temperature": "Gerätetemperatur",
             "Please select device": "Bitte wählen Sie das Gerät aus",
             "Event Component": "Ereignis Komponente",
             "Event": "Ereignis"
