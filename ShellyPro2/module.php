@@ -30,7 +30,7 @@ class ShellyPro2 extends ShellyModule
         ['TargetPos', 'Target Position', VARIABLETYPE_INTEGER, '~Shutter', ['shellypro2pm'], 'cover', true, true],
         ['Power', 'Power', VARIABLETYPE_FLOAT, '~Watt.3680', ['shellypro2pm'], 'cover', false, true],
         ['TotalEnergy', 'Total Energy', VARIABLETYPE_FLOAT, '~Electricity', ['shellypro2pm'], 'cover', false, true],
-        ['Current', 'Current', VARIABLETYPE_FLOAT, '~Ampere', ['shellypro2pm'], 'cover', false, true],
+        ['Current', 'Current', ö, '~Ampere', ['shellypro2pm'], 'cover', false, true],
         ['Voltage', 'Voltage', VARIABLETYPE_FLOAT, '~Volt', ['shellypro2pm'], 'cover', false, true],
         ['Overtemp', 'Overtemp', VARIABLETYPE_BOOLEAN, '~Alert', [], 'cover', false, true],
         ['Overpower', 'Overpower', VARIABLETYPE_BOOLEAN, '~Alert', [], 'cover', false, true],
@@ -72,7 +72,7 @@ class ShellyPro2 extends ShellyModule
                 break;
             case 'CoverState':
                 $this->CoverMode(0, $Value);
-                $this->SetValue('CoverState',$Value);
+                $this->SetValue('CoverState', $Value);
                 break;
             case 'TargetPos':
                 $this->CoverGoToPosition(0, $Value);
@@ -207,6 +207,25 @@ class ShellyPro2 extends ShellyModule
                                     }
                                 }
                             }
+                        }
+                    }
+                }
+                if (fnmatch('*/status/cover:0', $Buffer['Topic'])) {
+                    if (array_key_exists('state', $Payload)) {
+                        $this->SetValue('CoverRunningState', $Payload['state']);
+                    }
+                    if (array_key_exists('apower', $Payload)) {
+                        $this->SetValue('Power', $Payload['apower']);
+                    }
+                    if (array_key_exists('voltage', $Payload)) {
+                        $this->SetValue('Voltage', $Payload['voltage']);
+                    }
+                    if (array_key_exists('current', $Payload)) {
+                        $this->SetValue('Current', $Payload['current']);
+                    }
+                    if (array_key_exists('aenergy', $Payload)) {
+                        if (array_key_exists('total', $Payload['aenergy'])) {
+                            $this->SetValue('TotalEnergy', $Payload['aenergy']['total'] / 1000);
                         }
                     }
                 }
