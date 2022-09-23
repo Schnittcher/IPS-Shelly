@@ -107,6 +107,25 @@ class ShellyPlus1 extends ShellyModule
                         }
                     }
                 }
+                if (fnmatch('*/status/switch:0', $Buffer['Topic'])) {
+                    if (array_key_exists('output', $Payload)) {
+                        $this->SetValue('State', $Payload['output']);
+                    }
+                    if (array_key_exists('apower', $Payload)) {
+                        $this->SetValue('Power', $Payload['apower']);
+                    }
+                    if (array_key_exists('voltage', $Payload)) {
+                        $this->SetValue('Voltage', $Payload['voltage']);
+                    }
+                    if (array_key_exists('current', $Payload)) {
+                        $this->SetValue('Current', $Payload['current']);
+                    }
+                    if (array_key_exists('aenergy', $Payload)) {
+                        if (array_key_exists('total', $Payload['aenergy'])) {
+                            $this->SetValue('TotalEnergy', $Payload['aenergy']['total'] / 1000);
+                        }
+                    }
+                }
                 //Temperatur ist immer vorhanden und soltle immer der selbe Wert sein.
                 if (fnmatch('*/status/*', $Buffer['Topic'])) {
                     if (array_key_exists('temperature', $Payload)) {
