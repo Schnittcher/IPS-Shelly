@@ -132,7 +132,7 @@ class ShellyPro2 extends ShellyModule
                                     $this->SetValue('Voltage' . $i, $switch['voltage']);
                                 }
                                 if (array_key_exists('pf', $switch)) {
-                                    $this->SetValue('Powerfactor' . $i, $switch['pf']);
+                                    $this->SetValue('Powerfactor' . $i, floatval($switch['pf']));
                                 }
                                 if (array_key_exists('current', $switch)) {
                                     $this->SetValue('Current' . $i, $switch['current']);
@@ -178,7 +178,7 @@ class ShellyPro2 extends ShellyModule
                                     $this->SetValue('Voltage', $cover['voltage']);
                                 }
                                 if (array_key_exists('pf', $cover)) {
-                                    $this->SetValue('Powerfactor', $cover['pf']);
+                                    $this->SetValue('Powerfactor', floatval($cover['pf']));
                                 }
                                 if (array_key_exists('current', $cover)) {
                                     $this->SetValue('Current', $cover['current']);
@@ -237,7 +237,7 @@ class ShellyPro2 extends ShellyModule
                         $this->SetValue('Voltage', $Payload['voltage']);
                     }
                     if (array_key_exists('pf', $Payload)) {
-                        $this->SetValue('Powerfactor' . $Payload['pf']);
+                        $this->SetValue('Powerfactor' . floatval($Payload['pf']));
                     }
                     if (array_key_exists('current', $Payload)) {
                         $this->SetValue('Current', $Payload['current']);

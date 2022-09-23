@@ -115,7 +115,7 @@ class ShellyPro4PM extends ShellyModule
                                     $this->SetValue('Voltage' . $i, $switch['voltage']);
                                 }
                                 if (array_key_exists('pf', $switch)) {
-                                    $this->SetValue('Powerfactor' . $i, $switch['pf']);
+                                    $this->SetValue('Powerfactor' . $i, floatval($switch['pf']));
                                 }
                                 if (array_key_exists('current', $switch)) {
                                     $this->SetValue('Current' . $i, $switch['current']);
@@ -168,7 +168,7 @@ class ShellyPro4PM extends ShellyModule
                         $this->SetValue('Voltage' . $Payload['id'], $Payload['voltage']);
                     }
                     if (array_key_exists('pf', $Payload)) {
-                        $this->SetValue('Powerfactor' . $Payload['id'], $Payload['pf']);
+                        $this->SetValue('Powerfactor' . $Payload['id'], floatval($Payload['pf']));
                     }
                     if (array_key_exists('current', $Payload)) {
                         $this->SetValue('Current' . $Payload['id'], $Payload['current']);
