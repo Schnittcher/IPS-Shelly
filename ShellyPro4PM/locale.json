@@ -21,6 +21,10 @@
             "Voltage 2": "Volt 2",
             "Voltage 3": "Volt 3",
             "Voltage 4": "Volt 4",
+            "Powerfactor 1": "Leistungsfaktor 1",
+            "Powerfactor 2": "Leistungsfaktor 2",
+            "Powerfactor 3": "Leistungsfaktor 3",
+            "Powerfactor 4": "Leistungsfaktor 4",
             "Total consumption 1": "Gesamtverbrauch 1",
             "Total consumption 2": "Gesamtverbrauch 2",
             "Total consumption 3": "Gesamtverbrauch 3",
@@ -37,6 +41,7 @@
             "Overtemp 2": "Übertemperatur 2",
             "Overtemp 3": "Übertemperatur 3",
             "Overtemp 4": "Übertemperatur 4",
+            "Device Temperature": "Gerätetemperatur",
             "Event Component": "Ereignis Komponente",
             "Event": "Ereignis",
             "Reachable": "Erreichbar"

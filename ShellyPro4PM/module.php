@@ -11,6 +11,7 @@ class ShellyPro4PM extends ShellyModule
         ['TotalEnergy0', 'Total consumption 1', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
         ['Current0', 'Current 1', VARIABLETYPE_FLOAT, '~Ampere', [], '', false, true],
         ['Voltage0', 'Voltage 1', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true],
+        ['Powerfactor0', 'Powerfactor 1', VARIABLETYPE_FLOAT, '', [], '', false, true],
         ['Overtemp0', 'Overtemp 1', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
         ['Overpower0', 'Overpower 1', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
         ['Overvoltage0', 'Overvoltage 1', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
@@ -20,6 +21,7 @@ class ShellyPro4PM extends ShellyModule
         ['TotalEnergy1', 'Total consumption 2', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
         ['Current1', 'Current 2', VARIABLETYPE_FLOAT, '~Ampere', [], '', false, true],
         ['Voltage1', 'Voltage 2', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true],
+        ['Powerfactor1', 'Powerfactor 2', VARIABLETYPE_FLOAT, '', [], '', false, true],
         ['Overtemp1', 'Overtemp 2', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
         ['Overpower1', 'Overpower 2', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
         ['Overvoltage1', 'Overvoltage 2', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
@@ -29,6 +31,7 @@ class ShellyPro4PM extends ShellyModule
         ['TotalEnergy2', 'Total consumption 3', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
         ['Current2', 'Current 3', VARIABLETYPE_FLOAT, '~Ampere', [], '', false, true],
         ['Voltage2', 'Voltage 3', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true],
+        ['Powerfactor2', 'Powerfactor 3', VARIABLETYPE_FLOAT, '', [], '', false, true],
         ['Overtemp2', 'Overtemp 3', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
         ['Overpower2', 'Overpower 3', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
         ['Overvoltage2', 'Overvoltage 3', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
@@ -38,10 +41,12 @@ class ShellyPro4PM extends ShellyModule
         ['TotalEnergy3', 'Total consumption 4', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
         ['Current3', 'Current 4', VARIABLETYPE_FLOAT, '~Ampere', [], '', false, true],
         ['Voltage3', 'Voltage 4', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true],
+        ['Powerfactor3', 'Powerfactor 4', VARIABLETYPE_FLOAT, '', [], '', false, true],
         ['Overtemp3', 'Overtemp 4', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
         ['Overpower3', 'Overpower 4', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
         ['Overvoltage3', 'Overvoltage 4', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
-
+        
+        ['DeviceTemperature', 'Device Temperature', VARIABLETYPE_BOOLEAN, '~Temperature', [], '', false, true],
         ['EventComponent', 'Event Component', VARIABLETYPE_STRING, '', [], '', false, true],
         ['Event', 'Event', VARIABLETYPE_STRING, '', [], '', false, true],
         ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
@@ -109,6 +114,9 @@ class ShellyPro4PM extends ShellyModule
                                 if (array_key_exists('voltage', $switch)) {
                                     $this->SetValue('Voltage' . $i, $switch['voltage']);
                                 }
+                                if (array_key_exists('pf', $switch)) {
+                                    $this->SetValue('Powerfactor' . $i, $switch['pf']);
+                                }
                                 if (array_key_exists('current', $switch)) {
                                     $this->SetValue('Current' . $i, $switch['current']);
                                 }
@@ -140,6 +148,34 @@ class ShellyPro4PM extends ShellyModule
                                     }
                                 }
                             }
+                        }
+                    }
+                }
+                //Temperatur ist immer vorhanden und soltle immer der selbe Wert sein.
+                if (fnmatch('*/status/*', $Buffer['Topic'])) {
+                    if (array_key_exists('tC', $Payload)) {
+                        $this->SetValue('DeviceTemperature', $Payload['tC']);
+                    }
+                }
+                if (fnmatch('*/status/switch:*', $Buffer['Topic'])) {
+                    if (array_key_exists('output', $Payload)) {
+                        $this->SetValue('State' . $Payload['id'], $Payload['output']);
+                    }
+                    if (array_key_exists('apower', $Payload)) {
+                        $this->SetValue('Power' . $Payload['id'], $Payload['apower']);
+                    }
+                    if (array_key_exists('voltage', $Payload)) {
+                        $this->SetValue('Voltage' . $Payload['id'], $Payload['voltage']);
+                    }
+                    if (array_key_exists('pf', $Payload)) {
+                        $this->SetValue('Powerfactor' . $Payload['id'], $Payload['pf']);
+                    }
+                    if (array_key_exists('current', $Payload)) {
+                        $this->SetValue('Current' . $Payload['id'], $Payload['current']);
+                    }
+                    if (array_key_exists('aenergy', $Payload)) {
+                        if (array_key_exists('total', $payload['aenergy'])) {
+                            $this->SetValue('TotalEnergy' . $Payload['id'], $Payload['aenergy']['total'] / 1000);
                         }
                     }
                 }
