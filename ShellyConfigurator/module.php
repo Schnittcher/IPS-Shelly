@@ -652,6 +652,10 @@ class ShellyConfigurator extends IPSModule
         //ShellyMotion
         $InstanceIDs[] = IPS_GetInstanceListByModuleID('{DB241FB8-F26D-4F74-82E4-66F046931B6E}');
 
+		//ShellyMotion2
+        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{750214A4-6DF4-0655-7E6A-FA3955040D12}');
+
+
         //Shelly Plus H&T
         $InstanceIDs[] = IPS_GetInstanceListByModuleID('{41C32508-A08D-40E8-870C-AF051A8DB6B4}');
 

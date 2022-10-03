@@ -3,12 +3,13 @@
 declare(strict_types=1);
 require_once __DIR__ . '/../libs/ShellyModule.php';
 
-class ShellyMotion extends ShellyModule
+class ShellyMotion2 extends ShellyModule
 {
     public static $Variables = [
         ['Shelly_Motion', 'Motion', VARIABLETYPE_BOOLEAN, '~Motion', [], '', false, true],
         ['Shelly_Illuminance', 'Illuminance', VARIABLETYPE_INTEGER, '~Illumination', [], '', false, true],
-        ['Shelly_Vibration', 'Vibration', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
+        ['Shelly_Temperature', 'Temperature', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
+		['Shelly_Vibration', 'Vibration', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
         ['Shelly_Battery', 'Battery', VARIABLETYPE_INTEGER, '~Battery.100', [], '', false, true],
         ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
     ];
@@ -51,6 +52,11 @@ class ShellyMotion extends ShellyModule
                     if (property_exists($Payload, 'bat')) {
                         $this->SetValue('Shelly_Battery', $Payload->bat);
                     }
+					if (property_exists($Payload, 'tmp')) {
+						if (property_exists($Payload->tmp, 'value')){
+							$this->SetValue('Shelly_Temperature', $Payload->tmp->value);
+						}
+					}
                 }
                 if (fnmatch('*/online', $Buffer->Topic)) {
                     $this->SendDebug('Online Payload', $Buffer->Payload, 0);

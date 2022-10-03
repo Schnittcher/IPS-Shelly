@@ -1,10 +1,10 @@
 {
-    "id": "{DB241FB8-F26D-4F74-82E4-66F046931B6E}",
-    "name": "ShellyMotion",
+    "id": "{750214A4-6DF4-0655-7E6A-FA3955040D12}",
+    "name": "ShellyMotion2",
     "type": 3,
     "vendor": "Shelly",
     "aliases": [
-        "Shelly Motion"
+        "Shelly Motion 2"
     ],
     "parentRequirements": [
         "{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}",

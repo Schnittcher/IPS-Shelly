@@ -1,7 +1,7 @@
 {
     "id": "{B75771F6-8F52-4E63-984F-51432C15F19F}",
     "author": "Kai Schnittcher",
-    "name": "IPS-Shelly",
+    "name": "IPS Shelly",
     "url": "https://github.com/Schnittcher/IPS-Shelly",
     "compatibility": {
         "version": "6.0"
