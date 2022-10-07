@@ -92,14 +92,14 @@ class ShellyTRV extends ShellyModule
     private function setTargetTemp(float $Value)
     {
         $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/thermostat/0/command/target_t';
-        $Payload = strval($Value);
+        $Payload = strval(number_format($Value, 1, '.', ''));
         $this->sendMQTT($Topic, $Payload);
     }
 
     private function setExtTemp(float $Value)
     {
         $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/thermostat/0/command/ext_t';
-        $Payload = strval($Value);
+        $Payload = strval(number_format($Value, 1, '.', ''));
         $this->sendMQTT($Topic, $Payload);
     }
 
