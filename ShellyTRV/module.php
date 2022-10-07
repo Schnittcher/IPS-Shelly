@@ -9,6 +9,7 @@ class ShellyTRV extends ShellyModule
         ['Position', 'Position', VARIABLETYPE_INTEGER, '~Intensity.100', [], '', false, true],
         ['TargetTemperature', 'Target Temperature', VARIABLETYPE_FLOAT, '~Temperature.Room', [], '', true, true],
         ['Temperature', 'Temperature', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
+        ['ExtTemperature', 'External Temperature', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
         ['Schedule', 'Schedule', VARIABLETYPE_BOOLEAN, '~Switch', '', '', true, true],
         ['ScheduleProfile', 'Schedule Profile', VARIABLETYPE_INTEGER, '', '', '', true, true],
         ['BatteryValue', 'Battery', VARIABLETYPE_INTEGER, '~Battery.100', [], '', false, true],
@@ -21,6 +22,9 @@ class ShellyTRV extends ShellyModule
         switch ($Ident) {
             case 'TargetTemperature':
                 $this->setTargetTemp($Value);
+                break;
+            case 'ExtTemperature':
+                $this->setExtTemp($Value);
                 break;
             case 'Schedule':
                 $this->setSchedule($Value);
@@ -88,6 +92,13 @@ class ShellyTRV extends ShellyModule
     private function setTargetTemp(float $Value)
     {
         $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/thermostat/0/command/target_t';
+        $Payload = strval($Value);
+        $this->sendMQTT($Topic, $Payload);
+    }
+
+    private function setExtTemp(float $Value)
+    {
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/thermostat/0/command/ext_t';
         $Payload = strval($Value);
         $this->sendMQTT($Topic, $Payload);
     }

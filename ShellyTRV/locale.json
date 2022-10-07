@@ -4,6 +4,7 @@
             "Position": "Position",
             "Target Temperature": "Zieltemperatur",
             "Temperature": "Temperatur",
+            "External Temperature": "Externe Temperatur",
             "Schedule": "Zeitplan",
             "Schedule Profile": "Zeitplan Profil",
             "Battery": "Batterie",
