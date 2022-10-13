@@ -50,6 +50,7 @@ Die selben Zugangsdaten müssen über das Shelly Webinterface unter Internet & S
 * [ShellyHT](ShellyHT/README.md)
 * [Shellyi3](Shellyi3/README.md)
 * [ShellyMotion](ShellyMotion/README.md)
+* [ShellyMotion 2](ShellyMotion2/README.md)
 * [ShellyPlug](ShellyPlug/README.md)
 * [ShellyPlus1](ShellyPlus1/README.md)
 * [ShellyPlus2PM](ShellyPlus2PM/README.md)

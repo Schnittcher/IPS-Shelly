@@ -1,0 +1,19 @@
+{
+    "id": "{2F27E9AF-9B26-4952-A7BF-25EAFFCA75E0}",
+    "name": "ShellyMotion2",
+    "type": 3,
+    "vendor": "Shelly",
+    "aliases": [
+        "Shelly Motion 2"
+    ],
+    "parentRequirements": [
+        "{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}",
+        "{97475B04-67C3-A74D-C970-E9409B0EFA1D}"
+    ],
+    "childRequirements": [],
+    "implemented": [
+        "{7F7632D9-FA40-4F38-8DEA-C83CD4325A32}",
+        "{DBDA9DF7-5D04-F49D-370A-2B9153D00D9B}"
+    ],
+    "prefix": "SHELLY"
+}
