@@ -3,7 +3,7 @@
 declare(strict_types=1);
 require_once __DIR__ . '/../libs/ShellyModule.php';
 
-class ShellyMotion extends ShellyModule
+class ShellyMotion2 extends ShellyModule
 {
     public static $Variables = [
         ['Shelly_Motion', 'Motion', VARIABLETYPE_BOOLEAN, '~Motion', [], '', false, true],
@@ -38,9 +38,6 @@ class ShellyMotion extends ShellyModule
                     $Payload = json_decode($Buffer->Payload);
                     if (property_exists($Payload, 'motion')) {
                         $this->SetValue('Shelly_Motion', $Payload->motion);
-                    }
-                    if (property_exists($Buffer->Payload, 'active')) {
-                        $this->SetValue('Shelly_Active', $Payload->active);
                     }
                     if (property_exists($Payload, 'vibration')) {
                         $this->SetValue('Shelly_Vibration', $Payload->vibration);
