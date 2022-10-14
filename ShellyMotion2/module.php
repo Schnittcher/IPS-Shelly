@@ -10,9 +10,9 @@ class ShellyMotion2 extends ShellyModule
         ['Shelly_Illuminance', 'Illuminance', VARIABLETYPE_INTEGER, '~Illumination', [], '', false, true],
         ['Shelly_Vibration', 'Vibration', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
         ['Shelly_Battery', 'Battery', VARIABLETYPE_INTEGER, '~Battery.100', [], '', false, true],
+        ['Shelly_Temperature', 'Temperature', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
         ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
     ];
-
     public function ReceiveData($JSONString)
     {
         $this->SendDebug('JSON', $JSONString, 0);
@@ -31,7 +31,6 @@ class ShellyMotion2 extends ShellyModule
                     return;
             }
             $this->SendDebug('MQTT Topic', $Buffer->Topic, 0);
-
             if (property_exists($Buffer, 'Topic')) {
                 if (fnmatch('*/status', $Buffer->Topic)) {
                     $this->SendDebug('Status Payload', $Buffer->Payload, 0);
@@ -44,6 +43,11 @@ class ShellyMotion2 extends ShellyModule
                     }
                     if (property_exists($Payload, 'lux')) {
                         $this->SetValue('Shelly_Illuminance', $Payload->lux);
+                    }
+                    if (property_exists($Payload, 'tmp')) {
+                        if (property_exists($Payload, 'tmp')) {
+                            $this->SetValue('Shelly_Temperature', $Payload->tmp->value);
+                        }
                     }
                     if (property_exists($Payload, 'bat')) {
                         $this->SetValue('Shelly_Battery', $Payload->bat);
