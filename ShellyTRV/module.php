@@ -6,7 +6,7 @@ require_once __DIR__ . '/../libs/ShellyModule.php';
 class ShellyTRV extends ShellyModule
 {
     public static $Variables = [
-        ['Position', 'Position', VARIABLETYPE_INTEGER, '~Intensity.100', [], '', false, true],
+        ['Position', 'Position', VARIABLETYPE_INTEGER, '~Intensity.100', [], '', true, true],
         ['TargetTemperature', 'Target Temperature', VARIABLETYPE_FLOAT, '~Temperature.Room', [], '', true, true],
         ['Temperature', 'Temperature', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
         ['ExtTemperature', 'External Temperature', VARIABLETYPE_FLOAT, '~Temperature', [], '', true, true],
@@ -22,6 +22,9 @@ class ShellyTRV extends ShellyModule
         switch ($Ident) {
             case 'TargetTemperature':
                 $this->setTargetTemp($Value);
+                break;
+            case 'Position':
+                $this->setValvePosition($Value);
                 break;
             case 'ExtTemperature':
                 $this->setExtTemp($Value);
@@ -93,6 +96,13 @@ class ShellyTRV extends ShellyModule
     {
         $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/thermostat/0/command/target_t';
         $Payload = strval(number_format($Value, 1, '.', ''));
+        $this->sendMQTT($Topic, $Payload);
+    }
+
+    private function setValvePosition(int $Value)
+    {
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/thermostat/0/command/valve_pos';
+        $Payload = strval(intval($Value));
         $this->sendMQTT($Topic, $Payload);
     }
 
