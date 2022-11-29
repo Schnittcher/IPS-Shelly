@@ -178,7 +178,7 @@ class ShellyPlus2PM extends ShellyModule
         $Payload['id'] = 1;
         $Payload['src'] = 'user_1';
         $Payload['method'] = 'Cover.Open';
-        $Payload['params'] = ['id' => $switch];
+        $Payload['params'] = ['id' => $cover];
 
         $this->sendMQTT($Topic, json_encode($Payload));
     }
@@ -190,7 +190,7 @@ class ShellyPlus2PM extends ShellyModule
         $Payload['id'] = 1;
         $Payload['src'] = 'user_1';
         $Payload['method'] = 'Cover.Close';
-        $Payload['params'] = ['id' => $switch];
+        $Payload['params'] = ['id' => $cover];
 
         $this->sendMQTT($Topic, json_encode($Payload));
     }
@@ -202,7 +202,7 @@ class ShellyPlus2PM extends ShellyModule
         $Payload['id'] = 1;
         $Payload['src'] = 'user_1';
         $Payload['method'] = 'Cover.Stop';
-        $Payload['params'] = ['id' => $switch];
+        $Payload['params'] = ['id' => $cover];
 
         $this->sendMQTT($Topic, json_encode($Payload));
     }
@@ -214,7 +214,7 @@ class ShellyPlus2PM extends ShellyModule
         $Payload['id'] = 1;
         $Payload['src'] = 'user_1';
         $Payload['method'] = 'Cover.GoToPosition';
-        $Payload['params'] = ['id' => $switch, 'pos' => $position];
+        $Payload['params'] = ['id' => $cover, 'pos' => $position];
 
         $this->sendMQTT($Topic, json_encode($Payload));
     }
