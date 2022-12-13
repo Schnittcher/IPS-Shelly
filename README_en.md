@@ -6,13 +6,16 @@
 # IPS-Shelly
    This module enables the implementation of the devices from Shelly in IP-Symcon.
  
-   ## Table of Contents
-   1. [Requirements](#1-requirements)
-   2. [Included Modules](#2-included-modules)
-   3. [Installation](#3-installation)
-   4. [Configuration in IP-Symcon](#4-configuration-in-ip-symcon)
-   5. [Donate](#5-donate)
-   6. [License](#6-license)
+## Table of Contents
+- [IPS-Shelly](#ips-shelly)
+  - [Table of Contents](#table-of-contents)
+  - [1. Requirements](#1-requirements)
+    - [1.1 Enabling MQTT](#11-enabling-mqtt)
+  - [2. Included Modules](#2-included-modules)
+  - [3. Installation](#3-installation)
+  - [4. Configuration in IP-Symcon](#4-configuration-in-ip-symcon)
+  - [5. Donate](#5-donate)
+  - [6. License](#6-license)
    
 ## 1. Requirements
 
@@ -54,6 +57,7 @@ If you would like to use the username/password settings you need to configure it
 * [ShellyPlusi4](ShellyPlusi4/README_en.md)
 * [ShellyPro1](ShellyPro1/README_en.md)
 * [ShellyPro2](ShellyPro2/README_en.md)
+* [ShellyPro3](ShellyPro3/README_en.md)
 * [ShellyPro4PM](ShellyPro4PM/README_en.md)
 * [ShellyRGBW2](ShellyRGBW2/README_en.md)
 * [ShellySense](ShellySense/README_en.md)

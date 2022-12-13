@@ -6,13 +6,16 @@
 # IPS-Shelly
    Mit diesem Modul ist es möglich die Geräte von Shelly in IP-Symcon einzubinden.
  
-   ## Inhaltverzeichnis
-   1. [Voraussetzungen](#1-voraussetzungen)
-   2. [Enthaltene Module](#2-enthaltene-module)
-   3. [Installation](#3-installation)
-   4. [Konfiguration in IP-Symcon](#4-konfiguration-in-ip-symcon)
-   5. [Spenden](#5-spenden)
-   6. [Lizenz](#6-lizenz)
+## Inhaltverzeichnis
+- [IPS-Shelly](#ips-shelly)
+  - [Inhaltverzeichnis](#inhaltverzeichnis)
+  - [1. Voraussetzungen](#1-voraussetzungen)
+    - [1.1 Aktiviertes MQTT protokoll](#11-aktiviertes-mqtt-protokoll)
+  - [2. Enthaltene Module](#2-enthaltene-module)
+  - [3. Installation](#3-installation)
+  - [4. Konfiguration in IP-Symcon](#4-konfiguration-in-ip-symcon)
+  - [5. Spenden](#5-spenden)
+  - [6. Lizenz](#6-lizenz)
    
 ## 1. Voraussetzungen
 
@@ -58,6 +61,7 @@ Die selben Zugangsdaten müssen über das Shelly Webinterface unter Internet & S
 * [ShellyPlusi4](ShellyPlusi4/README.md)
 * [ShellyPro1](ShellyPro1/README.md)
 * [ShellyPro2](ShellyPro2/README.md)
+* [ShellyPro3](ShellyPro3/README.md)
 * [ShellyPro4PM](ShellyPro4PM/README.md)
 * [ShellyRGBW2](ShellyRGBW2/README.md)
 * [ShellySense](ShellySense/README.md)

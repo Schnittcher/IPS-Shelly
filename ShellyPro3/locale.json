@@ -1,0 +1,22 @@
+{
+    "translations": {
+        "de": {
+            "State 1": "Status 1",
+            "State 2": "Status 2",
+            "State 3": "Status 3",
+            "Overvoltage 1": "Überspannung 1",
+            "Overvoltage 2": "Überspannung 2",
+            "Overvoltage 3": "Überspannung 3",
+            "Overpower 1": "Überlastung 1",
+            "Overpower 2": "Überlastung 2",
+            "Overpower 3": "Überlastung 3",
+            "Overtemp 1": "Übertemperatur 1",
+            "Overtemp 2": "Übertemperatur 2",
+            "Overtemp 3": "Übertemperatur 3",
+            "Device Temperature": "Gerätetemperatur",
+            "Event Component": "Ereignis Komponente",
+            "Event": "Ereignis",
+            "Reachable": "Erreichbar"
+        }
+    }
+}
