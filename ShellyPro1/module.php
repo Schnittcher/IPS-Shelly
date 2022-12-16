@@ -106,6 +106,28 @@ class ShellyPro1 extends ShellyModule
                         }
                     }
                 }
+                if (fnmatch('*/status/switch:*', $Buffer['Topic'])) {
+                    if (array_key_exists('output', $Payload)) {
+                        $this->SetValue('State', $Payload['output']);
+                    }
+                    if (array_key_exists('apower', $Payload)) {
+                        $this->SetValue('Power', $Payload['apower']);
+                    }
+                    if (array_key_exists('voltage', $Payload)) {
+                        $this->SetValue('Voltage', $Payload['voltage']);
+                    }
+                    if (array_key_exists('pf', $Payload)) {
+                        $this->SetValue('Powerfactor', floatval($Payload['pf']));
+                    }
+                    if (array_key_exists('current', $Payload)) {
+                        $this->SetValue('Current', $Payload['current']);
+                    }
+                    if (array_key_exists('aenergy', $Payload)) {
+                        if (array_key_exists('total', $Payload['aenergy'])) {
+                            $this->SetValue('TotalEnergy', $Payload['aenergy']['total'] / 1000);
+                        }
+                    }
+                }
             }
         }
     }

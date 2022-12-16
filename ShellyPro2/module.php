@@ -228,6 +228,28 @@ class ShellyPro2 extends ShellyModule
                         }
                     }
                 }
+                if (fnmatch('*/status/switch:*', $Buffer['Topic'])) {
+                    if (array_key_exists('output', $Payload)) {
+                        $this->SetValue('State' . $Payload['id'], $Payload['output']);
+                    }
+                    if (array_key_exists('apower', $Payload)) {
+                        $this->SetValue('Power' . $Payload['id'], $Payload['apower']);
+                    }
+                    if (array_key_exists('voltage', $Payload)) {
+                        $this->SetValue('Voltage' . $Payload['id'], $Payload['voltage']);
+                    }
+                    if (array_key_exists('pf', $Payload)) {
+                        $this->SetValue('Powerfactor' . $Payload['id'], floatval($Payload['pf']));
+                    }
+                    if (array_key_exists('current', $Payload)) {
+                        $this->SetValue('Current' . $Payload['id'], $Payload['current']);
+                    }
+                    if (array_key_exists('aenergy', $Payload)) {
+                        if (array_key_exists('total', $Payload['aenergy'])) {
+                            $this->SetValue('TotalEnergy' . $Payload['id'], $Payload['aenergy']['total'] / 1000);
+                        }
+                    }
+                }
                 if (fnmatch('*/status/cover:0', $Buffer['Topic'])) {
                     if (array_key_exists('state', $Payload)) {
                         $this->SetValue('CoverRunningState', $Payload['state']);
