@@ -45,21 +45,15 @@ class ShellyTRV extends ShellyModule
     {
         $this->SendDebug('ReceiveData :: JSON', $JSONString, 0);
         if (!empty($this->ReadPropertyString('MQTTTopic'))) {
-            $data = json_decode($JSONString);
-            $Payload = json_decode($data->Payload);
-            switch ($data->DataID) {
-                case '{7F7632D9-FA40-4F38-8DEA-C83CD4325A32}': // MQTT Server
-                    $Buffer = $data;
-                    break;
-                case '{DBDA9DF7-5D04-F49D-370A-2B9153D00D9B}': //MQTT Client
-                    $Buffer = json_decode($data->Buffer);
-                    break;
-                default:
-                    $this->LogMessage('Invalid Parent', KL_ERROR);
-                    return;
+            $Buffer = json_decode($JSONString);
+
+            //Für MQTT Fix in IPS Version 6.3
+            if (IPS_GetKernelDate() > 1670886000) {
+                $Buffer->Payload = utf8_decode($Buffer->Payload);
             }
             $this->SendDebug('ReceiveData :: MQTT Topic', $Buffer->Topic, 0);
 
+            $Payload = json_decode($Buffer->Payload);
             if (property_exists($Buffer, 'Topic')) {
                 if (fnmatch('*info*', $Buffer->Topic)) {
                     if (property_exists($Payload, 'thermostats')) {
