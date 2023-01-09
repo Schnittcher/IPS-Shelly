@@ -148,6 +148,44 @@ class ShellyPlus2PM extends ShellyModule
                         }
                     }
                 }
+                if (fnmatch('*/status/switch:0', $Buffer['Topic'])) {
+                    if (array_key_exists('output', $Payload)) {
+                        $this->SetValue('State0', $Payload['output']);
+                    }
+                    if (array_key_exists('apower', $Payload)) {
+                        $this->SetValue('Power0', $Payload['apower']);
+                    }
+                    if (array_key_exists('voltage', $Payload)) {
+                        $this->SetValue('Voltage0', $Payload['voltage']);
+                    }
+                    if (array_key_exists('current', $Payload)) {
+                        $this->SetValue('Current0', $Payload['current']);
+                    }
+                    if (array_key_exists('aenergy', $Payload)) {
+                        if (array_key_exists('total', $Payload['aenergy'])) {
+                            $this->SetValue('TotalEnergy0', $Payload['aenergy']['total'] / 1000);
+                        }
+                    }
+                }
+                if (fnmatch('*/status/switch:1', $Buffer['Topic'])) {
+                    if (array_key_exists('output', $Payload)) {
+                        $this->SetValue('State1', $Payload['output']);
+                    }
+                    if (array_key_exists('apower', $Payload)) {
+                        $this->SetValue('Power1', $Payload['apower']);
+                    }
+                    if (array_key_exists('voltage', $Payload)) {
+                        $this->SetValue('Voltage1', $Payload['voltage']);
+                    }
+                    if (array_key_exists('current', $Payload)) {
+                        $this->SetValue('Current1', $Payload['current']);
+                    }
+                    if (array_key_exists('aenergy', $Payload)) {
+                        if (array_key_exists('total', $Payload['aenergy'])) {
+                            $this->SetValue('TotalEnergy1', $Payload['aenergy']['total'] / 1000);
+                        }
+                    }
+                }
             }
         }
     }
