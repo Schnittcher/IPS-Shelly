@@ -82,6 +82,9 @@ class ShellyTRV extends ShellyModule
                         }
                     }
                 }
+                if (fnmatch('*online', $Buffer->Topic)) {
+                    $this->SetValue('Shelly_Reachable', $Payload);
+                }
             }
         }
     }
