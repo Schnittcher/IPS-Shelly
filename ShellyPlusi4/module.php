@@ -6,16 +6,18 @@ require_once __DIR__ . '/../libs/ShellyModule.php';
 class ShellyPlusi4 extends ShellyModule
 {
     public static $Variables = [
-        ['Input0', 'Input 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
-        ['Input1', 'Input 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
-        ['Input2', 'Input 3', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
-        ['Input3', 'Input 4', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
+        ['Input100', 'Input 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
+        ['Input101', 'Input 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
+        ['Input102', 'Input 3', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
+        ['Input103', 'Input 4', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
         ['EventComponent', 'Event Component', VARIABLETYPE_STRING, '', [], '', false, true],
         ['Event', 'Event', VARIABLETYPE_STRING, '', [], '', false, true],
         ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true],
         ['Temperature100', 'External Temperature 1', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
         ['Temperature101', 'External Temperature 2', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
         ['Temperature102', 'External Temperature 3', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
+        ['Temperature103', 'External Temperature 3', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
+        ['Temperature104', 'External Temperature 3', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
         ['Humidity100', 'External Humidity', VARIABLETYPE_FLOAT, '~Humidity.F', [], '', false, true],
     ];
 
@@ -43,7 +45,7 @@ class ShellyPlusi4 extends ShellyModule
                             $this->SetValue('EventComponent', $events['component']);
                             $this->SetValue('Event', $events['event']);
                         }
-                        for ($i = 0; $i <= 3; $i++) {
+                        for ($i = 100; $i <= 103; $i++) {
                             $inputIndex = 'input:' . $i;
                             if (array_key_exists($inputIndex, $Payload['params'])) {
                                 $input = $Payload['params'][$inputIndex];
@@ -53,7 +55,7 @@ class ShellyPlusi4 extends ShellyModule
                             }
                         }
                         //External Sensor Addon
-                        for ($i = 100; $i <= 102; $i++) {
+                        for ($i = 100; $i <= 104; $i++) {
                             $temperatureIndex = 'temperature:' . $i;
                             if (array_key_exists($temperatureIndex, $Payload['params'])) {
                                 $temperature = $Payload['params'][$temperatureIndex];
