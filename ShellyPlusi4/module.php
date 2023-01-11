@@ -6,19 +6,21 @@ require_once __DIR__ . '/../libs/ShellyModule.php';
 class ShellyPlusi4 extends ShellyModule
 {
     public static $Variables = [
-        ['Input100', 'Input 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
-        ['Input101', 'Input 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
-        ['Input102', 'Input 3', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
-        ['Input103', 'Input 4', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
+        ['Input0', 'Input 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
+        ['Input1', 'Input 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
+        ['Input2', 'Input 3', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
+        ['Input3', 'Input 4', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
         ['EventComponent', 'Event Component', VARIABLETYPE_STRING, '', [], '', false, true],
         ['Event', 'Event', VARIABLETYPE_STRING, '', [], '', false, true],
         ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true],
         ['Temperature100', 'External Temperature 1', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
         ['Temperature101', 'External Temperature 2', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
         ['Temperature102', 'External Temperature 3', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
-        ['Temperature103', 'External Temperature 3', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
-        ['Temperature104', 'External Temperature 3', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
+        ['Temperature103', 'External Temperature 4', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
+        ['Temperature104', 'External Temperature 5', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
         ['Humidity100', 'External Humidity', VARIABLETYPE_FLOAT, '~Humidity.F', [], '', false, true],
+        ['Input100', 'External Input', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
+        ['Voltmeter100', 'External Voltmeter', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true],
     ];
 
     public function ReceiveData($JSONString)
@@ -45,7 +47,7 @@ class ShellyPlusi4 extends ShellyModule
                             $this->SetValue('EventComponent', $events['component']);
                             $this->SetValue('Event', $events['event']);
                         }
-                        for ($i = 100; $i <= 103; $i++) {
+                        for ($i = 0; $i <= 3; $i++) {
                             $inputIndex = 'input:' . $i;
                             if (array_key_exists($inputIndex, $Payload['params'])) {
                                 $input = $Payload['params'][$inputIndex];
@@ -69,6 +71,20 @@ class ShellyPlusi4 extends ShellyModule
                             $humidity = $Payload['params']['humidity:100'];
                             if (array_key_exists('rH', $humidity)) {
                                 $this->SetValue('Humidity100', $humidity['rH']);
+                            }
+                        }
+                        //External Sensor Addon
+                        if (array_key_exists('input:100', $Payload['params'])) {
+                            $input = $Payload['params']['input:100'];
+                            if (array_key_exists('state', $input)) {
+                                $this->SetValue('Imput100', $input['state']);
+                            }
+                        }
+                        //External Sensor Addon
+                        if (array_key_exists('voltmeter:100', $Payload['params'])) {
+                            $voltmeter = $Payload['params']['voltmeter:100'];
+                            if (array_key_exists('voltage', $input)) {
+                                $this->SetValue('Voltmeter100', $input['voltage']);
                             }
                         }
                     }
