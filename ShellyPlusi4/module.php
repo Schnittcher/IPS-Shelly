@@ -77,14 +77,14 @@ class ShellyPlusi4 extends ShellyModule
                         if (array_key_exists('input:100', $Payload['params'])) {
                             $input = $Payload['params']['input:100'];
                             if (array_key_exists('state', $input)) {
-                                $this->SetValue('Imput100', $input['state']);
+                                $this->SetValue('Input100', $input['state']);
                             }
                         }
                         //External Sensor Addon
                         if (array_key_exists('voltmeter:100', $Payload['params'])) {
                             $voltmeter = $Payload['params']['voltmeter:100'];
                             if (array_key_exists('voltage', $input)) {
-                                $this->SetValue('Voltmeter100', $input['voltage']);
+                                $this->SetValue('Voltmeter100', $voltmeter['voltage']);
                             }
                         }
                     }
