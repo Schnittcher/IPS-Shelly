@@ -14,7 +14,7 @@ class ShellyRGBW2 extends ShellyModule
         ['Shelly_State2', 'State 3', VARIABLETYPE_BOOLEAN, '~Switch', [], 'White', true, true],
         ['Shelly_State3', 'State 4', VARIABLETYPE_BOOLEAN, '~Switch', [], 'White', true, true],
         ['Shelly_Color', 'Color', VARIABLETYPE_INTEGER, '~HexColor', [], 'Color', true, true],
-        ['Shelly_White', 'White', VARIABLETYPE_INTEGER, '~Intensity.100', [], 'Color', true, true],
+        ['Shelly_White', 'White', VARIABLETYPE_INTEGER, '~Intensity.255', [], 'Color', true, true],
         ['Shelly_Gain', 'Gain', VARIABLETYPE_INTEGER, '~Intensity.100', [], 'Color', true, true],
         ['Shelly_Effect', 'Effect', VARIABLETYPE_INTEGER, 'Shelly.Effect', [], 'Color', true, true],
         ['Shelly_Brightness', 'Brightness 1', VARIABLETYPE_INTEGER, '~Intensity.100', [], 'White', true, true],
