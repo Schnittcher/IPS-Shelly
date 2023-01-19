@@ -12,15 +12,21 @@ class ShellyPlus1 extends ShellyModule
         ['TotalEnergy', 'Total Energy', VARIABLETYPE_FLOAT, '~Electricity', ['shellyplus1pm'], '', false, true],
         ['Current', 'Current', VARIABLETYPE_FLOAT, '~Ampere', ['shellyplus1pm'], '', false, true],
         ['Voltage', 'Voltage', VARIABLETYPE_FLOAT, '~Volt', ['shellyplus1pm'], '', false, true],
-
         ['Overtemp', 'Overtemp', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
         ['Overpower', 'Overpower', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
         ['Overvoltage', 'Overvoltage', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
         ['DeviceTemperature', 'Device Temperature', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
-
         ['EventComponent', 'Event Component', VARIABLETYPE_STRING, '', [], '', false, true],
         ['Event', 'Event', VARIABLETYPE_STRING, '', [], '', false, true],
-        ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
+        ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true],
+        ['Temperature100', 'External Temperature 1', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
+        ['Temperature101', 'External Temperature 2', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
+        ['Temperature102', 'External Temperature 3', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
+        ['Temperature103', 'External Temperature 4', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
+        ['Temperature104', 'External Temperature 5', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
+        ['Humidity100', 'External Humidity', VARIABLETYPE_FLOAT, '~Humidity.F', [], '', false, true],
+        ['Input100', 'External Input', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
+        ['Voltmeter100', 'External Voltmeter', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true],
     ];
 
     public function RequestAction($Ident, $Value)
@@ -98,6 +104,37 @@ class ShellyPlus1 extends ShellyModule
                                 }
                             }
                         }
+                        //External Sensor Addon
+                        for ($i = 100; $i <= 104; $i++) {
+                            $temperatureIndex = 'temperature:' . $i;
+                            if (array_key_exists($temperatureIndex, $Payload['params'])) {
+                                $temperature = $Payload['params'][$temperatureIndex];
+                                if (array_key_exists('tC', $temperature)) {
+                                    $this->SetValue('Temperature' . $i, $temperature['tC']);
+                                }
+                            }
+                        }
+                        //External Sensor Addon
+                        if (array_key_exists('humidity:100', $Payload['params'])) {
+                            $humidity = $Payload['params']['humidity:100'];
+                            if (array_key_exists('rH', $humidity)) {
+                                $this->SetValue('Humidity100', $humidity['rH']);
+                            }
+                        }
+                        //External Sensor Addon
+                        if (array_key_exists('input:100', $Payload['params'])) {
+                            $input = $Payload['params']['input:100'];
+                            if (array_key_exists('state', $input)) {
+                                $this->SetValue('Input100', $input['state']);
+                            }
+                        }
+                        //External Sensor Addon
+                        if (array_key_exists('voltmeter:100', $Payload['params'])) {
+                            $voltmeter = $Payload['params']['voltmeter:100'];
+                            if (array_key_exists('voltage', $voltmeter)) {
+                                $this->SetValue('Voltmeter100', $voltmeter['voltage']);
+                            }
+                        }
                     }
                 }
                 if (fnmatch('*/status/switch:0', $Buffer['Topic'])) {
@@ -119,7 +156,7 @@ class ShellyPlus1 extends ShellyModule
                         }
                     }
                 }
-                //Temperatur ist immer vorhanden und soltle immer der selbe Wert sein.
+                //Temperatur ist immer vorhanden und sollte immer der selbe Wert sein.
                 if (fnmatch('*/status/*', $Buffer['Topic'])) {
                     if (array_key_exists('temperature', $Payload)) {
                         if (array_key_exists('tC', $Payload['temperature'])) {
