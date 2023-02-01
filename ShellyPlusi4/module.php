@@ -18,8 +18,8 @@ class ShellyPlusi4 extends ShellyModule
         ['Temperature102', 'External Temperature 3', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
         ['Temperature103', 'External Temperature 4', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
         ['Temperature104', 'External Temperature 5', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
-        ['Humidity100', 'External Humidity', VARIABLETYPE_FLOAT, '~Humidity.F', [], '', false, true],
-        ['Input100', 'External Input', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
+        ['Input100State', 'External Input State', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
+        ['Input100Percent', 'External Input Percent', VARIABLETYPE_BOOLEAN, 'Shelly.Input.Percent', [], '', false, true],
         ['Voltmeter100', 'External Voltmeter', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true],
     ];
 
@@ -77,7 +77,10 @@ class ShellyPlusi4 extends ShellyModule
                         if (array_key_exists('input:100', $Payload['params'])) {
                             $input = $Payload['params']['input:100'];
                             if (array_key_exists('state', $input)) {
-                                $this->SetValue('Input100', $input['state']);
+                                $this->SetValue('Input100State', $input['state']);
+                            }
+                            if (array_key_exists('percent', $input)) {
+                                $this->SetValue('Input100Percent', $input['percent']);
                             }
                         }
                         //External Sensor Addon

@@ -23,7 +23,15 @@ class ShellyPlus2PM extends ShellyModule
 
         ['EventComponent', 'Event Component', VARIABLETYPE_STRING, '', [], '', false, true],
         ['Event', 'Event', VARIABLETYPE_STRING, '', [], '', false, true],
-        ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
+        ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true],
+        ['Temperature100', 'External Temperature 1', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
+        ['Temperature101', 'External Temperature 2', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
+        ['Temperature102', 'External Temperature 3', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
+        ['Temperature103', 'External Temperature 4', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
+        ['Temperature104', 'External Temperature 5', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
+        ['Input100State', 'External Input State', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
+        ['Input100Percent', 'External Input Percent', VARIABLETYPE_BOOLEAN, 'Shelly.Input.Percent', [], '', false, true],
+        ['Voltmeter100', 'External Voltmeter', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true],
     ];
 
     public function Create()
@@ -184,6 +192,40 @@ class ShellyPlus2PM extends ShellyModule
                         if (array_key_exists('total', $Payload['aenergy'])) {
                             $this->SetValue('TotalEnergy1', $Payload['aenergy']['total'] / 1000);
                         }
+                    }
+                }
+                //External Sensor Addon
+                for ($i = 100; $i <= 104; $i++) {
+                    $temperatureIndex = 'temperature:' . $i;
+                    if (array_key_exists($temperatureIndex, $Payload['params'])) {
+                        $temperature = $Payload['params'][$temperatureIndex];
+                        if (array_key_exists('tC', $temperature)) {
+                            $this->SetValue('Temperature' . $i, $temperature['tC']);
+                        }
+                    }
+                }
+                //External Sensor Addon
+                if (array_key_exists('humidity:100', $Payload['params'])) {
+                    $humidity = $Payload['params']['humidity:100'];
+                    if (array_key_exists('rH', $humidity)) {
+                        $this->SetValue('Humidity100', $humidity['rH']);
+                    }
+                }
+                //External Sensor Addon
+                if (array_key_exists('input:100', $Payload['params'])) {
+                    $input = $Payload['params']['input:100'];
+                    if (array_key_exists('state', $input)) {
+                        $this->SetValue('Input100State', $input['state']);
+                    }
+                    if (array_key_exists('percent', $input)) {
+                        $this->SetValue('Input100Percent', $input['percent']);
+                    }
+                }
+                //External Sensor Addon
+                if (array_key_exists('voltmeter:100', $Payload['params'])) {
+                    $voltmeter = $Payload['params']['voltmeter:100'];
+                    if (array_key_exists('voltage', $voltmeter)) {
+                        $this->SetValue('Voltmeter100', $voltmeter['voltage']);
                     }
                 }
             }

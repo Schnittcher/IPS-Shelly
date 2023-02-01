@@ -24,6 +24,7 @@ class ShellyModule extends IPSModule
             [false, 'Offline',  '', 0xFF0000],
             [true, 'Online',  '', 0x00FF00]
         ]);
+        $this->RegisterProfileFloat('Shelly.Input.Percent', '', '', ' %', 0, 100, 0.01, 2);
 
         $Variables = [];
         foreach (static::$Variables as $Pos => $Variable) {
