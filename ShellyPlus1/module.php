@@ -26,7 +26,7 @@ class ShellyPlus1 extends ShellyModule
         ['Temperature104', 'External Temperature 5', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
         ['Humidity100', 'External Humidity', VARIABLETYPE_FLOAT, '~Humidity.F', [], '', false, true],
         ['Input100State', 'External Input State', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
-        ['Input100Percent', 'External Input Percent', VARIABLETYPE_BOOLEAN, 'Shelly.Input.Percent', [], '', false, true],
+        ['Input100Percent', 'External Input Percent', VARIABLETYPE_INTEGER, 'Shelly.Input.Percent', [], '', false, true],
         ['Voltmeter100', 'External Voltmeter', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true],
     ];
 

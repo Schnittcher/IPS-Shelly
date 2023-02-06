@@ -30,7 +30,7 @@ class ShellyPlus2PM extends ShellyModule
         ['Temperature103', 'External Temperature 4', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
         ['Temperature104', 'External Temperature 5', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
         ['Input100State', 'External Input State', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
-        ['Input100Percent', 'External Input Percent', VARIABLETYPE_BOOLEAN, 'Shelly.Input.Percent', [], '', false, true],
+        ['Input100Percent', 'External Input Percent', VARIABLETYPE_INTEGER, 'Shelly.Input.Percent', [], '', false, true],
         ['Voltmeter100', 'External Voltmeter', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true],
     ];
 
