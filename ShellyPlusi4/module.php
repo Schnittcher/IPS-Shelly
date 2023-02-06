@@ -57,12 +57,14 @@ class ShellyPlusi4 extends ShellyModule
                             }
                         }
                         //External Sensor Addon
-                        for ($i = 100; $i <= 104; $i++) {
-                            $temperatureIndex = 'temperature:' . $i;
-                            if (array_key_exists($temperatureIndex, $Payload['params'])) {
-                                $temperature = $Payload['params'][$temperatureIndex];
-                                if (array_key_exists('tC', $temperature)) {
-                                    $this->SetValue('Temperature' . $i, $temperature['tC']);
+                        if (array_key_exists('temperature:100', $Payload['params'])) {
+                            for ($i = 100; $i <= 104; $i++) {
+                                $temperatureIndex = 'temperature:' . $i;
+                                if (array_key_exists($temperatureIndex, $Payload['params'])) {
+                                    $temperature = $Payload['params'][$temperatureIndex];
+                                    if (array_key_exists('tC', $temperature)) {
+                                        $this->SetValue('Temperature' . $i, $temperature['tC']);
+                                    }
                                 }
                             }
                         }
