@@ -36,7 +36,7 @@ class ShellyUni extends ShellyModule
             if (IPS_GetKernelDate() > 1670886000) {
                 $Buffer->Payload = utf8_decode($Buffer->Payload);
             }
-            
+
             $this->SendDebug('MQTT Topic', $Buffer->Topic, 0);
 
             if (property_exists($Buffer, 'Topic')) {

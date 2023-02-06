@@ -34,7 +34,7 @@ class ShellyPro1 extends ShellyModule
     {
         $this->SendDebug('JSON', $JSONString, 0);
         if (!empty($this->ReadPropertyString('MQTTTopic'))) {
-            $Buffer = json_decode($JSONString,true);
+            $Buffer = json_decode($JSONString, true);
 
             //Für MQTT Fix in IPS Version 6.3
             if (IPS_GetKernelDate() > 1670886000) {

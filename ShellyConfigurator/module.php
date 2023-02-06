@@ -27,7 +27,6 @@ class ShellyConfigurator extends IPSModule
             return json_encode($Form);
         }
 
-
         $Shellys = $this->findShellysOnNetwork();
         $Values = [];
 
