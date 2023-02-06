@@ -43,7 +43,7 @@ class ShellyPlusi4 extends ShellyModule
                 if (fnmatch('*/events/rpc', $Buffer['Topic'])) {
                     if (array_key_exists('params', $Payload)) {
                         if (array_key_exists('events', $Payload['params'])) {
-                            $events = $Payload['params']['events'];
+                            $events = $Payload['params']['events'][0];
                             $this->SetValue('EventComponent', $events['component']);
                             $this->SetValue('Event', $events['event']);
                         }
