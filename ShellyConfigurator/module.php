@@ -37,6 +37,7 @@ class ShellyConfigurator extends IPSModule
                 if ($instanceID !== false) {
                     $AddValue = [
                         'name'                  => $Shelly['Name'],
+                        'InstanceName'          => $this->getInstanceName($instanceID),
                         'DeviceType'            => $Shelly['DeviceType'],
                         'IPAddress'             => $Shelly['IPv4'],
                         'Firmware'              => $Shelly['Firmware'],
@@ -723,6 +724,14 @@ class ShellyConfigurator extends IPSModule
             }
         }
         return 0;
+    }
+
+    private function getInstanceName($ID)
+    {
+        if ($ID != 0) {
+            return IPS_GetObject($ID)['ObjectName'];
+        }
+        return '';
     }
 
     private function findShellysOnNetwork()

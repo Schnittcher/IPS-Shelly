@@ -6,7 +6,8 @@
             "Model Name": "Modell Name",
             "Model Number": "Modell Nummer",
             "Serial Number": "Seriennummer",
-            "Instance ID": "Instanz ID"
+            "Instance ID": "Instanz ID",
+            "Instancename": "Instanzname"
         }
     }
 }

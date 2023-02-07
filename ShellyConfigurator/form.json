@@ -16,6 +16,11 @@
                     "width": "auto"
                 },
                 {
+                    "caption": "Instancename",
+                    "name": "InstanceName",
+                    "width": "250px"
+                },
+                {
                     "caption": "Device Type",
                     "name": "DeviceType",
                     "width": "250px"
