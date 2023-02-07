@@ -39,11 +39,11 @@
             "Closed": "Geschlossen",
             "Stop": "Stopp",
             "Stopped": "Gestoppt",
-            "Calibrating": "Kalibriert",          
+            "Calibrating": "Kalibriert",
             "Device Temperature": "Gerätetemperatur",
             "Event Component": "Ereignis Komponente",
             "Event": "Ereignis",
-            "State": "Status",            
+            "State": "Status",
             "Reachable": "Erreichbar"
         }
     }
