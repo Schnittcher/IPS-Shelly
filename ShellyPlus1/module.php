@@ -106,7 +106,6 @@ class ShellyPlus1 extends ShellyModule
                             }
                         }
                         //External Sensor Addon
-                        if (array_key_exists('temperature:100', $Payload['params'])) {
                             for ($i = 100; $i <= 104; $i++) {
                                 $temperatureIndex = 'temperature:' . $i;
                                 if (array_key_exists($temperatureIndex, $Payload['params'])) {
@@ -116,7 +115,6 @@ class ShellyPlus1 extends ShellyModule
                                     }
                                 }
                             }
-                        }
                         //External Sensor Addon
                         if (array_key_exists('humidity:100', $Payload['params'])) {
                             $humidity = $Payload['params']['humidity:100'];

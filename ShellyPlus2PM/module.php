@@ -154,6 +154,40 @@ class ShellyPlus2PM extends ShellyModule
                                 }
                             }
                         }
+                        //External Sensor Addon
+                        for ($i = 100; $i <= 104; $i++) {
+                            $temperatureIndex = 'temperature:' . $i;
+                            if (array_key_exists($temperatureIndex, $Payload['params'])) {
+                                $temperature = $Payload['params'][$temperatureIndex];
+                                if (array_key_exists('tC', $temperature)) {
+                                    $this->SetValue('Temperature' . $i, $temperature['tC']);
+                                }
+                            }
+                        }
+                        //External Sensor Addon
+                        if (array_key_exists('humidity:100', $Payload['params'])) {
+                            $humidity = $Payload['params']['humidity:100'];
+                            if (array_key_exists('rH', $humidity)) {
+                                $this->SetValue('Humidity100', $humidity['rH']);
+                            }
+                        }
+                        //External Sensor Addon
+                        if (array_key_exists('input:100', $Payload['params'])) {
+                            $input = $Payload['params']['input:100'];
+                            if (array_key_exists('state', $input)) {
+                                $this->SetValue('Input100State', $input['state']);
+                            }
+                            if (array_key_exists('percent', $input)) {
+                                $this->SetValue('Input100Percent', $input['percent']);
+                            }
+                        }
+                        //External Sensor Addon
+                        if (array_key_exists('voltmeter:100', $Payload['params'])) {
+                            $voltmeter = $Payload['params']['voltmeter:100'];
+                            if (array_key_exists('voltage', $voltmeter)) {
+                                $this->SetValue('Voltmeter100', $voltmeter['voltage']);
+                            }
+                        }
                     }
                 }
                 if (fnmatch('*/status/switch:0', $Buffer['Topic'])) {
@@ -192,42 +226,6 @@ class ShellyPlus2PM extends ShellyModule
                         if (array_key_exists('total', $Payload['aenergy'])) {
                             $this->SetValue('TotalEnergy1', $Payload['aenergy']['total'] / 1000);
                         }
-                    }
-                }
-                //External Sensor Addon
-                if (array_key_exists('temperature:100', $Payload['params'])) {
-                    for ($i = 100; $i <= 104; $i++) {
-                        $temperatureIndex = 'temperature:' . $i;
-                        if (array_key_exists($temperatureIndex, $Payload['params'])) {
-                            $temperature = $Payload['params'][$temperatureIndex];
-                            if (array_key_exists('tC', $temperature)) {
-                                $this->SetValue('Temperature' . $i, $temperature['tC']);
-                            }
-                        }
-                    }
-                }
-                //External Sensor Addon
-                if (array_key_exists('humidity:100', $Payload['params'])) {
-                    $humidity = $Payload['params']['humidity:100'];
-                    if (array_key_exists('rH', $humidity)) {
-                        $this->SetValue('Humidity100', $humidity['rH']);
-                    }
-                }
-                //External Sensor Addon
-                if (array_key_exists('input:100', $Payload['params'])) {
-                    $input = $Payload['params']['input:100'];
-                    if (array_key_exists('state', $input)) {
-                        $this->SetValue('Input100State', $input['state']);
-                    }
-                    if (array_key_exists('percent', $input)) {
-                        $this->SetValue('Input100Percent', $input['percent']);
-                    }
-                }
-                //External Sensor Addon
-                if (array_key_exists('voltmeter:100', $Payload['params'])) {
-                    $voltmeter = $Payload['params']['voltmeter:100'];
-                    if (array_key_exists('voltage', $voltmeter)) {
-                        $this->SetValue('Voltmeter100', $voltmeter['voltage']);
                     }
                 }
             }
