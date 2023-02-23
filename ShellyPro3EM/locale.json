@@ -1,0 +1,25 @@
+{
+    "translations": {
+        "de": {
+            "Phase A Current": "Phase A Stromstärke",
+            "Phase A Voltage": "Phase A Spannung",
+            "Phase A active Power": "Phase A Wirkleistung",
+            "Phase A apparent Power": "Phase A Scheinleistung",
+            "Phase A Power Factor": "Phase A Leistungsfaktor",
+            "Phase B Current": "Phase A Stromstärke",
+            "Phase B Voltage": "Phase A Spannung",
+            "Phase B active Power": "Phase A Wirkleistung",
+            "Phase B apparent Power": "Phase A Scheinleistung",
+            "Phase B Power Factor": "Phase A Leistungsfaktor",
+            "Phase C Current": "Phase A Stromstärke",
+            "Phase C Voltage": "Phase A Spannung",
+            "Phase C active Power": "Phase A Wirkleistung",
+            "Phase C apparent Power": "Phase A Scheinleistung",
+            "Phase C Power Factor": "Phase A Leistungsfaktor",
+            "Total Current": "Gesamt Stromstärke",
+            "Total active Power": "Gesamt Wirkleistung",
+            "Total apparent Power": "Gesamt Scheinleistung",
+            "Reachable": "Erreichbar"
+        }
+    }
+}
