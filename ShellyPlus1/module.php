@@ -38,6 +38,7 @@ class ShellyPlus1 extends ShellyModule
                 break;
             }
     }
+    
     public function ReceiveData($JSONString)
     {
         $this->SendDebug('JSON', $JSONString, 0);
