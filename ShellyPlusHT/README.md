@@ -3,8 +3,10 @@
    Die Messwerte von einem Shelly Plus H&T werden in IP-Symcon übertragen.
     
    ## Inhaltverzeichnis
-   1. [Konfiguration](#1-konfiguration)
-   2. [Funktionen](#2-funktionen)
+- [ShellyPlusHT](#shellyplusht)
+  - [Inhaltverzeichnis](#inhaltverzeichnis)
+  - [1. Konfiguration](#1-konfiguration)
+  - [2. Funktionen](#2-funktionen)
    
    ## 1. Konfiguration
    
