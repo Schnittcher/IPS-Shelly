@@ -38,7 +38,7 @@ class ShellyPlus1 extends ShellyModule
                 break;
             }
     }
-    
+
     public function ReceiveData($JSONString)
     {
         $this->SendDebug('JSON', $JSONString, 0);
@@ -107,15 +107,15 @@ class ShellyPlus1 extends ShellyModule
                             }
                         }
                         //External Sensor Addon
-                            for ($i = 100; $i <= 104; $i++) {
-                                $temperatureIndex = 'temperature:' . $i;
-                                if (array_key_exists($temperatureIndex, $Payload['params'])) {
-                                    $temperature = $Payload['params'][$temperatureIndex];
-                                    if (array_key_exists('tC', $temperature)) {
-                                        $this->SetValue('Temperature' . $i, $temperature['tC']);
-                                    }
+                        for ($i = 100; $i <= 104; $i++) {
+                            $temperatureIndex = 'temperature:' . $i;
+                            if (array_key_exists($temperatureIndex, $Payload['params'])) {
+                                $temperature = $Payload['params'][$temperatureIndex];
+                                if (array_key_exists('tC', $temperature)) {
+                                    $this->SetValue('Temperature' . $i, $temperature['tC']);
                                 }
                             }
+                        }
                         //External Sensor Addon
                         if (array_key_exists('humidity:100', $Payload['params'])) {
                             $humidity = $Payload['params']['humidity:100'];
