@@ -1,0 +1,20 @@
+{
+    "translations": {
+        "de": {
+            "State": "Status",
+            "Reachable": "Erreichbar",
+            "Power": "Leistung",
+            "Total Energy": "Gesamt Energie",
+            "Current": "Stromstärke",
+            "Voltage": "Volt",
+            "Total consumption": "Gesamtverbrauch",
+            "Overvoltage": "Überspannung",
+            "Overpower": "Überlastung",
+            "Overtemp": "Übertemperatur",
+            "Device Temperature": "Gerätetemperatur",
+            "Please select device": "Bitte wählen Sie das Gerät aus",
+            "Event Component": "Ereignis Komponente",
+            "Event": "Ereignis"
+        }
+    }
+}

@@ -55,6 +55,7 @@ If you would like to use the username/password settings you need to configure it
 * [ShellyPlus2PM](ShellyPlus2PM/README_en.md)
 * [ShellyPlusHT](ShellyPlusHT/README_en.md)
 * [ShellyPlusi4](ShellyPlusi4/README_en.md)
+* [ShellyPlusPlugS](ShellyPlusPlugS/README_en.md)
 * [ShellyPlusSmoke](ShellyPlusSmoke/README_en.md)
 * [ShellyPro1](ShellyPro1/README_en.md)
 * [ShellyPro2](ShellyPro2/README_en.md)

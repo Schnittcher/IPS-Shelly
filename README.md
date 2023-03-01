@@ -59,6 +59,7 @@ Die selben Zugangsdaten müssen über das Shelly Webinterface unter Internet & S
 * [ShellyPlus2PM](ShellyPlus2PM/README.md)
 * [ShellyPlusHT](ShellyPlusHT/README.md)
 * [ShellyPlusi4](ShellyPlusi4/README.md)
+* [ShellyPlusPlugS](ShellyPlusPlugS/README.md)
 * [ShellyPlusSmoke](ShellyPlusSmoke/README.md)
 * [ShellyPro1](ShellyPro1/README.md)
 * [ShellyPro2](ShellyPro2/README.md)
