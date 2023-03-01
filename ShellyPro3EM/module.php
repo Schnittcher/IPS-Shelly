@@ -12,7 +12,7 @@ class ShellyPro3EM extends ShellyModule
         ['aAprtPower', 'Phase A apparent Power', VARIABLETYPE_FLOAT, '~Watt', [], '', false, true],
         ['aPF', 'Phase A Power Factor', VARIABLETYPE_FLOAT, '', [], '', false, true],
 
-        ['bCurrent', 'Phase V Current', VARIABLETYPE_FLOAT, '~Ampere', [], '', false, true],
+        ['bCurrent', 'Phase B Current', VARIABLETYPE_FLOAT, '~Ampere', [], '', false, true],
         ['bVoltage', 'Phase B Voltage', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true],
         ['bActPower', 'Phase B active Power', VARIABLETYPE_FLOAT, '~Watt', [], '', false, true],
         ['bAprtPower', 'Phase B apparent Power', VARIABLETYPE_FLOAT, '~Watt', [], '', false, true],
