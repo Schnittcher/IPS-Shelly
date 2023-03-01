@@ -7,10 +7,10 @@ class ShellyPlusPlugS extends ShellyModule
 {
     public static $Variables = [
         ['State', 'State', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true],
-        ['Power', 'Power', VARIABLETYPE_FLOAT, '~Watt.3680', ['shellyplus1pm'], '', false, true],
-        ['TotalEnergy', 'Total Energy', VARIABLETYPE_FLOAT, '~Electricity', ['shellyplus1pm'], '', false, true],
-        ['Current', 'Current', VARIABLETYPE_FLOAT, '~Ampere', ['shellyplus1pm'], '', false, true],
-        ['Voltage', 'Voltage', VARIABLETYPE_FLOAT, '~Volt', ['shellyplus1pm'], '', false, true],
+        ['Power', 'Power', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true],
+        ['TotalEnergy', 'Total Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
+        ['Current', 'Current', VARIABLETYPE_FLOAT, '~Ampere', [], '', false, true],
+        ['Voltage', 'Voltage', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true],
         ['Overtemp', 'Overtemp', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
         ['Overpower', 'Overpower', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
         ['Overvoltage', 'Overvoltage', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
