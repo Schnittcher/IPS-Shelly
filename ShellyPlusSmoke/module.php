@@ -8,7 +8,6 @@ class ShellyPlusSmoke extends ShellyModule
     public static $Variables = [
         ['Alarm', 'Alarm', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
         ['Mute', 'Mute', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true],
-        ['ExternalPower', 'External Power', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
         ['Battery', 'Battery', VARIABLETYPE_INTEGER, '~Battery.100', [], '', false, true],
         ['BatteryVolt', 'Battery Volt', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true],
         ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]

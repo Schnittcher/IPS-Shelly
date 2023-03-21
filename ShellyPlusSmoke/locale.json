@@ -2,8 +2,6 @@
     "translations": {
         "de": {
             "Alarm": "Alarm",
-            "Humidity": "Feuchtigkeit",
-            "External Power": "Externe Stromversorgung",
             "Battery": "Batterie",
             "Battery Volt": "Batterie Volt"
         }
