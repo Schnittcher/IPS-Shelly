@@ -50,7 +50,6 @@ class ShellyPlusSmoke extends ShellyModule
                         if (array_key_exists('devicepower:0', $Payload['params'])) {
                             $this->SetValue('Battery', $Payload['params']['devicepower:0']['battery']['percent']);
                             $this->SetValue('BatteryVolt', $Payload['params']['devicepower:0']['battery']['V']);
-                            $this->SetValue('Battery', $Payload['params']['devicepower:0']['external']['present']);
                         }
                     }
                 }
