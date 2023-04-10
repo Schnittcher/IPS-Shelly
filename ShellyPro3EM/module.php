@@ -28,6 +28,15 @@ class ShellyPro3EM extends ShellyModule
         ['totalActPower', 'Total active Power', VARIABLETYPE_FLOAT, '~Watt', [], '', false, true],
         ['totalAprtPower', 'Total apparent Power', VARIABLETYPE_FLOAT, '~Watt', [], '', false, true],
 
+        ['aTotalActEnergy', 'Phase A total active Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
+        ['aTotalActRetEnergy', 'Phase A total active returned Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
+        ['bTotalActEnergy', 'Phase B total active Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
+        ['bTotalActRetEnergy', 'Phase B total active returned Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
+        ['cTotalActEnergy', 'Phase C total active Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
+        ['cTotalActRetEnergy', 'Phase C total active returned Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
+        ['totalActEnergy', 'Total active Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
+        ['totalActRetEnergy', 'Total active returned Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
+
         ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
     ];
 
@@ -74,6 +83,17 @@ class ShellyPro3EM extends ShellyModule
                             $this->SetValue('totalCurrent', $em['total_current']);
                             $this->SetValue('totalActPower', $em['total_act_power']);
                             $this->SetValue('totalAprtPower', $em['total_aprt_power']);
+                        }
+                        if (array_key_exists('emdata:0', $Payload['params'])) {
+                            $emData = $Payload['params']['emdata:0'];
+                            $this->SetValue('aTotalActEnergy',  floatval($emData['a_total_act_energy']) / 1000);
+                            $this->SetValue('aTotalActRetEnergy',  floatval($emData['a_total_act_ret_energy']) / 1000);
+                            $this->SetValue('bTotalActEnergy',  floatval($emData['b_total_act_energy']) / 1000);
+                            $this->SetValue('bTotalActRetEnergy',  floatval($emData['b_total_act_ret_energy']) / 1000);
+                            $this->SetValue('cTotalActEnergy',  floatval($emData['c_total_act_energy']) / 1000);
+                            $this->SetValue('cTotalActRetEnergy',  floatval($emData['c_total_act_ret_energy']) / 1000);
+                            $this->SetValue('totalActEnergy',  floatval($emData['total_act_energy']) / 1000);
+                            $this->SetValue('totalActRetEnergy',  floatval($emData['total_act_ret_energy']) / 1000);
                         }
                     }
                 }

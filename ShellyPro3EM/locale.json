@@ -19,6 +19,14 @@
             "Total Current": "Gesamt Stromstärke",
             "Total active Power": "Gesamt Wirkleistung",
             "Total apparent Power": "Gesamt Scheinleistung",
+            "Phase A total active Energy": "Phase A Verbrauch",
+            "Phase A total active returned Energy": "Phase A Einspeisung",
+            "Phase B total active Energy": "Phase B Verbrauch",
+            "Phase B total active returned Energy": "Phase B Einspeisung",
+            "Phase C total active Energy": "Phase C Verbrauch",
+            "Phase C total active returned Energy": "Phase C Einspeisung",
+            "Total active Energy": "Gesamtverbrauch",
+            "Total active returned Energy": "Gesamteinspeisung",
             "Reachable": "Erreichbar"
         }
     }
