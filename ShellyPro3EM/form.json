@@ -6,6 +6,18 @@
             "caption": "MQTT Topic"
         },
         {
+            "type": "NumberSpinner",
+            "name": "TotalActiveEnergyOffset",
+            "caption": "Total active Energy Offset ",
+            "digits": 2
+        },
+        {
+            "type": "NumberSpinner",
+            "name": "TotalActRetEnergyOffset",
+            "caption": "Total active returned Energy Offset",
+            "digits": 2
+        },
+        {
             "type": "List",
             "name": "Variables",
             "caption": "",

@@ -40,6 +40,13 @@ class ShellyPro3EM extends ShellyModule
         ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
     ];
 
+    public function Create()
+    {
+        parent::Create();
+        $this->RegisterPropertyFloat('TotalActiveEnergyOffset', 0);
+        $this->RegisterPropertyFloat('TotalActRetEnergyOffset', 0);
+    }
+
     public function ReceiveData($JSONString)
     {
         $this->SendDebug('JSON', $JSONString, 0);
@@ -92,8 +99,9 @@ class ShellyPro3EM extends ShellyModule
                             $this->SetValue('bTotalActRetEnergy', floatval($emData['b_total_act_ret_energy']) / 1000);
                             $this->SetValue('cTotalActEnergy', floatval($emData['c_total_act_energy']) / 1000);
                             $this->SetValue('cTotalActRetEnergy', floatval($emData['c_total_act_ret_energy']) / 1000);
-                            $this->SetValue('totalActEnergy', floatval($emData['total_act']) / 1000);
-                            $this->SetValue('totalActRetEnergy', floatval($emData['total_act_ret']) / 1000);
+
+                            $this->SetValue('totalActEnergy', (floatval($emData['total_act']) / 1000) + $this->ReadPropertyFloat('TotalActiveEnergyOffset'));
+                            $this->SetValue('totalActRetEnergy', (floatval($emData['total_act_ret']) / 1000) + $this->ReadPropertyFloat('TotalActRetEnergyOffset'));
                         }
                     }
                 }
