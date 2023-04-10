@@ -86,14 +86,14 @@ class ShellyPro3EM extends ShellyModule
                         }
                         if (array_key_exists('emdata:0', $Payload['params'])) {
                             $emData = $Payload['params']['emdata:0'];
-                            $this->SetValue('aTotalActEnergy',  floatval($emData['a_total_act_energy']) / 1000);
-                            $this->SetValue('aTotalActRetEnergy',  floatval($emData['a_total_act_ret_energy']) / 1000);
-                            $this->SetValue('bTotalActEnergy',  floatval($emData['b_total_act_energy']) / 1000);
-                            $this->SetValue('bTotalActRetEnergy',  floatval($emData['b_total_act_ret_energy']) / 1000);
-                            $this->SetValue('cTotalActEnergy',  floatval($emData['c_total_act_energy']) / 1000);
-                            $this->SetValue('cTotalActRetEnergy',  floatval($emData['c_total_act_ret_energy']) / 1000);
-                            $this->SetValue('totalActEnergy',  floatval($emData['total_act_energy']) / 1000);
-                            $this->SetValue('totalActRetEnergy',  floatval($emData['total_act_ret_energy']) / 1000);
+                            $this->SetValue('aTotalActEnergy', floatval($emData['a_total_act_energy']) / 1000);
+                            $this->SetValue('aTotalActRetEnergy', floatval($emData['a_total_act_ret_energy']) / 1000);
+                            $this->SetValue('bTotalActEnergy', floatval($emData['b_total_act_energy']) / 1000);
+                            $this->SetValue('bTotalActRetEnergy', floatval($emData['b_total_act_ret_energy']) / 1000);
+                            $this->SetValue('cTotalActEnergy', floatval($emData['c_total_act_energy']) / 1000);
+                            $this->SetValue('cTotalActRetEnergy', floatval($emData['c_total_act_ret_energy']) / 1000);
+                            $this->SetValue('totalActEnergy', floatval($emData['total_act']) / 1000);
+                            $this->SetValue('totalActRetEnergy', floatval($emData['total_act_ret']) / 1000);
                         }
                     }
                 }
