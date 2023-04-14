@@ -18,7 +18,7 @@ class ShellyPlus2PM extends ShellyModule
         ['Current1', 'Current 2', VARIABLETYPE_FLOAT, '~Ampere', [], 'relay', false, true],
         ['Voltage1', 'Voltage 2', VARIABLETYPE_FLOAT, '~Volt', [], 'relay', false, true],
 
-        ['Cover', 'Roller', VARIABLETYPE_INTEGER, '~ShutterMoveStop', [], 'roller', true, true],
+        ['State', 'State', VARIABLETYPE_INTEGER, '~ShutterMoveStop', [], 'roller', true, true],
         ['CoverPosition', 'Position', VARIABLETYPE_INTEGER, '~Shutter', [], 'roller', true, true],
 
         ['EventComponent', 'Event Component', VARIABLETYPE_STRING, '', [], '', false, true],
@@ -49,7 +49,7 @@ class ShellyPlus2PM extends ShellyModule
             case 'State1':
                 $this->SwitchMode(1, $Value);
                 break;
-            case 'Cover':
+            case 'State':
                 switch ($Value) {
                     case 0:
                         $this->CoverOpen(0);
@@ -135,18 +135,22 @@ class ShellyPlus2PM extends ShellyModule
                                 }
                             }
                         }
+
+                        if (array_key_exists('current_pos', $Payload)) {
+                            $this->SetValue('CoverPosition', $Payload['current_pos']);
+                        }
                         if (array_key_exists('cover:0', $Payload['params'])) {
                             $cover = $Payload['params']['cover:0'];
                             if (array_key_exists('state', $cover)) {
                                 switch ($cover['state']) {
                                     case 'stopped':
-                                        $this->SetValue('Cover', 2);
+                                        $this->SetValue('State', 2);
                                         break;
                                     case 'opening':
-                                        $this->SetValue('Cover', 0);
+                                        $this->SetValue('State', 0);
                                         break;
                                     case 'closing':
-                                        $this->SetValue('Cover', 4);
+                                        $this->SetValue('State', 4);
                                         break;
                                     default:
                                         $this->SendDebug('Invalid Value for Cover', $cover['state'], 0);
