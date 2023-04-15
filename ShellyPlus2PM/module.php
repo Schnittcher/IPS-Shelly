@@ -135,10 +135,6 @@ class ShellyPlus2PM extends ShellyModule
                                 }
                             }
                         }
-
-                        if (array_key_exists('current_pos', $Payload)) {
-                            $this->SetValue('CoverPosition', $Payload['current_pos']);
-                        }
                         if (array_key_exists('cover:0', $Payload['params'])) {
                             $cover = $Payload['params']['cover:0'];
                             if (array_key_exists('state', $cover)) {
@@ -230,6 +226,11 @@ class ShellyPlus2PM extends ShellyModule
                         if (array_key_exists('total', $Payload['aenergy'])) {
                             $this->SetValue('TotalEnergy1', $Payload['aenergy']['total'] / 1000);
                         }
+                    }
+                }
+                if (fnmatch('*/status/cover:0', $Buffer['Topic'])) {
+                    if (array_key_exists('current_pos', $Payload)) {
+                        $this->SetValue('CoverPosition', $Payload['current_pos']);
                     }
                 }
             }
