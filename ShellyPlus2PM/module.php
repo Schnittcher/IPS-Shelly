@@ -7,10 +7,10 @@ class ShellyPlus2PM extends ShellyModule
 {
     public static $Variables = [
         ['State0', 'State 1', VARIABLETYPE_BOOLEAN, '~Switch', [], 'relay', true, true],
-        ['Power0', 'Power 1', VARIABLETYPE_FLOAT, '~Watt.3680', [], 'relay', false, true],
-        ['TotalEnergy0', 'Total Energy 1', VARIABLETYPE_FLOAT, '~Electricity', [], 'relay', false, true],
-        ['Current0', 'Current 1', VARIABLETYPE_FLOAT, '~Ampere', [], 'relay', false, true],
-        ['Voltage0', 'Voltage 1', VARIABLETYPE_FLOAT, '~Volt', [], 'relay', false, true],
+        ['Power0', 'Power 1', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true],
+        ['TotalEnergy0', 'Total Energy 1', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
+        ['Current0', 'Current 1', VARIABLETYPE_FLOAT, '~Ampere', [], '', false, true],
+        ['Voltage0', 'Voltage 1', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true],
 
         ['State1', 'State 2', VARIABLETYPE_BOOLEAN, '~Switch', [], 'relay', true, true],
         ['Power1', 'Power 2', VARIABLETYPE_FLOAT, '~Watt.3680', [], 'relay', false, true],
@@ -24,6 +24,7 @@ class ShellyPlus2PM extends ShellyModule
         ['EventComponent', 'Event Component', VARIABLETYPE_STRING, '', [], '', false, true],
         ['Event', 'Event', VARIABLETYPE_STRING, '', [], '', false, true],
         ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true],
+        ['Temperature', 'Temperature', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
         ['Temperature100', 'External Temperature 1', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
         ['Temperature101', 'External Temperature 2', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
         ['Temperature102', 'External Temperature 3', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
@@ -93,6 +94,11 @@ class ShellyPlus2PM extends ShellyModule
                             $this->SetValue('EventComponent', $events['component']);
                             $this->SetValue('Event', $events['event']);
                         }
+                        if (array_key_exists('temperature', $Payload['params'])) {
+                            if (array_key_exists('tC', $Payload['params']['temperature'])) {
+                                $this->SetValue('Temperature', $Payload['params']['temperature']['tC']);
+                            }
+                        }
                         if (array_key_exists('switch:0', $Payload['params'])) {
                             $switch = $Payload['params']['switch:0'];
                             if (array_key_exists('output', $switch)) {
@@ -150,6 +156,20 @@ class ShellyPlus2PM extends ShellyModule
                                         $this->SendDebug('Invalid Value for Cover', $cover['state'], 0);
                                         break;
                                 }
+                            }
+                        }
+                        if (array_key_exists('apower', $Payload['params'])) {
+                            $this->SetValue('Power0', $Payload['params']['apower']);
+                        }
+                        if (array_key_exists('voltage', $Payload['params'])) {
+                            $this->SetValue('Voltage0', $Payload['params']['voltage']);
+                        }
+                        if (array_key_exists('current', $Payload['params'])) {
+                            $this->SetValue('Current0', $Payload['params']['current']);
+                        }
+                        if (array_key_exists('aenergy', $Payload['params'])) {
+                            if (array_key_exists('total', $Payload['params']['aenergy'])) {
+                                $this->SetValue('TotalEnergy0', $Payload['params']['aenergy']['total'] / 1000);
                             }
                         }
                         //External Sensor Addon
