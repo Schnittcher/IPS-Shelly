@@ -43,15 +43,14 @@ class ShellyTRV extends ShellyModule
 
     public function ReceiveData($JSONString)
     {
-        $this->SendDebug('ReceiveData :: JSON', $JSONString, 0);
         if (!empty($this->ReadPropertyString('MQTTTopic'))) {
             $Buffer = json_decode($JSONString);
+            $this->SendDebug('JSON', $Buffer, 0);
 
             //Für MQTT Fix in IPS Version 6.3
             if (IPS_GetKernelDate() > 1670886000) {
                 $Buffer->Payload = utf8_decode($Buffer->Payload);
             }
-            $this->SendDebug('ReceiveData :: MQTT Topic', $Buffer->Topic, 0);
 
             $Payload = json_decode($Buffer->Payload);
             if (property_exists($Buffer, 'Topic')) {

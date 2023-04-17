@@ -41,21 +41,18 @@ class ShellyEM extends ShellyModule
 
     public function ReceiveData($JSONString)
     {
-        $this->SendDebug('JSON', $JSONString, 0);
         if (!empty($this->ReadPropertyString('MQTTTopic'))) {
             $Buffer = json_decode($JSONString);
+            $this->SendDebug('JSON', $Buffer, 0);
 
             //Für MQTT Fix in IPS Version 6.3
             if (IPS_GetKernelDate() > 1670886000) {
                 $Buffer->Payload = utf8_decode($Buffer->Payload);
             }
 
-            $this->SendDebug('MQTT Topic', $Buffer->Topic, 0);
-
             //Power Variable prüfen
             if (property_exists($Buffer, 'Topic')) {
                 if (fnmatch('*/relay/0', $Buffer->Topic)) {
-                    $this->SendDebug('Relay Payload', $Buffer->Payload, 0);
                     //Power prüfen und in IPS setzen
                     switch ($Buffer->Payload) {
                         case 'off':
@@ -68,66 +65,51 @@ class ShellyEM extends ShellyModule
                 }
                 //Emter 0
                 if (fnmatch('*emeter/0/energy', $Buffer->Topic)) {
-                    $this->SendDebug('Energy Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_Energy0', floatval($Buffer->Payload) / 60000);
                 }
                 if (fnmatch('*emeter/0/returned_energy', $Buffer->Topic)) {
-                    $this->SendDebug('Returned Energy Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_ReturnedEnergy0', floatval($Buffer->Payload) / 60000);
                 }
                 if (fnmatch('*emeter/0/power', $Buffer->Topic)) {
-                    $this->SendDebug('Power Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_Power0', $Buffer->Payload);
                 }
                 if (fnmatch('*emeter/0/reactive_power', $Buffer->Topic)) {
-                    $this->SendDebug('Reactive Power Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_ReactivePower0', $Buffer->Payload);
                 }
                 if (fnmatch('*emeter/0/voltage', $Buffer->Topic)) {
-                    $this->SendDebug('Voltage Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_Voltage0', $Buffer->Payload);
                 }
                 if (fnmatch('*emeter/0/total', $Buffer->Topic)) {
-                    $this->SendDebug('Total Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_Total0', floatval($Buffer->Payload) / 1000);
                 }
                 if (fnmatch('*emeter/0/total_returned', $Buffer->Topic)) {
-                    $this->SendDebug('Total Returned Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_TotalReturned0', floatval($Buffer->Payload) / 1000);
                 }
 
                 //Emter 1
                 if (fnmatch('*emeter/1/energy', $Buffer->Topic)) {
-                    $this->SendDebug('Energy Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_Energy1', floatval($Buffer->Payload) / 60000);
                 }
                 if (fnmatch('*emeter/1/returned_energy', $Buffer->Topic)) {
-                    $this->SendDebug('Returned Energy Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_ReturnedEnergy1', floatval($Buffer->Payload) / 60000);
                 }
                 if (fnmatch('*emeter/1/power', $Buffer->Topic)) {
-                    $this->SendDebug('Power Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_Power1', $Buffer->Payload);
                 }
                 if (fnmatch('*emeter/1/reactive_power', $Buffer->Topic)) {
-                    $this->SendDebug('Reactive Power Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_ReactivePower1', $Buffer->Payload);
                 }
                 if (fnmatch('*emeter/1/voltage', $Buffer->Topic)) {
-                    $this->SendDebug('Voltage Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_Voltage1', $Buffer->Payload);
                 }
                 if (fnmatch('*emeter/1/total', $Buffer->Topic)) {
-                    $this->SendDebug('Total Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_Total1', floatval($Buffer->Payload) / 1000);
                 }
                 if (fnmatch('*emeter/1/total_returned', $Buffer->Topic)) {
-                    $this->SendDebug('Total Returned Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_TotalReturned1', floatval($Buffer->Payload) / 1000);
                 }
 
                 if (fnmatch('*/online', $Buffer->Topic)) {
-                    $this->SendDebug('Online Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 'true':
                             $this->SetValue('Shelly_Reachable', true);

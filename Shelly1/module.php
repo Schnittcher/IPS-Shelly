@@ -34,20 +34,17 @@ class Shelly1 extends ShellyModule
 
     public function ReceiveData($JSONString)
     {
-        $this->SendDebug('JSON', $JSONString, 0);
         if (!empty($this->ReadPropertyString('MQTTTopic'))) {
             $Buffer = json_decode($JSONString);
+            $this->SendDebug('JSON', $Buffer, 0);
 
             //Für MQTT Fix in IPS Version 6.3
             if (IPS_GetKernelDate() > 1670886000) {
                 $Buffer->Payload = utf8_decode($Buffer->Payload);
             }
 
-            $this->SendDebug('MQTT Topic', $Buffer->Topic, 0);
-
             if (property_exists($Buffer, 'Topic')) {
                 if (fnmatch('*/relay/0', $Buffer->Topic)) {
-                    $this->SendDebug('Power Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 'off':
                             $this->SetValue('Shelly_State', 0);
@@ -58,7 +55,6 @@ class Shelly1 extends ShellyModule
                     }
                 }
                 if (fnmatch('*/input/0', $Buffer->Topic)) {
-                    $this->SendDebug('Input Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 0:
                             $this->SetValue('Shelly_Input', 0);
@@ -69,7 +65,6 @@ class Shelly1 extends ShellyModule
                     }
                 }
                 if (fnmatch('*/longpush/0', $Buffer->Topic)) {
-                    $this->SendDebug('Longpush Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 0:
                             $this->SetValue('Shelly_Longpush', 0);
@@ -80,7 +75,6 @@ class Shelly1 extends ShellyModule
                     }
                 }
                 if (fnmatch('*/online', $Buffer->Topic)) {
-                    $this->SendDebug('Online Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 'true':
                             $this->SetValue('Shelly_Reachable', true);
@@ -91,23 +85,18 @@ class Shelly1 extends ShellyModule
                     }
                 }
                 if (fnmatch('*/temperature', $Buffer->Topic)) {
-                    $this->SendDebug('Power Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_Temperature', $Buffer->Payload);
                 }
                 if (fnmatch('*/overtemperature', $Buffer->Topic)) {
-                    $this->SendDebug('Power Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_Overtemperature', boolval($Buffer->Payload));
                 }
                 if (fnmatch('*/relay/0/power', $Buffer->Topic)) {
-                    $this->SendDebug('Power Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_Power', $Buffer->Payload);
                 }
                 if (fnmatch('*/relay/0/energy*', $Buffer->Topic)) {
-                    $this->SendDebug('Energy Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_Energy', $Buffer->Payload / 60000);
                 }
                 if (fnmatch('*/ext_switch/[012]', $Buffer->Topic)) {
-                    $this->SendDebug('ext_switch Payload', $Buffer->Payload, 0);
                     $input = $this->getChannelRelay($Buffer->Topic);
                     switch ($input) {
                         case 0:
@@ -122,7 +111,6 @@ class Shelly1 extends ShellyModule
                     }
                 }
                 if (fnmatch('*/ext_temperature/[012]', $Buffer->Topic)) {
-                    $this->SendDebug('ext_temperature Payload', $Buffer->Payload, 0);
                     $input = $this->getChannelRelay($Buffer->Topic);
                     switch ($input) {
                         case 0:

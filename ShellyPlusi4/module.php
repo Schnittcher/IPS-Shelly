@@ -25,15 +25,14 @@ class ShellyPlusi4 extends ShellyModule
 
     public function ReceiveData($JSONString)
     {
-        $this->SendDebug('JSON', $JSONString, 0);
         if (!empty($this->ReadPropertyString('MQTTTopic'))) {
             $Buffer = json_decode($JSONString, true);
+            $this->SendDebug('JSON', $Buffer, 0);
+
             //Für MQTT Fix in IPS Version 6.3
             if (IPS_GetKernelDate() > 1670886000) {
                 $Buffer['Payload'] = utf8_decode($Buffer['Payload']);
             }
-
-            $this->SendDebug('MQTT Topic', $Buffer['Topic'], 0);
 
             $Payload = json_decode($Buffer['Payload'], true);
             if (array_key_exists('Topic', $Buffer)) {

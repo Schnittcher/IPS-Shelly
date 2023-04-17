@@ -35,21 +35,18 @@ class ShellyButton1 extends ShellyModule
 
     public function ReceiveData($JSONString)
     {
-        $this->SendDebug('JSON', $JSONString, 0);
         if (!empty($this->ReadPropertyString('MQTTTopic'))) {
             $Buffer = json_decode($JSONString);
+            $this->SendDebug('JSON', $Buffer, 0);
 
             //Für MQTT Fix in IPS Version 6.3
             if (IPS_GetKernelDate() > 1670886000) {
                 $Buffer->Payload = utf8_decode($Buffer->Payload);
             }
 
-            $this->SendDebug('MQTT Topic', $Buffer->Topic, 0);
-
             if (property_exists($Buffer, 'Topic')) {
                 if (fnmatch('*/input_event/0', $Buffer->Topic)) {
                     $Payload = json_decode($Buffer->Payload);
-                    $this->SendDebug('Input Payload', $Buffer->Payload, 0);
                     switch ($Payload->event) {
                         case 'S':
                             $this->SetValue('Shelly_Input', 0);
@@ -66,7 +63,6 @@ class ShellyButton1 extends ShellyModule
                     }
                 }
                 if (fnmatch('*/online', $Buffer->Topic)) {
-                    $this->SendDebug('Online Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 'true':
                             $this->SetValue('Shelly_Reachable', true);
@@ -77,7 +73,6 @@ class ShellyButton1 extends ShellyModule
                     }
                 }
                 if (fnmatch('*/sensor/battery*', $Buffer->Topic)) {
-                    $this->SendDebug('Battery Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_Battery', $Buffer->Payload);
                 }
             }

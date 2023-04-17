@@ -94,23 +94,19 @@ class ShellyRGBW2 extends ShellyModule
     public function ReceiveData($JSONString)
     {
         $this->SendDebug('ShlleyRGBW2 DeviceType', $this->ReadPropertyString('DeviceType'), 0);
-        $this->SendDebug('JSON', $JSONString, 0);
         if (!empty($this->ReadPropertyString('MQTTTopic'))) {
             $Buffer = json_decode($JSONString);
+            $this->SendDebug('JSON', $Buffer, 0);
 
             //Für MQTT Fix in IPS Version 6.3
             if (IPS_GetKernelDate() > 1670886000) {
                 $Buffer->Payload = utf8_decode($Buffer->Payload);
             }
-            $this->SendDebug('MQTT Topic', $Buffer->Topic, 0);
 
             if (property_exists($Buffer, 'Topic')) {
                 $channel = $this->getChannel($Buffer->Topic);
-                $this->SendDebug('ShellyRGBW2 Payload', $Buffer->Payload, 0);
-                $this->SendDebug('ShellyRGBW2 Channel', $channel, 0);
                 $Payload = json_decode($Buffer->Payload);
                 if (fnmatch('*/input/0', $Buffer->Topic)) {
-                    $this->SendDebug('Input Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                             case 0:
                                 $this->SetValue('Shelly_Input', 0);
@@ -121,7 +117,6 @@ class ShellyRGBW2 extends ShellyModule
                         }
                 }
                 if (fnmatch('*/longpush/0', $Buffer->Topic)) {
-                    $this->SendDebug('Longpush Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                             case 0:
                                 $this->SetValue('Shelly_Longpush', 0);
@@ -186,7 +181,6 @@ class ShellyRGBW2 extends ShellyModule
                         }
                 }
                 if (fnmatch('*/online', $Buffer->Topic)) {
-                    $this->SendDebug('Online Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                             case 'true':
                                 $this->SetValue('Shelly_Reachable', true);

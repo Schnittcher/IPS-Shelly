@@ -25,20 +25,17 @@ class ShellyPlug extends ShellyModule
 
     public function ReceiveData($JSONString)
     {
-        $this->SendDebug('JSON', $JSONString, 0);
         if (!empty($this->ReadPropertyString('MQTTTopic'))) {
             $Buffer = json_decode($JSONString);
+            $this->SendDebug('JSON', $Buffer, 0);
 
             //Für MQTT Fix in IPS Version 6.3
             if (IPS_GetKernelDate() > 1670886000) {
                 $Buffer->Payload = utf8_decode($Buffer->Payload);
             }
 
-            $this->SendDebug('MQTT Topic', $Buffer->Topic, 0);
-
             if (property_exists($Buffer, 'Topic')) {
                 if (fnmatch('*/relay/0', $Buffer->Topic)) {
-                    $this->SendDebug('State Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 'off':
                             SetValue($this->GetIDForIdent('Shelly_State'), 0);
@@ -52,23 +49,18 @@ class ShellyPlug extends ShellyModule
                     }
                 }
                 if (fnmatch('*/relay/0/power*', $Buffer->Topic)) {
-                    $this->SendDebug('Power Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_Power', $Buffer->Payload);
                 }
                 if (fnmatch('*/relay/0/energy*', $Buffer->Topic)) {
-                    $this->SendDebug('Energy Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_Energy', $Buffer->Payload / 60000);
                 }
                 if (fnmatch('*/temperature', $Buffer->Topic)) {
-                    $this->SendDebug('Temperature Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_Temperature', $Buffer->Payload);
                 }
                 if (fnmatch('*/overtemperature', $Buffer->Topic)) {
-                    $this->SendDebug('Overtemperature Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_Overtemperature', boolval($Buffer->Payload));
                 }
                 if (fnmatch('*/online', $Buffer->Topic)) {
-                    $this->SendDebug('Online Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 'true':
                             $this->SetValue('Shelly_Reachable', true);

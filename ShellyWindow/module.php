@@ -17,20 +17,17 @@ class ShellyWindow extends ShellyModule
 
     public function ReceiveData($JSONString)
     {
-        $this->SendDebug('JSON', $JSONString, 0);
         if (!empty($this->ReadPropertyString('MQTTTopic'))) {
             $Buffer = json_decode($JSONString);
+            $this->SendDebug('JSON', $Buffer, 0);
 
             //Für MQTT Fix in IPS Version 6.3
             if (IPS_GetKernelDate() > 1670886000) {
                 $Buffer->Payload = utf8_decode($Buffer->Payload);
             }
 
-            $this->SendDebug('MQTT Topic', $Buffer->Topic, 0);
-
             if (property_exists($Buffer, 'Topic')) {
                 if (fnmatch('*/state', $Buffer->Topic)) {
-                    $this->SendDebug('State Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 'close':
                             $this->SetValue('Shelly_State', false);
@@ -44,19 +41,15 @@ class ShellyWindow extends ShellyModule
                         }
                 }
                 if (fnmatch('*/lux', $Buffer->Topic)) {
-                    $this->SendDebug('Lux Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_Lux', $Buffer->Payload);
                 }
                 if (fnmatch('*/battery', $Buffer->Topic)) {
-                    $this->SendDebug('Battery Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_Battery', $Buffer->Payload);
                 }
                 if (fnmatch('*/temperature', $Buffer->Topic)) {
-                    $this->SendDebug('Temperature Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_Temperature', $Buffer->Payload);
                 }
                 if (fnmatch('*/vibration', $Buffer->Topic)) {
-                    $this->SendDebug('Vibration Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 1:
                             $this->SetValue('Shelly_Vibration', true);
@@ -70,11 +63,9 @@ class ShellyWindow extends ShellyModule
                         }
                 }
                 if (fnmatch('*/tilt', $Buffer->Topic)) {
-                    $this->SendDebug('Tilt Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_Tilt', $Buffer->Payload);
                 }
                 if (fnmatch('*/online', $Buffer->Topic)) {
-                    $this->SendDebug('Online Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 'true':
                             $this->SetValue('Shelly_Reachable', true);

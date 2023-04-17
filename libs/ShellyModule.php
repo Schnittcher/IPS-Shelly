@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/ShellyHelper.php';
 require_once __DIR__ . '/vendor/SymconModulHelper/VariableProfileHelper.php';
+require_once __DIR__ . '/vendor/SymconModulHelper/DebugHelper.php';
 require_once __DIR__ . '/MQTTHelper.php';
 
 class ShellyModule extends IPSModule
 {
     use Shelly;
+    use DebugHelper;
     use VariableProfileHelper;
     use MQTTHelper;
 

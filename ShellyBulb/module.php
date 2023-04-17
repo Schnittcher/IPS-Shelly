@@ -68,20 +68,17 @@ class ShellyBulb extends ShellyModule
 
     public function ReceiveData($JSONString)
     {
-        $this->SendDebug('JSON', $JSONString, 0);
         if (!empty($this->ReadPropertyString('MQTTTopic'))) {
             $Buffer = json_decode($JSONString);
+            $this->SendDebug('JSON', $Buffer, 0);
 
             //Für MQTT Fix in IPS Version 6.3
             if (IPS_GetKernelDate() > 1670886000) {
                 $Buffer->Payload = utf8_decode($Buffer->Payload);
             }
 
-            $this->SendDebug('MQTT Topic', $Buffer->Topic, 0);
-
             if (property_exists($Buffer, 'Topic')) {
                 if (fnmatch('*/light/0', $Buffer->Topic)) {
-                    $this->SendDebug('Power Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 'off':
                             $this->SetValue('Shelly_State', 0);
@@ -92,7 +89,6 @@ class ShellyBulb extends ShellyModule
                     }
                 }
                 if (fnmatch('*/color/0', $Buffer->Topic)) {
-                    $this->SendDebug('Power Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 'off':
                             $this->SetValue('Shelly_State', 0);
@@ -126,16 +122,13 @@ class ShellyBulb extends ShellyModule
                     }
                 }
                 if (fnmatch('*/light/0/power', $Buffer->Topic)) {
-                    $this->SendDebug('Power Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_Power', $Buffer->Payload);
                 }
 
                 if (fnmatch('*/energy', $Buffer->Topic)) {
-                    $this->SendDebug('Energy Payload', $Buffer->Payload, 0);
                     $this->SetValue('Shelly_Energy', floatval($Buffer->Payload) / 60000);
                 }
                 if (fnmatch('*/online', $Buffer->Topic)) {
-                    $this->SendDebug('Online Payload', $Buffer->Payload, 0);
                     switch ($Buffer->Payload) {
                         case 'true':
                             $this->SetValue('Shelly_Reachable', true);
@@ -178,12 +171,12 @@ class ShellyBulb extends ShellyModule
                 IPS_SetHidden($this->GetIDForIdent('Shelly_White'), false);
                 break;
             case 'white':
-            IPS_SetHidden($this->GetIDForIdent('Shelly_Brightness'), false);
-            IPS_SetHidden($this->GetIDForIdent('Shelly_ColorTemperature'), false);
+                IPS_SetHidden($this->GetIDForIdent('Shelly_Brightness'), false);
+                IPS_SetHidden($this->GetIDForIdent('Shelly_ColorTemperature'), false);
 
-            IPS_SetHidden($this->GetIDForIdent('Shelly_Color'), true);
-            IPS_SetHidden($this->GetIDForIdent('Shelly_Gain'), true);
-            IPS_SetHidden($this->GetIDForIdent('Shelly_White'), true);
+                IPS_SetHidden($this->GetIDForIdent('Shelly_Color'), true);
+                IPS_SetHidden($this->GetIDForIdent('Shelly_Gain'), true);
+                IPS_SetHidden($this->GetIDForIdent('Shelly_White'), true);
                 break;
         }
     }
@@ -201,9 +194,6 @@ class ShellyBulb extends ShellyModule
 
     private function SetBulbMode($value)
     {
-
-        //$Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/color/0/set';
-        //$Payload['mode'] = strval($value);
         switch ($value) {
             case 'color':
                 $this->SetColor($this->GetValue('Shelly_Color'));
@@ -212,9 +202,6 @@ class ShellyBulb extends ShellyModule
                 $this->DimSet($this->GetValue('Shelly_ColorTemperature'));
                 break;
         }
-        //$Payload['mode'] = strval($value);
-        //$Payload = json_encode($Payload);
-        //$this->sendMQTT($Topic, $Payload);
     }
 
     private function WhiteSet(int $value)
