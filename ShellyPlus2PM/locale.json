@@ -17,7 +17,15 @@
             "Relay": "Relais",
             "Position": "Position",
             "Reachable": "Erreichbar",
-            "Please set Device Type": "Bitte legen Sie den Gerätetyp fest"
+            "Please set Device Type": "Bitte legen Sie den Gerätetyp fest",
+            "Temperature": "Temperatur",
+            "External Temperature 1": "Externe Temperatur 1",
+            "External Temperature 2": "Externe Temperatur 2",
+            "External Temperature 3": "Externe Temperatur 3",
+            "External Temperature 4": "Externe Temperatur 4",
+            "External Temperature 5": "Externe Temperatur 5",
+            "External Input State": "Externer Eingang (Status)",
+            "External Input Percent": "Externer Eingang (Prozent)"
         }
     }
 }
