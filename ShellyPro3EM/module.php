@@ -37,6 +37,8 @@ class ShellyPro3EM extends ShellyModule
         ['totalActEnergy', 'Total active Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
         ['totalActRetEnergy', 'Total active returned Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
 
+        ['consumptionNetted', 'Consumption netted', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
+
         ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
     ];
 
@@ -90,6 +92,7 @@ class ShellyPro3EM extends ShellyModule
                             $this->SetValue('totalAprtPower', $em['total_aprt_power']);
                         }
                         if (array_key_exists('emdata:0', $Payload['params'])) {
+                            $consumptionNetted = 0;
                             $emData = $Payload['params']['emdata:0'];
                             $this->SetValue('aTotalActEnergy', floatval($emData['a_total_act_energy']) / 1000);
                             $this->SetValue('aTotalActRetEnergy', floatval($emData['a_total_act_ret_energy']) / 1000);
@@ -100,6 +103,9 @@ class ShellyPro3EM extends ShellyModule
 
                             $this->SetValue('totalActEnergy', (floatval($emData['total_act']) / 1000) + $this->ReadPropertyFloat('TotalActiveEnergyOffset'));
                             $this->SetValue('totalActRetEnergy', (floatval($emData['total_act_ret']) / 1000) + $this->ReadPropertyFloat('TotalActRetEnergyOffset'));
+
+                            $consumptionNetted = ((floatval($emData['a_total_act_energy']) / 1000) + (floatval($emData['b_total_act_energy']) / 1000) + (floatval($emData['c_total_act_energy']) / 1000)) - ((floatval($emData['a_total_act_ret_energy']) / 1000) + (floatval($emData['b_total_act_ret_energy']) / 1000) + (floatval($emData['c_total_act_ret_energy']) / 1000));
+                            $this->SetValue('consumptionNetted', $consumptionNetted);
                         }
                     }
                 }

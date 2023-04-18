@@ -27,6 +27,7 @@
             "Phase C total active returned Energy": "Phase C Einspeisung",
             "Total active Energy": "Gesamtverbrauch",
             "Total active returned Energy": "Gesamteinspeisung",
+            "Consumption netted": "Verbrauch saldiert",
             "Reachable": "Erreichbar"
         }
     }
