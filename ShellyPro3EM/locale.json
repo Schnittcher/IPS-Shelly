@@ -28,6 +28,8 @@
             "Total active Energy": "Gesamtverbrauch",
             "Total active returned Energy": "Gesamteinspeisung",
             "Consumption netted": "Verbrauch saldiert",
+            "Energy from Grid netted": "Netzbezug saldiert",
+            "Energy to Grid netted": "Einspeisung saldiert",
             "Reachable": "Erreichbar"
         }
     }

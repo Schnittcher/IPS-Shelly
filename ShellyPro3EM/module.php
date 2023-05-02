@@ -39,6 +39,9 @@ class ShellyPro3EM extends ShellyModule
 
         ['consumptionNetted', 'Consumption netted', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
 
+        ['energyFromGridNetted', 'Energy from Grid netted', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
+        ['energyToGridNetted', 'Energy to Grid netted', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
+
         ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
     ];
 
@@ -106,6 +109,13 @@ class ShellyPro3EM extends ShellyModule
 
                             $consumptionNetted = ((floatval($emData['a_total_act_energy']) / 1000) + (floatval($emData['b_total_act_energy']) / 1000) + (floatval($emData['c_total_act_energy']) / 1000)) - ((floatval($emData['a_total_act_ret_energy']) / 1000) + (floatval($emData['b_total_act_ret_energy']) / 1000) + (floatval($emData['c_total_act_ret_energy']) / 1000));
                             $this->SetValue('consumptionNetted', $consumptionNetted);
+
+                            if ($consumptionNetted > $this->GetValue('energyToGridNetted')) {
+                                $this->SetValue('energyFromGridNetted', $consumptionNetted);
+                            } else {
+                                $this->SetValue('energyToGridNetted', abs($consumptionNetted));
+                                
+                            }
                         }
                     }
                 }
