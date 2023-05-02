@@ -250,6 +250,20 @@ class ShellyPlus2PM extends ShellyModule
                     if (array_key_exists('current_pos', $Payload)) {
                         $this->SetValue('CoverPosition', $Payload['current_pos']);
                     }
+                    if (array_key_exists('apower', $Payload)) {
+                        $this->SetValue('Power0', $Payload['apower']);
+                    }
+                    if (array_key_exists('voltage', $Payload)) {
+                        $this->SetValue('Voltage0', $Payload['voltage']);
+                    }
+                    if (array_key_exists('current', $Payload)) {
+                        $this->SetValue('Current0', $Payload['current']);
+                    }
+                    if (array_key_exists('aenergy', $Payload)) {
+                        if (array_key_exists('total', $Payload['aenergy'])) {
+                            $this->SetValue('TotalEnergy0', $Payload['aenergy']['total'] / 1000);
+                        }
+                    }
                 }
             }
         }
