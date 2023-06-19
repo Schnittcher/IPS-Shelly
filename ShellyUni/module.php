@@ -11,6 +11,7 @@ class ShellyUni extends ShellyModule
         ['Shelly_ADC', 'ADC', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true],
         ['Shelly_Input', 'Input 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
         ['Shelly_Input1', 'Input 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
+        ['Shelly_Longpush', 'Longpush', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
         ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
     ];
 
@@ -95,6 +96,16 @@ class ShellyUni extends ShellyModule
                                 default:
                                     break;
                             }
+                            break;
+                    }
+                }
+                if (fnmatch('*/longpush/0', $Buffer->Topic)) {
+                    switch ($Buffer->Payload) {
+                        case 0:
+                            $this->SetValue('Shelly_Longpush', 0);
+                            break;
+                        case 1:
+                            $this->SetValue('Shelly_Longpush', 1);
                             break;
                     }
                 }

@@ -5,6 +5,7 @@
             "State 2": "Status 2",
             "Input 1": "Eingang 1",
             "Input 2": "Eingang 2",
+            "Longpush": "Longpush",
             "ADC 1": "ADC 1",
             "Variable profile type does not match for profile": "Der Profiltyp der Variablen stimmt nicht mit dem Profil überein",
             "Reachable": "Erreichbar",
