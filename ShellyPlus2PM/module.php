@@ -21,6 +21,9 @@ class ShellyPlus2PM extends ShellyModule
         ['State', 'State', VARIABLETYPE_INTEGER, '~ShutterMoveStop', [], 'roller', true, true],
         ['CoverPosition', 'Position', VARIABLETYPE_INTEGER, '~Shutter', [], 'roller', true, true],
 
+        ['Input0', 'Input 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
+        ['Input1', 'Input 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
+
         ['EventComponent', 'Event Component', VARIABLETYPE_STRING, '', [], '', false, true],
         ['Event', 'Event', VARIABLETYPE_STRING, '', [], '', false, true],
         ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true],
@@ -93,6 +96,15 @@ class ShellyPlus2PM extends ShellyModule
                             $events = $Payload['params']['events'][0];
                             $this->SetValue('EventComponent', $events['component']);
                             $this->SetValue('Event', $events['event']);
+                        }
+                        for ($i = 0; $i <= 1; $i++) {
+                            $inputIndex = 'input:' . $i;
+                            if (array_key_exists($inputIndex, $Payload['params'])) {
+                                $input = $Payload['params'][$inputIndex];
+                                if (array_key_exists('state', $input)) {
+                                    $this->SetValue('Input' . $i, $input['state']);
+                                }
+                            }
                         }
                         if (array_key_exists('temperature', $Payload['params'])) {
                             if (array_key_exists('tC', $Payload['params']['temperature'])) {
