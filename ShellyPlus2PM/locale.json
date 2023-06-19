@@ -16,6 +16,8 @@
             "Roller": "Rollo",
             "Relay": "Relais",
             "Position": "Position",
+            "Input 1": "Eingang 1",
+            "Input 2": "Eingang 2",
             "Reachable": "Erreichbar",
             "Please set Device Type": "Bitte legen Sie den Gerätetyp fest",
             "Temperature": "Temperatur",
