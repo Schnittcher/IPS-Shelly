@@ -79,6 +79,7 @@ class ShellyPlus2PM extends ShellyModule
     {
         if (!empty($this->ReadPropertyString('MQTTTopic'))) {
             $Buffer = json_decode($JSONString, true);
+            $this->SendDebug('JSON', $JSONString, 0);
             $this->SendDebug('JSON', $Buffer, 0);
 
             //Für MQTT Fix in IPS Version 6.3
