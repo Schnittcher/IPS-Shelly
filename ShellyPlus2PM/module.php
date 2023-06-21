@@ -199,8 +199,8 @@ class ShellyPlus2PM extends ShellyModule
                         //External Sensor Addon
                         if (array_key_exists('humidity:100', $Payload['params'])) {
                             $humidity = $Payload['params']['humidity:100'];
-                            if (array_key_exists('rH', $humidity)) {
-                                $this->SetValue('Humidity100', $humidity['rH']);
+                            if (array_key_exists('rh', $humidity)) {
+                                $this->SetValue('Humidity100', $humidity['rh']);
                             }
                         }
                         //External Sensor Addon
