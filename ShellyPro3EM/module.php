@@ -114,7 +114,6 @@ class ShellyPro3EM extends ShellyModule
                                 $this->SetValue('energyFromGridNetted', $consumptionNetted);
                             } else {
                                 $this->SetValue('energyToGridNetted', abs($consumptionNetted));
-                                
                             }
                         }
                     }
