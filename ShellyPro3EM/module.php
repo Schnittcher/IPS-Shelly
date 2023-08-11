@@ -44,7 +44,7 @@ class ShellyPro3EM extends ShellyModule
         parent::Create();
         $this->RegisterPropertyFloat('TotalActiveEnergyOffset', 0);
         $this->RegisterPropertyFloat('TotalActRetEnergyOffset', 0);
-        $this->RegisterPropertyBool('Netting', false);
+        $this->RegisterPropertyBoolean('Netting', false);
     }
 
     public function ApplyChanges()
