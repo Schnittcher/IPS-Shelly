@@ -30,7 +30,7 @@ class Shelly3EM extends ShellyModule
         ['Shelly_TotalReturned2', 'Total Returned L3', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
 
         ['Shelly_CurrentN', 'N Current', VARIABLETYPE_FLOAT, '~Ampere', [], '', false, true],
-        ['Shelly_IxsumN', 'Neutral Conductor N RMS (ixsum) ', VARIABLETYPE_FLOAT, '~Ampere', [], '', false, true],
+        ['Shelly_IxsumN', 'Neutral Conductor N RMS (ixsum)', VARIABLETYPE_FLOAT, '~Ampere', [], '', false, true],
 
     ];
 

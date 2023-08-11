@@ -12,16 +12,18 @@
             "Voltage L1": "Spannung L1",
             "Voltage L2": "Spannung L2",
             "Voltage L3": "Spannung L3",
-            "Current L1": "Strom L1",
-            "Current L2": "Strom L2",
-            "Current L3": "Strom L3",
+            "Current L1": "Stromstärke L1",
+            "Current L2": "Stromstärke L2",
+            "Current L3": "Stromstärke L3",
             "Total L1": "Gesamtverbrauch L1",
             "Total L2": "Gesamtverbrauch L2",
             "Total L3": "Gesamtverbrauch L3",
             "Total Returned L1": "Gesamt eingespeist L1",
             "Total Returned L2": "Gesamt eingespeist L2",
             "Total Returned L3": "Gesamt eingespeist L3",
-            "Variable profile type does not match for profile": "Der Profiltyp der Variablen stimmt nicht mit dem Profil überein"
+            "Variable profile type does not match for profile": "Der Profiltyp der Variablen stimmt nicht mit dem Profil überein",
+            "N Current": "N Stromstärke",
+            "Neutral Conductor N RMS (ixsum)": " Neutralleiter N RMS (ixsum)"
         }
     }
 }
