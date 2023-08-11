@@ -29,6 +29,9 @@ class Shelly3EM extends ShellyModule
         ['Shelly_Total2', 'Total L3', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
         ['Shelly_TotalReturned2', 'Total Returned L3', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
 
+        ['Shelly_CurrentN', 'N Current', VARIABLETYPE_FLOAT, '~Ampere', [], '', false, true],
+        ['Shelly_IxsumN', 'Neutral Conductor N RMS (ixsum) ', VARIABLETYPE_FLOAT, '~Ampere', [], '', false, true],
+
     ];
 
     public function RequestAction($Ident, $Value)
@@ -133,6 +136,14 @@ class Shelly3EM extends ShellyModule
                 }
                 if (fnmatch('*emeter/2/total_returned', $Buffer->Topic)) {
                     $this->SetValue('Shelly_TotalReturned2', floatval($Buffer->Payload) / 1000);
+                }
+
+                //Emeter N
+                if (fnmatch('*emeter_n/current', $Buffer->Topic)) {
+                    $this->SetValue('Shelly_CurrentN', floatval($Buffer->Payload));
+                }
+                if (fnmatch('*emeter_n/ixsum', $Buffer->Topic)) {
+                    $this->SetValue('Shelly_IxsumN', floatval($Buffer->Payload));
                 }
             }
         }
