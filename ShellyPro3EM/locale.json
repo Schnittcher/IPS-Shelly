@@ -27,10 +27,12 @@
             "Phase C total active returned Energy": "Phase C Einspeisung",
             "Total active Energy": "Gesamtverbrauch",
             "Total active returned Energy": "Gesamteinspeisung",
-            "Consumption netted": "Verbrauch saldiert",
-            "Energy from Grid netted": "Netzbezug saldiert",
-            "Energy to Grid netted": "Einspeisung saldiert",
-            "Reachable": "Erreichbar"
+            "Reachable": "Erreichbar",
+            "Netting": "Saldieren",
+            "Current Returned": "Aktuelle Einspeisung",
+            "Current Import": "Aktueller Bezug",
+            "Import": "Bezug",
+            "Returned": "Einspeiung"
         }
     }
 }

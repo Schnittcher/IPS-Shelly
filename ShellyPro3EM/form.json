@@ -18,6 +18,11 @@
             "digits": 2
         },
         {
+            "type": "CheckBox",
+            "name": "netting",
+            "caption": "Netting"
+        },
+        {
             "type": "List",
             "name": "Variables",
             "caption": "",
