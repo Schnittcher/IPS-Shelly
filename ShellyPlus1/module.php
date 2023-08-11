@@ -16,6 +16,7 @@ class ShellyPlus1 extends ShellyModule
         ['Overpower', 'Overpower', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
         ['Overvoltage', 'Overvoltage', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
         ['DeviceTemperature', 'Device Temperature', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
+        ['Input0', 'Input 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
         ['EventComponent', 'Event Component', VARIABLETYPE_STRING, '', [], '', false, true],
         ['Event', 'Event', VARIABLETYPE_STRING, '', [], '', false, true],
         ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true],
@@ -61,6 +62,11 @@ class ShellyPlus1 extends ShellyModule
                             $events = $Payload['params']['events'][0];
                             $this->SetValue('EventComponent', $events['component']);
                             $this->SetValue('Event', $events['event']);
+                        }
+                        if (array_key_exists('input:0', $Payload['params'])) {
+                            if (array_key_exists('state', $Payload['params']['input:0'])) {
+                                $this->SetValue('Input0', $Payload['params']['input:0']['state']);
+                            }
                         }
                         if (array_key_exists('switch:0', $Payload['params'])) {
                             $switch = $Payload['params']['switch:0'];
