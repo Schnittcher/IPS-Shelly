@@ -52,10 +52,10 @@ class ShellyPro3EM extends ShellyModule
         //Never delete this line!
         parent::ApplyChanges();
 
-        $this->MaintainVariable('CurrentReturned', 'Current Returned', 2, '~Watt', 0, $this->ReadPropertyInteger('Netting'));
-        $this->MaintainVariable('CurrentImport', 'Current Import', 2, '~Watt', 0, $this->ReadPropertyInteger('Netting'));
-        $this->MaintainVariable('Import', 'Import', 2, '~Electricity', 0, $this->ReadPropertyInteger('Netting'));
-        $this->MaintainVariable('Returned', 'Returned', 2, '~Electricity', 0, $this->ReadPropertyInteger('Netting'));
+        $this->MaintainVariable('CurrentReturned', 'Current Returned', 2, '~Watt', 0, $this->ReadPropertyBoolean('Netting'));
+        $this->MaintainVariable('CurrentImport', 'Current Import', 2, '~Watt', 0, $this->ReadPropertyBoolean('Netting'));
+        $this->MaintainVariable('Import', 'Import', 2, '~Electricity', 0, $this->ReadPropertyBoolean('Netting'));
+        $this->MaintainVariable('Returned', 'Returned', 2, '~Electricity', 0, $this->ReadPropertyBoolean('Netting'));
     }
 
     public function ReceiveData($JSONString)
