@@ -34,8 +34,10 @@ class ShellyPlus2PM extends ShellyModule
         ['Temperature103', 'External Temperature 4', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
         ['Temperature104', 'External Temperature 5', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
         ['Humidity100', 'External Humidity', VARIABLETYPE_FLOAT, '~Humidity.F', [], '', false, true],
-        ['Input100State', 'External Input State', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
-        ['Input100Percent', 'External Input Percent', VARIABLETYPE_FLOAT, 'Shelly.Input.Percent', [], '', false, true],
+        ['Input100State', 'External Input State 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
+        ['Input100Percent', 'External Input Percent 1', VARIABLETYPE_FLOAT, 'Shelly.Input.Percent', [], '', false, true],
+        ['Input101State', 'External Input State 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
+        ['Input101Percent', 'External Input Percent 2', VARIABLETYPE_FLOAT, 'Shelly.Input.Percent', [], '', false, true],
         ['Voltmeter100', 'External Voltmeter', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true],
     ];
 
@@ -211,6 +213,15 @@ class ShellyPlus2PM extends ShellyModule
                             }
                             if (array_key_exists('percent', $input)) {
                                 $this->SetValue('Input100Percent', $input['percent']);
+                            }
+                        }
+                        if (array_key_exists('input:101', $Payload['params'])) {
+                            $input = $Payload['params']['input:101'];
+                            if (array_key_exists('state', $input)) {
+                                $this->SetValue('Input101State', $input['state']);
+                            }
+                            if (array_key_exists('percent', $input)) {
+                                $this->SetValue('Input101Percent', $input['percent']);
                             }
                         }
                         //External Sensor Addon

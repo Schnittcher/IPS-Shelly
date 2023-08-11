@@ -27,8 +27,10 @@
             "External Temperature 4": "Externe Temperatur 4",
             "External Temperature 5": "Externe Temperatur 5",
             "External Humidity": "externe Luftfeuchte",
-            "External Input State": "Externer Eingang (Status)",
-            "External Input Percent": "Externer Eingang (Prozent)"
+            "External Input State 1": "Externer Eingang 1 (Status)",
+            "External Input Percent 1": "Externer Eingang 1 (Prozent)",
+            "External Input State 2": "Externer Eingang 2 (Status)",
+            "External Input Percent 2": "Externer Eingang 2 (Prozent)"
         }
     }
 }
