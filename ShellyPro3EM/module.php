@@ -100,7 +100,9 @@ class ShellyPro3EM extends ShellyModule
                             $this->SetValue('totalActPower', $em['total_act_power']);
                             $this->SetValue('totalAprtPower', $em['total_aprt_power']);
 
-                            $this->Netting();
+                            if ($this->ReadPropertyBoolean('Netting')) {
+                                $this->Netting();
+                            }
                         }
                         if (array_key_exists('emdata:0', $Payload['params'])) {
                             $emData = $Payload['params']['emdata:0'];
