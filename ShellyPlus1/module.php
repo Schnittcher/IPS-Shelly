@@ -57,6 +57,9 @@ class ShellyPlus1 extends ShellyModule
                     $this->SetValue('Reachable', $Payload);
                 }
                 if (fnmatch('*/events/rpc', $Buffer['Topic'])) {
+                    if (array_key_exists('voltage', $Payload)) {
+                        $this->SetValue('Voltage', $Payload['voltage']);
+                    }
                     if (array_key_exists('params', $Payload)) {
                         if (array_key_exists('events', $Payload['params'])) {
                             $events = $Payload['params']['events'][0];
