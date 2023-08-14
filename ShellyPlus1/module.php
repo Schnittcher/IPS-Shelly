@@ -57,9 +57,6 @@ class ShellyPlus1 extends ShellyModule
                     $this->SetValue('Reachable', $Payload);
                 }
                 if (fnmatch('*/events/rpc', $Buffer['Topic'])) {
-                    if (array_key_exists('voltage', $Payload)) {
-                        $this->SetValue('Voltage', $Payload['voltage']);
-                    }
                     if (array_key_exists('params', $Payload)) {
                         if (array_key_exists('events', $Payload['params'])) {
                             $events = $Payload['params']['events'][0];
@@ -71,6 +68,7 @@ class ShellyPlus1 extends ShellyModule
                                 $this->SetValue('Input0', $Payload['params']['input:0']['state']);
                             }
                         }
+
                         if (array_key_exists('switch:0', $Payload['params'])) {
                             $switch = $Payload['params']['switch:0'];
                             if (array_key_exists('output', $switch)) {
@@ -148,31 +146,31 @@ class ShellyPlus1 extends ShellyModule
                             }
                         }
                     }
-                }
-                if (fnmatch('*/status/switch:0', $Buffer['Topic'])) {
-                    if (array_key_exists('output', $Payload)) {
-                        $this->SetValue('State', $Payload['output']);
-                    }
-                    if (array_key_exists('apower', $Payload)) {
-                        $this->SetValue('Power', $Payload['apower']);
-                    }
-                    if (array_key_exists('voltage', $Payload)) {
-                        $this->SetValue('Voltage', $Payload['voltage']);
-                    }
-                    if (array_key_exists('current', $Payload)) {
-                        $this->SetValue('Current', $Payload['current']);
-                    }
-                    if (array_key_exists('aenergy', $Payload)) {
-                        if (array_key_exists('total', $Payload['aenergy'])) {
-                            $this->SetValue('TotalEnergy', $Payload['aenergy']['total'] / 1000);
+                    if (fnmatch('*/status/switch:0', $Buffer['Topic'])) {
+                        if (array_key_exists('output', $Payload)) {
+                            $this->SetValue('State', $Payload['output']);
+                        }
+                        if (array_key_exists('apower', $Payload)) {
+                            $this->SetValue('Power', $Payload['apower']);
+                        }
+                        if (array_key_exists('voltage', $Payload)) {
+                            $this->SetValue('Voltage', $Payload['voltage']);
+                        }
+                        if (array_key_exists('current', $Payload)) {
+                            $this->SetValue('Current', $Payload['current']);
+                        }
+                        if (array_key_exists('aenergy', $Payload)) {
+                            if (array_key_exists('total', $Payload['aenergy'])) {
+                                $this->SetValue('TotalEnergy', $Payload['aenergy']['total'] / 1000);
+                            }
                         }
                     }
-                }
-                //Temperatur ist immer vorhanden und sollte immer der selbe Wert sein.
-                if (fnmatch('*/status/*', $Buffer['Topic'])) {
-                    if (array_key_exists('temperature', $Payload)) {
-                        if (array_key_exists('tC', $Payload['temperature'])) {
-                            $this->SetValue('DeviceTemperature', $Payload['temperature']['tC']);
+                    //Temperatur ist immer vorhanden und sollte immer der selbe Wert sein.
+                    if (fnmatch('*/status/*', $Buffer['Topic'])) {
+                        if (array_key_exists('temperature', $Payload)) {
+                            if (array_key_exists('tC', $Payload['temperature'])) {
+                                $this->SetValue('DeviceTemperature', $Payload['temperature']['tC']);
+                            }
                         }
                     }
                 }
