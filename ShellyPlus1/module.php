@@ -70,7 +70,7 @@ class ShellyPlus1 extends ShellyModule
                         }
 
                         if (array_key_exists('switch:0', $Payload['params'])) {
-                            $switch = $Payload;
+                            $switch = $Payload['params']['switch:0'];
                             if (array_key_exists('output', $switch)) {
                                 $this->SetValue('State', $switch['output']);
                             }
