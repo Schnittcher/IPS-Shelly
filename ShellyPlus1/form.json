@@ -19,8 +19,16 @@
                     "value": "shellyplus1"
                 },
                 {
+                    "caption": "Shelly Plus 1 Mini",
+                    "value": "shellyplus1mini"
+                },
+                {
                     "caption": "Shelly Plus 1PM",
                     "value": "shellyplus1pm"
+                },
+                {
+                    "caption": "Shelly Plus 1PM Mini",
+                    "value": "shellyplus1p,mini"
                 }
             ]
         },

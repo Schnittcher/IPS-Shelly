@@ -583,6 +583,20 @@ class ShellyConfigurator extends IPSModule
                                 ]
                             ];
                             break;
+                        case 'shelly1mini':
+                            $moduleID = '{AF5127F4-4929-49AF-9894-D7B8627667A7}';
+                            $DeviceType = 'Shelly Plus 1 Mini';
+                            $AddValue['create'] = [
+                                [
+                                    'moduleID'      => $moduleID,
+                                    'info'          => $Shelly['IPv4'],
+                                    'configuration' => [
+                                        'MQTTTopic' => strtolower($Shelly['Name']),
+                                        'Device'    => 'shellyplus1mini'
+                                    ]
+                                ]
+                            ];
+                            break;                           
                         case 'shellyplus1pm':
                             $moduleID = '{AF5127F4-4929-49AF-9894-D7B8627667A7}';
                             $DeviceType = 'Shelly Plus 1PM';
@@ -593,6 +607,20 @@ class ShellyConfigurator extends IPSModule
                                     'configuration' => [
                                         'MQTTTopic' => strtolower($Shelly['Name']),
                                         'Device'    => 'shellyplus1pm'
+                                    ]
+                                ]
+                            ];
+                            break;
+                        case 'shelly1pmmini':
+                            $moduleID = '{AF5127F4-4929-49AF-9894-D7B8627667A7}';
+                            $DeviceType = 'Shelly Plus 1PM';
+                            $AddValue['create'] = [
+                                [
+                                    'moduleID'      => $moduleID,
+                                    'info'          => $Shelly['IPv4'],
+                                    'configuration' => [
+                                        'MQTTTopic' => strtolower($Shelly['Name']),
+                                        'Device'    => 'shellyplus1pmmini'
                                     ]
                                 ]
                             ];
