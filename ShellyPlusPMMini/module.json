@@ -1,0 +1,17 @@
+{
+    "id": "{5E1866C8-609B-4080-AD7C-5C766DD829A2}",
+    "name": "ShellyPlusPMMini",
+    "type": 3,
+    "vendor": "Shelly",
+    "aliases": [
+        "Shelly Plus PM Mini"
+    ],
+    "parentRequirements": [
+        "{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}"
+    ],
+    "childRequirements": [],
+    "implemented": [
+        "{7F7632D9-FA40-4F38-8DEA-C83CD4325A32}"
+    ],
+    "prefix": "SHELLY"
+}
