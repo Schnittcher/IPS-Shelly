@@ -23,7 +23,9 @@
             "External Temperature 5": "externe Temperatur 5",
             "External Humidity": "externe Luftfeuchte",
             "External Input": "externer Eingang",
-            "External Voltmeter": "externes Voltmeter"
+            "External Voltmeter": "externes Voltmeter",
+            "Power Factor": "Leistungsfaktor",
+            "Frequency": "Frequenz"
         }
     }
 }

@@ -11,7 +11,7 @@ class ShellyPlusPMMini extends ShellyModule
         ['Power', 'Power', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true],
         ['AprtPower', 'Apparent Power', VARIABLETYPE_FLOAT, '~Watt', [], '', false, true],
         ['PF', 'Power Factor', VARIABLETYPE_FLOAT, '', [], '', false, true],
-        ['Frequency ', 'Power Factor', VARIABLETYPE_FLOAT, '~Hertz', [], '', false, true],
+        ['Frequency ', 'Frequency', VARIABLETYPE_FLOAT, '~Hertz', [], '', false, true],
         ['TotalEnergy', 'Total Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
         ['Error', 'Error', VARIABLETYPE_STRING, '', [], '', false, true],
         ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true],
