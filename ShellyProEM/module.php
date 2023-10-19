@@ -6,6 +6,8 @@ require_once __DIR__ . '/../libs/ShellyModule.php';
 class ShellyProEM extends ShellyModule
 {
     public static $Variables = [
+        ['State', 'State', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true],
+
         ['aCurrent', 'Phase A Current', VARIABLETYPE_FLOAT, '~Ampere', [], '', false, true],
         ['aVoltage', 'Phase A Voltage', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true],
         ['aActPower', 'Phase A active Power', VARIABLETYPE_FLOAT, '~Watt', [], '', false, true],
@@ -55,6 +57,15 @@ class ShellyProEM extends ShellyModule
          */
     }
 
+    public function RequestAction($Ident, $Value)
+    {
+        switch ($Ident) {
+            case 'State':
+                $this->SwitchMode(0, $Value);
+                break;
+            }
+    }
+
     public function ReceiveData($JSONString)
     {
         if (!empty($this->ReadPropertyString('MQTTTopic'))) {
@@ -72,10 +83,15 @@ class ShellyProEM extends ShellyModule
                     $this->SetValue('Reachable', $Payload);
                 }
 
+                if (fnmatch('*/status/switch:0', $Buffer['Topic'])) {
+                    if (array_key_exists('output', $Payload)) {
+                        $this->SetValue('State', $Payload['output']);
+                    }
+                }
+
                 if (fnmatch('*/status/em1:*', $Buffer['Topic'])) {
                     if (array_key_exists('id', $Payload)) {
                         if ($Payload['id'] == 0) {
-                            IPS_LogMessage('Payload', print_r($Payload, true));
                             $this->SetValue('aCurrent', $Payload['current']);
                             $this->SetValue('aVoltage', $Payload['voltage']);
                             $this->SetValue('aActPower', $Payload['act_power']);
@@ -144,4 +160,15 @@ class ShellyProEM extends ShellyModule
             }
         }
      */
+    private function SwitchMode(int $switch, bool $value)
+    {
+        $Topic = $this->ReadPropertyString('MQTTTopic') . '/rpc';
+
+        $Payload['id'] = 1;
+        $Payload['src'] = 'user_1';
+        $Payload['method'] = 'Switch.Set';
+        $Payload['params'] = ['id' => $switch, 'on' => $value];
+
+        $this->sendMQTT($Topic, json_encode($Payload));
+    }
 }
