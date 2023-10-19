@@ -1,0 +1,38 @@
+{
+    "translations": {
+        "de": {
+            "Phase A Current": "Phase A Stromstärke",
+            "Phase A Voltage": "Phase A Spannung",
+            "Phase A active Power": "Phase A Wirkleistung",
+            "Phase A apparent Power": "Phase A Scheinleistung",
+            "Phase A Power Factor": "Phase A Leistungsfaktor",
+            "Phase B Current": "Phase A Stromstärke",
+            "Phase B Voltage": "Phase A Spannung",
+            "Phase B active Power": "Phase B Wirkleistung",
+            "Phase B apparent Power": "Phase B Scheinleistung",
+            "Phase B Power Factor": "Phase B Leistungsfaktor",
+            "Phase C Current": "Phase C Stromstärke",
+            "Phase C Voltage": "Phase C Spannung",
+            "Phase C active Power": "Phase C Wirkleistung",
+            "Phase C apparent Power": "Phase C Scheinleistung",
+            "Phase C Power Factor": "Phase C Leistungsfaktor",
+            "Total Current": "Gesamt Stromstärke",
+            "Total active Power": "Gesamt Wirkleistung",
+            "Total apparent Power": "Gesamt Scheinleistung",
+            "Phase A total active Energy": "Phase A Verbrauch",
+            "Phase A total active returned Energy": "Phase A Einspeisung",
+            "Phase B total active Energy": "Phase B Verbrauch",
+            "Phase B total active returned Energy": "Phase B Einspeisung",
+            "Phase C total active Energy": "Phase C Verbrauch",
+            "Phase C total active returned Energy": "Phase C Einspeisung",
+            "Total active Energy": "Gesamtverbrauch",
+            "Total active returned Energy": "Gesamteinspeisung",
+            "Reachable": "Erreichbar",
+            "Netting": "Saldieren",
+            "Current Returned": "Aktuelle Einspeisung",
+            "Current Import": "Aktueller Bezug",
+            "Import": "Bezug",
+            "Returned": "Einspeiung"
+        }
+    }
+}
