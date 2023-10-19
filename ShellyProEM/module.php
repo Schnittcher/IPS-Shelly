@@ -71,39 +71,42 @@ class ShellyProEM extends ShellyModule
                 if (fnmatch('*/online', $Buffer['Topic'])) {
                     $this->SetValue('Reachable', $Payload);
                 }
-                if (fnmatch('*/events/rpc', $Buffer['Topic'])) {
+
+                if (fnmatch('*/status/em1*', $Buffer['Topic'])) {
                     if (array_key_exists('id', $Payload)) {
                         if (array_key_exists('0', $Payload['id'])) {
-                            $this->SetValue('aCurrent', $Payload['current']);
-                            $this->SetValue('aVoltage', $Payload['voltage']);
-                            $this->SetValue('aActPower', $Payload['act_power']);
-                            $this->SetValue('aAprtPower', $Payload['aprt_power']);
-                            $this->SetValue('aPF', $Payload['pf']);
-                        }
-                        if (array_key_exists('1', $Payload['id'])) {
-                            $this->SetValue('bCurrent', $Payload['current']);
-                            $this->SetValue('bVoltage', $Payload['voltage']);
-                            $this->SetValue('bActPower', $Payload['act_power']);
-                            $this->SetValue('bAprtPower', $Payload['aprt_power']);
-                            $this->SetValue('bPF', $Payload['pf']);
-                        }
-                        /*Netting
-                            if ($this->ReadPropertyBoolean('Netting')) {
-                                $this->Netting();
+                            if (array_key_exists('0', $Payload['id'])) {
+                                $this->SetValue('aCurrent', $Payload['current']);
+                                $this->SetValue('aVoltage', $Payload['voltage']);
+                                $this->SetValue('aActPower', $Payload['act_power']);
+                                $this->SetValue('aAprtPower', $Payload['aprt_power']);
+                                $this->SetValue('aPF', $Payload['pf']);
                             }
-                            if (array_key_exists('emdata:0', $Payload['params'])) {
-                            $emData = $Payload['params']['emdata:0'];
-                            $this->SetValue('aTotalActEnergy', floatval($emData['a_total_act_energy']) / 1000);
-                            $this->SetValue('aTotalActRetEnergy', floatval($emData['a_total_act_ret_energy']) / 1000);
-                            $this->SetValue('bTotalActEnergy', floatval($emData['b_total_act_energy']) / 1000);
-                            $this->SetValue('bTotalActRetEnergy', floatval($emData['b_total_act_ret_energy']) / 1000);
-                            $this->SetValue('cTotalActEnergy', floatval($emData['c_total_act_energy']) / 1000);
-                            $this->SetValue('cTotalActRetEnergy', floatval($emData['c_total_act_ret_energy']) / 1000);
+                            if (array_key_exists('1', $Payload['id'])) {
+                                $this->SetValue('bCurrent', $Payload['current']);
+                                $this->SetValue('bVoltage', $Payload['voltage']);
+                                $this->SetValue('bActPower', $Payload['act_power']);
+                                $this->SetValue('bAprtPower', $Payload['aprt_power']);
+                                $this->SetValue('bPF', $Payload['pf']);
+                            }
+                            /*Netting
+                                if ($this->ReadPropertyBoolean('Netting')) {
+                                    $this->Netting();
+                                }
+                                if (array_key_exists('emdata:0', $Payload['params'])) {
+                                $emData = $Payload['params']['emdata:0'];
+                                $this->SetValue('aTotalActEnergy', floatval($emData['a_total_act_energy']) / 1000);
+                                $this->SetValue('aTotalActRetEnergy', floatval($emData['a_total_act_ret_energy']) / 1000);
+                                $this->SetValue('bTotalActEnergy', floatval($emData['b_total_act_energy']) / 1000);
+                                $this->SetValue('bTotalActRetEnergy', floatval($emData['b_total_act_ret_energy']) / 1000);
+                                $this->SetValue('cTotalActEnergy', floatval($emData['c_total_act_energy']) / 1000);
+                                $this->SetValue('cTotalActRetEnergy', floatval($emData['c_total_act_ret_energy']) / 1000);
 
-                            $this->SetValue('totalActEnergy', (floatval($emData['total_act']) / 1000) + $this->ReadPropertyFloat('TotalActiveEnergyOffset'));
-                            $this->SetValue('totalActRetEnergy', (floatval($emData['total_act_ret']) / 1000) + $this->ReadPropertyFloat('TotalActRetEnergyOffset'));
+                                $this->SetValue('totalActEnergy', (floatval($emData['total_act']) / 1000) + $this->ReadPropertyFloat('TotalActiveEnergyOffset'));
+                                $this->SetValue('totalActRetEnergy', (floatval($emData['total_act_ret']) / 1000) + $this->ReadPropertyFloat('TotalActRetEnergyOffset'));
+                            }
+                             */
                         }
-                         */
                     }
                 }
             }
