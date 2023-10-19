@@ -29,6 +29,10 @@
                 {
                     "caption": "Shelly Plus 1PM Mini",
                     "value": "shellyplus1pmmini"
+                },
+                {
+                    "caption": "Shelly Plus PM Mini",
+                    "value": "shellypmmini"
                 }
             ]
         },
