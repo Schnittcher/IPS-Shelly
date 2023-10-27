@@ -9,8 +9,8 @@ class ShellyPlusPMMini extends ShellyModule
         ['Current', 'Current', VARIABLETYPE_FLOAT, '~Ampere', [], '', false, true],
         ['Voltage', 'Voltage', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true],
         ['Power', 'Power', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true],
-        ['AprtPower', 'Apparent Power', VARIABLETYPE_FLOAT, '~Watt', [], '', false, true],
-        ['PF', 'Power Factor', VARIABLETYPE_FLOAT, '', [], '', false, true],
+        //['AprtPower', 'Apparent Power', VARIABLETYPE_FLOAT, '~Watt', [], '', false, true],
+        //['PF', 'Power Factor', VARIABLETYPE_FLOAT, '', [], '', false, true],
         ['Frequency ', 'Frequency', VARIABLETYPE_FLOAT, '~Hertz', [], '', false, true],
         ['TotalEnergy', 'Total Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
         ['Error', 'Error', VARIABLETYPE_STRING, '', [], '', false, true],
@@ -40,8 +40,8 @@ class ShellyPlusPMMini extends ShellyModule
                             $this->SetValue('Current', $Payload['current']);
                             $this->SetValue('Voltage', $Payload['voltage']);
                             $this->SetValue('Power', $Payload['apower']);
-                            $this->SetValue('AprtPower', $Payload['aprtpower']);
-                            $this->SetValue('PF', $Payload['pf']);
+                            //$this->SetValue('AprtPower', $Payload['aprtpower']);
+                            //$this->SetValue('PF', $Payload['pf']);
                             $this->SetValue('Frequency', $Payload['freq']);
                             if (array_key_exists('aenergy', $Payload)) {
                                 if (array_key_exists('total', $Payload['aenergy'])) {
