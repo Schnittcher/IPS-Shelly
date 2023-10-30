@@ -113,9 +113,6 @@ class ShellyPlusPlugS extends ShellyModule
                                     $this->SetValue('TotalEnergy', $Payload['aenergy']['total'] / 1000);
                                 }
                             }
-                        }
-                        //Temperatur ist immer vorhanden und sollte immer der selbe Wert sein.
-                        if (fnmatch('*/status/*', $Buffer['Topic'])) {
                             if (array_key_exists('temperature', $Payload)) {
                                 if (array_key_exists('tC', $Payload['temperature'])) {
                                     $this->SetValue('DeviceTemperature', $Payload['temperature']['tC']);
