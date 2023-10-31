@@ -95,6 +95,15 @@ class ShellyPlusPlugS extends ShellyModule
                                 }
                             }
                         }
+
+                        if (fnmatch('*/status/*', $Buffer['Topic'])) {
+                            if (array_key_exists('temperature', $Payload)) {
+                                if (array_key_exists('tC', $Payload['temperature'])) {
+                                    $this->SetValue('DeviceTemperature', $Payload['temperature']['tC']);
+                                }
+                            }
+                        }
+
                         if (fnmatch('*/status/switch:0', $Buffer['Topic'])) {
                             if (array_key_exists('output', $Payload)) {
                                 $this->SetValue('State', $Payload['output']);
@@ -111,11 +120,6 @@ class ShellyPlusPlugS extends ShellyModule
                             if (array_key_exists('aenergy', $Payload)) {
                                 if (array_key_exists('total', $Payload['aenergy'])) {
                                     $this->SetValue('TotalEnergy', $Payload['aenergy']['total'] / 1000);
-                                }
-                            }
-                            if (array_key_exists('temperature', $Payload)) {
-                                if (array_key_exists('tC', $Payload['temperature'])) {
-                                    $this->SetValue('DeviceTemperature', $Payload['temperature']['tC']);
                                 }
                             }
                         }
