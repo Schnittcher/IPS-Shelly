@@ -10,8 +10,8 @@ class ShellyPlus1 extends ShellyModule
 
         ['Power', 'Power', VARIABLETYPE_FLOAT, '~Watt.3680', ['shellyplus1pm', 'shellyplus1pmmini', 'shellypmmini'], '', false, true],
         ['TotalEnergy', 'Total Energy', VARIABLETYPE_FLOAT, '~Electricity', ['shellyplus1pm', 'shellyplus1pmmini', 'shellypmmini'], '', false, true],
-        ['Current', 'Current', VARIABLETYPE_FLOAT, '~Ampere', ['shellyplus1pm', 'shellyplus1pmmini','shellypmmini'], '', false, true],
-        ['Voltage', 'Voltage', VARIABLETYPE_FLOAT, '~Volt', ['shellyplus1pm', 'shellyplus1pmmini','shellypmmini'], '', false, true],
+        ['Current', 'Current', VARIABLETYPE_FLOAT, '~Ampere', ['shellyplus1pm', 'shellyplus1pmmini', 'shellypmmini'], '', false, true],
+        ['Voltage', 'Voltage', VARIABLETYPE_FLOAT, '~Volt', ['shellyplus1pm', 'shellyplus1pmmini', 'shellypmmini'], '', false, true],
         ['Overtemp', 'Overtemp', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
         ['Overpower', 'Overpower', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
         ['Overvoltage', 'Overvoltage', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
