@@ -1,0 +1,15 @@
+{
+    "translations": {
+        "de": {
+            "Event": "Event",
+            "BLU Address": "BLU Adresse",
+            "Single": "Einfach",
+            "Double": "Zweifach",
+            "Tripple": "Dreifach",
+            "Long": "Lang",
+            "Variable profile type does not match for profile": "Der Profiltyp der Variablen stimmt nicht mit dem Profil überein",
+            "Battery": "Batterie",
+            "Active": "Aktiv"
+        }
+    }
+}
