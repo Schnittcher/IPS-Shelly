@@ -9,7 +9,7 @@
   
    Beim Laden der Konfiguratinsform werden die Geräte im Netzwerk gesucht.
    In der Liste kann das Gerät ausgewählt werden, welches in IP-Symcon eingerichtet werden soll.
-   Über den Erstellen Button wird die Instanz in IP-Symcon angelegt und die vordefienierte Konfiguration übernommen.
+   Über den Erstellen Button wird die Instanz in IP-Symcon angelegt und die vordefinierte Konfiguration übernommen.
    
    Bei nachstendene Geräten kann eine Auswahl erfolgen, mit welcher Konfiguration die Geräte in IP-Symcon angelegt werden sollen:
 
