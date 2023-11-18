@@ -14,7 +14,7 @@
 ## 2. Funktionen
    
    **RequestAction($VariablenID, $Value);**
-   ```
+   
    Mit dieser Funktion können alle Aktionen einer Variable ausgelöst werden.
 
    **Beispiel:**
@@ -26,6 +26,7 @@
    ```
 
    **SHELLY_SetLEDColorSwitchState($InstanzID, string $state, array $rgb, int $brightness);**
+
    Mit dieser Funktion kann der LED Ring auf den Modus "Switch state" umgestellt werden, zeitgleich wird die Farbe für den Status "on" oder "off" gesetzt.
    Der RGB Farbraum ist von 0-100.
    
@@ -37,7 +38,7 @@
    ```
 
    **SHELLY_SetLEDPowerConsumption($InstanzID,int $brightness);**
-   ```
+   
    Mit dieser Funktion kann der LED Ring auf den Modus "Power consumption" umgestellt werden, zeitgleich wird die Helligkeit für den die Farbe gesetzt.
    Der Wert für Helligkeit ist von 0-100.
    
