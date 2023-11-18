@@ -129,6 +129,58 @@ class ShellyPlusPlugS extends ShellyModule
         }
     }
 
+    public function SetLEDColorSwitchState(string $state, array $rgb, int $brightness)
+    {
+        if ((!$state == 'on') || (!$state == 'off')) {
+            return;
+        }
+        $config = [
+            'config' => [
+                'leds' => [
+                    'mode'   => 'switch',
+                    'colors' => [
+                        'switch:0' => [
+                            $state => [
+                                'rgb'        => $rgb,
+                                'brightness' => $brightness,
+                            ],
+                        ]
+                    ],
+                ],
+            ],
+        ];
+        $this->setUiCOnfig($config);
+    }
+
+    public function SetLEDPowerConsumption($brightness)
+    {
+        $config = [
+            'config' => [
+                'leds' => [
+                    'mode'   => 'power',
+                    'colors' => [
+                        'power'  => [
+                            'brightness' => $brightness,
+                        ],
+                    ],
+                ],
+            ],
+        ];
+        $this->setUiCOnfig($config);
+    }
+
+    public function SetLEDOff()
+    {
+        $config = [
+            'config' => [
+                'leds' => [
+                    'mode'   => 'off',
+                ],
+            ],
+        ];
+        $this->setUiCOnfig($config);
+    }
+
     private function SwitchMode(int $switch, bool $value)
     {
         $Topic = $this->ReadPropertyString('MQTTTopic') . '/rpc';
@@ -140,4 +192,15 @@ class ShellyPlusPlugS extends ShellyModule
 
         $this->sendMQTT($Topic, json_encode($Payload));
     }
+
+    private function setUiCOnfig(array $config)
+    {
+        $Topic = $this->ReadPropertyString('MQTTTopic') . '/rpc';
+        $Payload['id'] = 1;
+        $Payload['src'] = 'user_1';
+        $Payload['method'] = 'PLUGS_UI.SetConfig';
+        $Payload['params'] = $config;
+        $this->sendMQTT($Topic, json_encode($Payload));
+    }
 }
+
