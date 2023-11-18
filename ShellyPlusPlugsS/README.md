@@ -32,7 +32,7 @@
    
    **Beispiel:**
 
-   Instanz ID ID Status = 12345
+   Instanz ID = 12345
    ```php
    SHELLY_SetLEDColorSwitchState(12345, 'on', [0 => 0, 1 => 100, 2=> 0], 100);  //Schaltet den Mode auf "Switch state" und die Farbe für den Status "on" auf Grün.
    ```
@@ -44,18 +44,18 @@
    
    **Beispiel:**
 
-   Instanz ID ID Status = 12345
+   Instanz ID = 12345
    ```php
    SHELLY_SetLEDPowerConsumption(12345, 100);  //Schaltet den Mode auf "Power consumption" und die Helligkeit auf 100%.
    ```
 
    **SHELLY_SetLEDOff($InstanzID);**
-   
+
    Mit dieser Funktion kann der LED Ring auf den Modus "Completely off" umgestellt werden.
 
    **Beispiel:**
 
-   Instanz ID ID Status = 12345
+   Instanz ID = 12345
    ```php
    SHELLY_SetLEDOff(12345);  //Schaltet den Mode auf "Completely off".
    ```
