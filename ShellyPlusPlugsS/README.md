@@ -13,8 +13,7 @@
    MQTT Topic | Hier wird das Topic (shellyplusplugs-deviceid) des Shelly Plus Plug S eingetragen.
 ## 2. Funktionen
    
-   ```php
-   RequestAction($VariablenID, $Value);
+   **RequestAction($VariablenID, $Value);**
    ```
    Mit dieser Funktion können alle Aktionen einer Variable ausgelöst werden.
 
@@ -26,11 +25,10 @@
    RequestAction(12345, false); //Status Ausschalten;
    ```
 
-   ```php
-   SHELLY_SetLEDColorSwitchState($InstanzID, string $state, array $rgb, int $brightness);
-   ```
+   **SHELLY_SetLEDColorSwitchState($InstanzID, string $state, array $rgb, int $brightness);**
    Mit dieser Funktion kann der LED Ring auf den Modus "Switch state" umgestellt werden, zeitgleich wird die Farbe für den Status "on" oder "off" gesetzt.
    Der RGB Farbraum ist von 0-100.
+   
    **Beispiel:**
 
    Instanz ID ID Status = 12345
@@ -38,11 +36,11 @@
    SHELLY_SetLEDColorSwitchState(12345, 'on', [0 => 0, 1 => 100, 2=> 0], 100);  //Schaltet den Mode auf "Switch state" und die Farbe für den Status "on" auf Grün.
    ```
 
-   ```php
-   SHELLY_SetLEDPowerConsumption($InstanzID,int $brightness);
+   **SHELLY_SetLEDPowerConsumption($InstanzID,int $brightness);**
    ```
    Mit dieser Funktion kann der LED Ring auf den Modus "Power consumption" umgestellt werden, zeitgleich wird die Helligkeit für den die Farbe gesetzt.
    Der Wert für Helligkeit ist von 0-100.
+   
    **Beispiel:**
 
    Instanz ID ID Status = 12345
@@ -50,10 +48,9 @@
    SHELLY_SetLEDPowerConsumption(12345, 100);  //Schaltet den Mode auf "Power consumption" und die Helligkeit auf 100%.
    ```
 
-   ```php
-   SHELLY_SetLEDOff($InstanzID);
-   ```
+   **SHELLY_SetLEDOff($InstanzID);**
    Mit dieser Funktion kann der LED Ring auf den Modus "Completely off" umgestellt werden.
+
    **Beispiel:**
 
    Instanz ID ID Status = 12345
