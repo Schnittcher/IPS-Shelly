@@ -41,8 +41,12 @@ class ShellyPlusSmoke extends ShellyModule
                 if (fnmatch('*/events/rpc', $Buffer['Topic'])) {
                     if (array_key_exists('params', $Payload)) {
                         if (array_key_exists('smoke:0', $Payload['params'])) {
-                            $this->SetValue('Alarm', $Payload['params']['smoke:0']['alarm']);
-                            $this->SetValue('Mute', $Payload['params']['smoke:0']['mute']);
+                            if (array_key_exists('mute', $Payload['params']['smoke:0'])) {
+                                $this->SetValue('Alarm', $Payload['params']['smoke:0']['mute']);
+                            }
+                            if (array_key_exists('alarm', $Payload['params']['smoke:0'])) {
+                                $this->SetValue('Mute', $Payload['params']['smoke:0']['mute']);
+                            }
                         }
                         if (array_key_exists('devicepower:0', $Payload['params'])) {
                             $this->SetValue('Battery', $Payload['params']['devicepower:0']['battery']['percent']);
