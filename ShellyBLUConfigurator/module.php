@@ -77,7 +77,6 @@ class ShellyBLUConfigurator extends IPSModule
         $Devices = json_decode($this->ReadAttributeString('Devices'), true);
         if (count($Devices) > 0) {
             foreach ($Devices as $BLUAddress => $Device) {
-                IPS_LogMessage('Device', print_r($Device, true));
                 $instanceID = $this->getShellyInstances($BLUAddress);
                 if ($instanceID !== false) {
                     $AddValue = [
