@@ -34,18 +34,17 @@ class ShellyConfigurator extends IPSModule
             foreach ($Shellys as $key => $Shelly) {
                 $DeviceType = '';
                 $instanceID = $this->getShellyInstances($Shelly['Name']);
-                if ($instanceID !== false) {
-                    $AddValue = [
-                        'name'                  => $Shelly['Name'],
-                        'InstanceName'          => $this->getInstanceName($instanceID),
-                        'DeviceType'            => $Shelly['DeviceType'],
-                        'IPAddress'             => $Shelly['IPv4'],
-                        'Firmware'              => $Shelly['Firmware'],
-                        'instanceID'            => $instanceID
-                    ];
+                $AddValue = [
+                    'name'                  => $Shelly['Name'],
+                    'InstanceName'          => $this->getInstanceName($instanceID),
+                    'DeviceType'            => $Shelly['DeviceType'],
+                    'IPAddress'             => $Shelly['IPv4'],
+                    'Firmware'              => $Shelly['Firmware'],
+                    'instanceID'            => $instanceID
+                ];
 
-                    $moduleID = '';
-                    switch (strtolower($Shelly['DeviceType'])) {
+                $moduleID = '';
+                switch (strtolower($Shelly['DeviceType'])) {
                     case 'shelly1':
                         $moduleID = '{9E5FA0B2-AA98-48D5-AE07-78DEA4B0370A}';
                         $DeviceType = 'Shelly 1';
@@ -696,8 +695,7 @@ class ShellyConfigurator extends IPSModule
                         break;
                     }
 
-                    $Values[] = $AddValue;
-                }
+                $Values[] = $AddValue;
             }
             $Form['actions'][0]['values'] = $Values;
         }
@@ -826,8 +824,6 @@ class ShellyConfigurator extends IPSModule
                 if (strtolower(IPS_GetProperty($id, 'MQTTTopic')) == strtolower($ShellyID)) {
                     if (IPS_GetInstance($id)['ConnectionID'] === IPS_GetInstance($this->InstanceID)['ConnectionID']) {
                         return $id;
-                    } else {
-                        return false;
                     }
                 }
             }

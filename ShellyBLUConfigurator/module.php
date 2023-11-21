@@ -78,16 +78,15 @@ class ShellyBLUConfigurator extends IPSModule
         if (count($Devices) > 0) {
             foreach ($Devices as $BLUAddress => $Device) {
                 $instanceID = $this->getShellyInstances($BLUAddress);
-                if ($instanceID !== false) {
-                    $AddValue = [
-                        'name'                   => $Device,
-                        'InstanceName'           => $this->getInstanceName($instanceID),
-                        'BLUAddress'             => $BLUAddress,
-                        'instanceID'             => $instanceID
-                    ];
+                $AddValue = [
+                    'name'                   => $Device,
+                    'InstanceName'           => $this->getInstanceName($instanceID),
+                    'BLUAddress'             => $BLUAddress,
+                    'instanceID'             => $instanceID
+                ];
 
-                    $moduleID = '';
-                    switch ($Device) {
+                $moduleID = '';
+                switch ($Device) {
                     case 'Shelly BLU Button 1':
                         $moduleID = '{5E02DB53-B7BD-4479-AC5C-09E7519BD89F}';
                         $DeviceType = $Device;
@@ -136,8 +135,7 @@ class ShellyBLUConfigurator extends IPSModule
                         break;
                     }
 
-                    $Values[] = $AddValue;
-                }
+                $Values[] = $AddValue;
             }
             $Form['actions'][0]['values'] = $Values;
         }
@@ -161,8 +159,6 @@ class ShellyBLUConfigurator extends IPSModule
                 if (strtolower(IPS_GetProperty($id, 'BLUAddress')) == $BLUAddress) {
                     if (IPS_GetInstance($id)['ConnectionID'] === IPS_GetInstance($this->InstanceID)['ConnectionID']) {
                         return $id;
-                    } else {
-                        return false;
                     }
                 }
             }
