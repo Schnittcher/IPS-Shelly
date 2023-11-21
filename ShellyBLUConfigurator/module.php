@@ -35,9 +35,6 @@ class ShellyBLUConfigurator extends IPSModule
         }
         if (array_key_exists('Topic', $Buffer)) {
             if (fnmatch('*/events/rpc', $Buffer['Topic'])) {
-                $this->SendDebug('test', $JSONString, 0);
-                IPS_LogMessage('test', print_r($Payload, true));
-
                 $Payload = json_decode($Buffer['Payload'], true);
                 if (array_key_exists('params', $Payload)) {
                     if (array_key_exists('events', $Payload['params'])) {
