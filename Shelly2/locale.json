@@ -1,6 +1,7 @@
 {
     "translations": {
         "de": {
+            "Active": "Aktiv",
             "State": "Status",
             "Reachable": "Erreichbar",
             "Roller": "Rollo",
@@ -13,7 +14,8 @@
             "Energy 2": "Energie 2",
             "Variable profile type does not match for profile": "Der Profiltyp der Variablen stimmt nicht mit dem Profil überein",
             "Device Type": "Geräte Typ",
-            "Device": "Geräte",
+            "Device": "Gerät",
+            "Devices": "Geräte",
             "Please set Device Type": "Bitte legen Sie den Gerätetyp fest",
             "Please select device": "Bitte wählen Sie das Gerät aus",
             "Relay": "Relais",

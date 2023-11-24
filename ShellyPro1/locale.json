@@ -1,6 +1,7 @@
 {
     "translations": {
         "de": {
+            "Active": "Aktiv",
             "State": "Status",
             "Reachable": "Erreichbar",
             "Power": "Leistung",
@@ -13,7 +14,9 @@
             "Overtemp": "Übertemperatur",
             "Please select device": "Bitte wählen Sie das Gerät aus",
             "Event Component": "Ereignis Komponente",
-            "Event": "Ereignis"
+            "Event": "Ereignis",
+            "Device": "Gerät",
+            "Devices": "Geräte"
         }
     }
 }

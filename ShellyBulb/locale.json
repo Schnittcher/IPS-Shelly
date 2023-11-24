@@ -1,6 +1,7 @@
 {
     "translations": {
         "de": {
+            "Active": "Aktiv",
             "State": "Status",
             "Mode": "Modus",
             "Reachable": "Erreichbar",
@@ -8,6 +9,7 @@
             "Power": "Leistung",
             "Energy": "Energie",
             "Device": "Gerät",
+            "Devices": "Geräte",
             "Brightness": "Helligkeit",
             "Color Temperature": "Farbtemperatur",
             "White": "Weiß",

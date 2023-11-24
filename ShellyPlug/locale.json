@@ -1,12 +1,15 @@
 {
     "translations": {
         "de": {
+            "Active": "Aktiv",
             "State": "Status",
             "Reachable": "Erreichbar",
             "Power": "Leistung",
             "Energy": "Energie",
             "Temperature": "Temperatur",
-            "Overtemperature": "Übertemperatur"
+            "Overtemperature": "Übertemperatur",
+            "Device": "Gerät",
+            "Devices": "Geräte"
         }
     }
 }

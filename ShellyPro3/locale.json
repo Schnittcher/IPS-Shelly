@@ -1,6 +1,7 @@
 {
     "translations": {
         "de": {
+            "Active": "Aktiv",
             "State 1": "Status 1",
             "State 2": "Status 2",
             "State 3": "Status 3",
@@ -16,7 +17,9 @@
             "Device Temperature": "Gerätetemperatur",
             "Event Component": "Ereignis Komponente",
             "Event": "Ereignis",
-            "Reachable": "Erreichbar"
+            "Reachable": "Erreichbar",
+            "Device": "Gerät",
+            "Devices": "Geräte"
         }
     }
 }

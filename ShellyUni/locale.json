@@ -1,6 +1,7 @@
 {
     "translations": {
         "de": {
+            "Active": "Aktiv",
             "State 1": "Status 1",
             "State 2": "Status 2",
             "Input 1": "Eingang 1",
@@ -18,7 +19,9 @@
             "External Humidity 2": "External Humidity 2",
             "External Humidity 3": "External Humidity 3",
             "External Humidity 4": "External Humidity 4",
-            "External Humidity 5": "External Humidity 5"
+            "External Humidity 5": "External Humidity 5",
+            "Device": "Gerät",
+            "Devices": "Geräte"
         }
     }
 }

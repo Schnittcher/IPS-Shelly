@@ -1,6 +1,7 @@
 {
     "translations": {
         "de": {
+            "Active": "Aktiv",
             "State": "Status",
             "Input": "Eingang",
             "Variable profile type does not match for profile": "Der Profiltyp der Variablen stimmt nicht mit dem Profil überein",
@@ -11,7 +12,9 @@
             "Please select device": "Bitte wählen Sie das Gerät aus",
             "Reachable": "Erreichbar",
             "External Temperature 1": "Externe Temperatur 1",
-            "Total Work Time": "Gesamte Laufzeit"
+            "Total Work Time": "Gesamte Laufzeit",
+            "Device": "Gerät",
+            "Devices": "Geräte"
         }
     }
 }

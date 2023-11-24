@@ -1,6 +1,7 @@
 {
     "translations": {
         "de": {
+            "Active": "Aktiv",
             "Phase A Current": "Phase A Stromstärke",
             "Phase A Voltage": "Phase A Spannung",
             "Phase A active Power": "Phase A Wirkleistung",
@@ -32,7 +33,11 @@
             "Current Returned": "Aktuelle Einspeisung",
             "Current Import": "Aktueller Bezug",
             "Import": "Bezug",
-            "Returned": "Einspeiung"
+            "Returned": "Einspeiung",
+            "Device": "Gerät",
+            "Devices": "Geräte",
+            "Total active Energy Offset": "Offset Wirkenergie (Gesamt)",
+            "Total active returned Energy Offset": "Offset für exportierte Energie (Gesamt)"
         }
     }
 }

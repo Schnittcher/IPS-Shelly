@@ -44,7 +44,7 @@ class ShellyPlus2PM extends ShellyModule
     public function Create()
     {
         parent::Create();
-        $this->RegisterPropertyString('DeviceType', '-');
+        $this->RegisterPropertyString('DeviceType', '');
     }
 
     public function RequestAction($Ident, $Value)

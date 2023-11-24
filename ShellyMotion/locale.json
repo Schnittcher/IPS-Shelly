@@ -1,13 +1,15 @@
 {
     "translations": {
         "de": {
+            "Active": "Aktiv",
             "Motion": "Bewegung",
             "Vibration": "Vibration",
             "Illuminance": "Beleuchtungsstärke",
             "Variable profile type does not match for profile": "Der Profiltyp der Variablen stimmt nicht mit dem Profil überein",
             "Battery": "Batterie",
-            "Active": "Aktiv",
-            "Reachable": "Erreichbar"
+            "Reachable": "Erreichbar",
+            "Device": "Gerät",
+            "Devices": "Geräte"
         }
     }
 }

@@ -1,6 +1,7 @@
 {
     "translations": {
         "de": {
+            "Active": "Aktiv",
             "State": "Status",
             "Input": "Eingang",
             "Longpush": "Longpush",
@@ -8,7 +9,8 @@
             "Power": "Leistung",
             "Temperature": "Temperatur",
             "Overtemperature": "Übertemperatur",
-            "Device": "Geräte",
+            "Device": "Gerät",
+            "Devices": "Geräte",
             "Energy": "Energie",
             "Please select device": "Bitte wählen Sie das Gerät aus",
             "Reachable": "Erreichbar",

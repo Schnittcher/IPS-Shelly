@@ -1,6 +1,7 @@
 {
     "translations": {
         "de": {
+            "Active": "Aktiv",
             "State": "Status",
             "Reachable": "Erreichbar",
             "Power": "Leistung",
@@ -25,7 +26,9 @@
             "External Input": "externer Eingang",
             "External Voltmeter": "externes Voltmeter",
             "Power Factor": "Leistungsfaktor",
-            "Frequency": "Frequenz"
+            "Frequency": "Frequenz",
+            "Device": "Gerät",
+            "Devices": "Geräte"
         }
     }
 }

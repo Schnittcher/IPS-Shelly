@@ -1,6 +1,7 @@
 {
     "translations": {
         "de": {
+            "Active": "Aktiv",
             "Position": "Position",
             "Target Temperature": "Zieltemperatur",
             "Temperature": "Temperatur",
@@ -9,7 +10,9 @@
             "Schedule Profile": "Zeitplan Profil",
             "Battery": "Batterie",
             "Battery Voltage": "Batteriespannung",
-            "Reachable": "Erreichbar"
+            "Reachable": "Erreichbar",
+            "Device": "Gerät",
+            "Devices": "Geräte"
         }
     }
 }

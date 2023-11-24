@@ -1,13 +1,16 @@
 {
     "translations": {
         "de": {
+            "Active": "Aktiv",
             "Motion": "Bewegung",
             "Reachable": "Erreichbar",
             "External Charger": "Externes Ladegerät",
             "Lux": "Lux",
             "Temperature": "Temperatur",
             "Humidity": "Feuchtigkeit",
-            "Battery": "Batterie"
+            "Battery": "Batterie",
+            "Device": "Gerät",
+            "Devices": "Geräte"
         }
     }
 }

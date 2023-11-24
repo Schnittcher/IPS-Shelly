@@ -1,6 +1,7 @@
 {
     "translations": {
         "de": {
+            "Active": "Aktiv",
             "State 1": "Status 1",
             "State 2": "Status 2",
             "State 3": "Status 3",
@@ -13,7 +14,9 @@
             "Energy 2": "Energie 2",
             "Energy 3": "Energie 3",
             "Energy 4": "Energie 4",
-            "Reachable": "Erreichbar"
+            "Reachable": "Erreichbar",
+            "Device": "Gerät",
+            "Devices": "Geräte"
         }
     }
 }

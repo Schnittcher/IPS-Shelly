@@ -1,6 +1,7 @@
 {
     "translations": {
         "de": {
+            "Active": "Aktiv",
             "State": "Status",
             "State 2": "Status 2",
             "State 3": "Status 3",
@@ -23,7 +24,9 @@
             "Overpower": "Überlastung",
             "Overpower 2": "Überlastung 2",
             "Overpower 3": "Überlastung 3",
-            "Overpower 4": "Überlastung 4"
+            "Overpower 4": "Überlastung 4",
+            "Device": "Gerät",
+            "Devices": "Geräte"
         }
     }
 }

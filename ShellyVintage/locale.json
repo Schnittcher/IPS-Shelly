@@ -1,12 +1,14 @@
 {
     "translations": {
         "de": {
+            "Active": "Aktiv",
             "State": "Status",
             "Reachable": "Erreichbar",
             "Variable profile type does not match for profile": "Der Profiltyp der Variablen stimmt nicht mit dem Profil überein",
             "Power": "Leistung",
             "Energy": "Energie",
-            "Device": "Geräte",
+            "Device": "Gerät",
+            "Devices": "Geräte",
             "Brightness": "Helligkeit"
         }
     }

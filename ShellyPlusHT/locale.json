@@ -1,11 +1,14 @@
 {
     "translations": {
         "de": {
+            "Active": "Aktiv",
             "Temperature": "Temperatur",
             "Reachable": "Erreichbar",
             "Humidity": "Feuchtigkeit",
             "Battery": "Batterie",
-            "Battery Volt": "Batterie Volt"
+            "Battery Volt": "Batterie Volt",
+            "Device": "Gerät",
+            "Devices": "Geräte"
         }
     }
 }

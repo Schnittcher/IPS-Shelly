@@ -1,13 +1,15 @@
 {
     "translations": {
         "de": {
+            "Active": "Aktiv",
             "State": "Status",
             "Reachable": "Erreichbar",
             "Variable profile type does not match for profile": "Der Profiltyp der Variablen stimmt nicht mit dem Profil überein",
             "Power": "Leistung",
             "Device Temperature": "Gerätetemperatur",
             "Overtemperature": "Übertemperatur",
-            "Device": "Geräte",
+            "Device": "Gerät",
+            "Devices": "Geräte",
             "Please select device": "Bitte wählen Sie das Gerät aus",
             "Brightness": "Helligkeit",
             "Input 1": " Eingang 1",

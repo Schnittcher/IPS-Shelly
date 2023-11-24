@@ -1,6 +1,7 @@
 {
     "translations": {
         "de": {
+            "Active": "Aktiv",
             "State": "Status",
             "Reachable": "Erreichbar",
             "Lux": "Lux",
@@ -8,7 +9,9 @@
             "Temperature": "Temperatur",
             "Vibration": "Vibration",
             "Tilt": "Neigung",
-            "Please select device": "Bitte wählen Sie ein Gerät aus"
+            "Please select device": "Bitte wählen Sie ein Gerät aus",
+            "Device": "Gerät",
+            "Devices": "Geräte"
         }
     }
 }

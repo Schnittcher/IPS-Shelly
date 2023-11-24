@@ -1,6 +1,9 @@
 {
     "translations": {
         "de": {
+            "Active": "Aktiv",
+            "Device Type": "Gerätetyp",
+            "Please set Device Type": "Bitte legen Sie den Gerätetyp fest",
             "State 1": "Status 1",
             "State 2": "Status 2",
             "Power": "Leistung",
@@ -44,7 +47,11 @@
             "Event Component": "Ereignis Komponente",
             "Event": "Ereignis",
             "State": "Status",
-            "Reachable": "Erreichbar"
+            "Reachable": "Erreichbar",
+            "Device": "Gerät",
+            "Devices": "Geräte",
+            "Relay": "Relais",
+            "Cover" : "Rollo"
         }
     }
 }

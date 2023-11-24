@@ -1,6 +1,7 @@
 {
     "translations": {
         "de": {
+            "Active": "Aktiv",
             "State": "Status",
             "Energy L1": "Energie L1",
             "Energy L2": "Energie L2",
@@ -17,7 +18,9 @@
             "Total Returned L1": "Gesamt eingespeist L1",
             "Total Returned L2": "Gesamt eingespeist L2",
             "Variable profile type does not match for profile": "Der Profiltyp der Variablen stimmt nicht mit dem Profil überein",
-            "Reachable": "Erreichbar"
+            "Reachable": "Erreichbar",
+            "Device": "Gerät",
+            "Devices": "Geräte"
         }
     }
 }

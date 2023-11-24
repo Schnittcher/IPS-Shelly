@@ -1,10 +1,13 @@
 {
     "translations": {
         "de": {
+            "Active": "Aktiv",
             "Temperature": "Temperatur",
             "Smoke": " Rauch",
             "Battery": "Batterie",
-            "Reachable": "Erreichbar"
+            "Reachable": "Erreichbar",
+            "Device": "Gerät",
+            "Devices": "Geräte"
         }
     }
 }

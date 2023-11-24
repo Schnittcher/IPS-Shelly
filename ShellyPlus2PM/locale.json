@@ -1,6 +1,8 @@
 {
     "translations": {
         "de": {
+            "Active": "Aktiv",
+            "Device Type": "Gerätetyp",
             "State 1": "Status 1",
             "State 2": "Status 2",
             "Power 1": "Leistung 1",
@@ -30,7 +32,9 @@
             "External Input State 1": "Externer Eingang 1 (Status)",
             "External Input Percent 1": "Externer Eingang 1 (Prozent)",
             "External Input State 2": "Externer Eingang 2 (Status)",
-            "External Input Percent 2": "Externer Eingang 2 (Prozent)"
+            "External Input Percent 2": "Externer Eingang 2 (Prozent)",
+            "Device": "Gerät",
+            "Devices": "Geräte"
         }
     }
 }

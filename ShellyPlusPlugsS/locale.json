@@ -1,6 +1,7 @@
 {
     "translations": {
         "de": {
+            "Active": "Aktiv",
             "State": "Status",
             "Reachable": "Erreichbar",
             "Power": "Leistung",
@@ -14,7 +15,9 @@
             "Device Temperature": "Gerätetemperatur",
             "Please select device": "Bitte wählen Sie das Gerät aus",
             "Event Component": "Ereignis Komponente",
-            "Event": "Ereignis"
+            "Event": "Ereignis",
+            "Device": "Gerät",
+            "Devices": "Geräte"
         }
     }
 }

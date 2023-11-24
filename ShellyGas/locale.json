@@ -1,6 +1,7 @@
 {
     "translations": {
         "de": {
+            "Active": "Aktiv",
             "Reachable": "Erreichbar",
             "Operation": "Operation",
             "Unknown": "Unbekannt",
@@ -26,7 +27,9 @@
             "Invalid Ident for RequestAction:": "Ungültiger Ident für RequestAction:",
             "Invalid Value for Operation:": "Ungültiger Wert für Operation:",
             "Invalid Value for Gas:": "Ungültiger Wert für Gas:",
-            "Invalid Value for Self Test:": "Ungültiger Wert für Self Test"
+            "Invalid Value for Self Test:": "Ungültiger Wert für Self Test",
+            "Device": "Gerät",
+            "Devices": "Geräte"
         }
     }
 }

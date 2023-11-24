@@ -1,6 +1,7 @@
 {
     "translations": {
         "de": {
+            "Active": "Aktiv",
             "State": "Status",
             "Reachable": "Erreichbar",
             "Power L1": "Leistung L1",
@@ -23,7 +24,9 @@
             "Total Returned L3": "Gesamt eingespeist L3",
             "Variable profile type does not match for profile": "Der Profiltyp der Variablen stimmt nicht mit dem Profil überein",
             "N Current": "N Stromstärke",
-            "Neutral Conductor N RMS (ixsum)": " Neutralleiter N RMS (ixsum)"
+            "Neutral Conductor N RMS (ixsum)": " Neutralleiter N RMS (ixsum)",
+            "Device": "Gerät",
+            "Devices": "Geräte"
         }
     }
 }

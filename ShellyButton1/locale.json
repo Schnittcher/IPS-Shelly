@@ -1,6 +1,7 @@
 {
     "translations": {
         "de": {
+            "Active": "Aktiv",
             "Input": "Eingang",
             "shortpush": "shortpush",
             "double shortpush": "double shortpush",
@@ -8,7 +9,9 @@
             "longpush": "longpush",
             "Variable profile type does not match for profile": "Der Profiltyp der Variablen stimmt nicht mit dem Profil überein",
             "Reachable": "Erreichbar",
-            "Battery": "Batterie"
+            "Battery": "Batterie",
+            "Device": "Gerät",
+            "Devices": "Geräte"
         }
     }
 }
