@@ -91,13 +91,11 @@ class ShellyBLUConfigurator extends IPSModule
                         $moduleID = '{5E02DB53-B7BD-4479-AC5C-09E7519BD89F}';
                         $DeviceType = $Device;
                         $AddValue['create'] = [
-                            [
-                                'moduleID'      => $moduleID,
-                                'info'          => $BLUAddress,
-                                'configuration' => [
-                                    'BLUAddress' => $BLUAddress,
-                                    'Event'      => 'shelly-blu'
-                                ]
+                            'moduleID'      => $moduleID,
+                            'info'          => $BLUAddress,
+                            'configuration' => [
+                                'BLUAddress' => $BLUAddress,
+                                'Event'      => 'shelly-blu'
                             ]
                         ];
                         break;
@@ -105,13 +103,11 @@ class ShellyBLUConfigurator extends IPSModule
                         $moduleID = '{3551089F-4CDF-4440-B7FA-3ACB88CAD23F}';
                         $DeviceType = $Device;
                         $AddValue['create'] = [
-                            [
-                                'moduleID'      => $moduleID,
-                                'info'          => $BLUAddress,
-                                'configuration' => [
-                                    'BLUAddress' => $BLUAddress,
-                                    'Event'      => 'shelly-blu'
-                                ]
+                            'moduleID'      => $moduleID,
+                            'info'          => $BLUAddress,
+                            'configuration' => [
+                                'BLUAddress' => $BLUAddress,
+                                'Event'      => 'shelly-blu'
                             ]
                         ];
                         break;
@@ -119,13 +115,11 @@ class ShellyBLUConfigurator extends IPSModule
                         $moduleID = '{2F6CA178-2817-4F78-A88B-1783997CEC0E}';
                         $DeviceType = $Device;
                         $AddValue['create'] = [
-                            [
-                                'moduleID'      => $moduleID,
-                                'info'          => $BLUAddress,
-                                'configuration' => [
-                                    'BLUAddress' => $BLUAddress,
-                                    'Event'      => 'shelly-blu'
-                                ]
+                            'moduleID'      => $moduleID,
+                            'info'          => $BLUAddress,
+                            'configuration' => [
+                                'BLUAddress' => $BLUAddress,
+                                'Event'      => 'shelly-blu'
                             ]
                         ];
                         break;
