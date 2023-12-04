@@ -49,13 +49,11 @@ class ShellyConfigurator extends IPSModule
                         $moduleID = '{9E5FA0B2-AA98-48D5-AE07-78DEA4B0370A}';
                         $DeviceType = 'Shelly 1';
                         $AddValue['create'] = [
-                            [
-                                'moduleID'      => $moduleID,
-                                'info'          => $Shelly['IPv4'],
-                                'configuration' => [
-                                    'MQTTTopic' => $Shelly['Name'],
-                                    'Device'    => 'shelly1'
-                                ]
+                            'moduleID'      => $moduleID,
+                            'info'          => $Shelly['IPv4'],
+                            'configuration' => [
+                                'MQTTTopic' => $Shelly['Name'],
+                                'Device'    => 'shelly1'
                             ]
                         ];
                         break;
@@ -63,13 +61,11 @@ class ShellyConfigurator extends IPSModule
                         $moduleID = '{9E5FA0B2-AA98-48D5-AE07-78DEA4B0370A}';
                         $DeviceType = 'Shelly 1 PM';
                         $AddValue['create'] = [
-                            [
-                                'moduleID'      => $moduleID,
-                                'info'          => $Shelly['IPv4'],
-                                'configuration' => [
-                                    'MQTTTopic' => $Shelly['Name'],
-                                    'Device'    => 'shelly1pm'
-                                ]
+                            'moduleID'      => $moduleID,
+                            'info'          => $Shelly['IPv4'],
+                            'configuration' => [
+                                'MQTTTopic' => $Shelly['Name'],
+                                'Device'    => 'shelly1pm'
                             ]
                         ];
                         break;
@@ -77,13 +73,11 @@ class ShellyConfigurator extends IPSModule
                         $moduleID = '{9E5FA0B2-AA98-48D5-AE07-78DEA4B0370A}';
                         $DeviceType = 'Shelly 1L';
                         $AddValue['create'] = [
-                            [
-                                'moduleID'      => $moduleID,
-                                'info'          => $Shelly['IPv4'],
-                                'configuration' => [
-                                    'MQTTTopic' => $Shelly['Name'],
-                                    'Device'    => 'shelly1l'
-                                ]
+                            'moduleID'      => $moduleID,
+                            'info'          => $Shelly['IPv4'],
+                            'configuration' => [
+                                'MQTTTopic' => $Shelly['Name'],
+                                'Device'    => 'shelly1l'
                             ]
                         ];
                         break;
@@ -139,12 +133,10 @@ class ShellyConfigurator extends IPSModule
                         $moduleID = '{F56CC544-581D-42EB-AAF0-F5E9E908916C}';
                         $DeviceType = 'Shelly 4 Pro';
                         $AddValue['create'] = [
-                            [
-                                'moduleID'      => $moduleID,
-                                'info'          => $Shelly['IPv4'],
-                                'configuration' => [
-                                    'MQTTTopic' => $Shelly['Name'],
-                                ]
+                            'moduleID'      => $moduleID,
+                            'info'          => $Shelly['IPv4'],
+                            'configuration' => [
+                                'MQTTTopic' => $Shelly['Name'],
                             ]
                         ];
                         break;
@@ -153,12 +145,10 @@ class ShellyConfigurator extends IPSModule
                         $moduleID = '{69B501C7-DCE8-4A4A-910C-D3954473E654}';
                         $DeviceType = 'Shelly Dimmer';
                         $AddValue['create'] = [
-                            [
-                                'moduleID'      => $moduleID,
-                                'info'          => $Shelly['IPv4'],
-                                'configuration' => [
-                                    'MQTTTopic' => $Shelly['Name']
-                                ]
+                            'moduleID'      => $moduleID,
+                            'info'          => $Shelly['IPv4'],
+                            'configuration' => [
+                                'MQTTTopic' => $Shelly['Name']
                             ]
                         ];
                         break;
@@ -166,12 +156,10 @@ class ShellyConfigurator extends IPSModule
                         $moduleID = '{F2EE9948-94F6-4BA6-BDC9-E59E440F3DB0}';
                         $DeviceType = 'Shelly H&T';
                         $AddValue['create'] = [
-                            [
-                                'moduleID'      => $moduleID,
-                                'info'          => $Shelly['IPv4'],
-                                'configuration' => [
-                                    'MQTTTopic' => $Shelly['Name']
-                                ]
+                            'moduleID'      => $moduleID,
+                            'info'          => $Shelly['IPv4'],
+                            'configuration' => [
+                                'MQTTTopic' => $Shelly['Name']
                             ]
                         ];
                         break;
@@ -179,12 +167,10 @@ class ShellyConfigurator extends IPSModule
                         $moduleID = '{ED5E1057-C47A-4D73-A130-B4E2912A026C}';
                         $DeviceType = 'Shelly Plug';
                         $AddValue['create'] = [
-                            [
-                                'moduleID'      => $moduleID,
-                                'info'          => $Shelly['IPv4'],
-                                'configuration' => [
-                                    'MQTTTopic' => $Shelly['Name']
-                                ]
+                            'moduleID'      => $moduleID,
+                            'info'          => $Shelly['IPv4'],
+                            'configuration' => [
+                                'MQTTTopic' => $Shelly['Name']
                             ]
                         ];
                         break;
@@ -192,12 +178,10 @@ class ShellyConfigurator extends IPSModule
                         $moduleID = '{53A4EF84-0CF9-44D4-B70E-4B84E0DCE9B3}';
                         $DeviceType = 'Shelly EM';
                         $AddValue['create'] = [
-                            [
-                                'moduleID'      => $moduleID,
-                                'info'          => $Shelly['IPv4'],
-                                'configuration' => [
-                                    'MQTTTopic' => $Shelly['Name']
-                                ]
+                            'moduleID'      => $moduleID,
+                            'info'          => $Shelly['IPv4'],
+                            'configuration' => [
+                                'MQTTTopic' => $Shelly['Name']
                             ]
                         ];
                         break;
@@ -205,12 +189,10 @@ class ShellyConfigurator extends IPSModule
                         $moduleID = '{108ECEFF-642A-4B1F-9608-E592E31DBA11}';
                         $DeviceType = 'Shelly 3EM';
                         $AddValue['create'] = [
-                            [
-                                'moduleID'      => $moduleID,
-                                'info'          => $Shelly['IPv4'],
-                                'configuration' => [
-                                    'MQTTTopic' => $Shelly['Name']
-                                ]
+                            'moduleID'      => $moduleID,
+                            'info'          => $Shelly['IPv4'],
+                            'configuration' => [
+                                'MQTTTopic' => $Shelly['Name']
                             ]
                         ];
                         break;
@@ -239,12 +221,10 @@ class ShellyConfigurator extends IPSModule
                     case 'shellysense':
                         $moduleID = '{F86F268B-BC23-41AC-B107-16EEF661A4D7}';
                         $AddValue['create'] = [
-                            [
-                                'moduleID'      => $moduleID,
-                                'info'          => $Shelly['IPv4'],
-                                'configuration' => [
-                                    'MQTTTopic' => $Shelly['Name']
-                                ]
+                            'moduleID'      => $moduleID,
+                            'info'          => $Shelly['IPv4'],
+                            'configuration' => [
+                                'MQTTTopic' => $Shelly['Name']
                             ]
                         ];
                         break;
@@ -252,12 +232,10 @@ class ShellyConfigurator extends IPSModule
                         $moduleID = '{88A5611C-CD57-4255-9F57-E420CE784C81}';
                         $DeviceType = 'Shelly Smoke';
                         $AddValue['create'] = [
-                            [
-                                'moduleID'      => $moduleID,
-                                'info'          => $Shelly['IPv4'],
-                                'configuration' => [
-                                    'MQTTTopic' => $Shelly['Name']
-                                ]
+                            'moduleID'      => $moduleID,
+                            'info'          => $Shelly['IPv4'],
+                            'configuration' => [
+                                'MQTTTopic' => $Shelly['Name']
                             ]
                         ];
                         break;
@@ -265,12 +243,10 @@ class ShellyConfigurator extends IPSModule
                         $moduleID = '{C360BA67-99A3-4F37-932B-B851D4E10AD6}';
                         $DeviceType = 'Shelly Flood';
                         $AddValue['create'] = [
-                            [
-                                'moduleID'      => $moduleID,
-                                'info'          => $Shelly['IPv4'],
-                                'configuration' => [
-                                    'MQTTTopic' => $Shelly['Name']
-                                ]
+                            'moduleID'      => $moduleID,
+                            'info'          => $Shelly['IPv4'],
+                            'configuration' => [
+                                'MQTTTopic' => $Shelly['Name']
                             ]
                         ];
                         break;
@@ -278,12 +254,10 @@ class ShellyConfigurator extends IPSModule
                         $moduleID = '{9BFE4A38-47C9-775E-A6BE-DA338817A639}';
                         $DeviceType = 'Shelly Vintage';
                         $AddValue['create'] = [
-                            [
-                                'moduleID'      => $moduleID,
-                                'info'          => $Shelly['IPv4'],
-                                'configuration' => [
-                                    'MQTTTopic' => $Shelly['Name']
-                                ]
+                            'moduleID'      => $moduleID,
+                            'info'          => $Shelly['IPv4'],
+                            'configuration' => [
+                                'MQTTTopic' => $Shelly['Name']
                             ]
                         ];
                         break;
@@ -291,12 +265,10 @@ class ShellyConfigurator extends IPSModule
                         $moduleID = '{55840D9D-BB28-4D66-91B5-66C8859FAE83}';
                         $DeviceType = 'Shelly Air';
                         $AddValue['create'] = [
-                            [
-                                'moduleID'      => $moduleID,
-                                'info'          => $Shelly['IPv4'],
-                                'configuration' => [
-                                    'MQTTTopic' => $Shelly['Name']
-                                ]
+                            'moduleID'      => $moduleID,
+                            'info'          => $Shelly['IPv4'],
+                            'configuration' => [
+                                'MQTTTopic' => $Shelly['Name']
                             ]
                         ];
                         break;
@@ -304,12 +276,10 @@ class ShellyConfigurator extends IPSModule
                             $moduleID = '{B1BEE0E4-5ADE-4326-98A8-1F7B3731E456}';
                             $DeviceType = 'Shelly Button1';
                             $AddValue['create'] = [
-                                [
-                                    'moduleID'      => $moduleID,
-                                    'info'          => $Shelly['IPv4'],
-                                    'configuration' => [
-                                        'MQTTTopic' => $Shelly['Name']
-                                    ]
+                                'moduleID'      => $moduleID,
+                                'info'          => $Shelly['IPv4'],
+                                'configuration' => [
+                                    'MQTTTopic' => $Shelly['Name']
                                 ]
                             ];
                             break;
@@ -317,13 +287,11 @@ class ShellyConfigurator extends IPSModule
                             $moduleID = '{24BDCF16-A370-6F72-8CBD-9B9968899FED}';
                             $DeviceType = 'Shelly Door / Window';
                             $AddValue['create'] = [
-                                [
-                                    'moduleID'      => $moduleID,
-                                    'info'          => $Shelly['IPv4'],
-                                    'configuration' => [
-                                        'MQTTTopic'  => $Shelly['Name'],
-                                        'Device'     => 'DW'
-                                    ]
+                                'moduleID'      => $moduleID,
+                                'info'          => $Shelly['IPv4'],
+                                'configuration' => [
+                                    'MQTTTopic'  => $Shelly['Name'],
+                                    'Device'     => 'DW'
                                 ]
                             ];
                             break;
@@ -331,13 +299,11 @@ class ShellyConfigurator extends IPSModule
                             $moduleID = '{24BDCF16-A370-6F72-8CBD-9B9968899FED}';
                             $DeviceType = 'Shelly Door / Window';
                             $AddValue['create'] = [
-                                [
-                                    'moduleID'      => $moduleID,
-                                    'info'          => $Shelly['IPv4'],
-                                    'configuration' => [
-                                        'MQTTTopic'  => $Shelly['Name'],
-                                        'Device'     => 'DW2'
-                                    ]
+                                'moduleID'      => $moduleID,
+                                'info'          => $Shelly['IPv4'],
+                                'configuration' => [
+                                    'MQTTTopic'  => $Shelly['Name'],
+                                    'Device'     => 'DW2'
                                 ]
                             ];
                             break;
@@ -345,12 +311,10 @@ class ShellyConfigurator extends IPSModule
                             $moduleID = '{8725928A-A390-42FA-B045-A182499767C1}';
                             $DeviceType = 'Shelly Gas';
                             $AddValue['create'] = [
-                                [
-                                    'moduleID'      => $moduleID,
-                                    'info'          => $Shelly['IPv4'],
-                                    'configuration' => [
-                                        'MQTTTopic' => $Shelly['Name']
-                                    ]
+                                'moduleID'      => $moduleID,
+                                'info'          => $Shelly['IPv4'],
+                                'configuration' => [
+                                    'MQTTTopic' => $Shelly['Name']
                                 ]
                             ];
                             break;
@@ -358,12 +322,10 @@ class ShellyConfigurator extends IPSModule
                             $moduleID = '{2B0AD1B9-1335-6C50-5CEC-DDCD03DAE252}';
                             $DeviceType = 'Shelly i3';
                             $AddValue['create'] = [
-                                [
-                                    'moduleID'      => $moduleID,
-                                    'info'          => $Shelly['IPv4'],
-                                    'configuration' => [
-                                        'MQTTTopic' => $Shelly['Name']
-                                    ]
+                                'moduleID'      => $moduleID,
+                                'info'          => $Shelly['IPv4'],
+                                'configuration' => [
+                                    'MQTTTopic' => $Shelly['Name']
                                 ]
                             ];
                             break;
@@ -371,13 +333,11 @@ class ShellyConfigurator extends IPSModule
                             $moduleID = '{6FEE58E6-082D-6934-F49E-EC6642E39992}';
                             $DeviceType = 'Shelly Duo';
                             $AddValue['create'] = [
-                                [
-                                    'moduleID'      => $moduleID,
-                                    'info'          => $Shelly['IPv4'],
-                                    'configuration' => [
-                                        'MQTTTopic' => $Shelly['Name'],
-                                        'Device'    => 'light'
-                                    ]
+                                'moduleID'      => $moduleID,
+                                'info'          => $Shelly['IPv4'],
+                                'configuration' => [
+                                    'MQTTTopic' => $Shelly['Name'],
+                                    'Device'    => 'light'
                                 ]
                             ];
                             break;
@@ -385,12 +345,10 @@ class ShellyConfigurator extends IPSModule
                             $moduleID = '{D10AF7A0-CBC0-415A-BD3B-FFF0E8BB8B21}';
                             $DeviceType = 'Shelly Uni';
                             $AddValue['create'] = [
-                                [
-                                    'moduleID'      => $moduleID,
-                                    'info'          => $Shelly['IPv4'],
-                                    'configuration' => [
-                                        'MQTTTopic' => $Shelly['Name']
-                                    ]
+                                'moduleID'      => $moduleID,
+                                'info'          => $Shelly['IPv4'],
+                                'configuration' => [
+                                    'MQTTTopic' => $Shelly['Name']
                                 ]
                             ];
                             break;
@@ -398,12 +356,10 @@ class ShellyConfigurator extends IPSModule
                             $moduleID = '{65462305-608D-4E48-B532-E3D389F7DF00}';
                             $DeviceType = 'Shelly Bulb RGBW';
                             $AddValue['create'] = [
-                                [
-                                    'moduleID'      => $moduleID,
-                                    'info'          => $Shelly['IPv4'],
-                                    'configuration' => [
-                                        'MQTTTopic' => $Shelly['Name']
-                                    ]
+                                'moduleID'      => $moduleID,
+                                'info'          => $Shelly['IPv4'],
+                                'configuration' => [
+                                    'MQTTTopic' => $Shelly['Name']
                                 ]
                             ];
                             break;
@@ -411,12 +367,10 @@ class ShellyConfigurator extends IPSModule
                             $moduleID = '{DB241FB8-F26D-4F74-82E4-66F046931B6E}';
                             $DeviceType = 'Shelly Motion';
                             $AddValue['create'] = [
-                                [
-                                    'moduleID'      => $moduleID,
-                                    'info'          => $Shelly['IPv4'],
-                                    'configuration' => [
-                                        'MQTTTopic' => $Shelly['Name']
-                                    ]
+                                'moduleID'      => $moduleID,
+                                'info'          => $Shelly['IPv4'],
+                                'configuration' => [
+                                    'MQTTTopic' => $Shelly['Name']
                                 ]
                             ];
                             break;
@@ -424,12 +378,10 @@ class ShellyConfigurator extends IPSModule
                             $moduleID = '{2F27E9AF-9B26-4952-A7BF-25EAFFCA75E0}';
                             $DeviceType = 'Shelly Motion 2';
                             $AddValue['create'] = [
-                                [
-                                    'moduleID'      => $moduleID,
-                                    'info'          => $Shelly['IPv4'],
-                                    'configuration' => [
-                                        'MQTTTopic' => $Shelly['Name']
-                                    ]
+                                'moduleID'      => $moduleID,
+                                'info'          => $Shelly['IPv4'],
+                                'configuration' => [
+                                    'MQTTTopic' => $Shelly['Name']
                                 ]
                             ];
                             break;
@@ -437,12 +389,10 @@ class ShellyConfigurator extends IPSModule
                             $moduleID = '{4E416C32-833A-4469-97B3-D4A41413A272}';
                             $DeviceType = 'Shelly Pro 4PM';
                             $AddValue['create'] = [
-                                [
-                                    'moduleID'      => $moduleID,
-                                    'info'          => $Shelly['IPv4'],
-                                    'configuration' => [
-                                        'MQTTTopic' => strtolower($Shelly['Name'])
-                                    ]
+                                'moduleID'      => $moduleID,
+                                'info'          => $Shelly['IPv4'],
+                                'configuration' => [
+                                    'MQTTTopic' => strtolower($Shelly['Name'])
                                 ]
                             ];
                             break;
@@ -450,13 +400,11 @@ class ShellyConfigurator extends IPSModule
                             $moduleID = '{03E01942-F28A-4A91-93DB-EE981EA41507}';
                             $DeviceType = 'Shelly Pro 1';
                             $AddValue['create'] = [
-                                [
-                                    'moduleID'      => $moduleID,
-                                    'info'          => $Shelly['IPv4'],
-                                    'configuration' => [
-                                        'MQTTTopic' => strtolower($Shelly['Name']),
-                                        'Device'    => 'shellypro1'
-                                    ]
+                                'moduleID'      => $moduleID,
+                                'info'          => $Shelly['IPv4'],
+                                'configuration' => [
+                                    'MQTTTopic' => strtolower($Shelly['Name']),
+                                    'Device'    => 'shellypro1'
                                 ]
                             ];
                             break;
@@ -464,13 +412,11 @@ class ShellyConfigurator extends IPSModule
                             $moduleID = '{03E01942-F28A-4A91-93DB-EE981EA41507}';
                             $DeviceType = 'Shelly Pro 1PM';
                             $AddValue['create'] = [
-                                [
-                                    'moduleID'      => $moduleID,
-                                    'info'          => $Shelly['IPv4'],
-                                    'configuration' => [
-                                        'MQTTTopic' => strtolower($Shelly['Name']),
-                                        'Device'    => 'shellypro1pm'
-                                    ]
+                                'moduleID'      => $moduleID,
+                                'info'          => $Shelly['IPv4'],
+                                'configuration' => [
+                                    'MQTTTopic' => strtolower($Shelly['Name']),
+                                    'Device'    => 'shellypro1pm'
                                 ]
                             ];
                             break;
@@ -478,12 +424,10 @@ class ShellyConfigurator extends IPSModule
                                 $moduleID = '{A7B9C446-E5C6-4DE9-AF1E-B9FE20FFF3FF}';
                                 $DeviceType = 'Shelly Pro 2';
                                 $AddValue['create'] = [
-                                    [
-                                        'moduleID'      => $moduleID,
-                                        'info'          => $Shelly['IPv4'],
-                                        'configuration' => [
-                                            'MQTTTopic' => strtolower($Shelly['Name']),
-                                        ]
+                                    'moduleID'      => $moduleID,
+                                    'info'          => $Shelly['IPv4'],
+                                    'configuration' => [
+                                        'MQTTTopic' => strtolower($Shelly['Name']),
                                     ]
                                 ];
                                 break;
@@ -491,14 +435,12 @@ class ShellyConfigurator extends IPSModule
                                 $moduleID = '{A7B9C446-E5C6-4DE9-AF1E-B9FE20FFF3FF}';
                                 $DeviceType = 'Shelly Pro 2PM';
                                 $AddValue['create'] = [
-                                    [
-                                        'moduleID'      => $moduleID,
-                                        'info'          => $Shelly['IPv4'],
-                                        'configuration' => [
-                                            'MQTTTopic'  => strtolower($Shelly['Name']),
-                                            'Device'     => 'shellypro2pm',
-                                            'DeviceType' => 'relay'
-                                        ]
+                                    'moduleID'      => $moduleID,
+                                    'info'          => $Shelly['IPv4'],
+                                    'configuration' => [
+                                        'MQTTTopic'  => strtolower($Shelly['Name']),
+                                        'Device'     => 'shellypro2pm',
+                                        'DeviceType' => 'relay'
                                     ]
                                 ];
                                 break;
@@ -506,12 +448,10 @@ class ShellyConfigurator extends IPSModule
                                 $moduleID = '{B9FF443D-5D7F-44F5-B743-59DC70B3E633}';
                                 $DeviceType = 'Shelly Pro 3';
                                 $AddValue['create'] = [
-                                    [
-                                        'moduleID'      => $moduleID,
-                                        'info'          => $Shelly['IPv4'],
-                                        'configuration' => [
-                                            'MQTTTopic' => strtolower($Shelly['Name']),
-                                        ]
+                                    'moduleID'      => $moduleID,
+                                    'info'          => $Shelly['IPv4'],
+                                    'configuration' => [
+                                        'MQTTTopic' => strtolower($Shelly['Name']),
                                     ]
                                 ];
                                 break;
@@ -519,12 +459,10 @@ class ShellyConfigurator extends IPSModule
                                 $moduleID = '{ED673810-352A-4D63-B035-55DF6BDA86AB}';
                                 $DeviceType = 'Shelly Pro 3 EM';
                                 $AddValue['create'] = [
-                                    [
-                                        'moduleID'      => $moduleID,
-                                        'info'          => $Shelly['IPv4'],
-                                        'configuration' => [
-                                            'MQTTTopic' => strtolower($Shelly['Name']),
-                                        ]
+                                    'moduleID'      => $moduleID,
+                                    'info'          => $Shelly['IPv4'],
+                                    'configuration' => [
+                                        'MQTTTopic' => strtolower($Shelly['Name']),
                                     ]
                                 ];
                                 break;
@@ -532,12 +470,10 @@ class ShellyConfigurator extends IPSModule
                                 $moduleID = '{E6CD1DA6-EFFC-4DA0-979B-9DC6B1648891}';
                                 $DeviceType = 'Shelly Pro EM';
                                 $AddValue['create'] = [
-                                    [
-                                        'moduleID'      => $moduleID,
-                                        'info'          => $Shelly['IPv4'],
-                                        'configuration' => [
-                                            'MQTTTopic' => strtolower($Shelly['Name']),
-                                        ]
+                                    'moduleID'      => $moduleID,
+                                    'info'          => $Shelly['IPv4'],
+                                    'configuration' => [
+                                        'MQTTTopic' => strtolower($Shelly['Name']),
                                     ]
                                 ];
                                 break;
@@ -545,12 +481,10 @@ class ShellyConfigurator extends IPSModule
                             $moduleID = '{34DD2E1E-47CD-47BC-938E-071AE60FE2AD}';
                             $DeviceType = 'Shelly Plus i4';
                             $AddValue['create'] = [
-                                [
-                                    'moduleID'      => $moduleID,
-                                    'info'          => $Shelly['IPv4'],
-                                    'configuration' => [
-                                        'MQTTTopic' => strtolower($Shelly['Name'])
-                                    ]
+                                'moduleID'      => $moduleID,
+                                'info'          => $Shelly['IPv4'],
+                                'configuration' => [
+                                    'MQTTTopic' => strtolower($Shelly['Name'])
                                 ]
                             ];
                             break;
@@ -558,12 +492,10 @@ class ShellyConfigurator extends IPSModule
                             $moduleID = '{41C32508-A08D-40E8-870C-AF051A8DB6B4}';
                             $DeviceType = 'Shelly Plus H&T';
                             $AddValue['create'] = [
-                                [
-                                    'moduleID'      => $moduleID,
-                                    'info'          => $Shelly['IPv4'],
-                                    'configuration' => [
-                                        'MQTTTopic' => strtolower($Shelly['Name']),
-                                    ]
+                                'moduleID'      => $moduleID,
+                                'info'          => $Shelly['IPv4'],
+                                'configuration' => [
+                                    'MQTTTopic' => strtolower($Shelly['Name']),
                                 ]
                             ];
                             break;
@@ -571,13 +503,11 @@ class ShellyConfigurator extends IPSModule
                             $moduleID = '{D7769710-EED1-4835-AC2D-C0AC8356E900}';
                             $DeviceType = 'Shelly Plus Plug S';
                             $AddValue['create'] = [
-                                [
-                                    'moduleID'      => $moduleID,
-                                    'info'          => $Shelly['IPv4'],
-                                    'configuration' => [
-                                        'MQTTTopic' => strtolower($Shelly['Name']),
-                                        'Device'    => 'shellyplusplugs'
-                                    ]
+                                'moduleID'      => $moduleID,
+                                'info'          => $Shelly['IPv4'],
+                                'configuration' => [
+                                    'MQTTTopic' => strtolower($Shelly['Name']),
+                                    'Device'    => 'shellyplusplugs'
                                 ]
                             ];
                             break;
@@ -585,13 +515,11 @@ class ShellyConfigurator extends IPSModule
                             $moduleID = '{AF5127F4-4929-49AF-9894-D7B8627667A7}';
                             $DeviceType = 'Shelly Plus 1';
                             $AddValue['create'] = [
-                                [
-                                    'moduleID'      => $moduleID,
-                                    'info'          => $Shelly['IPv4'],
-                                    'configuration' => [
-                                        'MQTTTopic' => strtolower($Shelly['Name']),
-                                        'Device'    => 'shellyplus1'
-                                    ]
+                                'moduleID'      => $moduleID,
+                                'info'          => $Shelly['IPv4'],
+                                'configuration' => [
+                                    'MQTTTopic' => strtolower($Shelly['Name']),
+                                    'Device'    => 'shellyplus1'
                                 ]
                             ];
                             break;
@@ -599,13 +527,11 @@ class ShellyConfigurator extends IPSModule
                             $moduleID = '{AF5127F4-4929-49AF-9894-D7B8627667A7}';
                             $DeviceType = 'Shelly Plus 1 Mini';
                             $AddValue['create'] = [
-                                [
-                                    'moduleID'      => $moduleID,
-                                    'info'          => $Shelly['IPv4'],
-                                    'configuration' => [
-                                        'MQTTTopic' => strtolower($Shelly['Name']),
-                                        'Device'    => 'shellyplus1mini'
-                                    ]
+                                'moduleID'      => $moduleID,
+                                'info'          => $Shelly['IPv4'],
+                                'configuration' => [
+                                    'MQTTTopic' => strtolower($Shelly['Name']),
+                                    'Device'    => 'shellyplus1mini'
                                 ]
                             ];
                             break;
@@ -613,13 +539,11 @@ class ShellyConfigurator extends IPSModule
                             $moduleID = '{AF5127F4-4929-49AF-9894-D7B8627667A7}';
                             $DeviceType = 'Shelly Plus 1PM';
                             $AddValue['create'] = [
-                                [
-                                    'moduleID'      => $moduleID,
-                                    'info'          => $Shelly['IPv4'],
-                                    'configuration' => [
-                                        'MQTTTopic' => strtolower($Shelly['Name']),
-                                        'Device'    => 'shellyplus1pm'
-                                    ]
+                                'moduleID'      => $moduleID,
+                                'info'          => $Shelly['IPv4'],
+                                'configuration' => [
+                                    'MQTTTopic' => strtolower($Shelly['Name']),
+                                    'Device'    => 'shellyplus1pm'
                                 ]
                             ];
                             break;
@@ -627,13 +551,11 @@ class ShellyConfigurator extends IPSModule
                             $moduleID = '{AF5127F4-4929-49AF-9894-D7B8627667A7}';
                             $DeviceType = 'Shelly Plus 1PM';
                             $AddValue['create'] = [
-                                [
-                                    'moduleID'      => $moduleID,
-                                    'info'          => $Shelly['IPv4'],
-                                    'configuration' => [
-                                        'MQTTTopic' => strtolower($Shelly['Name']),
-                                        'Device'    => 'shellyplus1pmmini'
-                                    ]
+                                'moduleID'      => $moduleID,
+                                'info'          => $Shelly['IPv4'],
+                                'configuration' => [
+                                    'MQTTTopic' => strtolower($Shelly['Name']),
+                                    'Device'    => 'shellyplus1pmmini'
                                 ]
                             ];
                             break;
@@ -641,12 +563,10 @@ class ShellyConfigurator extends IPSModule
                             $moduleID = '{5E1866C8-609B-4080-AD7C-5C766DD829A2}';
                             $DeviceType = 'Shelly Plus PM Mini';
                             $AddValue['create'] = [
-                                [
-                                    'moduleID'      => $moduleID,
-                                    'info'          => $Shelly['IPv4'],
-                                    'configuration' => [
-                                        'MQTTTopic' => strtolower($Shelly['Name']),
-                                    ]
+                                'moduleID'      => $moduleID,
+                                'info'          => $Shelly['IPv4'],
+                                'configuration' => [
+                                    'MQTTTopic' => strtolower($Shelly['Name']),
                                 ]
                             ];
                             break;
@@ -654,12 +574,10 @@ class ShellyConfigurator extends IPSModule
                             $moduleID = '{6AE60C94-A295-4A0F-9AF3-C051C1D72AAA}';
                             $DeviceType = 'Shelly Plus 2PM';
                             $AddValue['create'] = [
-                                [
-                                    'moduleID'      => $moduleID,
-                                    'info'          => $Shelly['IPv4'],
-                                    'configuration' => [
-                                        'MQTTTopic' => strtolower($Shelly['Name'])
-                                    ]
+                                'moduleID'      => $moduleID,
+                                'info'          => $Shelly['IPv4'],
+                                'configuration' => [
+                                    'MQTTTopic' => strtolower($Shelly['Name'])
                                 ]
                             ];
                             break;
@@ -667,12 +585,10 @@ class ShellyConfigurator extends IPSModule
                             $moduleID = '{2B1FC768-7B87-47C6-ACCF-9A8C601CF776}';
                             $DeviceType = 'Shelly Plus Smoke';
                             $AddValue['create'] = [
-                                [
-                                    'moduleID'      => $moduleID,
-                                    'info'          => $Shelly['IPv4'],
-                                    'configuration' => [
-                                        'MQTTTopic' => strtolower($Shelly['Name'])
-                                    ]
+                                'moduleID'      => $moduleID,
+                                'info'          => $Shelly['IPv4'],
+                                'configuration' => [
+                                    'MQTTTopic' => strtolower($Shelly['Name'])
                                 ]
                             ];
                             break;
@@ -680,12 +596,10 @@ class ShellyConfigurator extends IPSModule
                             $moduleID = '{FEBA9798-EB8E-4703-A9BC-C1B3EE711D1B}';
                             $DeviceType = 'Shelly TRV';
                             $AddValue['create'] = [
-                                [
-                                    'moduleID'      => $moduleID,
-                                    'info'          => $Shelly['IPv4'],
-                                    'configuration' => [
-                                        'MQTTTopic' => $Shelly['Name']
-                                    ]
+                                'moduleID'      => $moduleID,
+                                'info'          => $Shelly['IPv4'],
+                                'configuration' => [
+                                    'MQTTTopic' => $Shelly['Name']
                                 ]
                             ];
                             break;
