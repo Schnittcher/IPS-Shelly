@@ -753,56 +753,6 @@ class ShellyConfigurator extends IPSModule
         return '';
     }
 
-
-    public function findShellysOnNetworkV2() {
-        $mDNSInstanceIDs = IPS_GetInstanceListByModuleID('{780B2D48-916C-4D59-AD35-5A429B2355A5}');
-        $resultServiceTypes = ZC_QueryServiceType($mDNSInstanceIDs[0], '_shelly._tcp', '');
-        $this->SendDebug('resultServiceTypes', print_r($resultServiceTypes, true), 0);
-        $shellys = [];
-        foreach ($resultServiceTypes as $key => $device) {
-            if (strpos(strtolower($device['Name']), 'shelly') !== false) {
-                $shelly = [];
-
-
-
-                $deviceInfo = ZC_QueryService($mDNSInstanceIDs[0], $device['Name'], '_shelly._tcp', 'local.');
-
-                $type = strstr($device['Name'], '-', true);
-                $shelly['Name'] = $device['Name'];
-                if (array_key_exists(0, $deviceInfo)) {
-                    if (array_key_exists(0, $deviceInfo[0]['IPv4'])) {
-                        //$this->LogMessage(print_r($deviceInfo, true), KL_NOTIFY);
-                        $shelly['IPv4'] = $deviceInfo[0]['IPv4'][0];
-                    } else {
-                        $shelly['IPv4'] = '-';
-                    }
-                } else {
-                    $shelly['IPv4'] = '-';
-                }
-                if ($type != 'shellysense') {
-                    $shelly['DeviceType'] = strstr($device['Name'], '-', true);
-                    $shelly['Firmware'] = '-';
-                    $this->SendDebug('mDNS TXTRecords', print_r($deviceInfo, true), 0);
-                    if (array_key_exists(0, $deviceInfo)) {
-                        if (is_array($deviceInfo[0])) {
-                            if (array_key_exists(1, $deviceInfo[0]['TXTRecords'])) {
-                                $shelly['Firmware'] = $deviceInfo[0]['TXTRecords'][1];
-                            } else {
-                                $shelly['Firmware'] = '-';
-                            }
-                        } else {
-                            $shelly['Firmware'] = '-';
-                        }
-                    } else {
-                        $shelly['Firmware'] = '-';
-                    }
-                }
-                $shellys[] = $shelly;
-            }
-        }
-        return $shellys;
-    }
-
     private function findShellysOnNetwork()
     {
         $mDNSInstanceIDs = IPS_GetInstanceListByModuleID('{780B2D48-916C-4D59-AD35-5A429B2355A5}');
