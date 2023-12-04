@@ -766,7 +766,7 @@ class ShellyConfigurator extends IPSModule
                 $shelly = [];
 
                 $deviceInfo = ZC_QueryService($mDNSInstanceIDs[0], $device['Name'], '_http._tcp', 'local.');
-                $this->LogMessage(print_r($deviceInfo, true), KL_NOTIFY);
+                //$this->LogMessage(print_r($deviceInfo, true), KL_NOTIFY);
                 $type = strstr($device['Name'], '-', true);
                 $shelly['Name'] = $device['Name'];
                 if (array_key_exists(0, $deviceInfo)) {
@@ -787,20 +787,21 @@ class ShellyConfigurator extends IPSModule
                         if (is_array($deviceInfo[0])) {
                             if (array_key_exists(0, $deviceInfo[0]['TXTRecords'])) {
                                 if ($deviceInfo[0]['TXTRecords'][0] == 'gen=2') {
-                                    IPS_LogMessage('test', 'drin');
                                     $deviceInfo = ZC_QueryService($mDNSInstanceIDs[0], $device['Name'], '_shelly._tcp', 'local.');
                                 }
                             }
-                            if (array_key_exists(1, $deviceInfo[0]['TXTRecords'])) {
-                                $shelly['Firmware'] = $deviceInfo[0]['TXTRecords'][1];
+                            if (is_array($deviceInfo[0])) {
+                                if (array_key_exists(1, $deviceInfo[0]['TXTRecords'])) {
+                                    $shelly['Firmware'] = $deviceInfo[0]['TXTRecords'][1];
+                                } else {
+                                    $shelly['Firmware'] = '-';
+                                }
                             } else {
                                 $shelly['Firmware'] = '-';
                             }
                         } else {
                             $shelly['Firmware'] = '-';
                         }
-                    } else {
-                        $shelly['Firmware'] = '-';
                     }
                 }
                 $shellys[] = $shelly;
