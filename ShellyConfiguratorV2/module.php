@@ -353,10 +353,19 @@ class ShellyConfiguratorV2 extends IPSModule
                     $this->LogMessage('Shelly with IP: ' . $Shelly['IP'] . ' has no model! Check firmware updates.', KL_ERROR);
                     continue;
                 }
+                
+                $DeviceType = '';
+                $moduleID = '';
+                if (array_key_exists($Shelly['Model'], self::$DeviceTypes)) {
+                    $DeviceType = self::$DeviceTypes[$Shelly['Model']]['Name'];
+                    $moduleID = self::$DeviceTypes[$Shelly['Model']]['GUID'];
+                } else {
+                    $DeviceType = $this->Translate('Unknown') . ' (' . $Shelly['Model'] . ')';
+                }
                 $AddValue = [
                     'MQTTTopic'             => $Shelly['ID'],
                     'InstanceName'          => $this->getInstanceName($instanceID),
-                    'DeviceType'            => self::$DeviceTypes[$Shelly['Model']]['Name'],
+                    'DeviceType'            => $DeviceType,
                     'IPAddress'             => $Shelly['IP'],
                     'Firmware'              => $Shelly['Firmware'],
                     'instanceID'            => $instanceID
@@ -364,7 +373,7 @@ class ShellyConfiguratorV2 extends IPSModule
                 switch ($Shelly['Model']) {
                     case 'SHSW-1':
                         $AddValue['create'] = [
-                            'moduleID'      => self::$DeviceTypes[$Shelly['Model']]['GUID'],
+                            'moduleID'      => $moduleID,
                             'info'          => $Shelly['IP'],
                             'configuration' => [
                                 'MQTTTopic' => $Shelly['ID'],
@@ -374,7 +383,7 @@ class ShellyConfiguratorV2 extends IPSModule
                         break;
                     case 'SHSW-PM':
                         $AddValue['create'] = [
-                            'moduleID'      => self::$DeviceTypes[$Shelly['Model']]['GUID'],
+                            'moduleID'      => $moduleID,
                             'info'          => $Shelly['IP'],
                             'configuration' => [
                                 'MQTTTopic' => $Shelly['ID'],
@@ -384,7 +393,7 @@ class ShellyConfiguratorV2 extends IPSModule
                         break;
                     case 'SHSW-L':
                         $AddValue['create'] = [
-                            'moduleID'      => self::$DeviceTypes[$Shelly['Model']]['GUID'],
+                            'moduleID'      => $moduleID,
                             'info'          => $Shelly['IP'],
                             'configuration' => [
                                 'MQTTTopic' => $Shelly['ID'],
@@ -395,7 +404,7 @@ class ShellyConfiguratorV2 extends IPSModule
                     case 'SHSW-21':
                         $AddValue['create'] = [
                             'Shelly 2 Relay' => [
-                                'moduleID'      => self::$DeviceTypes[$Shelly['Model']]['GUID'],
+                                'moduleID'      => $moduleID,
                                 'info'          => $Shelly['IP'],
                                 'configuration' => [
                                     'MQTTTopic'  => $Shelly['ID'],
@@ -404,7 +413,7 @@ class ShellyConfiguratorV2 extends IPSModule
                                 ]
                             ],
                             'Shelly 2 Shutter' => [
-                                'moduleID'      => self::$DeviceTypes[$Shelly['Model']]['GUID'],
+                                'moduleID'      => $moduleID,
                                 'info'          => $Shelly['IP'],
                                 'configuration' => [
                                     'MQTTTopic'  => $Shelly['ID'],
@@ -417,7 +426,7 @@ class ShellyConfiguratorV2 extends IPSModule
                     case 'SHSW-25':
                         $AddValue['create'] = [
                             'Shelly 2.5 Relay' => [
-                                'moduleID'      => self::$DeviceTypes[$Shelly['Model']]['GUID'],
+                                'moduleID'      => $moduleID,
                                 'info'          => $Shelly['IP'],
                                 'configuration' => [
                                     'MQTTTopic'  => $Shelly['ID'],
@@ -426,7 +435,7 @@ class ShellyConfiguratorV2 extends IPSModule
                                 ]
                             ],
                             'Shelly 2.5 Shutter' => [
-                                'moduleID'      => self::$DeviceTypes[$Shelly['Model']]['GUID'],
+                                'moduleID'      => $moduleID,
                                 'info'          => $Shelly['IP'],
                                 'configuration' => [
                                     'MQTTTopic'  => $Shelly['ID'],
@@ -470,7 +479,7 @@ class ShellyConfiguratorV2 extends IPSModule
                     case 'SPSW-004PE16EU':
                     case 'SPSW-104PE16EU':
                         $AddValue['create'] = [
-                            'moduleID'      => self::$DeviceTypes[$Shelly['Model']]['GUID'],
+                            'moduleID'      => $moduleID,
                             'info'          => $Shelly['IP'],
                             'configuration' => [
                                 'MQTTTopic' => $Shelly['ID']
@@ -480,7 +489,7 @@ class ShellyConfiguratorV2 extends IPSModule
                     case 'SHRGBW2':
                         $AddValue['create'] = [
                             'Shelly RGBW2 Color' => [
-                                'moduleID'      => self::$DeviceTypes[$Shelly['Model']]['GUID'],
+                                'moduleID'      => $moduleID,
                                 'info'          => $Shelly['IP'],
                                 'configuration' => [
                                     'MQTTTopic'       => $Shelly['ID'],
@@ -488,7 +497,7 @@ class ShellyConfiguratorV2 extends IPSModule
                                 ]
                             ],
                             'Shelly RGBW2 White' => [
-                                'moduleID'      => self::$DeviceTypes[$Shelly['Model']]['GUID'],
+                                'moduleID'      => $moduleID,
                                 'info'          => $Shelly['IP'],
                                 'configuration' => [
                                     'MQTTTopic'       => $Shelly['ID'],
@@ -500,7 +509,7 @@ class ShellyConfiguratorV2 extends IPSModule
                     case 'SHBDUO-1':
                     case 'SHSPOT-1':
                         $AddValue['create'] = [
-                            'moduleID'      => self::$DeviceTypes[$Shelly['Model']]['GUID'],
+                            'moduleID'      => $moduleID,
                             'info'          => $Shelly['IP'],
                             'configuration' => [
                                 'MQTTTopic' => $Shelly['ID'],
@@ -510,7 +519,7 @@ class ShellyConfiguratorV2 extends IPSModule
                         break;
                     case 'SHCB-1':
                         $AddValue['create'] = [
-                            'moduleID'      => self::$DeviceTypes[$Shelly['Model']]['GUID'],
+                            'moduleID'      => $moduleID,
                             'info'          => $Shelly['IP'],
                             'configuration' => [
                                 'MQTTTopic' => $Shelly['ID'],
@@ -520,7 +529,7 @@ class ShellyConfiguratorV2 extends IPSModule
                         break;
                     case 'SHDW-1':
                         $AddValue['create'] = [
-                            'moduleID'      => self::$DeviceTypes[$Shelly['Model']]['GUID'],
+                            'moduleID'      => $moduleID,
                             'info'          => $Shelly['IP'],
                             'configuration' => [
                                 'MQTTTopic'  => $Shelly['ID'],
@@ -530,7 +539,7 @@ class ShellyConfiguratorV2 extends IPSModule
                         break;
                     case 'SHDW-2':
                         $AddValue['create'] = [
-                            'moduleID'      => self::$DeviceTypes[$Shelly['Model']]['GUID'],
+                            'moduleID'      => $moduleID,
                             'info'          => $Shelly['IP'],
                             'configuration' => [
                                 'MQTTTopic'  => $Shelly['ID'],
@@ -540,7 +549,7 @@ class ShellyConfiguratorV2 extends IPSModule
                         break;
                     case 'SNSW-001X16EU':
                         $AddValue['create'] = [
-                            'moduleID'      => self::$DeviceTypes[$Shelly['Model']]['GUID'],
+                            'moduleID'      => $moduleID,
                             'info'          => $Shelly['IP'],
                             'configuration' => [
                                 'MQTTTopic' => strtolower($Shelly['ID']),
@@ -550,7 +559,7 @@ class ShellyConfiguratorV2 extends IPSModule
                         break;
                     case 'SNSW-001P16EU':
                         $AddValue['create'] = [
-                            'moduleID'      => self::$DeviceTypes[$Shelly['Model']]['GUID'],
+                            'moduleID'      => $moduleID,
                             'info'          => $Shelly['IP'],
                             'configuration' => [
                                 'MQTTTopic' => strtolower($Shelly['ID']),
@@ -564,7 +573,7 @@ class ShellyConfiguratorV2 extends IPSModule
                         case 'SNPL-00112UK':
                         case 'SNPL-00116US':
                             $AddValue['create'] = [
-                                'moduleID'      => self::$DeviceTypes[$Shelly['Model']]['GUID'],
+                                'moduleID'      => $moduleID,
                                 'info'          => $Shelly['IP'],
                                 'configuration' => [
                                     'MQTTTopic' => strtolower($Shelly['ID']),
@@ -574,7 +583,7 @@ class ShellyConfiguratorV2 extends IPSModule
                             break;
                         case 'SNSW-001X8EU':
                             $AddValue['create'] = [
-                                'moduleID'      => self::$DeviceTypes[$Shelly['Model']]['GUID'],
+                                'moduleID'      => $moduleID,
                                 'info'          => $Shelly['IP'],
                                 'configuration' => [
                                     'MQTTTopic' => strtolower($Shelly['ID']),
@@ -584,7 +593,7 @@ class ShellyConfiguratorV2 extends IPSModule
                             break;
                         case 'SNSW-001P8EU':
                             $AddValue['create'] = [
-                                'moduleID'      => self::$DeviceTypes[$Shelly['Model']]['GUID'],
+                                'moduleID'      => $moduleID,
                                 'info'          => $Shelly['IP'],
                                 'configuration' => [
                                     'MQTTTopic' => strtolower($Shelly['ID']),
@@ -595,7 +604,7 @@ class ShellyConfiguratorV2 extends IPSModule
                         case 'SNSW-001P8EU':
                         case 'SPSW-201XE16EU':
                             $AddValue['create'] = [
-                                'moduleID'      => self::$DeviceTypes[$Shelly['Model']]['GUID'],
+                                'moduleID'      => $moduleID,
                                 'info'          => $Shelly['IP'],
                                 'configuration' => [
                                     'MQTTTopic' => strtolower($Shelly['ID']),
@@ -606,7 +615,7 @@ class ShellyConfiguratorV2 extends IPSModule
                         case 'SPSW-001PE16EU':
                         case 'SPSW-201PE16EU':
                             $AddValue['create'] = [
-                                'moduleID'      => self::$DeviceTypes[$Shelly['Model']]['GUID'],
+                                'moduleID'      => $moduleID,
                                 'info'          => $Shelly['IP'],
                                 'configuration' => [
                                     'MQTTTopic' => strtolower($Shelly['ID']),
