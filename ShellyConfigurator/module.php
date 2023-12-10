@@ -609,7 +609,7 @@ class ShellyConfigurator extends IPSModule
                         break;
                     }
 
-                $Values[] = $AddValue;
+                    $Values[] = $AddValue;
             }
             $Form['actions'][0]['values'] = $Values;
         }
