@@ -29,7 +29,7 @@ class ShellyConfiguratorV2 extends IPSModule
         ],
         'SHSW-25' => [
             'Name'  => 'Shelly 2.5',
-            'GUID'  => '{BE266877-6642-4A80-9BAA-8C5B3B4DAF80}'
+            'GUID'  => '{BE266877-6642-4A80-9BAA-8foundC5B3B4DAF80}'
         ],
         'SHIX3-1' => [
             'Name'  => 'Shelly i3',
@@ -302,6 +302,15 @@ class ShellyConfiguratorV2 extends IPSModule
                 $foundedKey = array_search($Payload['id'], array_column($Shellies, 'ID'));
                 if ($foundedKey !== false) {
                     $Shellies[$foundedKey]['LastActivity'] = time();
+                    $Shellies[$foundedKey]['Model'] = $Payload['model'];
+                    $Shellies[$foundedKey]['MAC'] = $Payload['mac'];
+                    if (array_key_exists('gen', $Payload)) {
+                        $Shellies[$foundedKey]['Name'] = $Payload['name'];
+                        $Shellies[$foundedKey]['Firmware'] = $Payload['fw_id'];
+                    } else {
+                        $Shellies[$foundedKey]['Firmware'] = $Payload['fw_ver'];
+                        $Shellies[$foundedKey]['IP'] = $Payload['ip'];
+                    }
                     $this->WriteAttributeString('Shellies', json_encode($Shellies));
                     return;
                 }
@@ -353,7 +362,7 @@ class ShellyConfiguratorV2 extends IPSModule
                     $this->LogMessage('Shelly with IP: ' . $Shelly['IP'] . ' has no model! Check firmware updates.', KL_ERROR);
                     continue;
                 }
-                
+
                 $DeviceType = '';
                 $moduleID = '';
                 if (array_key_exists($Shelly['Model'], self::$DeviceTypes)) {
