@@ -2,8 +2,12 @@
 
 declare(strict_types=1);
 
+require_once __DIR__ . '/../libs/vendor/SymconModulHelper/DebugHelper.php';
+
 class ShellyBLUConfigurator extends IPSModule
 {
+    use DebugHelper;
+
     public function Create()
     {
         //Never delete this line!
