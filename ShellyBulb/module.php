@@ -207,7 +207,7 @@ class ShellyBulb extends ShellyModule
     private function WhiteSet(int $value)
     {
         $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/color/0/set';
-        $Payload['mode'] = 'white';
+        $Payload['mode'] = 'color';
         $Payload['white'] = strval($value);
         $Payload = json_encode($Payload);
         $this->sendMQTT($Topic, $Payload);
