@@ -64,7 +64,7 @@ class ShellyPlusSmoke extends ShellyModule
         $Payload['id'] = 1;
         $Payload['src'] = 'user_1';
         $Payload['method'] = 'Smoke.Mute';
-        $Payload['params'] = ['id' => $switch, 'mute' => $value];
+        $Payload['params'] = ['id' => $id, 'mute' => $value];
 
         $this->sendMQTT($Topic, json_encode($Payload));
     }
