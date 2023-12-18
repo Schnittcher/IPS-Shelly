@@ -678,7 +678,7 @@ class ShellyConfiguratorV2 extends IPSModule
                         ];
                         break;
                     default:
-                        $this->SendDebug(__FUNCTION__ . ' DeviceType', 'Invalid Device Type:' . strtolower($Shelly['ID']), 0);
+                        $this->SendDebug(__FUNCTION__ . ' DeviceType', 'Invalid Device Type:' . $Shelly['Model'], 0);
                         break;
                     }
 
