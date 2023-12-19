@@ -33,6 +33,7 @@ class ShellyPlusPlugS extends ShellyModule
     public function ReceiveData($JSONString)
     {
         if (!empty($this->ReadPropertyString('MQTTTopic'))) {
+            $this->SendDebug('JSONString', $JSONString, 0);
             $Buffer = json_decode($JSONString, true);
             $this->SendDebug('JSON', $Buffer, 0);
 
@@ -95,33 +96,29 @@ class ShellyPlusPlugS extends ShellyModule
                                 }
                             }
                         }
-
-                        if (fnmatch('*/status/*', $Buffer['Topic'])) {
-                            if (array_key_exists('temperature', $Payload)) {
-                                if (array_key_exists('tC', $Payload['temperature'])) {
-                                    $this->SetValue('DeviceTemperature', $Payload['temperature']['tC']);
-                                }
-                            }
+                    }
+                }
+                if (fnmatch('*/status/switch:0', $Buffer['Topic'])) {
+                    if (array_key_exists('output', $Payload)) {
+                        $this->SetValue('State', $Payload['output']);
+                    }
+                    if (array_key_exists('apower', $Payload)) {
+                        $this->SetValue('Power', $Payload['apower']);
+                    }
+                    if (array_key_exists('voltage', $Payload)) {
+                        $this->SetValue('Voltage', $Payload['voltage']);
+                    }
+                    if (array_key_exists('current', $Payload)) {
+                        $this->SetValue('Current', $Payload['current']);
+                    }
+                    if (array_key_exists('aenergy', $Payload)) {
+                        if (array_key_exists('total', $Payload['aenergy'])) {
+                            $this->SetValue('TotalEnergy', $Payload['aenergy']['total'] / 1000);
                         }
-
-                        if (fnmatch('*/status/switch:0', $Buffer['Topic'])) {
-                            if (array_key_exists('output', $Payload)) {
-                                $this->SetValue('State', $Payload['output']);
-                            }
-                            if (array_key_exists('apower', $Payload)) {
-                                $this->SetValue('Power', $Payload['apower']);
-                            }
-                            if (array_key_exists('voltage', $Payload)) {
-                                $this->SetValue('Voltage', $Payload['voltage']);
-                            }
-                            if (array_key_exists('current', $Payload)) {
-                                $this->SetValue('Current', $Payload['current']);
-                            }
-                            if (array_key_exists('aenergy', $Payload)) {
-                                if (array_key_exists('total', $Payload['aenergy'])) {
-                                    $this->SetValue('TotalEnergy', $Payload['aenergy']['total'] / 1000);
-                                }
-                            }
+                    }
+                    if (array_key_exists('temperature', $Payload)) {
+                        if (array_key_exists('tC', $Payload['temperature'])) {
+                            $this->SetValue('DeviceTemperature', $Payload['temperature']['tC']);
                         }
                     }
                 }
