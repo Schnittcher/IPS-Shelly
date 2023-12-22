@@ -195,6 +195,10 @@ class ShellyConfiguratorV2 extends IPSModule
             'Name'  => 'Shelly Plus 1PM Mini',
             'GUID'  => '{AF5127F4-4929-49AF-9894-D7B8627667A7}'
         ],
+        'S3SW-001X8EU' => [
+            'Name'  => 'Shelly Plus 1PM Mini',
+            'GUID'  => '{AF5127F4-4929-49AF-9894-D7B8627667A7}'
+        ],
         'SNSW-001P8EU' => [
             'Name'  => 'Shelly Plus PM Mini',
             'GUID'  => '{5E1866C8-609B-4080-AD7C-5C766DD829A2}'
