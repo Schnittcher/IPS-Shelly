@@ -191,16 +191,24 @@ class ShellyConfiguratorV2 extends IPSModule
             'Name'  => 'Shelly Plus 1 Mini',
             'GUID'  => '{AF5127F4-4929-49AF-9894-D7B8627667A7}'
         ],
+        'S3SW-001X8EU' => [
+            'Name'  => 'Shelly 1 Mini Gen3',
+            'GUID'  => '{AF5127F4-4929-49AF-9894-D7B8627667A7}'
+        ],
         'SNSW-001P8EU' => [
             'Name'  => 'Shelly Plus 1PM Mini',
             'GUID'  => '{AF5127F4-4929-49AF-9894-D7B8627667A7}'
         ],
-        'S3SW-001X8EU' => [
-            'Name'  => 'Shelly Plus 1PM Mini',
+        'S3SW-001P8EU' => [
+            'Name'  => 'Shelly 1PM Mini Gen3',
             'GUID'  => '{AF5127F4-4929-49AF-9894-D7B8627667A7}'
         ],
         'SNSW-001P8EU' => [
             'Name'  => 'Shelly Plus PM Mini',
+            'GUID'  => '{5E1866C8-609B-4080-AD7C-5C766DD829A2}'
+        ],
+        'S3PM-001PCEU16' => [
+            'Name'  => 'Shelly PM Mini Gen3',
             'GUID'  => '{5E1866C8-609B-4080-AD7C-5C766DD829A2}'
         ],
         'SPSW-001XE16EU' => [
@@ -486,6 +494,7 @@ class ShellyConfiguratorV2 extends IPSModule
                     case 'SPSW-002XE16EU':
                     case 'SPSW-202XE16EU':
                     case 'SPSW-003XE16EU':
+                    case 'SPEM-003CEBEU':
                     case 'SPEM-003CEBEU120':
                     case 'SPEM-003CEBEU400':
                     case 'SPEM-002CEBEU50':
