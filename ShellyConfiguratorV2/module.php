@@ -203,7 +203,7 @@ class ShellyConfiguratorV2 extends IPSModule
             'Name'  => 'Shelly 1PM Mini Gen3',
             'GUID'  => '{AF5127F4-4929-49AF-9894-D7B8627667A7}'
         ],
-        'SNSW-001P8EU' => [
+        'SNPM-001PCEU16' => [
             'Name'  => 'Shelly Plus PM Mini',
             'GUID'  => '{5E1866C8-609B-4080-AD7C-5C766DD829A2}'
         ],
@@ -490,6 +490,9 @@ class ShellyConfiguratorV2 extends IPSModule
                     case 'SNSN-0013A':
                     case 'SNSN-0031Z':
                     case 'SNSW-001P8EU':
+                    case 'S3SW-001P8EU':
+                    case 'SNPM-001PCEU16':
+                    case 'S3PM-001PCEU16':
                     case 'SPSW-002PE16EU':
                     case 'SPSW-002XE16EU':
                     case 'SPSW-202XE16EU':
@@ -604,6 +607,7 @@ class ShellyConfiguratorV2 extends IPSModule
                             ];
                             break;
                         case 'SNSW-001X8EU':
+                        case 'S3SW-001X8EU':
                             $AddValue['create'] = [
                                 'moduleID'      => $moduleID,
                                 'info'          => $Shelly['IP'],
