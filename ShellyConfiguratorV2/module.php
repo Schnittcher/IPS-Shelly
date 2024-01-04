@@ -55,6 +55,10 @@ class ShellyConfiguratorV2 extends IPSModule
             'Name'  => 'Shelly Button1',
             'GUID'  => '{B1BEE0E4-5ADE-4326-98A8-1F7B3731E456}'
         ],
+        'SHBTN-2' => [
+            'Name'  => 'Shelly Button1',
+            'GUID'  => '{B1BEE0E4-5ADE-4326-98A8-1F7B3731E456}'
+        ],
         'SHPLG-1' => [
             'Name'  => 'Shelly Plug',
             'GUID'  => '{ED5E1057-C47A-4D73-A130-B4E2912A026C}'
@@ -136,6 +140,10 @@ class ShellyConfiguratorV2 extends IPSModule
             'GUID'  => '{AF5127F4-4929-49AF-9894-D7B8627667A7}'
         ],
         'SNSW-002P16EU' => [
+            'Name'  => 'Shelly Plus 2PM',
+            'GUID'  => '{6AE60C94-A295-4A0F-9AF3-C051C1D72AAA}'
+        ],
+        'SNSW-102P16EU' => [
             'Name'  => 'Shelly Plus 2PM',
             'GUID'  => '{6AE60C94-A295-4A0F-9AF3-C051C1D72AAA}'
         ],
