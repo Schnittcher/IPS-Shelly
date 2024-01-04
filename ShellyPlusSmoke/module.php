@@ -45,7 +45,7 @@ class ShellyPlusSmoke extends ShellyModule
                                 $this->SetValue('Alarm', $Payload['params']['smoke:0']['mute']);
                             }
                             if (array_key_exists('alarm', $Payload['params']['smoke:0'])) {
-                                $this->SetValue('Mute', $Payload['params']['smoke:0']['mute']);
+                                $this->SetValue('Mute', $Payload['params']['smoke:0']['alarm']);
                             }
                         }
                         if (array_key_exists('devicepower:0', $Payload['params'])) {
