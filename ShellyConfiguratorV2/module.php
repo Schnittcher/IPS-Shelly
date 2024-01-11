@@ -9,7 +9,7 @@ class ShellyConfiguratorV2 extends IPSModule
 {
     use MQTTHelper;
     use DebugHelper;
-
+    //{65462305-608D-4E48-B532-E3D389F7DF00}
     private static $DeviceTypes = [
         'SHSW-1' => [
             'Name'  => 'Shelly 1',
@@ -85,11 +85,11 @@ class ShellyConfiguratorV2 extends IPSModule
         ],
         'SHBDUO-1' => [
             'Name'  => 'Shelly Duo',
-            'GUID'  => '{6FEE58E6-082D-6934-F49E-EC6642E39992}'
+            'GUID'  => '{65462305-608D-4E48-B532-E3D389F7DF00}'
         ],
         'SHSPOT-1' => [
             'Name'  => 'Shelly Duo GU10',
-            'GUID'  => '{6FEE58E6-082D-6934-F49E-EC6642E39992}'
+            'GUID'  => '{65462305-608D-4E48-B532-E3D389F7DF00}'
         ],
         'SHVIN-1' => [
             'Name'  => 'Shelly Vintage',
@@ -101,7 +101,7 @@ class ShellyConfiguratorV2 extends IPSModule
         ],
         'SHCB-1' => [
             'Name'  => 'Shelly Bulb RGBW',
-            'GUID'  => '{6FEE58E6-082D-6934-F49E-EC6642E39992}'
+            'GUID'  => '{65462305-608D-4E48-B532-E3D389F7DF00}'
         ],
         'SHHT-1' => [
             'Name'  => 'Shelly H&T',
