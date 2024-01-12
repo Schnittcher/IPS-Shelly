@@ -131,6 +131,7 @@ class ShellyModule extends IPSModule
     {
         if (@$this->GetIDForIdent($Ident)) {
             $this->SendDebug('SetValue :: ' . $Ident, $Value, 0);
+            $this->LogMessage('Ident: ' . $Ident . ' Type: ' . gettype($Value), KL_MESSAGE);
             parent::SetValue($Ident, $Value);
         }
     }
