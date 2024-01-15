@@ -10,7 +10,9 @@
             "Instance ID": "Instanz ID",
             "Instancename": "Instanzname",
             "Device": "Gerät",
-            "Devices": "Geräte"
+            "Devices": "Geräte",
+            "Searching...": "Suche...",
+            "Please press OK an reload the form!": "Bitte mit OK bestätigen und das Formular neu laden!"
         }
     }
 }

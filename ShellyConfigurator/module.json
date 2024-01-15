@@ -1,10 +1,11 @@
 {
-    "id": "{BE86AD40-3F66-E34D-98FC-ED69A12DB131}",
+    "id": "{9DBFC249-31A2-4524-A744-60453B5C70A1}",
     "name": "ShellyConfigurator",
     "type": 4,
     "vendor": "Shelly",
     "aliases": [
-        "Shelly Configurator"
+        "Shelly Configurator",
+        "Shelly Configurator V2"
     ],
     "parentRequirements": [
         "{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}",

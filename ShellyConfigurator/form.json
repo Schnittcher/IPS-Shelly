@@ -4,15 +4,16 @@
             "type": "Configurator",
             "name": "Configurator",
             "caption": "Shelly Configurator",
+            "discoveryInterval": "300",
             "delete": false,
             "sort": {
-                "column": "name",
+                "column": "MQTTTopic",
                 "direction": "ascending"
             },
             "columns": [
                 {
-                    "caption": "Devicename",
-                    "name": "name",
+                    "caption": "MQTT Topic",
+                    "name": "MQTTTopic",
                     "width": "auto"
                 },
                 {
@@ -37,6 +38,23 @@
                 }
             ],
             "values": []
+        },
+        {
+            "type": "PopupAlert",
+            "name": "DiscoverInfo",
+            "visible": false,
+            "popup": {
+                "items": [
+                    {
+                        "type": "Label",
+                        "caption": "Searching..."
+                    },
+                    {
+                        "type": "Label",
+                        "caption": "Please press OK an reload the form!"
+                    }
+                ]
+            }
         },
         {
             "type": "Label",

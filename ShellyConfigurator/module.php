@@ -2,13 +2,295 @@
 
 declare(strict_types=1);
 
+require_once __DIR__ . '/../libs/MQTTHelper.php';
+require_once __DIR__ . '/../libs/vendor/SymconModulHelper/DebugHelper.php';
+
 class ShellyConfigurator extends IPSModule
 {
+    use MQTTHelper;
+    use DebugHelper;
+    //{65462305-608D-4E48-B532-E3D389F7DF00}
+    private static $DeviceTypes = [
+        'SHSW-1' => [
+            'Name'  => 'Shelly 1',
+            'GUID'  => '{9E5FA0B2-AA98-48D5-AE07-78DEA4B0370A}'
+        ],
+        'SHSW-PM' => [
+            'Name'  => 'Shelly 1PM',
+            'GUID'  => '{9E5FA0B2-AA98-48D5-AE07-78DEA4B0370A}'
+        ],
+        'SHSW-L' => [
+            'Name'  => 'Shelly 1L',
+            'GUID'  => '{9E5FA0B2-AA98-48D5-AE07-78DEA4B0370A}'
+        ],
+        'SHSW-21' => [
+            'Name'  => 'Shelly 2',
+            'GUID'  => '{BE266877-6642-4A80-9BAA-8C5B3B4DAF80}'
+        ],
+        'SHSW-25' => [
+            'Name'  => 'Shelly 2.5',
+            'GUID'  => '{BE266877-6642-4A80-9BAA-8foundC5B3B4DAF80}'
+        ],
+        'SHIX3-1' => [
+            'Name'  => 'Shelly i3',
+            'GUID'  => '{2B0AD1B9-1335-6C50-5CEC-DDCD03DAE252}'
+        ],
+        'SHEM' => [
+            'Name'  => 'Shelly EM',
+            'GUID'  => '{53A4EF84-0CF9-44D4-B70E-4B84E0DCE9B3}'
+        ],
+        'SHEM-3' => [
+            'Name'  => 'Shelly 3EM',
+            'GUID'  => '{108ECEFF-642A-4B1F-9608-E592E31DBA11}'
+        ],
+        'SHUNI-1' => [
+            'Name'  => 'Shelly Uni',
+            'GUID'  => '{D10AF7A0-CBC0-415A-BD3B-FFF0E8BB8B21}'
+        ],
+        'SHTRV-01' => [
+            'Name'  => 'Shelly TRV',
+            'GUID'  => '{FEBA9798-EB8E-4703-A9BC-C1B3EE711D1B}'
+        ],
+        'SHBTN-1' => [
+            'Name'  => 'Shelly Button1',
+            'GUID'  => '{B1BEE0E4-5ADE-4326-98A8-1F7B3731E456}'
+        ],
+        'SHBTN-2' => [
+            'Name'  => 'Shelly Button1',
+            'GUID'  => '{B1BEE0E4-5ADE-4326-98A8-1F7B3731E456}'
+        ],
+        'SHPLG-1' => [
+            'Name'  => 'Shelly Plug',
+            'GUID'  => '{ED5E1057-C47A-4D73-A130-B4E2912A026C}'
+        ],
+        'SHPLG2-1' => [
+            'Name'  => 'Shelly Plug 2',
+            'GUID'  => '{ED5E1057-C47A-4D73-A130-B4E2912A026C}'
+        ],
+        'SHPLG-S' => [
+            'Name'  => 'Shelly Plug S',
+            'GUID'  => '{ED5E1057-C47A-4D73-A130-B4E2912A026C}'
+        ],
+        'SHRGBW2' => [
+            'Name'  => 'Shelly RGBW 2',
+            'GUID'  => '{3286C438-2174-E03B-85CE-B6B7C1A685D0}'
+        ],
+        'SHDM-1' => [
+            'Name'  => 'Shelly Dimmer',
+            'GUID'  => '{69B501C7-DCE8-4A4A-910C-D3954473E654}'
+        ],
+        'SHDM-2' => [
+            'Name'  => 'Shelly Dimmer 2',
+            'GUID'  => '{69B501C7-DCE8-4A4A-910C-D3954473E654}'
+        ],
+        'SHBDUO-1' => [
+            'Name'  => 'Shelly Duo',
+            'GUID'  => '{65462305-608D-4E48-B532-E3D389F7DF00}'
+        ],
+        'SHSPOT-1' => [
+            'Name'  => 'Shelly Duo GU10',
+            'GUID'  => '{65462305-608D-4E48-B532-E3D389F7DF00}'
+        ],
+        'SHVIN-1' => [
+            'Name'  => 'Shelly Vintage',
+            'GUID'  => '{9BFE4A38-47C9-775E-A6BE-DA338817A639}'
+        ],
+        'SHBLB-1' => [
+            'Name'  => 'Shelly Bulb',
+            'GUID'  => '{65462305-608D-4E48-B532-E3D389F7DF00}'
+        ],
+        'SHCB-1' => [
+            'Name'  => 'Shelly Bulb RGBW',
+            'GUID'  => '{65462305-608D-4E48-B532-E3D389F7DF00}'
+        ],
+        'SHHT-1' => [
+            'Name'  => 'Shelly H&T',
+            'GUID'  => '{F2EE9948-94F6-4BA6-BDC9-E59E440F3DB0}'
+        ],
+        'SHWT-1' => [
+            'Name'  => 'Shelly Flood',
+            'GUID'  => '{C360BA67-99A3-4F37-932B-B851D4E10AD6}'
+        ],
+        'SHDW-1' => [
+            'Name'  => 'Shelly Door/Window',
+            'GUID'  => '{24BDCF16-A370-6F72-8CBD-9B9968899FED}'
+        ],
+        'SHDW-2' => [
+            'Name'  => 'Shelly Door/Window 2',
+            'GUID'  => '{24BDCF16-A370-6F72-8CBD-9B9968899FED}'
+        ],
+        'SHGS-1' => [
+            'Name'  => 'Shelly Gas',
+            'GUID'  => '{8725928A-A390-42FA-B045-A182499767C1}'
+        ],
+        'SHMOS-01' => [
+            'Name'  => 'Shelly Motion',
+            'GUID'  => '{DB241FB8-F26D-4F74-82E4-66F046931B6E}'
+        ],
+        'SHMOS-02' => [
+            'Name'  => 'Shelly Motion 2',
+            'GUID'  => '{DB241FB8-F26D-4F74-82E4-66F046931B6E}'
+        ],
+        'SNSW-001X16EU' => [
+            'Name'  => 'Shelly Plus 1',
+            'GUID'  => '{AF5127F4-4929-49AF-9894-D7B8627667A7}'
+        ],
+        'SNSW-001P16EU' => [
+            'Name'  => 'Shelly Plus 1PM',
+            'GUID'  => '{AF5127F4-4929-49AF-9894-D7B8627667A7}'
+        ],
+        'SNSW-002P16EU' => [
+            'Name'  => 'Shelly Plus 2PM',
+            'GUID'  => '{6AE60C94-A295-4A0F-9AF3-C051C1D72AAA}'
+        ],
+        'SNSW-102P16EU' => [
+            'Name'  => 'Shelly Plus 2PM',
+            'GUID'  => '{6AE60C94-A295-4A0F-9AF3-C051C1D72AAA}'
+        ],
+        'SNSN-0024X' => [
+            'Name'  => 'Shelly Plus i4',
+            'GUID'  => '{34DD2E1E-47CD-47BC-938E-071AE60FE2AD}'
+        ],
+        'SNSN-0D24X' => [
+            'Name'  => 'Shelly Plus i4 DC',
+            'GUID'  => '{34DD2E1E-47CD-47BC-938E-071AE60FE2AD}'
+        ],
+        'SNSN-0013A' => [
+            'Name'  => 'Shelly Plus H&T',
+            'GUID'  => '{41C32508-A08D-40E8-870C-AF051A8DB6B4}'
+        ],
+        'SNPL-00110IT' => [
+            'Name'  => 'Shelly Plus Plug IT',
+            'GUID'  => '{D7769710-EED1-4835-AC2D-C0AC8356E900}'
+        ],
+        'SNPL-00112EU' => [
+            'Name'  => 'Shelly Plus Plug S V1',
+            'GUID'  => '{D7769710-EED1-4835-AC2D-C0AC8356E900}'
+        ],
+        'SNPL-10112EU' => [
+            'Name'  => 'Shelly Plus Plug S V2',
+            'GUID'  => '{D7769710-EED1-4835-AC2D-C0AC8356E900}'
+        ],
+        'SNPL-00112UK' => [
+            'Name'  => 'Shelly Plus Plug UK',
+            'GUID'  => '{D7769710-EED1-4835-AC2D-C0AC8356E900}'
+        ],
+        'SNPL-00116US' => [
+            'Name'  => 'Shelly Plus Plug US',
+            'GUID'  => '{D7769710-EED1-4835-AC2D-C0AC8356E900}'
+        ],
+        'SNSN-0031Z' => [
+            'Name'  => 'Shelly Plus Smoke',
+            'GUID'  => '{2B1FC768-7B87-47C6-ACCF-9A8C601CF776}'
+        ],
+        'SNSN-0031Z' => [
+            'Name'  => 'Shelly Plus Smoke',
+            'GUID'  => '{2B1FC768-7B87-47C6-ACCF-9A8C601CF776}'
+        ],
+        'SNDM-0013US' => [ //fehlt
+            'Name'  => 'Shelly Plus Wall Dimmer',
+            'GUID'  => ''
+        ],
+        'SNDM-00100WW' => [ //fehlt
+            'Name'  => 'Shelly Plus 0-10 V Dimmer',
+            'GUID'  => ''
+        ],
+        'SNSW-001X8EU' => [
+            'Name'  => 'Shelly Plus 1 Mini',
+            'GUID'  => '{AF5127F4-4929-49AF-9894-D7B8627667A7}'
+        ],
+        'S3SW-001X8EU' => [
+            'Name'  => 'Shelly 1 Mini Gen3',
+            'GUID'  => '{AF5127F4-4929-49AF-9894-D7B8627667A7}'
+        ],
+        'SNSW-001P8EU' => [
+            'Name'  => 'Shelly Plus 1PM Mini',
+            'GUID'  => '{AF5127F4-4929-49AF-9894-D7B8627667A7}'
+        ],
+        'S3SW-001P8EU' => [
+            'Name'  => 'Shelly 1PM Mini Gen3',
+            'GUID'  => '{AF5127F4-4929-49AF-9894-D7B8627667A7}'
+        ],
+        'SNPM-001PCEU16' => [
+            'Name'  => 'Shelly Plus PM Mini',
+            'GUID'  => '{5E1866C8-609B-4080-AD7C-5C766DD829A2}'
+        ],
+        'S3PM-001PCEU16' => [
+            'Name'  => 'Shelly PM Mini Gen3',
+            'GUID'  => '{5E1866C8-609B-4080-AD7C-5C766DD829A2}'
+        ],
+        'SPSW-001XE16EU' => [
+            'Name'  => 'Shelly Pro 1',
+            'GUID'  => '{03E01942-F28A-4A91-93DB-EE981EA41507}'
+        ],
+        'SPSW-201XE16EU' => [
+            'Name'  => 'Shelly Pro 1 v.1',
+            'GUID'  => '{03E01942-F28A-4A91-93DB-EE981EA41507}'
+        ],
+        'SPSW-001PE16EU' => [
+            'Name'  => 'Shelly Pro 1PM',
+            'GUID'  => '{03E01942-F28A-4A91-93DB-EE981EA41507}'
+        ],
+        'SPSW-201PE16EU' => [
+            'Name'  => 'Shelly Pro 1PM v.1',
+            'GUID'  => '{03E01942-F28A-4A91-93DB-EE981EA41507}'
+        ],
+        'SPSW-002XE16EU' => [
+            'Name'  => 'Shelly Pro 2',
+            'GUID'  => '{A7B9C446-E5C6-4DE9-AF1E-B9FE20FFF3FF}'
+        ],
+        'SPSW-202XE16EU' => [
+            'Name'  => 'Shelly Pro 2 v.1',
+            'GUID'  => '{A7B9C446-E5C6-4DE9-AF1E-B9FE20FFF3FF}'
+        ],
+        'SPSW-002PE16EU' => [
+            'Name'  => 'Shelly Pro 2 PM',
+            'GUID'  => '{A7B9C446-E5C6-4DE9-AF1E-B9FE20FFF3FF}'
+        ],
+        'SPSW-202PE16EU' => [
+            'Name'  => 'Shelly Pro 2PM v.1',
+            'GUID'  => '{A7B9C446-E5C6-4DE9-AF1E-B9FE20FFF3FF}'
+        ],
+        'XXX-SPSH-002PE16EU' => [ //fehlt - falsches model?
+            'Name'  => 'Shelly Pro Dual Cover/Shutter PM',
+            'GUID'  => ''
+        ],
+        'SPSW-003XE16EU' => [
+            'Name'  => 'Shelly Pro 3',
+            'GUID'  => '{B9FF443D-5D7F-44F5-B743-59DC70B3E633}'
+        ],
+        'SPEM-003CEBEU' => [
+            'Name'  => 'Shelly Pro 3EM',
+            'GUID'  => '{ED673810-352A-4D63-B035-55DF6BDA86AB}'
+        ],
+        'SPEM-003CEBEU120' => [
+            'Name'  => 'Shelly Pro 3EM',
+            'GUID'  => '{ED673810-352A-4D63-B035-55DF6BDA86AB}'
+        ],
+        'SPEM-003CEBEU400' => [
+            'Name'  => 'Shelly Pro 3EM-400',
+            'GUID'  => '{ED673810-352A-4D63-B035-55DF6BDA86AB}'
+        ],
+        'SPEM-002CEBEU50' => [
+            'Name'  => 'Shelly Pro 3EM-50',
+            'GUID'  => '{E6CD1DA6-EFFC-4DA0-979B-9DC6B1648891}'
+        ],
+        'SPSW-004PE16EU' => [
+            'Name'  => 'Shelly Pro 4PM V1',
+            'GUID'  => '{4E416C32-833A-4469-97B3-D4A41413A272}'
+        ],
+        'SPSW-104PE16EU' => [
+            'Name'  => 'Shelly Pro 4PM V2',
+            'GUID'  => '{4E416C32-833A-4469-97B3-D4A41413A272}'
+        ],
+    ];
+
     public function Create()
     {
         //Never delete this line!
         parent::Create();
         $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
+        $this->RegisterAttributeString('Shellies', '{}');
     }
 
     public function ApplyChanges()
@@ -16,209 +298,379 @@ class ShellyConfigurator extends IPSModule
         //Never delete this line!
         parent::ApplyChanges();
 
-        $this->SetReceiveDataFilter('this-will-never-match');
+        $this->SetReceiveDataFilter('.*shellies/announce.*');
+        $this->getShellies();
+    }
+
+    public function ReceiveData($JSONString)
+    {
+        $Buffer = json_decode($JSONString, true);
+        $this->SendDebug('JSON', $Buffer, 0);
+
+        //Für MQTT Fix in IPS Version 6.3
+        if (IPS_GetKernelDate() > 1670886000) {
+            $Buffer['Payload'] = utf8_decode($Buffer['Payload']);
+        }
+        $Shellies = json_decode($this->ReadAttributeString('Shellies'), true); //$this->findShellysOnNetwork();
+
+        if (array_key_exists('Topic', $Buffer)) {
+            if ($Buffer['Topic'] == 'shellies/announce') {
+                $Shelly = [];
+
+                $Payload = json_decode($Buffer['Payload'], true);
+
+                $foundedKey = array_search($Payload['id'], array_column($Shellies, 'ID'));
+                if ($foundedKey !== false) {
+                    $Shellies[$foundedKey]['LastActivity'] = time();
+                    $Shellies[$foundedKey]['Model'] = $Payload['model'];
+                    $Shellies[$foundedKey]['MAC'] = $Payload['mac'];
+                    if (array_key_exists('gen', $Payload)) {
+                        $Shellies[$foundedKey]['Name'] = $Payload['name'];
+                        $Shellies[$foundedKey]['Firmware'] = $Payload['fw_id'];
+                    } else {
+                        $Shellies[$foundedKey]['Firmware'] = $Payload['fw_ver'];
+                        $Shellies[$foundedKey]['IP'] = $Payload['ip'];
+                    }
+                    $this->WriteAttributeString('Shellies', json_encode($Shellies));
+                    return;
+                }
+                $Shelly = [];
+                $Shelly['Name'] = '-';
+                $Shelly['ID'] = $Payload['id'];
+                $Shelly['Model'] = $Payload['model'];
+                $Shelly['MAC'] = $Payload['mac'];
+                $Shelly['IP'] = '-';
+                $Shelly['Gen'] = 'gen1';
+                $Shelly['LastActivity'] = time();
+
+                if (array_key_exists('gen', $Payload)) {
+                    $Shelly['Name'] = $Payload['name'];
+                    $Shelly['Firmware'] = $Payload['fw_id'];
+                    $Shelly['Gen'] = $Payload['gen'];
+                } else {
+                    $Shelly['Firmware'] = $Payload['fw_ver'];
+                    $Shelly['IP'] = $Payload['ip'];
+                }
+                array_push($Shellies, $Shelly);
+            }
+            $this->WriteAttributeString('Shellies', json_encode($Shellies));
+        }
     }
 
     public function GetConfigurationForm()
     {
         $Form = json_decode(file_get_contents(__DIR__ . '/form.json'), true);
-
+        $this->getShellies();
         if (floatval(IPS_GetKernelVersion()) < 5.3) {
             return json_encode($Form);
         }
 
-        $Shellys = $this->findShellysOnNetwork();
+        $Shellies = json_decode($this->ReadAttributeString('Shellies'), true); //$this->findShellysOnNetwork();
         $Values = [];
 
-        if (count($Shellys) > 0) {
-            foreach ($Shellys as $key => $Shelly) {
+        if (count($Shellies) == 0) {
+            $Form['actions'][1]['visible'] = true;
+        } else {
+            $Form['actions'][1]['visible'] = false;
+        }
+
+        if (count($Shellies) > 0) {
+            foreach ($Shellies as $key => $Shelly) {
                 $DeviceType = '';
-                $instanceID = $this->getShellyInstances($Shelly['Name']);
+                $instanceID = $this->getShellyInstances($Shelly['ID']);
+                if ($Shelly['Model'] == '') {
+                    $this->LogMessage('Shelly with IP: ' . $Shelly['IP'] . ' has no model! Check firmware updates.', KL_ERROR);
+                    continue;
+                }
+
+                $DeviceType = '';
+                $moduleID = '';
+                if (array_key_exists($Shelly['Model'], self::$DeviceTypes)) {
+                    $DeviceType = self::$DeviceTypes[$Shelly['Model']]['Name'];
+                    $moduleID = self::$DeviceTypes[$Shelly['Model']]['GUID'];
+                } else {
+                    $DeviceType = $this->Translate('Unknown') . ' (' . $Shelly['Model'] . ')';
+                }
                 $AddValue = [
-                    'name'                  => $Shelly['Name'],
+                    'MQTTTopic'             => $Shelly['ID'],
                     'InstanceName'          => $this->getInstanceName($instanceID),
-                    'DeviceType'            => $Shelly['DeviceType'],
-                    'IPAddress'             => $Shelly['IPv4'],
+                    'DeviceType'            => $DeviceType,
+                    'IPAddress'             => $Shelly['IP'],
                     'Firmware'              => $Shelly['Firmware'],
                     'instanceID'            => $instanceID
                 ];
-
-                $moduleID = '';
-                switch (strtolower($Shelly['DeviceType'])) {
-                    case 'shelly1':
-                        $moduleID = '{9E5FA0B2-AA98-48D5-AE07-78DEA4B0370A}';
-                        $DeviceType = 'Shelly 1';
+                switch ($Shelly['Model']) {
+                    case 'SHSW-1':
                         $AddValue['create'] = [
                             'moduleID'      => $moduleID,
-                            'info'          => $Shelly['IPv4'],
+                            'info'          => $Shelly['IP'],
                             'configuration' => [
-                                'MQTTTopic' => $Shelly['Name'],
+                                'MQTTTopic' => $Shelly['ID'],
                                 'Device'    => 'shelly1'
                             ]
                         ];
                         break;
-                    case 'shelly1pm':
-                        $moduleID = '{9E5FA0B2-AA98-48D5-AE07-78DEA4B0370A}';
-                        $DeviceType = 'Shelly 1 PM';
+                    case 'SHSW-PM':
                         $AddValue['create'] = [
                             'moduleID'      => $moduleID,
-                            'info'          => $Shelly['IPv4'],
+                            'info'          => $Shelly['IP'],
                             'configuration' => [
-                                'MQTTTopic' => $Shelly['Name'],
+                                'MQTTTopic' => $Shelly['ID'],
                                 'Device'    => 'shelly1pm'
                             ]
                         ];
                         break;
-                    case 'shelly1l':
-                        $moduleID = '{9E5FA0B2-AA98-48D5-AE07-78DEA4B0370A}';
-                        $DeviceType = 'Shelly 1L';
+                    case 'SHSW-L':
                         $AddValue['create'] = [
                             'moduleID'      => $moduleID,
-                            'info'          => $Shelly['IPv4'],
+                            'info'          => $Shelly['IP'],
                             'configuration' => [
-                                'MQTTTopic' => $Shelly['Name'],
+                                'MQTTTopic' => $Shelly['ID'],
                                 'Device'    => 'shelly1l'
                             ]
                         ];
                         break;
-                    case 'shellyswitch':
-                        $moduleID = '{BE266877-6642-4A80-9BAA-8C5B3B4DAF80}';
-                        $DeviceType = 'Shelly 2';
+                    case 'SHSW-21':
                         $AddValue['create'] = [
                             'Shelly 2 Relay' => [
                                 'moduleID'      => $moduleID,
-                                'info'          => $Shelly['IPv4'],
+                                'info'          => $Shelly['IP'],
                                 'configuration' => [
-                                    'MQTTTopic'  => $Shelly['Name'],
+                                    'MQTTTopic'  => $Shelly['ID'],
                                     'Device'     => 'shelly2',
                                     'DeviceType' => 'relay'
                                 ]
                             ],
                             'Shelly 2 Shutter' => [
                                 'moduleID'      => $moduleID,
-                                'info'          => $Shelly['IPv4'],
+                                'info'          => $Shelly['IP'],
                                 'configuration' => [
-                                    'MQTTTopic'  => $Shelly['Name'],
+                                    'MQTTTopic'  => $Shelly['ID'],
                                     'Device'     => 'shelly2',
                                     'DeviceType' => 'roller'
                                 ]
                             ]
                         ];
                         break;
-                    case 'shellyswitch25':
-                        $moduleID = '{BE266877-6642-4A80-9BAA-8C5B3B4DAF80}';
-                        $DeviceType = 'Shelly 2.5';
+                    case 'SHSW-25':
                         $AddValue['create'] = [
                             'Shelly 2.5 Relay' => [
                                 'moduleID'      => $moduleID,
-                                'info'          => $Shelly['IPv4'],
+                                'info'          => $Shelly['IP'],
                                 'configuration' => [
-                                    'MQTTTopic'  => $Shelly['Name'],
+                                    'MQTTTopic'  => $Shelly['ID'],
                                     'Device'     => 'shelly2.5',
                                     'DeviceType' => 'relay'
                                 ]
                             ],
                             'Shelly 2.5 Shutter' => [
                                 'moduleID'      => $moduleID,
-                                'info'          => $Shelly['IPv4'],
+                                'info'          => $Shelly['IP'],
                                 'configuration' => [
-                                    'MQTTTopic'  => $Shelly['Name'],
+                                    'MQTTTopic'  => $Shelly['ID'],
                                     'Device'     => 'shelly2.5',
                                     'DeviceType' => 'roller'
                                 ]
                             ]
                         ];
                         break;
-                    case 'shelly4pro':
-                        $moduleID = '{F56CC544-581D-42EB-AAF0-F5E9E908916C}';
-                        $DeviceType = 'Shelly 4 Pro';
+                    case 'SHIX3-1':
+                    case 'SHEM':
+                    case 'SHEM-3':
+                    case 'SHUNI-1':
+                    case 'SHTRV-01':
+                    case 'SHBTN-1':
+                    case 'SHPLG2-1':
+                    case 'SHPLG-S':
+                    case 'SHPLG-1':
+                    case 'SHDM-1':
+                    case 'SHDM-2':
+                    case 'SHVIN-1':
+                    case 'SHBLB-1':
+                    case 'SHHT-1':
+                    case 'SHWT-1':
+                    case 'SHGS':
+                    case 'SHMOS-01':
+                    case 'SHMOS-02':
+                    case 'SNSW-002P16EU':
+                    case 'SNSN-0024X':
+                    case 'SNSN-0D24X':
+                    case 'SNSN-0013A':
+                    case 'SNSN-0031Z':
+                    case 'SNSW-001P8EU':
+                    case 'S3SW-001P8EU':
+                    case 'SNPM-001PCEU16':
+                    case 'S3PM-001PCEU16':
+                    case 'SPSW-002PE16EU':
+                    case 'SPSW-002XE16EU':
+                    case 'SPSW-202XE16EU':
+                    case 'SPSW-003XE16EU':
+                    case 'SPEM-003CEBEU':
+                    case 'SPEM-003CEBEU120':
+                    case 'SPEM-003CEBEU400':
+                    case 'SPEM-002CEBEU50':
+                    case 'SPSW-004PE16EU':
+                    case 'SPSW-104PE16EU':
                         $AddValue['create'] = [
                             'moduleID'      => $moduleID,
-                            'info'          => $Shelly['IPv4'],
+                            'info'          => $Shelly['IP'],
                             'configuration' => [
-                                'MQTTTopic' => $Shelly['Name'],
+                                'MQTTTopic' => $Shelly['ID']
                             ]
                         ];
                         break;
-                    case 'shellydimmer':
-                    case 'shellydimmer2':
-                        $moduleID = '{69B501C7-DCE8-4A4A-910C-D3954473E654}';
-                        $DeviceType = 'Shelly Dimmer';
-                        $AddValue['create'] = [
-                            'moduleID'      => $moduleID,
-                            'info'          => $Shelly['IPv4'],
-                            'configuration' => [
-                                'MQTTTopic' => $Shelly['Name']
-                            ]
-                        ];
-                        break;
-                    case 'shellyht':
-                        $moduleID = '{F2EE9948-94F6-4BA6-BDC9-E59E440F3DB0}';
-                        $DeviceType = 'Shelly H&T';
-                        $AddValue['create'] = [
-                            'moduleID'      => $moduleID,
-                            'info'          => $Shelly['IPv4'],
-                            'configuration' => [
-                                'MQTTTopic' => $Shelly['Name']
-                            ]
-                        ];
-                        break;
-                    case 'shellyplug':
-                        $moduleID = '{ED5E1057-C47A-4D73-A130-B4E2912A026C}';
-                        $DeviceType = 'Shelly Plug';
-                        $AddValue['create'] = [
-                            'moduleID'      => $moduleID,
-                            'info'          => $Shelly['IPv4'],
-                            'configuration' => [
-                                'MQTTTopic' => $Shelly['Name']
-                            ]
-                        ];
-                        break;
-                    case 'shellyem':
-                        $moduleID = '{53A4EF84-0CF9-44D4-B70E-4B84E0DCE9B3}';
-                        $DeviceType = 'Shelly EM';
-                        $AddValue['create'] = [
-                            'moduleID'      => $moduleID,
-                            'info'          => $Shelly['IPv4'],
-                            'configuration' => [
-                                'MQTTTopic' => $Shelly['Name']
-                            ]
-                        ];
-                        break;
-                    case 'shellyem3':
-                        $moduleID = '{108ECEFF-642A-4B1F-9608-E592E31DBA11}';
-                        $DeviceType = 'Shelly 3EM';
-                        $AddValue['create'] = [
-                            'moduleID'      => $moduleID,
-                            'info'          => $Shelly['IPv4'],
-                            'configuration' => [
-                                'MQTTTopic' => $Shelly['Name']
-                            ]
-                        ];
-                        break;
-                    case 'shellyrgbw2':
-                        $moduleID = '{3286C438-2174-E03B-85CE-B6B7C1A685D0}';
-                        $DeviceType = 'Shelly RGBW2';
+                    case 'SHRGBW2':
                         $AddValue['create'] = [
                             'Shelly RGBW2 Color' => [
                                 'moduleID'      => $moduleID,
-                                'info'          => $Shelly['IPv4'],
+                                'info'          => $Shelly['IP'],
                                 'configuration' => [
-                                    'MQTTTopic'       => $Shelly['Name'],
+                                    'MQTTTopic'       => $Shelly['ID'],
                                     'DeviceType'      => 'Color'
                                 ]
                             ],
                             'Shelly RGBW2 White' => [
                                 'moduleID'      => $moduleID,
-                                'info'          => $Shelly['IPv4'],
+                                'info'          => $Shelly['IP'],
                                 'configuration' => [
-                                    'MQTTTopic'       => $Shelly['Name'],
+                                    'MQTTTopic'       => $Shelly['ID'],
                                     'DeviceType'      => 'White'
                                 ]
                             ]
                         ];
                         break;
-                    case 'shellysense':
+                    case 'SHBDUO-1':
+                    case 'SHSPOT-1':
+                        $AddValue['create'] = [
+                            'moduleID'      => $moduleID,
+                            'info'          => $Shelly['IP'],
+                            'configuration' => [
+                                'MQTTTopic' => $Shelly['ID'],
+                                'Device'    => 'light'
+                            ]
+                        ];
+                        break;
+                    case 'SHCB-1':
+                        $AddValue['create'] = [
+                            'moduleID'      => $moduleID,
+                            'info'          => $Shelly['IP'],
+                            'configuration' => [
+                                'MQTTTopic' => $Shelly['ID'],
+                                'Device'    => 'color'
+                            ]
+                        ];
+                        break;
+                    case 'SHDW-1':
+                        $AddValue['create'] = [
+                            'moduleID'      => $moduleID,
+                            'info'          => $Shelly['IP'],
+                            'configuration' => [
+                                'MQTTTopic'  => $Shelly['ID'],
+                                'Device'     => 'DW'
+                            ]
+                        ];
+                        break;
+                    case 'SHDW-2':
+                        $AddValue['create'] = [
+                            'moduleID'      => $moduleID,
+                            'info'          => $Shelly['IP'],
+                            'configuration' => [
+                                'MQTTTopic'  => $Shelly['ID'],
+                                'Device'     => 'DW2'
+                            ]
+                        ];
+                        break;
+                    case 'SNSW-001X16EU':
+                        $AddValue['create'] = [
+                            'moduleID'      => $moduleID,
+                            'info'          => $Shelly['IP'],
+                            'configuration' => [
+                                'MQTTTopic' => strtolower($Shelly['ID']),
+                                'Device'    => 'shellyplus1'
+                            ]
+                        ];
+                        break;
+                    case 'SNSW-001P16EU':
+                        $AddValue['create'] = [
+                            'moduleID'      => $moduleID,
+                            'info'          => $Shelly['IP'],
+                            'configuration' => [
+                                'MQTTTopic' => strtolower($Shelly['ID']),
+                                'Device'    => 'shellyplus1pm'
+                            ]
+                        ];
+                        break;
+                    case 'SNPL-00110IT':
+                        case 'SNPL-00112EU':
+                        case 'SNPL-10112EU':
+                        case 'SNPL-00112UK':
+                        case 'SNPL-00116US':
+                            $AddValue['create'] = [
+                                'moduleID'      => $moduleID,
+                                'info'          => $Shelly['IP'],
+                                'configuration' => [
+                                    'MQTTTopic' => strtolower($Shelly['ID']),
+                                    'Device'    => 'shellyplusplugs'
+                                ]
+                            ];
+                            break;
+                        case 'SNSW-001X8EU':
+                        case 'S3SW-001X8EU':
+                            $AddValue['create'] = [
+                                'moduleID'      => $moduleID,
+                                'info'          => $Shelly['IP'],
+                                'configuration' => [
+                                    'MQTTTopic' => strtolower($Shelly['ID']),
+                                    'Device'    => 'shellyplus1mini'
+                                ]
+                            ];
+                            break;
+                        case 'SNSW-001P8EU':
+                            $AddValue['create'] = [
+                                'moduleID'      => $moduleID,
+                                'info'          => $Shelly['IP'],
+                                'configuration' => [
+                                    'MQTTTopic' => strtolower($Shelly['ID']),
+                                    'Device'    => 'shellyplus1pmmini'
+                                ]
+                            ];
+                            break;
+                        case 'SNSW-001P8EU':
+                        case 'SPSW-201XE16EU':
+                            $AddValue['create'] = [
+                                'moduleID'      => $moduleID,
+                                'info'          => $Shelly['IP'],
+                                'configuration' => [
+                                    'MQTTTopic' => strtolower($Shelly['ID']),
+                                    'Device'    => 'shellypro1'
+                                ]
+                            ];
+                            break;
+                        case 'SPSW-001PE16EU':
+                        case 'SPSW-201PE16EU':
+                            $AddValue['create'] = [
+                                'moduleID'      => $moduleID,
+                                'info'          => $Shelly['IP'],
+                                'configuration' => [
+                                    'MQTTTopic' => strtolower($Shelly['ID']),
+                                    'Device'    => 'shellypro1pm'
+                                ]
+                            ];
+                            break;
+                        case 'SPSW-202PE16EU': //Eine Version fehlt - fehlt in der Doku von Shelly?!
+                            $moduleID = '{A7B9C446-E5C6-4DE9-AF1E-B9FE20FFF3FF}';
+                            $DeviceType = 'Shelly Pro 2PM';
+                            $AddValue['create'] = [
+                                'moduleID'      => $moduleID,
+                                'info'          => $Shelly['IPv4'],
+                                'configuration' => [
+                                    'MQTTTopic'  => strtolower($Shelly['Name']),
+                                    'Device'     => 'shellypro2pm',
+                                    'DeviceType' => 'relay'
+                                ]
+                            ];
+                            break;
+                    case 'shellysense': // model id unbekannt
                         $moduleID = '{F86F268B-BC23-41AC-B107-16EEF661A4D7}';
                         $AddValue['create'] = [
                             'moduleID'      => $moduleID,
@@ -228,7 +680,7 @@ class ShellyConfigurator extends IPSModule
                             ]
                         ];
                         break;
-                    case 'shellysmoke':
+                    case 'shellysmoke': // model id unbekannt
                         $moduleID = '{88A5611C-CD57-4255-9F57-E420CE784C81}';
                         $DeviceType = 'Shelly Smoke';
                         $AddValue['create'] = [
@@ -239,29 +691,7 @@ class ShellyConfigurator extends IPSModule
                             ]
                         ];
                         break;
-                    case 'shellyflood':
-                        $moduleID = '{C360BA67-99A3-4F37-932B-B851D4E10AD6}';
-                        $DeviceType = 'Shelly Flood';
-                        $AddValue['create'] = [
-                            'moduleID'      => $moduleID,
-                            'info'          => $Shelly['IPv4'],
-                            'configuration' => [
-                                'MQTTTopic' => $Shelly['Name']
-                            ]
-                        ];
-                        break;
-                    case 'shellyvintage':
-                        $moduleID = '{9BFE4A38-47C9-775E-A6BE-DA338817A639}';
-                        $DeviceType = 'Shelly Vintage';
-                        $AddValue['create'] = [
-                            'moduleID'      => $moduleID,
-                            'info'          => $Shelly['IPv4'],
-                            'configuration' => [
-                                'MQTTTopic' => $Shelly['Name']
-                            ]
-                        ];
-                        break;
-                    case 'shellyair':
+                    case 'shellyair': // model id unbekannt
                         $moduleID = '{55840D9D-BB28-4D66-91B5-66C8859FAE83}';
                         $DeviceType = 'Shelly Air';
                         $AddValue['create'] = [
@@ -272,348 +702,31 @@ class ShellyConfigurator extends IPSModule
                             ]
                         ];
                         break;
-                        case 'shellybutton1':
-                            $moduleID = '{B1BEE0E4-5ADE-4326-98A8-1F7B3731E456}';
-                            $DeviceType = 'Shelly Button1';
-                            $AddValue['create'] = [
-                                'moduleID'      => $moduleID,
-                                'info'          => $Shelly['IPv4'],
-                                'configuration' => [
-                                    'MQTTTopic' => $Shelly['Name']
-                                ]
-                            ];
-                            break;
-                        case 'shellydw':
-                            $moduleID = '{24BDCF16-A370-6F72-8CBD-9B9968899FED}';
-                            $DeviceType = 'Shelly Door / Window';
-                            $AddValue['create'] = [
-                                'moduleID'      => $moduleID,
-                                'info'          => $Shelly['IPv4'],
-                                'configuration' => [
-                                    'MQTTTopic'  => $Shelly['Name'],
-                                    'Device'     => 'DW'
-                                ]
-                            ];
-                            break;
-                        case 'shellydw2':
-                            $moduleID = '{24BDCF16-A370-6F72-8CBD-9B9968899FED}';
-                            $DeviceType = 'Shelly Door / Window';
-                            $AddValue['create'] = [
-                                'moduleID'      => $moduleID,
-                                'info'          => $Shelly['IPv4'],
-                                'configuration' => [
-                                    'MQTTTopic'  => $Shelly['Name'],
-                                    'Device'     => 'DW2'
-                                ]
-                            ];
-                            break;
-                        case 'shellygas':
-                            $moduleID = '{8725928A-A390-42FA-B045-A182499767C1}';
-                            $DeviceType = 'Shelly Gas';
-                            $AddValue['create'] = [
-                                'moduleID'      => $moduleID,
-                                'info'          => $Shelly['IPv4'],
-                                'configuration' => [
-                                    'MQTTTopic' => $Shelly['Name']
-                                ]
-                            ];
-                            break;
-                        case 'shellyix3':
-                            $moduleID = '{2B0AD1B9-1335-6C50-5CEC-DDCD03DAE252}';
-                            $DeviceType = 'Shelly i3';
-                            $AddValue['create'] = [
-                                'moduleID'      => $moduleID,
-                                'info'          => $Shelly['IPv4'],
-                                'configuration' => [
-                                    'MQTTTopic' => $Shelly['Name']
-                                ]
-                            ];
-                            break;
-                        case 'shellybulbduo':
-                            $moduleID = '{6FEE58E6-082D-6934-F49E-EC6642E39992}';
-                            $DeviceType = 'Shelly Duo';
-                            $AddValue['create'] = [
-                                'moduleID'      => $moduleID,
-                                'info'          => $Shelly['IPv4'],
-                                'configuration' => [
-                                    'MQTTTopic' => $Shelly['Name'],
-                                    'Device'    => 'light'
-                                ]
-                            ];
-                            break;
-                        case 'shellyuni':
-                            $moduleID = '{D10AF7A0-CBC0-415A-BD3B-FFF0E8BB8B21}';
-                            $DeviceType = 'Shelly Uni';
-                            $AddValue['create'] = [
-                                'moduleID'      => $moduleID,
-                                'info'          => $Shelly['IPv4'],
-                                'configuration' => [
-                                    'MQTTTopic' => $Shelly['Name']
-                                ]
-                            ];
-                            break;
-                        case 'shellycolorbulb':
-                            $moduleID = '{65462305-608D-4E48-B532-E3D389F7DF00}';
-                            $DeviceType = 'Shelly Bulb RGBW';
-                            $AddValue['create'] = [
-                                'moduleID'      => $moduleID,
-                                'info'          => $Shelly['IPv4'],
-                                'configuration' => [
-                                    'MQTTTopic' => $Shelly['Name']
-                                ]
-                            ];
-                            break;
-                        case 'shellymotionsensor':
-                            $moduleID = '{DB241FB8-F26D-4F74-82E4-66F046931B6E}';
-                            $DeviceType = 'Shelly Motion';
-                            $AddValue['create'] = [
-                                'moduleID'      => $moduleID,
-                                'info'          => $Shelly['IPv4'],
-                                'configuration' => [
-                                    'MQTTTopic' => $Shelly['Name']
-                                ]
-                            ];
-                            break;
-                        case 'shellymotion2':
-                            $moduleID = '{2F27E9AF-9B26-4952-A7BF-25EAFFCA75E0}';
-                            $DeviceType = 'Shelly Motion 2';
-                            $AddValue['create'] = [
-                                'moduleID'      => $moduleID,
-                                'info'          => $Shelly['IPv4'],
-                                'configuration' => [
-                                    'MQTTTopic' => $Shelly['Name']
-                                ]
-                            ];
-                            break;
-                        case 'shellypro4pm':
-                            $moduleID = '{4E416C32-833A-4469-97B3-D4A41413A272}';
-                            $DeviceType = 'Shelly Pro 4PM';
-                            $AddValue['create'] = [
-                                'moduleID'      => $moduleID,
-                                'info'          => $Shelly['IPv4'],
-                                'configuration' => [
-                                    'MQTTTopic' => strtolower($Shelly['Name'])
-                                ]
-                            ];
-                            break;
-                        case 'shellypro1':
-                            $moduleID = '{03E01942-F28A-4A91-93DB-EE981EA41507}';
-                            $DeviceType = 'Shelly Pro 1';
-                            $AddValue['create'] = [
-                                'moduleID'      => $moduleID,
-                                'info'          => $Shelly['IPv4'],
-                                'configuration' => [
-                                    'MQTTTopic' => strtolower($Shelly['Name']),
-                                    'Device'    => 'shellypro1'
-                                ]
-                            ];
-                            break;
-                        case 'shellypro1pm':
-                            $moduleID = '{03E01942-F28A-4A91-93DB-EE981EA41507}';
-                            $DeviceType = 'Shelly Pro 1PM';
-                            $AddValue['create'] = [
-                                'moduleID'      => $moduleID,
-                                'info'          => $Shelly['IPv4'],
-                                'configuration' => [
-                                    'MQTTTopic' => strtolower($Shelly['Name']),
-                                    'Device'    => 'shellypro1pm'
-                                ]
-                            ];
-                            break;
-                            case 'shellypro2':
-                                $moduleID = '{A7B9C446-E5C6-4DE9-AF1E-B9FE20FFF3FF}';
-                                $DeviceType = 'Shelly Pro 2';
-                                $AddValue['create'] = [
-                                    'moduleID'      => $moduleID,
-                                    'info'          => $Shelly['IPv4'],
-                                    'configuration' => [
-                                        'MQTTTopic' => strtolower($Shelly['Name']),
-                                    ]
-                                ];
-                                break;
-                            case 'shellypro2pm':
-                                $moduleID = '{A7B9C446-E5C6-4DE9-AF1E-B9FE20FFF3FF}';
-                                $DeviceType = 'Shelly Pro 2PM';
-                                $AddValue['create'] = [
-                                    'moduleID'      => $moduleID,
-                                    'info'          => $Shelly['IPv4'],
-                                    'configuration' => [
-                                        'MQTTTopic'  => strtolower($Shelly['Name']),
-                                        'Device'     => 'shellypro2pm',
-                                        'DeviceType' => 'relay'
-                                    ]
-                                ];
-                                break;
-                            case 'shellypro3':
-                                $moduleID = '{B9FF443D-5D7F-44F5-B743-59DC70B3E633}';
-                                $DeviceType = 'Shelly Pro 3';
-                                $AddValue['create'] = [
-                                    'moduleID'      => $moduleID,
-                                    'info'          => $Shelly['IPv4'],
-                                    'configuration' => [
-                                        'MQTTTopic' => strtolower($Shelly['Name']),
-                                    ]
-                                ];
-                                break;
-                            case 'shellypro3em':
-                                $moduleID = '{ED673810-352A-4D63-B035-55DF6BDA86AB}';
-                                $DeviceType = 'Shelly Pro 3 EM';
-                                $AddValue['create'] = [
-                                    'moduleID'      => $moduleID,
-                                    'info'          => $Shelly['IPv4'],
-                                    'configuration' => [
-                                        'MQTTTopic' => strtolower($Shelly['Name']),
-                                    ]
-                                ];
-                                break;
-                            case 'shellyproem50':
-                                $moduleID = '{E6CD1DA6-EFFC-4DA0-979B-9DC6B1648891}';
-                                $DeviceType = 'Shelly Pro EM';
-                                $AddValue['create'] = [
-                                    'moduleID'      => $moduleID,
-                                    'info'          => $Shelly['IPv4'],
-                                    'configuration' => [
-                                        'MQTTTopic' => strtolower($Shelly['Name']),
-                                    ]
-                                ];
-                                break;
-                        case 'shellyplusi4':
-                            $moduleID = '{34DD2E1E-47CD-47BC-938E-071AE60FE2AD}';
-                            $DeviceType = 'Shelly Plus i4';
-                            $AddValue['create'] = [
-                                'moduleID'      => $moduleID,
-                                'info'          => $Shelly['IPv4'],
-                                'configuration' => [
-                                    'MQTTTopic' => strtolower($Shelly['Name'])
-                                ]
-                            ];
-                            break;
-                        case 'shellyplusht':
-                            $moduleID = '{41C32508-A08D-40E8-870C-AF051A8DB6B4}';
-                            $DeviceType = 'Shelly Plus H&T';
-                            $AddValue['create'] = [
-                                'moduleID'      => $moduleID,
-                                'info'          => $Shelly['IPv4'],
-                                'configuration' => [
-                                    'MQTTTopic' => strtolower($Shelly['Name']),
-                                ]
-                            ];
-                            break;
-                        case 'shellyplusplugs':
-                            $moduleID = '{D7769710-EED1-4835-AC2D-C0AC8356E900}';
-                            $DeviceType = 'Shelly Plus Plug S';
-                            $AddValue['create'] = [
-                                'moduleID'      => $moduleID,
-                                'info'          => $Shelly['IPv4'],
-                                'configuration' => [
-                                    'MQTTTopic' => strtolower($Shelly['Name']),
-                                    'Device'    => 'shellyplusplugs'
-                                ]
-                            ];
-                            break;
-                        case 'shellyplus1':
-                            $moduleID = '{AF5127F4-4929-49AF-9894-D7B8627667A7}';
-                            $DeviceType = 'Shelly Plus 1';
-                            $AddValue['create'] = [
-                                'moduleID'      => $moduleID,
-                                'info'          => $Shelly['IPv4'],
-                                'configuration' => [
-                                    'MQTTTopic' => strtolower($Shelly['Name']),
-                                    'Device'    => 'shellyplus1'
-                                ]
-                            ];
-                            break;
-                        case 'shelly1mini':
-                            $moduleID = '{AF5127F4-4929-49AF-9894-D7B8627667A7}';
-                            $DeviceType = 'Shelly Plus 1 Mini';
-                            $AddValue['create'] = [
-                                'moduleID'      => $moduleID,
-                                'info'          => $Shelly['IPv4'],
-                                'configuration' => [
-                                    'MQTTTopic' => strtolower($Shelly['Name']),
-                                    'Device'    => 'shellyplus1mini'
-                                ]
-                            ];
-                            break;
-                        case 'shellyplus1pm':
-                            $moduleID = '{AF5127F4-4929-49AF-9894-D7B8627667A7}';
-                            $DeviceType = 'Shelly Plus 1PM';
-                            $AddValue['create'] = [
-                                'moduleID'      => $moduleID,
-                                'info'          => $Shelly['IPv4'],
-                                'configuration' => [
-                                    'MQTTTopic' => strtolower($Shelly['Name']),
-                                    'Device'    => 'shellyplus1pm'
-                                ]
-                            ];
-                            break;
-                        case 'shelly1pmmini':
-                            $moduleID = '{AF5127F4-4929-49AF-9894-D7B8627667A7}';
-                            $DeviceType = 'Shelly Plus 1PM';
-                            $AddValue['create'] = [
-                                'moduleID'      => $moduleID,
-                                'info'          => $Shelly['IPv4'],
-                                'configuration' => [
-                                    'MQTTTopic' => strtolower($Shelly['Name']),
-                                    'Device'    => 'shellyplus1pmmini'
-                                ]
-                            ];
-                            break;
-                        case 'shellypmmini':
-                            $moduleID = '{5E1866C8-609B-4080-AD7C-5C766DD829A2}';
-                            $DeviceType = 'Shelly Plus PM Mini';
-                            $AddValue['create'] = [
-                                'moduleID'      => $moduleID,
-                                'info'          => $Shelly['IPv4'],
-                                'configuration' => [
-                                    'MQTTTopic' => strtolower($Shelly['Name']),
-                                ]
-                            ];
-                            break;
-                        case 'shellyplus2pm':
-                            $moduleID = '{6AE60C94-A295-4A0F-9AF3-C051C1D72AAA}';
-                            $DeviceType = 'Shelly Plus 2PM';
-                            $AddValue['create'] = [
-                                'moduleID'      => $moduleID,
-                                'info'          => $Shelly['IPv4'],
-                                'configuration' => [
-                                    'MQTTTopic' => strtolower($Shelly['Name'])
-                                ]
-                            ];
-                            break;
-                        case 'shellyplussmoke':
-                            $moduleID = '{2B1FC768-7B87-47C6-ACCF-9A8C601CF776}';
-                            $DeviceType = 'Shelly Plus Smoke';
-                            $AddValue['create'] = [
-                                'moduleID'      => $moduleID,
-                                'info'          => $Shelly['IPv4'],
-                                'configuration' => [
-                                    'MQTTTopic' => strtolower($Shelly['Name'])
-                                ]
-                            ];
-                            break;
-                        case 'shellytrv':
-                            $moduleID = '{FEBA9798-EB8E-4703-A9BC-C1B3EE711D1B}';
-                            $DeviceType = 'Shelly TRV';
-                            $AddValue['create'] = [
-                                'moduleID'      => $moduleID,
-                                'info'          => $Shelly['IPv4'],
-                                'configuration' => [
-                                    'MQTTTopic' => $Shelly['Name']
-                                ]
-                            ];
-                            break;
                     default:
-                        $this->SendDebug(__FUNCTION__ . ' DeviceType Switch', 'Invalid Device Type:' . strtolower($Shelly['DeviceType']), 0);
-                        $DeviceType = 'Invalid';
+                        $this->SendDebug(__FUNCTION__ . ' DeviceType', 'Invalid Device Type:' . $Shelly['Model'], 0);
                         break;
                     }
 
-                    $Values[] = $AddValue;
+                $Values[] = $AddValue;
             }
             $Form['actions'][0]['values'] = $Values;
         }
         return json_encode($Form);
+    }
+
+    public function getShellies()
+    {
+        $Shellies = json_decode($this->ReadAttributeString('Shellies'), true);
+
+        foreach ($Shellies as $key => $Shelly) {
+            if ($Shelly['LastActivity'] + 86400 < time()) {
+                unset($Shellies[$key]);
+                $Shellies = array_values($Shellies);
+            }
+
+            $this->WriteAttributeString('Shellies', json_encode($Shellies));
+        }
+        $this->sendMQTT('shellies/command', 'announce');
     }
 
     private function getShellyInstances($ShellyID)
@@ -751,62 +864,5 @@ class ShellyConfigurator extends IPSModule
             return IPS_GetObject($ID)['ObjectName'];
         }
         return '';
-    }
-
-    private function findShellysOnNetwork()
-    {
-        $mDNSInstanceIDs = IPS_GetInstanceListByModuleID('{780B2D48-916C-4D59-AD35-5A429B2355A5}');
-        $resultServiceTypes = ZC_QueryServiceType($mDNSInstanceIDs[0], '_http._tcp', '');
-
-        $this->SendDebug('resultServiceTypes', print_r($resultServiceTypes, true), 0);
-
-        $shellys = [];
-        foreach ($resultServiceTypes as $key => $device) {
-            if (strpos(strtolower($device['Name']), 'shelly') !== false) {
-                $shelly = [];
-
-                $deviceInfo = ZC_QueryService($mDNSInstanceIDs[0], $device['Name'], '_http._tcp', 'local.');
-                //$this->LogMessage(print_r($deviceInfo, true), KL_NOTIFY);
-                $type = strstr($device['Name'], '-', true);
-                $shelly['Name'] = $device['Name'];
-                if (array_key_exists(0, $deviceInfo)) {
-                    if (array_key_exists(0, $deviceInfo[0]['IPv4'])) {
-                        //$this->LogMessage(print_r($deviceInfo, true), KL_NOTIFY);
-                        $shelly['IPv4'] = $deviceInfo[0]['IPv4'][0];
-                    } else {
-                        $shelly['IPv4'] = '-';
-                    }
-                } else {
-                    $shelly['IPv4'] = '-';
-                }
-                if ($type != 'shellysense') {
-                    $shelly['DeviceType'] = strstr($device['Name'], '-', true);
-                    $shelly['Firmware'] = '-';
-                    $this->SendDebug('mDNS TXTRecords', print_r($deviceInfo, true), 0);
-                    if (array_key_exists(0, $deviceInfo)) {
-                        if (is_array($deviceInfo[0])) {
-                            if (array_key_exists(0, $deviceInfo[0]['TXTRecords'])) {
-                                if ($deviceInfo[0]['TXTRecords'][0] == 'gen=2') {
-                                    $deviceInfo = ZC_QueryService($mDNSInstanceIDs[0], $device['Name'], '_shelly._tcp', 'local.');
-                                }
-                            }
-                            if (is_array($deviceInfo[0])) {
-                                if (array_key_exists(1, $deviceInfo[0]['TXTRecords'])) {
-                                    $shelly['Firmware'] = $deviceInfo[0]['TXTRecords'][1];
-                                } else {
-                                    $shelly['Firmware'] = '-';
-                                }
-                            } else {
-                                $shelly['Firmware'] = '-';
-                            }
-                        } else {
-                            $shelly['Firmware'] = '-';
-                        }
-                    }
-                }
-                $shellys[] = $shelly;
-            }
-        }
-        return $shellys;
     }
 }
