@@ -50,7 +50,7 @@ class ShellyPlusPMMini extends ShellyModule
                             }
                             if (array_key_exists('errors', $Payload)) {
                                 if (!empty($Payload['errors'])) {
-                                    $this->SetValue('Error', $Payload['errors']);
+                                    $this->SetValue('Error', implode(',', $Payload['errors']));
                                 }
                             }
                         }
