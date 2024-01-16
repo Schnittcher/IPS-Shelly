@@ -662,7 +662,7 @@ class ShellyConfigurator extends IPSModule
                             $DeviceType = 'Shelly Pro 2PM';
                             $AddValue['create'] = [
                                 'moduleID'      => $moduleID,
-                                'info'          => $Shelly['IPv4'],
+                                'info'          => $Shelly['IP'],
                                 'configuration' => [
                                     'MQTTTopic'  => strtolower($Shelly['Name']),
                                     'Device'     => 'shellypro2pm',
@@ -674,7 +674,7 @@ class ShellyConfigurator extends IPSModule
                         $moduleID = '{F86F268B-BC23-41AC-B107-16EEF661A4D7}';
                         $AddValue['create'] = [
                             'moduleID'      => $moduleID,
-                            'info'          => $Shelly['IPv4'],
+                            'info'          => $Shelly['IP'],
                             'configuration' => [
                                 'MQTTTopic' => $Shelly['Name']
                             ]
@@ -685,7 +685,7 @@ class ShellyConfigurator extends IPSModule
                         $DeviceType = 'Shelly Smoke';
                         $AddValue['create'] = [
                             'moduleID'      => $moduleID,
-                            'info'          => $Shelly['IPv4'],
+                            'info'          => $Shelly['IP'],
                             'configuration' => [
                                 'MQTTTopic' => $Shelly['Name']
                             ]
@@ -696,7 +696,7 @@ class ShellyConfigurator extends IPSModule
                         $DeviceType = 'Shelly Air';
                         $AddValue['create'] = [
                             'moduleID'      => $moduleID,
-                            'info'          => $Shelly['IPv4'],
+                            'info'          => $Shelly['IP'],
                             'configuration' => [
                                 'MQTTTopic' => $Shelly['Name']
                             ]
