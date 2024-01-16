@@ -664,7 +664,7 @@ class ShellyConfigurator extends IPSModule
                                 'moduleID'      => $moduleID,
                                 'info'          => $Shelly['IP'],
                                 'configuration' => [
-                                    'MQTTTopic'  => strtolower($Shelly['Name']),
+                                    'MQTTTopic'  => strtolower($Shelly['ID']),
                                     'Device'     => 'shellypro2pm',
                                     'DeviceType' => 'relay'
                                 ]
@@ -676,7 +676,7 @@ class ShellyConfigurator extends IPSModule
                             'moduleID'      => $moduleID,
                             'info'          => $Shelly['IP'],
                             'configuration' => [
-                                'MQTTTopic' => $Shelly['Name']
+                                'MQTTTopic' => $Shelly['ID']
                             ]
                         ];
                         break;
@@ -687,7 +687,7 @@ class ShellyConfigurator extends IPSModule
                             'moduleID'      => $moduleID,
                             'info'          => $Shelly['IP'],
                             'configuration' => [
-                                'MQTTTopic' => $Shelly['Name']
+                                'MQTTTopic' => $Shelly['ID']
                             ]
                         ];
                         break;
@@ -698,7 +698,7 @@ class ShellyConfigurator extends IPSModule
                             'moduleID'      => $moduleID,
                             'info'          => $Shelly['IP'],
                             'configuration' => [
-                                'MQTTTopic' => $Shelly['Name']
+                                'MQTTTopic' => $Shelly['ID']
                             ]
                         ];
                         break;
