@@ -493,6 +493,7 @@ class ShellyConfigurator extends IPSModule
                     case 'SHMOS-01':
                     case 'SHMOS-02':
                     case 'SNSW-002P16EU':
+                    case 'SNSW-102P16EU':
                     case 'SNSN-0024X':
                     case 'SNSN-0D24X':
                     case 'SNSN-0013A':
