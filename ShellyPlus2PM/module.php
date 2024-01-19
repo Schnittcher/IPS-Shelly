@@ -11,12 +11,14 @@ class ShellyPlus2PM extends ShellyModule
         ['TotalEnergy0', 'Total Energy 1', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
         ['Current0', 'Current 1', VARIABLETYPE_FLOAT, '~Ampere', [], '', false, true],
         ['Voltage0', 'Voltage 1', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true],
+        ['Temperature0', 'Temperature0', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
 
         ['State1', 'State 2', VARIABLETYPE_BOOLEAN, '~Switch', [], 'relay', true, true],
         ['Power1', 'Power 2', VARIABLETYPE_FLOAT, '~Watt.3680', [], 'relay', false, true],
         ['TotalEnergy1', 'Total Energy 2', VARIABLETYPE_FLOAT, '~Electricity', [], 'relay', false, true],
         ['Current1', 'Current 2', VARIABLETYPE_FLOAT, '~Ampere', [], 'relay', false, true],
         ['Voltage1', 'Voltage 2', VARIABLETYPE_FLOAT, '~Volt', [], 'relay', false, true],
+        ['Temperature1', 'Temperature1', VARIABLETYPE_FLOAT, '~Temperature', [], 'relay', false, true],
 
         ['State', 'State', VARIABLETYPE_INTEGER, '~ShutterMoveStop', [], 'roller', true, true],
         ['CoverPosition', 'Position', VARIABLETYPE_INTEGER, '~Shutter', [], 'roller', true, true],
@@ -27,7 +29,6 @@ class ShellyPlus2PM extends ShellyModule
         ['EventComponent', 'Event Component', VARIABLETYPE_STRING, '', [], '', false, true],
         ['Event', 'Event', VARIABLETYPE_STRING, '', [], '', false, true],
         ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true],
-        ['Temperature', 'Temperature', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
         ['Temperature100', 'External Temperature 1', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
         ['Temperature101', 'External Temperature 2', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
         ['Temperature102', 'External Temperature 3', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
@@ -110,11 +111,7 @@ class ShellyPlus2PM extends ShellyModule
                                 }
                             }
                         }
-                        if (array_key_exists('temperature', $Payload['params'])) {
-                            if (array_key_exists('tC', $Payload['params']['temperature'])) {
-                                $this->SetValue('Temperature', $Payload['params']['temperature']['tC']);
-                            }
-                        }
+
                         if (array_key_exists('switch:0', $Payload['params'])) {
                             $switch = $Payload['params']['switch:0'];
                             if (array_key_exists('output', $switch)) {
@@ -132,6 +129,11 @@ class ShellyPlus2PM extends ShellyModule
                             if (array_key_exists('aenergy', $switch)) {
                                 if (array_key_exists('total', $switch['aenergy'])) {
                                     $this->SetValue('TotalEnergy0', $switch['aenergy']['total'] / 1000);
+                                }
+                            }
+                            if (array_key_exists('temperature', $switch)) {
+                                if (array_key_exists('tC', $switch['temperature'])) {
+                                    $this->SetValue('Temperature0', $switch['temperature']['tC']);
                                 }
                             }
                         }
@@ -152,6 +154,11 @@ class ShellyPlus2PM extends ShellyModule
                             if (array_key_exists('aenergy', $switch)) {
                                 if (array_key_exists('total', $switch['aenergy'])) {
                                     $this->SetValue('TotalEnergy1', $switch['aenergy']['total'] / 1000);
+                                }
+                            }
+                            if (array_key_exists('temperature', $switch)) {
+                                if (array_key_exists('tC', $switch['temperature'])) {
+                                    $this->SetValue('Temperature1', $switch['temperature']['tC']);
                                 }
                             }
                         }
@@ -186,6 +193,11 @@ class ShellyPlus2PM extends ShellyModule
                         if (array_key_exists('aenergy', $Payload['params'])) {
                             if (array_key_exists('total', $Payload['params']['aenergy'])) {
                                 $this->SetValue('TotalEnergy0', $Payload['params']['aenergy']['total'] / 1000);
+                            }
+                        }
+                        if (array_key_exists('temperature', $Payload['params'])) {
+                            if (array_key_exists('tC', $Payload['params']['temperature'])) {
+                                $this->SetValue('Temperature0', $Payload['params']['temperature']['tC']);
                             }
                         }
                         //External Sensor Addon
@@ -251,6 +263,11 @@ class ShellyPlus2PM extends ShellyModule
                             $this->SetValue('TotalEnergy0', $Payload['aenergy']['total'] / 1000);
                         }
                     }
+                    if (array_key_exists('temperature', $Payload)) {
+                        if (array_key_exists('tC', $Payload['temperature'])) {
+                            $this->SetValue('Temperature0', $Payload['temperature']['tC']);
+                        }
+                    }
                 }
                 if (fnmatch('*/status/switch:1', $Buffer['Topic'])) {
                     if (array_key_exists('output', $Payload)) {
@@ -270,6 +287,11 @@ class ShellyPlus2PM extends ShellyModule
                             $this->SetValue('TotalEnergy1', $Payload['aenergy']['total'] / 1000);
                         }
                     }
+                    if (array_key_exists('temperature', $Payload)) {
+                        if (array_key_exists('tC', $Payload['temperature'])) {
+                            $this->SetValue('Temperature1', $Payload['temperature']['tC']);
+                        }
+                    }
                 }
                 if (fnmatch('*/status/cover:0', $Buffer['Topic'])) {
                     if (array_key_exists('current_pos', $Payload)) {
@@ -287,6 +309,11 @@ class ShellyPlus2PM extends ShellyModule
                     if (array_key_exists('aenergy', $Payload)) {
                         if (array_key_exists('total', $Payload['aenergy'])) {
                             $this->SetValue('TotalEnergy0', $Payload['aenergy']['total'] / 1000);
+                        }
+                    }
+                    if (array_key_exists('temperature', $Payload)) {
+                        if (array_key_exists('tC', $Payload['temperature'])) {
+                            $this->SetValue('Temperature0', $Payload['temperature']['tC']);
                         }
                     }
                 }
