@@ -37,6 +37,7 @@ Die selben Zugangsdaten müssen über das Shelly Webinterface unter Internet & S
 
 ## 2. Enthaltene Module
 
+* [Gen3Shelly1Mini](Gen3Shelly1Mini/README.md)
 * [Shelly1](Shelly1/README.md)
 * [Shelly2](Shelly2/README.md)
 * [Shelly3EM](Shelly3EM/README.md)

@@ -198,25 +198,25 @@ class ShellyConfigurator extends IPSModule
         'SNSW-001X8EU' => [
             'Name'  => 'Shelly Plus 1 Mini',
             'GUID'  => '{AF5127F4-4929-49AF-9894-D7B8627667A7}'
-        ],
+        ],     
         'S3SW-001X8EU' => [
             'Name'  => 'Shelly 1 Mini Gen3',
-            'GUID'  => '{AF5127F4-4929-49AF-9894-D7B8627667A7}'
+            'GUID'  => '{D6B33C50-1855-F2B2-EC6A-0C14F4259952}'
+        ],
+        'S3SW-001P8EU' => [
+            'Name'  => 'Shelly 1PM Mini Gen3',
+            'GUID'  => '{D6B33C50-1855-F2B2-EC6A-0C14F4259952}'
+        ],
+        'S3PM-001PCEU16' => [
+            'Name'  => 'Shelly PM Mini Gen3',
+            'GUID'  => '{D6B33C50-1855-F2B2-EC6A-0C14F4259952}'
         ],
         'SNSW-001P8EU' => [
             'Name'  => 'Shelly Plus 1PM Mini',
             'GUID'  => '{AF5127F4-4929-49AF-9894-D7B8627667A7}'
         ],
-        'S3SW-001P8EU' => [
-            'Name'  => 'Shelly 1PM Mini Gen3',
-            'GUID'  => '{AF5127F4-4929-49AF-9894-D7B8627667A7}'
-        ],
         'SNPM-001PCEU16' => [
             'Name'  => 'Shelly Plus PM Mini',
-            'GUID'  => '{5E1866C8-609B-4080-AD7C-5C766DD829A2}'
-        ],
-        'S3PM-001PCEU16' => [
-            'Name'  => 'Shelly PM Mini Gen3',
             'GUID'  => '{5E1866C8-609B-4080-AD7C-5C766DD829A2}'
         ],
         'SPSW-001XE16EU' => [
@@ -499,9 +499,7 @@ class ShellyConfigurator extends IPSModule
                     case 'SNSN-0013A':
                     case 'SNSN-0031Z':
                     case 'SNSW-001P8EU':
-                    case 'S3SW-001P8EU':
                     case 'SNPM-001PCEU16':
-                    case 'S3PM-001PCEU16':
                     case 'SPSW-002PE16EU':
                     case 'SPSW-002XE16EU':
                     case 'SPSW-202XE16EU':
@@ -615,8 +613,36 @@ class ShellyConfigurator extends IPSModule
                                 ]
                             ];
                             break;
-                        case 'SNSW-001X8EU':
                         case 'S3SW-001X8EU':
+                            $AddValue['create'] = [
+                                'moduleID'      => $moduleID,
+                                'info'          => $Shelly['IP'],
+                                'configuration' => [
+                                    'MQTTTopic' => strtolower($Shelly['ID']),
+                                    'Device'    => 'gen3shelly1mini'
+                                ]
+                            ];
+                            break;   
+                        case 'S3SW-001P8EU':
+                            $AddValue['create'] = [
+                                'moduleID'      => $moduleID,
+                                'info'          => $Shelly['IP'],
+                                'configuration' => [
+                                    'MQTTTopic' => strtolower($Shelly['ID']),
+                                    'Device'    => 'gen3shelly1pmmini'
+                                ]
+                            ];
+                            break;
+                        case 'S3PM-001PCEU16':
+                            $AddValue['create'] = [
+                                'moduleID'      => $moduleID,
+                                'info'          => $Shelly['IP'],
+                                'configuration' => [
+                                    'MQTTTopic' => strtolower($Shelly['ID']),
+                                    'Device'    => 'gen3shellypmmini'
+                                ]
+                            ];
+                        case 'SNSW-001X8EU':
                             $AddValue['create'] = [
                                 'moduleID'      => $moduleID,
                                 'info'          => $Shelly['IP'],

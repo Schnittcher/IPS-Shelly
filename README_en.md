@@ -33,6 +33,7 @@ If you would like to use the username/password settings you need to configure it
 
 ## 2. Included Modules
 
+* [Gen3Shelly1Mini](Gen3Shelly1Mini/README_en.md)
 * [Shelly1](Shelly1/README_en.md)
 * [Shelly2](Shelly2/README_en.md)
 * [Shelly3EM](Shelly3EM/README_en.md)
