@@ -66,11 +66,17 @@ class Gen3Shelly1Mini extends ShellyModule
                             if (array_key_exists('current', $switch)) {
                                 $this->SetValue('Current', $switch['current']);
                             }
+                            if (array_key_exists('temperature', $switch)) {
+                                if (array_key_exists('tC', $switch['temperature'])) {
+                                    $this->SetValue('DeviceTemperature', $switch['temperature']['tc']);
+                                }
+                            }
                             if (array_key_exists('aenergy', $switch)) {
                                 if (array_key_exists('total', $switch['aenergy'])) {
                                     $this->SetValue('TotalEnergy', $switch['aenergy']['total'] / 1000);
                                 }
                             }
+                           
                             if (array_key_exists('errors', $switch)) {
                                 $this->SetValue('Overtemp', false);
                                 $this->SetValue('Overpower', false);
@@ -111,14 +117,6 @@ class Gen3Shelly1Mini extends ShellyModule
                     if (array_key_exists('aenergy', $Payload)) {
                         if (array_key_exists('total', $Payload['aenergy'])) {
                             $this->SetValue('TotalEnergy', $Payload['aenergy']['total'] / 1000);
-                        }
-                    }
-                }
-                //Temperatur ist immer vorhanden und sollte immer der selbe Wert sein.
-                if (fnmatch('*/status/*', $Buffer['Topic'])) {
-                    if (array_key_exists('temperature', $Payload)) {
-                        if (array_key_exists('tC', $Payload['temperature'])) {
-                            $this->SetValue('DeviceTemperature', $Payload['temperature']['tC']);
                         }
                     }
                 }
