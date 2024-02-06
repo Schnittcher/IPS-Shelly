@@ -72,6 +72,9 @@ class ShellyTRV extends ShellyModule
                         if (property_exists($Payload->thermostats[0], 'schedule_profile')) {
                             $this->SetValue('ScheduleProfile', $Payload->thermostats[0]->schedule_profile);
                         }
+                        if (property_exists($Payload->thermostats[0], 'window_open')) {
+                            $this->SetValue('WindowOpen', $Payload->thermostats[0]->window_open);
+                        }
                     }
                     if (property_exists($Payload, 'bat')) {
                         if (property_exists($Payload->bat, 'value')) {
@@ -79,13 +82,6 @@ class ShellyTRV extends ShellyModule
                         }
                         if (property_exists($Payload->bat, 'voltage')) {
                             $this->SetValue('BatteryVoltage', $Payload->bat->voltage);
-                        }
-                    }
-                }
-                if (fnmatch('*status*', $Buffer->Topic)) {
-                    if (property_exists($Payload, 'thermostats')) {
-                        if (property_exists($Payload->thermostats[0], 'window_open')) {
-                            $this->SetValue('WindowOpen', $Payload->thermostats[0]->window_open);
                         }
                     }
                 }
