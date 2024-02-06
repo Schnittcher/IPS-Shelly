@@ -5,7 +5,6 @@
     "vendor": "Shelly",
     "aliases": [
         "Shelly Bulb",
-        "Shelly Duo",
         "Shelly Duo RGBW"
     ],
     "parentRequirements": [

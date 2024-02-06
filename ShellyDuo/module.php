@@ -13,13 +13,8 @@ class ShellyDuo extends ShellyModule
         ['Shelly_Brightness', 'Brightness', VARIABLETYPE_INTEGER, '~Intensity.100', [], '', true, true],
         ['Shelly_White', 'White', VARIABLETYPE_INTEGER, '~Intensity.100', [], '', true, true],
         ['Shelly_ColorTemperature', 'Color Temperature', VARIABLETYPE_INTEGER, 'ShellyDuo.ColorTemperature', [], '', true, true],
-
-        ['Shelly_Color', 'Color', VARIABLETYPE_INTEGER, '~HexColor', ['color'], '', true, true],
-        ['Shelly_Gain', 'Gain', VARIABLETYPE_INTEGER, '~Intensity.100', ['color'], '', true, true],
-
         ['Shelly_Power', 'Power', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true],
         ['Shelly_Energy', 'Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
-
         ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
     ];
 
@@ -44,12 +39,6 @@ class ShellyDuo extends ShellyModule
                 break;
             case 'Shelly_ColorTemperature':
                 $this->ColorTemperatureSet(intval($Value));
-                break;
-            case 'Shelly_Color':
-                $this->SetColor($Value);
-                break;
-            case 'Shelly_Gain':
-                $this->SetGain($Value);
                 break;
             }
     }
@@ -76,26 +65,12 @@ class ShellyDuo extends ShellyModule
                             break;
                     }
                 }
-                if (fnmatch('*/color/0', $Buffer->Topic)) {
-                    switch ($Buffer->Payload) {
-                        case 'off':
-                            $this->SetValue('Shelly_State', 0);
-                            break;
-                        case 'on':
-                            $this->SetValue('Shelly_State', 1);
-                            break;
-                    }
-                }
                 if (fnmatch('*status*', $Buffer->Topic)) {
                     $Payload = json_decode($Buffer->Payload);
                     $this->SetValue('Shelly_State', $Payload->ison);
                     $this->SetValue('Shelly_Brightness', $Payload->brightness);
                     $this->SetValue('Shelly_White', $Payload->white);
                     $this->SetValue('Shelly_ColorTemperature', $Payload->temp);
-                    if (property_exists($Payload, 'red')) { //wenn red existiert, existieren auch die anderen
-                        $this->SetValue('Shelly_Gain', $Payload->gain);
-                        $this->SetValue('Shelly_Color', $this->rgbToHex($Payload->red, $Payload->green, $Payload->blue));
-                    }
                 }
                 if (fnmatch('*/light/0/power', $Buffer->Topic)) {
                     $this->SetValue('Shelly_Power', $Buffer->Payload);
@@ -158,34 +133,6 @@ class ShellyDuo extends ShellyModule
         $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/' . $this->ReadPropertyString('Device') . '/0/set';
         $Payload['temp'] = strval($value);
         $Payload = json_encode($Payload);
-        $this->sendMQTT($Topic, $Payload);
-    }
-
-    private function SetColor($color)
-    {
-        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/' . $this->ReadPropertyString('Device') . '/0/set';
-
-        //If $Value Hex Color convert to Decimal
-        if (preg_match('/^#[a-f0-9]{6}$/i', strval($color))) {
-            $color = hexdec($color);
-        }
-
-        $RGB = $this->HexToRGB(intval($color));
-        $Payload['red'] = strval($RGB[0]);
-        $Payload['green'] = strval($RGB[1]);
-        $Payload['blue'] = strval($RGB[2]);
-
-        $Payload = json_encode($Payload);
-
-        $this->sendMQTT($Topic, $Payload);
-    }
-
-    private function SetGain(int $value)
-    {
-        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/' . $this->ReadPropertyString('Device') . '/0/set';
-        $Payload['gain'] = strval($value);
-        $Payload = json_encode($Payload);
-
         $this->sendMQTT($Topic, $Payload);
     }
 }

@@ -85,7 +85,7 @@ class ShellyConfigurator extends IPSModule
         ],
         'SHBDUO-1' => [
             'Name'  => 'Shelly Duo',
-            'GUID'  => '{65462305-608D-4E48-B532-E3D389F7DF00}'
+            'GUID'  => '{6FEE58E6-082D-6934-F49E-EC6642E39992}'
         ],
         'SHSPOT-1' => [
             'Name'  => 'Shelly Duo GU10',
