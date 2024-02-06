@@ -57,7 +57,7 @@ class ShellyTRV extends ShellyModule
             if (property_exists($Buffer, 'Topic')) {
                 if (fnmatch('*info*', $Buffer->Topic)) {
                     if (property_exists($Payload, 'thermostats')) {
-                        if (propertyexists($Payload->thermostats[0], 'pos')) {
+                        if (property_exists($Payload->thermostats[0], 'pos')) {
                             $this->SetValue('Position', $Payload->thermostats[0]->pos);
                         }
                         if (property_exists($Payload->thermostats[0], 'target_t')) {
