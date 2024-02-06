@@ -173,12 +173,16 @@ class ShellyPlus2PM extends ShellyModule
                                         $this->SetValue('State', 0);
                                         break;
                                     case 'closing':
+                                    case 'closed':
                                         $this->SetValue('State', 4);
                                         break;
                                     default:
                                         $this->SendDebug('Invalid Value for Cover', $cover['state'], 0);
                                         break;
                                 }
+                            }
+                            if (array_key_exists('current_pos', $cover)) {
+                                $this->SetValue('CoverPosition', $cover['current_pos']);
                             }
                         }
                         if (array_key_exists('apower', $Payload['params'])) {
