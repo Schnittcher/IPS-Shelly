@@ -14,7 +14,7 @@ class ShellyTRV extends ShellyModule
         ['ScheduleProfile', 'Schedule Profile', VARIABLETYPE_INTEGER, '', '', '', true, true],
         ['BatteryValue', 'Battery', VARIABLETYPE_INTEGER, '~Battery.100', [], '', false, true],
         ['BatteryVoltage', 'Battery Voltage', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true],
-        ['WindowOpen', 'Window', VARIABLETYPE_BOOLEAN, '~Window', [], '', false, true],
+        ['WindowOpen', 'Window', VARIABLETYPE_BOOLEAN, '~Window', [], '', true, true],
         ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', [], '', false, true]
     ];
 
@@ -35,6 +35,9 @@ class ShellyTRV extends ShellyModule
                 break;
             case 'ScheduleProfile':
                 $this->setScheduleProfile($Value);
+                break;
+            case 'WindowOpen':
+                $this->setWindowOpen($Value);
                 break;
             default:
                 $this->SendDebug('ReqestAction :: Invalid Ident', $ident, 0);
@@ -124,6 +127,17 @@ class ShellyTRV extends ShellyModule
     {
         $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/thermostat/0/command/schedule_profile';
         $Payload = strval($Value);
+        $this->sendMQTT($Topic, $Payload);
+    }
+
+    private function setWindowOpen(bool $Value)
+    {
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/thermostat/0/command/window_open';
+        if ($Value) {
+            $Payload = 'open';
+        } else {
+            $Payload = 'close';
+        }
         $this->sendMQTT($Topic, $Payload);
     }
 }
