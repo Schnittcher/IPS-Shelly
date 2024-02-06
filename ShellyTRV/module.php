@@ -14,6 +14,7 @@ class ShellyTRV extends ShellyModule
         ['ScheduleProfile', 'Schedule Profile', VARIABLETYPE_INTEGER, '', '', '', true, true],
         ['BatteryValue', 'Battery', VARIABLETYPE_INTEGER, '~Battery.100', [], '', false, true],
         ['BatteryVoltage', 'Battery Voltage', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true],
+        ['WindowOpen', 'Window', VARIABLETYPE_BOOLEAN, '~Window', [], '', false, true],
         ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', [], '', false, true]
     ];
 
@@ -56,7 +57,7 @@ class ShellyTRV extends ShellyModule
             if (property_exists($Buffer, 'Topic')) {
                 if (fnmatch('*info*', $Buffer->Topic)) {
                     if (property_exists($Payload, 'thermostats')) {
-                        if (property_exists($Payload->thermostats[0], 'pos')) {
+                        if (propertyexists($Payload->thermostats[0], 'pos')) {
                             $this->SetValue('Position', $Payload->thermostats[0]->pos);
                         }
                         if (property_exists($Payload->thermostats[0], 'target_t')) {
@@ -78,6 +79,13 @@ class ShellyTRV extends ShellyModule
                         }
                         if (property_exists($Payload->bat, 'voltage')) {
                             $this->SetValue('BatteryVoltage', $Payload->bat->voltage);
+                        }
+                    }
+                }
+                if (fnmatch('*status*', $Buffer->Topic)) {
+                    if (property_exists($Payload, 'thermostats')) {
+                        if (property_exists($Payload->thermostats[0], 'window_open')) {
+                            $this->SetValue('WindowOpen', $Payload->thermostats[0]->window_open);
                         }
                     }
                 }
