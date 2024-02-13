@@ -68,7 +68,7 @@ class Gen3Shelly1Mini extends ShellyModule
                             }
                             if (array_key_exists('temperature', $switch)) {
                                 if (array_key_exists('tC', $switch['temperature'])) {
-                                    $this->SetValue('DeviceTemperature', $switch['temperature']['tc']);
+                                    $this->SetValue('DeviceTemperature', $switch['temperature']['tC']);
                                 }
                             }
                             if (array_key_exists('aenergy', $switch)) {
