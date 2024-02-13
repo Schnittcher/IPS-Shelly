@@ -2,8 +2,11 @@
    This module enables the integration of a Shelly Bulb RGBW in IP-Symcon.
      
    ## Table of Contents
-   1. [Configuration](#1-configuration)
-   2. [Functions](#2-functions)
+- [ShellyBulb](#shellybulb)
+  - [Table of Contents](#table-of-contents)
+  - [1. Configuration](#1-configuration)
+  - [2. Functions](#2-functions)
+  - [3. Actions](#3-actions)
    
    ## 1. Configuration
    
@@ -24,6 +27,11 @@
    ```php
    RequestAction(12345, true); //Switch on
    RequestAction(12345, false); //Switch off
+   ```
+
+   Variable ID Effect: 12345
+   ```php
+   RequestAction(12345,3 ); //Effect Flash
    ```
 
    Variable ID Brightness: 56789

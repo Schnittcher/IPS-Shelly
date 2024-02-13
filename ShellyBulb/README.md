@@ -2,8 +2,11 @@
    Dieses Modul ermöglicht es, eine Shelly Bulb RGBW Lampe in IP-Symcon zu integrieren.
      
    ## Inhaltverzeichnis
-   1. [Konfiguration](#1-konfiguration)
-   2. [Funktionen](#2-funktionen)
+- [ShellyBulb](#shellybulb)
+  - [Inhaltverzeichnis](#inhaltverzeichnis)
+  - [1. Konfiguration](#1-konfiguration)
+  - [2. Funktionen](#2-funktionen)
+  - [3. Aktionen](#3-aktionen)
    
    ## 1. Konfiguration
    
@@ -24,6 +27,11 @@
    ```php
    RequestAction(12345, true); //Einschalten
    RequestAction(12345, false); //Auschalten
+   ```
+
+   Variable ID Effekt: 12345
+   ```php
+   RequestAction(12345,3 ); //Effekt Blitzlicht
    ```
 
    Variable ID Helligkeit: 56789
