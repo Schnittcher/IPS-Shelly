@@ -11,7 +11,8 @@ class ShellyBulb extends ShellyModule
     public static $Variables = [
         ['Shelly_Mode', 'Mode', VARIABLETYPE_STRING, 'ShellyBulb.Mode', [], '', true, true],
         ['Shelly_State', 'State', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true],
-
+        ['Shelly_Effect', 'Effect', VARIABLETYPE_INTEGER, 'ShellyBulb.Effect', [], '', true, true],
+        
         ['Shelly_Color', 'Color', VARIABLETYPE_INTEGER, '~HexColor', [], '', true, true],
         ['Shelly_Gain', 'Gain', VARIABLETYPE_INTEGER, '~Intensity.100', [], '', true, true],
         ['Shelly_White', 'White', VARIABLETYPE_INTEGER, '~Intensity.100', [], '', true, true],
@@ -35,6 +36,15 @@ class ShellyBulb extends ShellyModule
             ['color', $this->Translate('Color'), '', 0x0000FF]
         ]);
         $this->RegisterProfileInteger('ShellyBulb.ColorTemperature', 'Intensity', '', 'K', 2700, 6500, 1);
+
+        $this->RegisterProfileIntegerEx('ShellyBulb.Effect', 'Menu', '', '', [
+            [0, $this->Translate('Off'), '', 0x000000],
+            [1, $this->Translate('Meteor Shower'), '', 0x000000],
+            [2, $this->Translate('Gradual Change'), '', 0x000000],
+            [3, $this->Translate('Flash'), '', 0x000000]
+        ]);
+
+        $this->RegisterProfileInteger('ShellyBulb.ColorTemperature', 'Intensity', '', 'K', 2700, 6500, 1);
     }
 
     public function RequestAction($Ident, $Value)
@@ -42,6 +52,9 @@ class ShellyBulb extends ShellyModule
         switch ($Ident) {
             case 'Shelly_State':
                 $this->SwitchMode($Value);
+                break;
+            case 'Shelly_Effect':
+                $this->SetEffect($Value);
                 break;
             case 'Shelly_Brightness':
                 $this->DimSet(intval($Value));
@@ -148,6 +161,14 @@ class ShellyBulb extends ShellyModule
         $Payload['mode'] = 'white';
         $Payload['brightness'] = strval($value);
         $Payload['transition'] = strval($transition);
+        $Payload = json_encode($Payload);
+        $this->sendMQTT($Topic, $Payload);
+    }
+
+    public function SetEffect(int $value)
+    {
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/color/0/set';
+        $Payload['effect'] = $value;
         $Payload = json_encode($Payload);
         $this->sendMQTT($Topic, $Payload);
     }

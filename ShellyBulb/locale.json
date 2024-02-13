@@ -15,7 +15,12 @@
             "White": "Weiß",
             "Please select device": "Bitte wählen Sie das Gerät aus",
             "Gain": "Gain",
-            "Color": "Farbe"
+            "Color": "Farbe",
+            "Effect": "Effekt",
+            "Off": "Aus",
+            "Meteor Shower": "Meteoritenschauer",
+            "Gradual Change": "Allmählicher Wandel",
+            "Flash": "Blitzlicht"           
         }
     }
 }
