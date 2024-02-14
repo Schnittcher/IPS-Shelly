@@ -89,7 +89,7 @@ class ShellyConfigurator extends IPSModule
         ],
         'SHSPOT-1' => [
             'Name'  => 'Shelly Duo GU10',
-            'GUID'  => '{65462305-608D-4E48-B532-E3D389F7DF00}'
+            'GUID'  => '{6FEE58E6-082D-6934-F49E-EC6642E39992}'
         ],
         'SHVIN-1' => [
             'Name'  => 'Shelly Vintage',
@@ -872,6 +872,9 @@ class ShellyConfigurator extends IPSModule
 
         //Shelly TRV
         $InstanceIDs[] = IPS_GetInstanceListByModuleID('{FEBA9798-EB8E-4703-A9BC-C1B3EE711D1B}');
+
+        //Gen3Shewlly1Mini
+        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{D6B33C50-1855-F2B2-EC6A-0C14F4259952}');      
 
         foreach ($InstanceIDs as $IDs) {
             foreach ($IDs as $id) {
