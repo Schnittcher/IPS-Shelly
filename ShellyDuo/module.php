@@ -34,9 +34,6 @@ class ShellyDuo extends ShellyModule
             case 'Shelly_Brightness':
                 $this->DimSet(intval($Value));
                 break;
-            case 'Shelly_White':
-                $this->WhiteSet(intval($Value));
-                break;
             case 'Shelly_ColorTemperature':
                 $this->ColorTemperatureSet(intval($Value));
                 break;
@@ -69,7 +66,6 @@ class ShellyDuo extends ShellyModule
                     $Payload = json_decode($Buffer->Payload);
                     $this->SetValue('Shelly_State', $Payload->ison);
                     $this->SetValue('Shelly_Brightness', $Payload->brightness);
-                    $this->SetValue('Shelly_White', $Payload->white);
                     $this->SetValue('Shelly_ColorTemperature', $Payload->temp);
                 }
                 if (fnmatch('*/light/0/power', $Buffer->Topic)) {
@@ -117,14 +113,6 @@ class ShellyDuo extends ShellyModule
         } else {
             $Payload = 'off';
         }
-        $this->sendMQTT($Topic, $Payload);
-    }
-
-    private function WhiteSet(int $value)
-    {
-        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/' . $this->ReadPropertyString('Device') . '/0/set';
-        $Payload['white'] = strval($value);
-        $Payload = json_encode($Payload);
         $this->sendMQTT($Topic, $Payload);
     }
 
