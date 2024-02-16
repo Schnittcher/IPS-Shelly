@@ -159,6 +159,10 @@ class ShellyConfigurator extends IPSModule
             'Name'  => 'Shelly Plus H&T',
             'GUID'  => '{41C32508-A08D-40E8-870C-AF051A8DB6B4}'
         ],
+        'S3SN-0U12A' => [
+            'Name'  => 'Shelly H&T Gen3',
+            'GUID'  => '{41C32508-A08D-40E8-870C-AF051A8DB6B4}'
+        ],
         'SNPL-00110IT' => [
             'Name'  => 'Shelly Plus Plug IT',
             'GUID'  => '{D7769710-EED1-4835-AC2D-C0AC8356E900}'
@@ -497,6 +501,7 @@ class ShellyConfigurator extends IPSModule
                     case 'SNSN-0024X':
                     case 'SNSN-0D24X':
                     case 'SNSN-0013A':
+                    case 'S3SN-0U12A':
                     case 'SNSN-0031Z':
                     case 'SNSW-001P8EU':
                     case 'SNPM-001PCEU16':
@@ -512,6 +517,7 @@ class ShellyConfigurator extends IPSModule
                     case 'SPSW-104PE16EU':
                     case 'SNDM-00100WW':
                         $AddValue['create'] = [
+                            'name' => $Shelly['ID'],
                             'moduleID'      => $moduleID,
                             'info'          => $Shelly['IP'],
                             'configuration' => [
@@ -833,9 +839,9 @@ class ShellyConfigurator extends IPSModule
         //ShellyMotion 2
         $InstanceIDs[] = IPS_GetInstanceListByModuleID('{2F27E9AF-9B26-4952-A7BF-25EAFFCA75E0}');
 
-        //Shelly Plus H&T
+        //Shelly Plus H&T & Gen 3
         $InstanceIDs[] = IPS_GetInstanceListByModuleID('{41C32508-A08D-40E8-870C-AF051A8DB6B4}');
-
+        
         //Shelly Plus Plug S
         $InstanceIDs[] = IPS_GetInstanceListByModuleID('{D7769710-EED1-4835-AC2D-C0AC8356E900}');
 
