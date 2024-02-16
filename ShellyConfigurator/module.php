@@ -193,12 +193,12 @@ class ShellyConfigurator extends IPSModule
         ],
         'SNDM-00100WW' => [ //fehlt
             'Name'  => 'Shelly Plus 0-10 V Dimmer',
-            'GUID'  => ''
+            'GUID'  => '{88F80513-AE05-84EF-7120-E3F0E02C7F52}'
         ],
         'SNSW-001X8EU' => [
             'Name'  => 'Shelly Plus 1 Mini',
             'GUID'  => '{AF5127F4-4929-49AF-9894-D7B8627667A7}'
-        ],     
+        ],
         'S3SW-001X8EU' => [
             'Name'  => 'Shelly 1 Mini Gen3',
             'GUID'  => '{D6B33C50-1855-F2B2-EC6A-0C14F4259952}'
@@ -510,6 +510,7 @@ class ShellyConfigurator extends IPSModule
                     case 'SPEM-002CEBEU50':
                     case 'SPSW-004PE16EU':
                     case 'SPSW-104PE16EU':
+                    case 'SNDM-00100WW':
                         $AddValue['create'] = [
                             'moduleID'      => $moduleID,
                             'info'          => $Shelly['IP'],
@@ -622,7 +623,7 @@ class ShellyConfigurator extends IPSModule
                                     'Device'    => 'gen3shelly1mini'
                                 ]
                             ];
-                            break;   
+                            break;
                         case 'S3SW-001P8EU':
                             $AddValue['create'] = [
                                 'moduleID'      => $moduleID,
@@ -642,6 +643,7 @@ class ShellyConfigurator extends IPSModule
                                     'Device'    => 'gen3shellypmmini'
                                 ]
                             ];
+                            // No break. Add additional comment above this line if intentional
                         case 'SNSW-001X8EU':
                             $AddValue['create'] = [
                                 'moduleID'      => $moduleID,
@@ -874,7 +876,10 @@ class ShellyConfigurator extends IPSModule
         $InstanceIDs[] = IPS_GetInstanceListByModuleID('{FEBA9798-EB8E-4703-A9BC-C1B3EE711D1B}');
 
         //Gen3Shewlly1Mini
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{D6B33C50-1855-F2B2-EC6A-0C14F4259952}');      
+        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{D6B33C50-1855-F2B2-EC6A-0C14F4259952}');
+
+        //Shelly Plus 0-10V Dimmer
+        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{88F80513-AE05-84EF-7120-E3F0E02C7F52}');
 
         foreach ($InstanceIDs as $IDs) {
             foreach ($IDs as $id) {
