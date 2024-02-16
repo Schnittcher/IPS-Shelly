@@ -12,7 +12,7 @@ class ShellyBulb extends ShellyModule
         ['Shelly_Mode', 'Mode', VARIABLETYPE_STRING, 'ShellyBulb.Mode', [], '', true, true],
         ['Shelly_State', 'State', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true],
         ['Shelly_Effect', 'Effect', VARIABLETYPE_INTEGER, 'ShellyBulb.Effect', [], '', true, true],
-        
+
         ['Shelly_Color', 'Color', VARIABLETYPE_INTEGER, '~HexColor', [], '', true, true],
         ['Shelly_Gain', 'Gain', VARIABLETYPE_INTEGER, '~Intensity.100', [], '', true, true],
         ['Shelly_White', 'White', VARIABLETYPE_INTEGER, '~Intensity.100', [], '', true, true],
@@ -168,6 +168,7 @@ class ShellyBulb extends ShellyModule
     public function SetEffect(int $value)
     {
         $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/color/0/set';
+        $Payload['mode'] = 'color';
         $Payload['effect'] = $value;
         $Payload = json_encode($Payload);
         $this->sendMQTT($Topic, $Payload);
