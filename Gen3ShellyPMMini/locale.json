@@ -1,0 +1,16 @@
+{
+    "translations": {
+        "de": {
+            "Active": "Aktiv",
+            "Reachable": "Erreichbar",
+            "Power": "Leistung",
+            "Total Energy": "Gesamt Energie",
+            "Current": "Stromstärke",
+            "Voltage": "Volt",
+            "Frequency": "Frequenz",
+            "Event Component": "Ereignis Komponente",
+            "Event": "Ereignis",
+            "Variables": "Variablen"
+        }
+    }
+}
