@@ -35,7 +35,7 @@ class ShellyBulb extends ShellyModule
             ['white', $this->Translate('White'), '', 0xFFFFFF],
             ['color', $this->Translate('Color'), '', 0x0000FF]
         ]);
-        $this->RegisterProfileInteger('ShellyBulb.ColorTemperature', 'Intensity', '', 'K', 2700, 6500, 1);
+        $this->RegisterProfileInteger('ShellyBulb.ColorTemperature', 'Intensity', '', 'K', 3000, 6500, 1);
 
         $this->RegisterProfileIntegerEx('ShellyBulb.Effect', 'Menu', '', '', [
             [0, $this->Translate('Off'), '', 0x000000],
@@ -44,7 +44,6 @@ class ShellyBulb extends ShellyModule
             [3, $this->Translate('Flash'), '', 0x000000]
         ]);
 
-        $this->RegisterProfileInteger('ShellyBulb.ColorTemperature', 'Intensity', '', 'K', 2700, 6500, 1);
     }
 
     public function RequestAction($Ident, $Value)
