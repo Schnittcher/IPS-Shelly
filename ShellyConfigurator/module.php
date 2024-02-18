@@ -287,6 +287,10 @@ class ShellyConfigurator extends IPSModule
             'Name'  => 'Shelly Pro 4PM V2',
             'GUID'  => '{4E416C32-833A-4469-97B3-D4A41413A272}'
         ],
+        'SNGW-BT01' => [
+            'Name'  => 'Shelly Bluetooth Gateway',
+            'GUID'  => '{5B4C60D3-A1AB-CA1D-323C-A0CDCEB1D990}'
+        ]
     ];
 
     public function Create()
@@ -516,8 +520,10 @@ class ShellyConfigurator extends IPSModule
                     case 'SPSW-004PE16EU':
                     case 'SPSW-104PE16EU':
                     case 'SNDM-00100WW':
+                    case 'SNGW-BT01':
+                    case 'S3PM-001PCEU16':
                         $AddValue['create'] = [
-                            'name' => $Shelly['ID'],
+                            'name'          => $Shelly['ID'],
                             'moduleID'      => $moduleID,
                             'info'          => $Shelly['IP'],
                             'configuration' => [
@@ -831,7 +837,7 @@ class ShellyConfigurator extends IPSModule
 
         //Shelly Plus H&T & Gen 3
         $InstanceIDs[] = IPS_GetInstanceListByModuleID('{41C32508-A08D-40E8-870C-AF051A8DB6B4}');
-        
+
         //Shelly Plus Plug S
         $InstanceIDs[] = IPS_GetInstanceListByModuleID('{D7769710-EED1-4835-AC2D-C0AC8356E900}');
 
@@ -875,10 +881,13 @@ class ShellyConfigurator extends IPSModule
         $InstanceIDs[] = IPS_GetInstanceListByModuleID('{D6B33C50-1855-F2B2-EC6A-0C14F4259952}');
 
         //Gen3ShellyPMMini
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{EA5280A7-811D-D2E3-A5A1-DF6C81505CE8}');      
+        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{EA5280A7-811D-D2E3-A5A1-DF6C81505CE8}');
 
         //Shelly Plus 0-10V Dimmer
         $InstanceIDs[] = IPS_GetInstanceListByModuleID('{88F80513-AE05-84EF-7120-E3F0E02C7F52}');
+
+        //Shelly BLUE Gateway
+        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{5B4C60D3-A1AB-CA1D-323C-A0CDCEB1D990}');
 
         foreach ($InstanceIDs as $IDs) {
             foreach ($IDs as $id) {
