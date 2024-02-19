@@ -1,0 +1,18 @@
+{
+    "id": "{7785B8E6-F990-0D1E-A658-8EE5D84B4754}",
+    "name": "ShellyProDimmerPM",
+    "type": 3,
+    "vendor": "Shelly",
+    "aliases": [
+        "Shelly Pro Dimmer 1PM",
+        "Shelly Pro Dimmer 2PM"
+    ],
+    "parentRequirements": [
+        "{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}"
+    ],
+    "childRequirements": [],
+    "implemented": [
+        "{7F7632D9-FA40-4F38-8DEA-C83CD4325A32}"
+    ],
+    "prefix": "SHELLY"
+}

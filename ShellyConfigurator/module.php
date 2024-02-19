@@ -290,6 +290,14 @@ class ShellyConfigurator extends IPSModule
         'SNGW-BT01' => [
             'Name'  => 'Shelly Bluetooth Gateway',
             'GUID'  => '{5B4C60D3-A1AB-CA1D-323C-A0CDCEB1D990}'
+        ],
+        'SPDM-001PE01EU' => [
+            'Name'  => 'Shelly Pro Dimmer 1PM',
+            'GUID'  => '{7785B8E6-F990-0D1E-A658-8EE5D84B4754}'
+        ],
+        'SPDM-002PE01EU' => [
+            'Name'  => 'Shelly Pro Dimmer 2PM',
+            'GUID'  => '{7785B8E6-F990-0D1E-A658-8EE5D84B4754}'
         ]
     ];
 
@@ -688,6 +696,26 @@ class ShellyConfigurator extends IPSModule
                                 ]
                             ];
                             break;
+                        case 'SPDM-001PE01EU':
+                            $AddValue['create'] = [
+                                'moduleID'      => $moduleID,
+                                'info'          => $Shelly['IP'],
+                                'configuration' => [
+                                    'MQTTTopic' => $Shelly['ID'],
+                                    'Device'    => 'shellyprodimmer1pm'
+                                ]
+                            ];
+                            break;
+                        case 'SPDM-002PE01EU':
+                            $AddValue['create'] = [
+                                'moduleID'      => $moduleID,
+                                'info'          => $Shelly['IP'],
+                                'configuration' => [
+                                    'MQTTTopic' => $Shelly['ID'],
+                                    'Device'    => 'shellyprodimmer2pm'
+                                ]
+                            ];
+                            break;
                         case 'SPSW-202PE16EU': //Eine Version fehlt - fehlt in der Doku von Shelly?!
                             $moduleID = '{A7B9C446-E5C6-4DE9-AF1E-B9FE20FFF3FF}';
                             $DeviceType = 'Shelly Pro 2PM';
@@ -763,131 +791,8 @@ class ShellyConfigurator extends IPSModule
     private function getShellyInstances($ShellyID)
     {
         $InstanceIDs = [];
-        //Shelly1 Instances
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{9E5FA0B2-AA98-48D5-AE07-78DEA4B0370A}');
-
-        //Shelly 2
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{BE266877-6642-4A80-9BAA-8C5B3B4DAF80}');
-
-        //Shelly 4Pro
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{F56CC544-581D-42EB-AAF0-F5E9E908916C}');
-
-        //ShellyDimmer
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{69B501C7-DCE8-4A4A-910C-D3954473E654}');
-
-        //ShellyDimmer2
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{69B501C7-DCE8-4A4A-910C-D3954473E654}');
-
-        //ShellyEM
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{53A4EF84-0CF9-44D4-B70E-4B84E0DCE9B3}');
-
-        //Shelly3EM
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{108ECEFF-642A-4B1F-9608-E592E31DBA11}');
-
-        //ShellyFlood
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{C360BA67-99A3-4F37-932B-B851D4E10AD6}');
-
-        //ShellyHT
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{F2EE9948-94F6-4BA6-BDC9-E59E440F3DB0}');
-
-        //ShellyPlug
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{ED5E1057-C47A-4D73-A130-B4E2912A026C}');
-
-        //ShellyRGBW2
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{3286C438-2174-E03B-85CE-B6B7C1A685D0}');
-
-        //ShellySense
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{F86F268B-BC23-41AC-B107-16EEF661A4D7}');
-
-        //ShellySmoke
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{88A5611C-CD57-4255-9F57-E420CE784C81}');
-
-        //ShellyWindow
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{24BDCF16-A370-6F72-8CBD-9B9968899FED}');
-
-        //ShellyVintage
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{9BFE4A38-47C9-775E-A6BE-DA338817A639}');
-
-        //ShellyAir
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{55840D9D-BB28-4D66-91B5-66C8859FAE83}');
-
-        //ShellyButton1
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{B1BEE0E4-5ADE-4326-98A8-1F7B3731E456}');
-
-        //ShellyGas
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{8725928A-A390-42FA-B045-A182499767C1}');
-
-        //Shelly i3
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{2B0AD1B9-1335-6C50-5CEC-DDCD03DAE252}');
-
-        //Shelly Duo
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{6FEE58E6-082D-6934-F49E-EC6642E39992}');
-
-        //Shelly Duo
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{65462305-608D-4E48-B532-E3D389F7DF00}');
-
-        //Shelly Uni
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{D10AF7A0-CBC0-415A-BD3B-FFF0E8BB8B21}');
-
-        //ShellyMotion
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{DB241FB8-F26D-4F74-82E4-66F046931B6E}');
-
-        //ShellyMotion 2
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{2F27E9AF-9B26-4952-A7BF-25EAFFCA75E0}');
-
-        //Shelly Plus H&T & Gen 3
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{41C32508-A08D-40E8-870C-AF051A8DB6B4}');
-
-        //Shelly Plus Plug S
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{D7769710-EED1-4835-AC2D-C0AC8356E900}');
-
-        //Shelly Plus 1 PM
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{34DD2E1E-47CD-47BC-938E-071AE60FE2AD}');
-
-        //Shelly Plus 1 PM
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{AF5127F4-4929-49AF-9894-D7B8627667A7}');
-
-        //Shelly Plus 2 PM
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{6AE60C94-A295-4A0F-9AF3-C051C1D72AAA}');
-
-        //Shelly Plus PM Mini
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{5E1866C8-609B-4080-AD7C-5C766DD829A2}');
-
-        //Shelly Plus SMoke
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{2B1FC768-7B87-47C6-ACCF-9A8C601CF776}');
-
-        //Shelly Pro 4PM
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{4E416C32-833A-4469-97B3-D4A41413A272}');
-
-        //Shelly Pro 1
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{03E01942-F28A-4A91-93DB-EE981EA41507}');
-
-        //Shelly Pro 2
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{A7B9C446-E5C6-4DE9-AF1E-B9FE20FFF3FF}');
-
-        //Shelly Pro 3
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{B9FF443D-5D7F-44F5-B743-59DC70B3E633}');
-
-        //Shelly Pro 3 EM
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{ED673810-352A-4D63-B035-55DF6BDA86AB}');
-
-        //Shelly Pro EM
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{E6CD1DA6-EFFC-4DA0-979B-9DC6B1648891}');
-
-        //Shelly TRV
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{FEBA9798-EB8E-4703-A9BC-C1B3EE711D1B}');
-
-        //Gen3Shelly1Mini
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{D6B33C50-1855-F2B2-EC6A-0C14F4259952}');
-
-        //Gen3ShellyPMMini
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{EA5280A7-811D-D2E3-A5A1-DF6C81505CE8}');
-
-        //Shelly Plus 0-10V Dimmer
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{88F80513-AE05-84EF-7120-E3F0E02C7F52}');
-
-        //Shelly BLUE Gateway
-        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{5B4C60D3-A1AB-CA1D-323C-A0CDCEB1D990}');
+        foreach (self::$DeviceTypes as $key => $value) {
+            if ($value['GUID'] != '') {
 
         foreach ($InstanceIDs as $IDs) {
             foreach ($IDs as $id) {
