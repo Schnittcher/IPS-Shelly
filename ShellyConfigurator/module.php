@@ -793,6 +793,9 @@ class ShellyConfigurator extends IPSModule
         $InstanceIDs = [];
         foreach (self::$DeviceTypes as $key => $value) {
             if ($value['GUID'] != '') {
+                $InstanceIDs[] = IPS_GetInstanceListByModuleID($value['GUID']);
+            }
+        }
 
         foreach ($InstanceIDs as $IDs) {
             foreach ($IDs as $id) {
