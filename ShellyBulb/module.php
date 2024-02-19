@@ -133,7 +133,7 @@ class ShellyBulb extends ShellyModule
                         $this->SetValue('Shelly_Mode', $Payload->mode);
                     }
                     if (property_exists($Payload, 'effect')) {
-                        $this->SetValue('Shelly_Effect', $Payload->Effect);
+                        $this->SetValue('Shelly_Effect', $Payload->effect);
                     }
                 }
                 if (fnmatch('*/light/0/power', $Buffer->Topic)) {
