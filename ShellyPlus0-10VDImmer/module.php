@@ -160,7 +160,7 @@ class ShellyPlus010VDimmer extends ShellyModule
         $Payload['id'] = 1;
         $Payload['src'] = 'user_1';
         $Payload['method'] = 'Switch.Set';
-        $Payload['params'] = ['id' => $id, 'brightness' => $value, 'transition' => $transition, 'toggle_after' => $toggle_after];
+        $Payload['params'] = ['id' => $id, 'brightness' => $brightness, 'transition' => $transition, 'toggle_after' => $toggle_after];
 
         $this->sendMQTT($Topic, json_encode($Payload));
     }
