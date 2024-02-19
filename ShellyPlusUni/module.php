@@ -50,18 +50,29 @@ class ShellyPlusUni extends ShellyModule
                             if (array_key_exists('output', $service)) {
                                 $this->SetValue('State0', $service['output']);
                             }
+                        }
+                        if (array_key_exists('switch:1', $Payload['params'])) {
                             $service = $Payload['params']['switch:1'];
                             if (array_key_exists('output', $service)) {
                                 $this->SetValue('State1', $service['output']);
                             }
+                        }
+
+                        if (array_key_exists('input:0', $Payload['params'])) {
                             $service = $Payload['params']['input:0'];
                             if (array_key_exists('state', $service)) {
                                 $this->SetValue('Input0', $service['state']);
                             }
+                        }
+
+                        if (array_key_exists('input:1', $Payload['params'])) {
                             $service = $Payload['params']['input:1'];
                             if (array_key_exists('state', $service)) {
                                 $this->SetValue('Input1', $service['state']);
                             }
+                        }
+
+                        if (array_key_exists('input:2', $Payload['params'])) {
                             $service = $Payload['params']['input:2'];
                             if (array_key_exists('counts', $service)) {
                                 $this->SetValue('Input2Count', $service['counts']['total']);
