@@ -298,6 +298,10 @@ class ShellyConfigurator extends IPSModule
         'SPDM-002PE01EU' => [
             'Name'  => 'Shelly Pro Dimmer 2PM',
             'GUID'  => '{7785B8E6-F990-0D1E-A658-8EE5D84B4754}'
+        ],
+        'SNSN-0043X' => [
+            'Name'  => 'Shelly Plus Uni',
+            'GUID'  => '{6997986C-A636-A888-EEFB-7886787DEBF8}'
         ]
     ];
 
@@ -530,6 +534,7 @@ class ShellyConfigurator extends IPSModule
                     case 'SNDM-00100WW':
                     case 'SNGW-BT01':
                     case 'S3PM-001PCEU16':
+                    case 'SNSN-0043X':
                         $AddValue['create'] = [
                             'name'          => $Shelly['ID'],
                             'moduleID'      => $moduleID,

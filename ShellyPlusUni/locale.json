@@ -1,0 +1,14 @@
+{
+    "translations": {
+        "de": {
+            "Active": "Aktiv",
+            "Reachable": "Erreichbar",
+            "State 1": "Status 1",
+            "State 2": "Status 2",
+            "Input 1": "Eingang 1",
+            "Input 2": "Eingang 2",
+            "Input 3 Count Total": "Eingang 3 Zähler",
+            "Input 3 Frequency": "Eingang 3 Frequenz"
+        }
+    }
+}
