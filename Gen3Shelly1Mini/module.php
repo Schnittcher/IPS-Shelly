@@ -76,7 +76,7 @@ class Gen3Shelly1Mini extends ShellyModule
                                     $this->SetValue('TotalEnergy', $switch['aenergy']['total'] / 1000);
                                 }
                             }
-                           
+
                             if (array_key_exists('errors', $switch)) {
                                 $this->SetValue('Overtemp', false);
                                 $this->SetValue('Overpower', false);
@@ -100,29 +100,29 @@ class Gen3Shelly1Mini extends ShellyModule
                                 }
                             }
                         }
-                }
-                if (fnmatch('*/status/switch:0', $Buffer['Topic'])) {
-                    if (array_key_exists('output', $Payload)) {
-                        $this->SetValue('State', $Payload['output']);
                     }
-                    if (array_key_exists('apower', $Payload)) {
-                        $this->SetValue('Power', $Payload['apower']);
-                    }
-                    if (array_key_exists('voltage', $Payload)) {
-                        $this->SetValue('Voltage', $Payload['voltage']);
-                    }
-                    if (array_key_exists('current', $Payload)) {
-                        $this->SetValue('Current', $Payload['current']);
-                    }
-                    if (array_key_exists('aenergy', $Payload)) {
-                        if (array_key_exists('total', $Payload['aenergy'])) {
-                            $this->SetValue('TotalEnergy', $Payload['aenergy']['total'] / 1000);
+                    if (fnmatch('*/status/switch:0', $Buffer['Topic'])) {
+                        if (array_key_exists('output', $Payload)) {
+                            $this->SetValue('State', $Payload['output']);
+                        }
+                        if (array_key_exists('apower', $Payload)) {
+                            $this->SetValue('Power', $Payload['apower']);
+                        }
+                        if (array_key_exists('voltage', $Payload)) {
+                            $this->SetValue('Voltage', $Payload['voltage']);
+                        }
+                        if (array_key_exists('current', $Payload)) {
+                            $this->SetValue('Current', $Payload['current']);
+                        }
+                        if (array_key_exists('aenergy', $Payload)) {
+                            if (array_key_exists('total', $Payload['aenergy'])) {
+                                $this->SetValue('TotalEnergy', $Payload['aenergy']['total'] / 1000);
+                            }
                         }
                     }
                 }
             }
         }
-    }
     }
     private function SwitchMode(int $switch, bool $value)
     {

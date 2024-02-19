@@ -43,7 +43,6 @@ class ShellyBulb extends ShellyModule
             [2, $this->Translate('Gradual Change'), '', 0x000000],
             [3, $this->Translate('Flash'), '', 0x000000]
         ]);
-
     }
 
     public function RequestAction($Ident, $Value)
