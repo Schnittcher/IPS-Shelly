@@ -129,7 +129,7 @@ class ShellyConfigurator extends IPSModule
         ],
         'SHMOS-02' => [
             'Name'  => 'Shelly Motion 2',
-            'GUID'  => '{DB241FB8-F26D-4F74-82E4-66F046931B6E}'
+            'GUID'  => '{2F27E9AF-9B26-4952-A7BF-25EAFFCA75E0}'
         ],
         'SNSW-001X16EU' => [
             'Name'  => 'Shelly Plus 1',
