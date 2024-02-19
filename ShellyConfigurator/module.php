@@ -29,7 +29,7 @@ class ShellyConfigurator extends IPSModule
         ],
         'SHSW-25' => [
             'Name'  => 'Shelly 2.5',
-            'GUID'  => '{BE266877-6642-4A80-9BAA-8foundC5B3B4DAF80}'
+            'GUID'  => '{BE266877-6642-4A80-9BAA-8C5B3B4DAF80}'
         ],
         'SHIX3-1' => [
             'Name'  => 'Shelly i3',
