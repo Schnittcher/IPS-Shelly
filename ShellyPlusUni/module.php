@@ -12,6 +12,12 @@ class ShellyPlusUni extends ShellyModule
         ['Input1', 'Input 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
         ['Input2Count', 'Input 3 Count Total', VARIABLETYPE_INTEGER, '', [], '', false, true],
         ['Input2Frequency', 'Input 3 Frequency', VARIABLETYPE_FLOAT, '~Hertz', [], '', false, true],
+        ['Temperature100', 'External Temperature 1', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
+        ['Temperature101', 'External Temperature 2', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
+        ['Temperature102', 'External Temperature 3', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
+        ['Temperature103', 'External Temperature 4', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
+        ['Temperature104', 'External Temperature 5', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
+        ['Voltmeter100', 'External Voltmeter', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true],
         ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
     ];
 
@@ -80,6 +86,21 @@ class ShellyPlusUni extends ShellyModule
                             if (array_key_exists('freq', $service)) {
                                 $this->SetValue('Input2Frequency', $service['freq']);
                             }
+                        }
+                    }
+                    for ($i = 100; $i <= 104; $i++) {
+                        $temperatureIndex = 'temperature:' . $i;
+                        if (array_key_exists($temperatureIndex, $Payload['params'])) {
+                            $temperature = $Payload['params'][$temperatureIndex];
+                            if (array_key_exists('tC', $temperature)) {
+                                $this->SetValue('Temperature' . $i, $temperature['tC']);
+                            }
+                        }
+                    }
+                    if (array_key_exists('voltmeter:100', $Payload['params'])) {
+                        $voltmeter = $Payload['params']['voltmeter:100'];
+                        if (array_key_exists('voltage', $voltmeter)) {
+                            $this->SetValue('Voltmeter100', $voltmeter['voltage']);
                         }
                     }
                 }
