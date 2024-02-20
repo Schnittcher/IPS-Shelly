@@ -17,6 +17,7 @@ class ShellyPlusUni extends ShellyModule
         ['Temperature102', 'External Temperature 3', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
         ['Temperature103', 'External Temperature 4', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
         ['Temperature104', 'External Temperature 5', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
+        ['Humidity100', 'External Humidity', VARIABLETYPE_FLOAT, '~Humidity.F', [], '', false, true],
         ['Voltmeter100', 'External Voltmeter', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true],
         ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
     ];
@@ -101,6 +102,12 @@ class ShellyPlusUni extends ShellyModule
                         $voltmeter = $Payload['params']['voltmeter:100'];
                         if (array_key_exists('voltage', $voltmeter)) {
                             $this->SetValue('Voltmeter100', $voltmeter['voltage']);
+                        }
+                    }
+                    if (array_key_exists('humidity:100', $Payload['params'])) {
+                        $humidity = $Payload['params']['humidity:100'];
+                        if (array_key_exists('rh', $humidity)) {
+                            $this->SetValue('Humidity100', $humidity['rh']);
                         }
                     }
                 }
