@@ -37,7 +37,8 @@
             "Device": "Gerät",
             "Devices": "Geräte",
             "Total active Energy Offset": "Offset Wirkenergie (Gesamt)",
-            "Total active returned Energy Offset": "Offset für exportierte Energie (Gesamt)"
+            "Total active returned Energy Offset": "Offset für exportierte Energie (Gesamt)",
+            "Zeroing by unreach": "Nullung durch Unerreichbarkeit"
         }
     }
 }

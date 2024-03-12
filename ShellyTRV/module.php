@@ -6,16 +6,16 @@ require_once __DIR__ . '/../libs/ShellyModule.php';
 class ShellyTRV extends ShellyModule
 {
     public static $Variables = [
-        ['Position', 'Position', VARIABLETYPE_INTEGER, '~Intensity.100', [], '', true, true],
-        ['TargetTemperature', 'Target Temperature', VARIABLETYPE_FLOAT, '~Temperature.Room', [], '', true, true],
-        ['Temperature', 'Temperature', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
-        ['ExtTemperature', 'External Temperature', VARIABLETYPE_FLOAT, '~Temperature', [], '', true, true],
-        ['Schedule', 'Schedule', VARIABLETYPE_BOOLEAN, '~Switch', '', '', true, true],
-        ['ScheduleProfile', 'Schedule Profile', VARIABLETYPE_INTEGER, '', '', '', true, true],
-        ['BatteryValue', 'Battery', VARIABLETYPE_INTEGER, '~Battery.100', [], '', false, true],
-        ['BatteryVoltage', 'Battery Voltage', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true],
-        ['WindowOpen', 'Window', VARIABLETYPE_BOOLEAN, '~Window', [], '', true, true],
-        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', [], '', false, true]
+        ['Position', 'Position', VARIABLETYPE_INTEGER, '~Intensity.100', [], '', true, true, false],
+        ['TargetTemperature', 'Target Temperature', VARIABLETYPE_FLOAT, '~Temperature.Room', [], '', true, true, false],
+        ['Temperature', 'Temperature', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true, false],
+        ['ExtTemperature', 'External Temperature', VARIABLETYPE_FLOAT, '~Temperature', [], '', true, true, false],
+        ['Schedule', 'Schedule', VARIABLETYPE_BOOLEAN, '~Switch', '', '', true, true, false],
+        ['ScheduleProfile', 'Schedule Profile', VARIABLETYPE_INTEGER, '', '', '', true, true, false],
+        ['BatteryValue', 'Battery', VARIABLETYPE_INTEGER, '~Battery.100', [], '', false, true, false],
+        ['BatteryVoltage', 'Battery Voltage', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true, false],
+        ['WindowOpen', 'Window', VARIABLETYPE_BOOLEAN, '~Window', [], '', true, true, false],
+        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', [], '', false, true, false]
     ];
 
     public function RequestAction($Ident, $Value)
@@ -90,6 +90,9 @@ class ShellyTRV extends ShellyModule
                 }
                 if (fnmatch('*online', $Buffer->Topic)) {
                     $this->SetValue('Shelly_Reachable', $Payload);
+                    if (!$Payload) {
+                        $this->zeroingValues();
+                    }
                 }
             }
         }

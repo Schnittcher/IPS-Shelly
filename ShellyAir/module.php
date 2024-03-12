@@ -6,15 +6,15 @@ require_once __DIR__ . '/../libs/ShellyModule.php';
 class ShellyAir extends ShellyModule
 {
     public static $Variables = [
-        ['Shelly_State', 'State', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true],
-        ['Shelly_Energy', 'Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
-        ['Shelly_Power', 'Power', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true],
-        ['Shelly_Overtemperature', 'Overtemperature', VARIABLETYPE_BOOLEAN, '', [], '', false, true],
-        ['Shelly_Temperature', 'Temperature', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
-        ['Shelly_Totalworktime', 'Total Work Time', VARIABLETYPE_INTEGER, '~Temperature', [], '', false, true],
-        ['Shelly_Input', 'Input', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
+        ['Shelly_State', 'State', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true, false],
+        ['Shelly_Energy', 'Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true, false],
+        ['Shelly_Power', 'Power', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true, false],
+        ['Shelly_Overtemperature', 'Overtemperature', VARIABLETYPE_BOOLEAN, '', [], '', false, true, false],
+        ['Shelly_Temperature', 'Temperature', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true, false],
+        ['Shelly_Totalworktime', 'Total Work Time', VARIABLETYPE_INTEGER, '~Temperature', [], '', false, true, false],
+        ['Shelly_Input', 'Input', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true, false],
 
-        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
+        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true, false]
     ];
 
     public function RequestAction($Ident, $Value)
@@ -65,6 +65,7 @@ class ShellyAir extends ShellyModule
                             break;
                         case 'false':
                             $this->SetValue('Shelly_Reachable', false);
+                            $this->zeroingValues();
                             break;
                     }
                 }

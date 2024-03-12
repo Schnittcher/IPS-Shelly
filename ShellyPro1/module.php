@@ -6,20 +6,20 @@ require_once __DIR__ . '/../libs/ShellyModule.php';
 class ShellyPro1 extends ShellyModule
 {
     public static $Variables = [
-        ['State', 'State', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true],
+        ['State', 'State', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true, false],
 
-        ['Power', 'Power', VARIABLETYPE_FLOAT, '~Watt.3680', ['shellypro1pm'], '', false, true],
-        ['TotalEnergy', 'Total Energy', VARIABLETYPE_FLOAT, '~Electricity', ['shellypro1pm'], '', false, true],
-        ['Current', 'Current', VARIABLETYPE_FLOAT, '~Ampere', ['shellypro1pm'], '', false, true],
-        ['Voltage', 'Voltage', VARIABLETYPE_FLOAT, '~Volt', ['shellypro1pm'], '', false, true],
+        ['Power', 'Power', VARIABLETYPE_FLOAT, '~Watt.3680', ['shellypro1pm'], '', false, true, false],
+        ['TotalEnergy', 'Total Energy', VARIABLETYPE_FLOAT, '~Electricity', ['shellypro1pm'], '', false, true, false],
+        ['Current', 'Current', VARIABLETYPE_FLOAT, '~Ampere', ['shellypro1pm'], '', false, true, false],
+        ['Voltage', 'Voltage', VARIABLETYPE_FLOAT, '~Volt', ['shellypro1pm'], '', false, true, false],
 
-        ['Overtemp', 'Overtemp', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
-        ['Overpower', 'Overpower', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
-        ['Overvoltage', 'Overvoltage', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
+        ['Overtemp', 'Overtemp', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
+        ['Overpower', 'Overpower', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
+        ['Overvoltage', 'Overvoltage', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
 
-        ['EventComponent', 'Event Component', VARIABLETYPE_STRING, '', [], '', false, true],
-        ['Event', 'Event', VARIABLETYPE_STRING, '', [], '', false, true],
-        ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
+        ['EventComponent', 'Event Component', VARIABLETYPE_STRING, '', [], '', false, true, false],
+        ['Event', 'Event', VARIABLETYPE_STRING, '', [], '', false, true, false],
+        ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true, false]
     ];
 
     public function RequestAction($Ident, $Value)
@@ -45,6 +45,9 @@ class ShellyPro1 extends ShellyModule
             if (array_key_exists('Topic', $Buffer)) {
                 if (fnmatch('*/online', $Buffer['Topic'])) {
                     $this->SetValue('Reachable', $Payload);
+                    if (!$Payload) {
+                        $this->zeroingValues();
+                    }
                 }
                 if (fnmatch('*/events/rpc', $Buffer['Topic'])) {
                     if (array_key_exists('params', $Payload)) {

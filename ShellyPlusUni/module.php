@@ -6,20 +6,20 @@ require_once __DIR__ . '/../libs/ShellyModule.php';
 class ShellyPlusUni extends ShellyModule
 {
     public static $Variables = [
-        ['State0', 'State 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true],
-        ['State1', 'State 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true],
-        ['Input0', 'Input 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
-        ['Input1', 'Input 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
-        ['Input2Count', 'Input 3 Count Total', VARIABLETYPE_INTEGER, '', [], '', false, true],
-        ['Input2Frequency', 'Input 3 Frequency', VARIABLETYPE_FLOAT, '~Hertz', [], '', false, true],
-        ['Temperature100', 'External Temperature 1', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
-        ['Temperature101', 'External Temperature 2', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
-        ['Temperature102', 'External Temperature 3', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
-        ['Temperature103', 'External Temperature 4', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
-        ['Temperature104', 'External Temperature 5', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
-        ['Humidity100', 'External Humidity', VARIABLETYPE_FLOAT, '~Humidity.F', [], '', false, true],
-        ['Voltmeter100', 'External Voltmeter', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true],
-        ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
+        ['State0', 'State 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true, false],
+        ['State1', 'State 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true, false],
+        ['Input0', 'Input 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true, false],
+        ['Input1', 'Input 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true, false],
+        ['Input2Count', 'Input 3 Count Total', VARIABLETYPE_INTEGER, '', [], '', false, true, false],
+        ['Input2Frequency', 'Input 3 Frequency', VARIABLETYPE_FLOAT, '~Hertz', [], '', false, true, false],
+        ['Temperature100', 'External Temperature 1', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true, false],
+        ['Temperature101', 'External Temperature 2', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true, false],
+        ['Temperature102', 'External Temperature 3', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true, false],
+        ['Temperature103', 'External Temperature 4', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true, false],
+        ['Temperature104', 'External Temperature 5', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true, false],
+        ['Humidity100', 'External Humidity', VARIABLETYPE_FLOAT, '~Humidity.F', [], '', false, true, false],
+        ['Voltmeter100', 'External Voltmeter', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true, false],
+        ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true, false]
     ];
 
     public function RequestAction($Ident, $Value)
@@ -49,6 +49,9 @@ class ShellyPlusUni extends ShellyModule
             if (array_key_exists('Topic', $Buffer)) {
                 if (fnmatch('*/online', $Buffer['Topic'])) {
                     $this->SetValue('Reachable', $Payload);
+                    if (!$Payload) {
+                        $this->zeroingValues();
+                    }
                 }
                 if (fnmatch('*/events/rpc', $Buffer['Topic'])) {
                     if (array_key_exists('params', $Payload)) {

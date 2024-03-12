@@ -6,29 +6,29 @@ require_once __DIR__ . '/../libs/ShellyModule.php';
 class Shelly2 extends ShellyModule
 {
     public static $Variables = [
-        ['Shelly_State', 'State', VARIABLETYPE_BOOLEAN, '~Switch', ['shelly2', 'shelly2.5'], 'relay', true, true],
-        ['Shelly_State1', 'State 2', VARIABLETYPE_BOOLEAN, '~Switch', ['shelly2', 'shelly2.5'], 'relay', true, true],
+        ['Shelly_State', 'State', VARIABLETYPE_BOOLEAN, '~Switch', ['shelly2', 'shelly2.5'], 'relay', true, true, false],
+        ['Shelly_State1', 'State 2', VARIABLETYPE_BOOLEAN, '~Switch', ['shelly2', 'shelly2.5'], 'relay', true, true, false],
 
-        ['Shelly_Roller', 'Roller', VARIABLETYPE_INTEGER, '~ShutterMoveStop', ['shelly2', 'shelly2.5'], 'roller', true, true],
-        ['Shelly_RollerPosition', 'Position', VARIABLETYPE_INTEGER, '~Shutter', ['shelly2', 'shelly2.5'], 'roller', true, true],
-        ['Shelly_RollerStopReason', 'Stop Reason', VARIABLETYPE_STRING, '', ['shelly2', 'shelly2.5'], 'roller', false, true],
+        ['Shelly_Roller', 'Roller', VARIABLETYPE_INTEGER, '~ShutterMoveStop', ['shelly2', 'shelly2.5'], 'roller', true, true, false],
+        ['Shelly_RollerPosition', 'Position', VARIABLETYPE_INTEGER, '~Shutter', ['shelly2', 'shelly2.5'], 'roller', true, true, false],
+        ['Shelly_RollerStopReason', 'Stop Reason', VARIABLETYPE_STRING, '', ['shelly2', 'shelly2.5'], 'roller', false, true, false],
 
-        ['Shelly_Power', 'Power', VARIABLETYPE_FLOAT, '~Watt.3680', ['shelly2'], '', false, true],
-        ['Shelly_Energy', 'Energy', VARIABLETYPE_FLOAT, '~Electricity', ['shelly2'], '', false, true],
+        ['Shelly_Power', 'Power', VARIABLETYPE_FLOAT, '~Watt.3680', ['shelly2'], '', false, true, false],
+        ['Shelly_Energy', 'Energy', VARIABLETYPE_FLOAT, '~Electricity', ['shelly2'], '', false, true, false],
 
-        ['Shelly_Power1', 'Power 1', VARIABLETYPE_FLOAT, '~Watt.3680', ['shelly2.5'], '', false, true],
-        ['Shelly_Energy1', 'Energy 1', VARIABLETYPE_FLOAT, '~Electricity', ['shelly2.5'], '', false, true],
-        ['Shelly_Power2', 'Power 2', VARIABLETYPE_FLOAT, '~Watt.3680', ['shelly2.5'], '', false, true],
-        ['Shelly_Energy2', 'Energy 2', VARIABLETYPE_FLOAT, '~Electricity', ['shelly2.5'], '', false, true],
-        ['Shelly_Temperature', 'Device Temperature', VARIABLETYPE_FLOAT, '~Temperature', ['shelly2.5'], '', false, true],
-        ['Shelly_Overtemperature', 'Overtemperature', VARIABLETYPE_BOOLEAN, '', ['shelly2.5'], '', false, true],
+        ['Shelly_Power1', 'Power 1', VARIABLETYPE_FLOAT, '~Watt.3680', ['shelly2.5'], '', false, true, false],
+        ['Shelly_Energy1', 'Energy 1', VARIABLETYPE_FLOAT, '~Electricity', ['shelly2.5'], '', false, true, false],
+        ['Shelly_Power2', 'Power 2', VARIABLETYPE_FLOAT, '~Watt.3680', ['shelly2.5'], '', false, true, false],
+        ['Shelly_Energy2', 'Energy 2', VARIABLETYPE_FLOAT, '~Electricity', ['shelly2.5'], '', false, true, false],
+        ['Shelly_Temperature', 'Device Temperature', VARIABLETYPE_FLOAT, '~Temperature', ['shelly2.5'], '', false, true, false],
+        ['Shelly_Overtemperature', 'Overtemperature', VARIABLETYPE_BOOLEAN, '', ['shelly2.5'], '', false, true, false],
 
-        ['Shelly_Input', 'Input 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
-        ['Shelly_Input1', 'Input 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
-        ['Shelly_Longpush', 'Longpush 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
-        ['Shelly_Longpush1', 'Longpush 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
+        ['Shelly_Input', 'Input 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true, false],
+        ['Shelly_Input1', 'Input 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true, false],
+        ['Shelly_Longpush', 'Longpush 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true, false],
+        ['Shelly_Longpush1', 'Longpush 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true, false],
 
-        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
+        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true, false]
     ];
 
     public function Create()
@@ -209,6 +209,7 @@ class Shelly2 extends ShellyModule
                             break;
                         case 'false':
                             $this->SetValue('Shelly_Reachable', false);
+                            $this->zeroingValues();
                             break;
                     }
                 }

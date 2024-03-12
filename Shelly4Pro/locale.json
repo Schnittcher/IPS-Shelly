@@ -16,7 +16,8 @@
             "Energy 4": "Energie 4",
             "Reachable": "Erreichbar",
             "Device": "Gerät",
-            "Devices": "Geräte"
+            "Devices": "Geräte",
+            "Zeroing by unreach": "Nullung durch Unerreichbarkeit"
         }
     }
 }

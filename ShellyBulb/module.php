@@ -9,21 +9,20 @@ class ShellyBulb extends ShellyModule
     use ColorHelper;
 
     public static $Variables = [
-        ['Shelly_Mode', 'Mode', VARIABLETYPE_STRING, 'ShellyBulb.Mode', [], '', true, true],
-        ['Shelly_State', 'State', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true],
-        ['Shelly_Effect', 'Effect', VARIABLETYPE_INTEGER, 'ShellyBulb.Effect', [], '', true, true],
+        ['Shelly_Mode', 'Mode', VARIABLETYPE_STRING, 'ShellyBulb.Mode', [], '', true, true, false],
+        ['Shelly_State', 'State', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true, false],
+        ['Shelly_Effect', 'Effect', VARIABLETYPE_INTEGER, 'ShellyBulb.Effect', [], '', true, true, false],
 
-        ['Shelly_Color', 'Color', VARIABLETYPE_INTEGER, '~HexColor', [], '', true, true],
-        ['Shelly_Gain', 'Gain', VARIABLETYPE_INTEGER, '~Intensity.100', [], '', true, true],
-        ['Shelly_White', 'White', VARIABLETYPE_INTEGER, '~Intensity.100', [], '', true, true],
+        ['Shelly_Color', 'Color', VARIABLETYPE_INTEGER, '~HexColor', [], '', true, true, false],
+        ['Shelly_Gain', 'Gain', VARIABLETYPE_INTEGER, '~Intensity.100', [], '', true, true, false],
+        ['Shelly_White', 'White', VARIABLETYPE_INTEGER, '~Intensity.100', [], '', true, true, false],
 
-        ['Shelly_Brightness', 'Brightness', VARIABLETYPE_INTEGER, '~Intensity.100', [], '', true, true],
-        ['Shelly_ColorTemperature', 'Color Temperature', VARIABLETYPE_INTEGER, 'ShellyBulb.ColorTemperature', [], '', true, true],
-        ['Shelly_White', 'White', VARIABLETYPE_INTEGER, '~Intensity.100', [], '', false, true],
+        ['Shelly_Brightness', 'Brightness', VARIABLETYPE_INTEGER, '~Intensity.100', [], '', true, true, false],
+        ['Shelly_ColorTemperature', 'Color Temperature', VARIABLETYPE_INTEGER, 'ShellyBulb.ColorTemperature', [], '', true, true, false],
 
-        ['Shelly_Power', 'Power', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true],
-        ['Shelly_Energy', 'Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
-        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
+        ['Shelly_Power', 'Power', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true, false],
+        ['Shelly_Energy', 'Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true, false],
+        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true, false]
     ];
 
     public function Create()
@@ -149,6 +148,7 @@ class ShellyBulb extends ShellyModule
                             break;
                         case 'false':
                             $this->SetValue('Shelly_Reachable', false);
+                            $this->zeroingValues();
                             break;
                     }
                 }

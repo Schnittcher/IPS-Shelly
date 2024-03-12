@@ -6,12 +6,12 @@ require_once __DIR__ . '/../libs/ShellyModule.php';
 class ShellyMotion2 extends ShellyModule
 {
     public static $Variables = [
-        ['Shelly_Motion', 'Motion', VARIABLETYPE_BOOLEAN, '~Motion', [], '', false, true],
-        ['Shelly_Illuminance', 'Illuminance', VARIABLETYPE_INTEGER, '~Illumination', [], '', false, true],
-        ['Shelly_Vibration', 'Vibration', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
-        ['Shelly_Battery', 'Battery', VARIABLETYPE_INTEGER, '~Battery.100', [], '', false, true],
-        ['Shelly_Temperature', 'Temperature', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
-        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
+        ['Shelly_Motion', 'Motion', VARIABLETYPE_BOOLEAN, '~Motion', [], '', false, true, false],
+        ['Shelly_Illuminance', 'Illuminance', VARIABLETYPE_INTEGER, '~Illumination', [], '', false, true, false],
+        ['Shelly_Vibration', 'Vibration', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
+        ['Shelly_Battery', 'Battery', VARIABLETYPE_INTEGER, '~Battery.100', [], '', false, true, false],
+        ['Shelly_Temperature', 'Temperature', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true, false],
+        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true, false]
     ];
     public function ReceiveData($JSONString)
     {
@@ -52,6 +52,7 @@ class ShellyMotion2 extends ShellyModule
                             break;
                         case 'false':
                             $this->SetValue('Shelly_Reachable', false);
+                            $this->zeroingValues();
                             break;
                     }
                 }

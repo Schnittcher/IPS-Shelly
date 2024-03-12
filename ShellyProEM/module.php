@@ -6,31 +6,31 @@ require_once __DIR__ . '/../libs/ShellyModule.php';
 class ShellyProEM extends ShellyModule
 {
     public static $Variables = [
-        ['State', 'State', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true],
+        ['State', 'State', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true, false],
 
-        ['aCurrent', 'Phase A Current', VARIABLETYPE_FLOAT, '~Ampere', [], '', false, true],
-        ['aVoltage', 'Phase A Voltage', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true],
-        ['aActPower', 'Phase A active Power', VARIABLETYPE_FLOAT, '~Watt', [], '', false, true],
-        ['aAprtPower', 'Phase A apparent Power', VARIABLETYPE_FLOAT, '~Watt', [], '', false, true],
-        ['aPF', 'Phase A Power Factor', VARIABLETYPE_FLOAT, '', [], '', false, true],
+        ['aCurrent', 'Phase A Current', VARIABLETYPE_FLOAT, '~Ampere', [], '', false, true, false],
+        ['aVoltage', 'Phase A Voltage', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true, false],
+        ['aActPower', 'Phase A active Power', VARIABLETYPE_FLOAT, '~Watt', [], '', false, true, false],
+        ['aAprtPower', 'Phase A apparent Power', VARIABLETYPE_FLOAT, '~Watt', [], '', false, true, false],
+        ['aPF', 'Phase A Power Factor', VARIABLETYPE_FLOAT, '', [], '', false, true, false],
 
-        ['bCurrent', 'Phase B Current', VARIABLETYPE_FLOAT, '~Ampere', [], '', false, true],
-        ['bVoltage', 'Phase B Voltage', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true],
-        ['bActPower', 'Phase B active Power', VARIABLETYPE_FLOAT, '~Watt', [], '', false, true],
-        ['bAprtPower', 'Phase B apparent Power', VARIABLETYPE_FLOAT, '~Watt', [], '', false, true],
-        ['bPF', 'Phase B Power Factor', VARIABLETYPE_FLOAT, '', [], '', false, true],
+        ['bCurrent', 'Phase B Current', VARIABLETYPE_FLOAT, '~Ampere', [], '', false, true, false],
+        ['bVoltage', 'Phase B Voltage', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true, false],
+        ['bActPower', 'Phase B active Power', VARIABLETYPE_FLOAT, '~Watt', [], '', false, true, false],
+        ['bAprtPower', 'Phase B apparent Power', VARIABLETYPE_FLOAT, '~Watt', [], '', false, true, false],
+        ['bPF', 'Phase B Power Factor', VARIABLETYPE_FLOAT, '', [], '', false, true, false],
 
         /*emdata
-        ['aTotalActEnergy', 'Phase A total active Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
-        ['aTotalActRetEnergy', 'Phase A total active returned Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
-        ['bTotalActEnergy', 'Phase B total active Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
-        ['bTotalActRetEnergy', 'Phase B total active returned Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
-        ['cTotalActEnergy', 'Phase C total active Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
-        ['cTotalActRetEnergy', 'Phase C total active returned Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
-        ['totalActEnergy', 'Total active Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
-        ['totalActRetEnergy', 'Total active returned Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
+        ['aTotalActEnergy', 'Phase A total active Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true, false],
+        ['aTotalActRetEnergy', 'Phase A total active returned Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true, false],
+        ['bTotalActEnergy', 'Phase B total active Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true, false],
+        ['bTotalActRetEnergy', 'Phase B total active returned Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true, false],
+        ['cTotalActEnergy', 'Phase C total active Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true, false],
+        ['cTotalActRetEnergy', 'Phase C total active returned Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true, false],
+        ['totalActEnergy', 'Total active Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true, false],
+        ['totalActRetEnergy', 'Total active returned Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true, false],
          */
-        ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
+        ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true, false]
     ];
 
     public function Create()
@@ -81,6 +81,9 @@ class ShellyProEM extends ShellyModule
             if (array_key_exists('Topic', $Buffer)) {
                 if (fnmatch('*/online', $Buffer['Topic'])) {
                     $this->SetValue('Reachable', $Payload);
+                    if (!$Payload) {
+                        $this->zeroingValues();
+                    }
                 }
 
                 if (fnmatch('*/status/switch:0', $Buffer['Topic'])) {

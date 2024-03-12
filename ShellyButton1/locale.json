@@ -11,7 +11,8 @@
             "Reachable": "Erreichbar",
             "Battery": "Batterie",
             "Device": "Gerät",
-            "Devices": "Geräte"
+            "Devices": "Geräte",
+            "Zeroing by unreach": "Nullung durch Unerreichbarkeit"
         }
     }
 }

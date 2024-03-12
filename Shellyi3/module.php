@@ -7,13 +7,13 @@ require_once __DIR__ . '/../libs/ShellyModule.php';
 class Shellyi3 extends ShellyModule
 {
     public static $Variables = [
-        ['Shelly_Input0', 'Input 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
-        ['Shelly_Input1', 'Input 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
-        ['Shelly_Input2', 'Input 3', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
-        ['Shelly_InputEvent0', 'Input 1 Event', VARIABLETYPE_INTEGER, 'Shelly.i3Input', [], '', false, true],
-        ['Shelly_InputEvent1', 'Input 2 Event', VARIABLETYPE_INTEGER, 'Shelly.i3Input', [], '', false, true],
-        ['Shelly_InputEvent2', 'Input 3 Event', VARIABLETYPE_INTEGER, 'Shelly.i3Input', [], '', false, true],
-        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', [], '', false, true]
+        ['Shelly_Input0', 'Input 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true,false],
+        ['Shelly_Input1', 'Input 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true,false],
+        ['Shelly_Input2', 'Input 3', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true,false],
+        ['Shelly_InputEvent0', 'Input 1 Event', VARIABLETYPE_INTEGER, 'Shelly.i3Input', [], '', false, true,false],
+        ['Shelly_InputEvent1', 'Input 2 Event', VARIABLETYPE_INTEGER, 'Shelly.i3Input', [], '', false, true,false],
+        ['Shelly_InputEvent2', 'Input 3 Event', VARIABLETYPE_INTEGER, 'Shelly.i3Input', [], '', false, true,false],
+        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', [], '', false, true,false]
     ];
 
     public function Create()
@@ -91,6 +91,7 @@ class Shellyi3 extends ShellyModule
                             break;
                         case 'false':
                             $this->SetValue('Shelly_Reachable', false);
+                            $this->zeroingValues();
                             break;
                     }
                 }

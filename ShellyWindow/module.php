@@ -6,13 +6,13 @@ require_once __DIR__ . '/../libs/ShellyModule.php';
 class ShellyWindow extends ShellyModule
 {
     public static $Variables = [
-        ['Shelly_State', 'State', VARIABLETYPE_BOOLEAN, '~Window', [], '', false, true],
-        ['Shelly_Lux', 'Lux', VARIABLETYPE_INTEGER, '~Illumination', [], '', false, true],
-        ['Shelly_Temperature', 'Temperature', VARIABLETYPE_FLOAT, '~Temperature', ['DW2'], '', false, true],
-        ['Shelly_Vibration', 'Vibration', VARIABLETYPE_BOOLEAN, '~Alert', ['DW2'], '', false, true],
-        ['Shelly_Tilt', 'Tilt', VARIABLETYPE_INTEGER, '', ['DW2'], '', false, true],
-        ['Shelly_Battery', 'Battery', VARIABLETYPE_INTEGER, '~Battery.100', [], '', false, true],
-        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
+        ['Shelly_State', 'State', VARIABLETYPE_BOOLEAN, '~Window', [], '', false, true, false],
+        ['Shelly_Lux', 'Lux', VARIABLETYPE_INTEGER, '~Illumination', [], '', false, true, false],
+        ['Shelly_Temperature', 'Temperature', VARIABLETYPE_FLOAT, '~Temperature', ['DW2'], '', false, true, false],
+        ['Shelly_Vibration', 'Vibration', VARIABLETYPE_BOOLEAN, '~Alert', ['DW2'], '', false, true, false],
+        ['Shelly_Tilt', 'Tilt', VARIABLETYPE_INTEGER, '', ['DW2'], '', false, true, false],
+        ['Shelly_Battery', 'Battery', VARIABLETYPE_INTEGER, '~Battery.100', [], '', false, true, false],
+        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true, false]
     ];
 
     public function ReceiveData($JSONString)
@@ -72,6 +72,7 @@ class ShellyWindow extends ShellyModule
                             break;
                         case 'false':
                             $this->SetValue('Shelly_Reachable', false);
+                            $this->zeroingValues();
                             break;
                     }
                 }

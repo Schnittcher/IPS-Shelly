@@ -6,43 +6,43 @@ require_once __DIR__ . '/../libs/ShellyModule.php';
 class ShellyPro2 extends ShellyModule
 {
     public static $Variables = [
-        ['State0', 'State 1', VARIABLETYPE_BOOLEAN, '~Switch', ['shellypro2', 'shellypro2pm'], 'relay', true, true],
-        ['Power0', 'Power 1', VARIABLETYPE_FLOAT, '~Watt.3680', ['shellypro2pm'], 'relay', false, true],
-        ['TotalEnergy0', 'Total Energy 1', VARIABLETYPE_FLOAT, '~Electricity', ['shellypro2pm'], 'relay', false, true],
-        ['Current0', 'Current 1', VARIABLETYPE_FLOAT, '~Ampere', ['shellypro2pm'], 'relay', false, true],
-        ['Voltage0', 'Voltage 1', VARIABLETYPE_FLOAT, '~Volt', ['shellypro2pm'], 'relay', false, true],
-        ['Powerfactor0', 'Powerfactor 1', VARIABLETYPE_FLOAT, '', ['shellypro2pm'], 'relay', false, true],
-        ['Overtemp0', 'Overtemp 1', VARIABLETYPE_BOOLEAN, '~Alert', [], 'relay', false, true],
-        ['Overpower0', 'Overpower 1', VARIABLETYPE_BOOLEAN, '~Alert', [], 'relay', false, true],
-        ['Overvoltage0', 'Overvoltage 1', VARIABLETYPE_BOOLEAN, '~Alert', [], 'relay', false, true],
+        ['State0', 'State 1', VARIABLETYPE_BOOLEAN, '~Switch', ['shellypro2', 'shellypro2pm'], 'relay', true, true, false],
+        ['Power0', 'Power 1', VARIABLETYPE_FLOAT, '~Watt.3680', ['shellypro2pm'], 'relay', false, true, false],
+        ['TotalEnergy0', 'Total Energy 1', VARIABLETYPE_FLOAT, '~Electricity', ['shellypro2pm'], 'relay', false, true, false],
+        ['Current0', 'Current 1', VARIABLETYPE_FLOAT, '~Ampere', ['shellypro2pm'], 'relay', false, true, false],
+        ['Voltage0', 'Voltage 1', VARIABLETYPE_FLOAT, '~Volt', ['shellypro2pm'], 'relay', false, true, false],
+        ['Powerfactor0', 'Powerfactor 1', VARIABLETYPE_FLOAT, '', ['shellypro2pm'], 'relay', false, true, false],
+        ['Overtemp0', 'Overtemp 1', VARIABLETYPE_BOOLEAN, '~Alert', [], 'relay', false, true, false],
+        ['Overpower0', 'Overpower 1', VARIABLETYPE_BOOLEAN, '~Alert', [], 'relay', false, true, false],
+        ['Overvoltage0', 'Overvoltage 1', VARIABLETYPE_BOOLEAN, '~Alert', [], 'relay', false, true, false],
 
-        ['State1', 'State 2', VARIABLETYPE_BOOLEAN, '~Switch', ['shellypro2', 'shellypro2pm'], 'relay', true, true],
-        ['Power1', 'Power 2', VARIABLETYPE_FLOAT, '~Watt.3680', ['shellypro2pm'], 'relay', false, true],
-        ['TotalEnergy1', 'Total Energy 2', VARIABLETYPE_FLOAT, '~Electricity', ['shellypro2pm'], 'relay', false, true],
-        ['Current1', 'Current 2', VARIABLETYPE_FLOAT, '~Ampere', ['shellypro2pm'], 'relay', false, true],
-        ['Voltage1', 'Voltage 2', VARIABLETYPE_FLOAT, '~Volt', ['shellypro2pm'], 'relay', false, true],
-        ['Powerfactor1', 'Powerfactor 2', VARIABLETYPE_FLOAT, '', ['shellypro2pm'], 'relay', false, true],
-        ['Overtemp1', 'Overtemp 2', VARIABLETYPE_BOOLEAN, '~Alert', ['shellypro2', 'shellypro2pm'], 'relay', false, true],
-        ['Overpower1', 'Overpower 2', VARIABLETYPE_BOOLEAN, '~Alert', ['shellypro2', 'shellypro2pm'], 'relay', false, true],
-        ['Overvoltage1', 'Overvoltage 2', VARIABLETYPE_BOOLEAN, '~Alert', ['shellypro2', 'shellypro2pm'], 'relay', false, true],
+        ['State1', 'State 2', VARIABLETYPE_BOOLEAN, '~Switch', ['shellypro2', 'shellypro2pm'], 'relay', true, true, false],
+        ['Power1', 'Power 2', VARIABLETYPE_FLOAT, '~Watt.3680', ['shellypro2pm'], 'relay', false, true, false],
+        ['TotalEnergy1', 'Total Energy 2', VARIABLETYPE_FLOAT, '~Electricity', ['shellypro2pm'], 'relay', false, true, false],
+        ['Current1', 'Current 2', VARIABLETYPE_FLOAT, '~Ampere', ['shellypro2pm'], 'relay', false, true, false],
+        ['Voltage1', 'Voltage 2', VARIABLETYPE_FLOAT, '~Volt', ['shellypro2pm'], 'relay', false, true, false],
+        ['Powerfactor1', 'Powerfactor 2', VARIABLETYPE_FLOAT, '', ['shellypro2pm'], 'relay', false, true, false],
+        ['Overtemp1', 'Overtemp 2', VARIABLETYPE_BOOLEAN, '~Alert', ['shellypro2', 'shellypro2pm'], 'relay', false, true, false],
+        ['Overpower1', 'Overpower 2', VARIABLETYPE_BOOLEAN, '~Alert', ['shellypro2', 'shellypro2pm'], 'relay', false, true, false],
+        ['Overvoltage1', 'Overvoltage 2', VARIABLETYPE_BOOLEAN, '~Alert', ['shellypro2', 'shellypro2pm'], 'relay', false, true, false],
 
-        ['CoverState', 'State', VARIABLETYPE_STRING, 'Shelly2ProPM.CoverState', ['shellypro2', 'shellypro2pm'], 'cover', true, true],
-        ['CoverRunningState', 'Running State', VARIABLETYPE_STRING, 'Shelly2ProPM.CoverRunningState', ['shellypro2', 'shellypro2pm'], 'cover', true, true],
-        ['CurrentPos', 'Current Position', VARIABLETYPE_INTEGER, '~Shutter', ['shellypro2pm'], 'cover', false, true],
-        ['TargetPos', 'Target Position', VARIABLETYPE_INTEGER, '~Shutter', ['shellypro2pm'], 'cover', true, true],
-        ['Power', 'Power', VARIABLETYPE_FLOAT, '~Watt.3680', ['shellypro2pm'], 'cover', false, true],
-        ['TotalEnergy', 'Total Energy', VARIABLETYPE_FLOAT, '~Electricity', ['shellypro2pm'], 'cover', false, true],
-        ['Current', 'Current', VARIABLETYPE_FLOAT, '~Ampere', ['shellypro2pm'], 'cover', false, true],
-        ['Voltage', 'Voltage', VARIABLETYPE_FLOAT, '~Volt', ['shellypro2pm'], 'cover', false, true],
-        ['Powerfactor', 'Powerfactor', VARIABLETYPE_FLOAT, '', ['shellypro2pm'], 'cover', false, true],
-        ['Overtemp', 'Overtemp', VARIABLETYPE_BOOLEAN, '~Alert', [], 'cover', false, true],
-        ['Overpower', 'Overpower', VARIABLETYPE_BOOLEAN, '~Alert', [], 'cover', false, true],
-        ['Overvoltage', 'Overvoltage', VARIABLETYPE_BOOLEAN, '~Alert', [], 'cover', false, true],
-        ['DeviceTemperature', 'Device Temperature', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
+        ['CoverState', 'State', VARIABLETYPE_STRING, 'Shelly2ProPM.CoverState', ['shellypro2', 'shellypro2pm'], 'cover', true, true, false],
+        ['CoverRunningState', 'Running State', VARIABLETYPE_STRING, 'Shelly2ProPM.CoverRunningState', ['shellypro2', 'shellypro2pm'], 'cover', true, true, false],
+        ['CurrentPos', 'Current Position', VARIABLETYPE_INTEGER, '~Shutter', ['shellypro2pm'], 'cover', false, true, false],
+        ['TargetPos', 'Target Position', VARIABLETYPE_INTEGER, '~Shutter', ['shellypro2pm'], 'cover', true, true, false],
+        ['Power', 'Power', VARIABLETYPE_FLOAT, '~Watt.3680', ['shellypro2pm'], 'cover', false, true, false],
+        ['TotalEnergy', 'Total Energy', VARIABLETYPE_FLOAT, '~Electricity', ['shellypro2pm'], 'cover', false, true, false],
+        ['Current', 'Current', VARIABLETYPE_FLOAT, '~Ampere', ['shellypro2pm'], 'cover', false, true, false],
+        ['Voltage', 'Voltage', VARIABLETYPE_FLOAT, '~Volt', ['shellypro2pm'], 'cover', false, true, false],
+        ['Powerfactor', 'Powerfactor', VARIABLETYPE_FLOAT, '', ['shellypro2pm'], 'cover', false, true, false],
+        ['Overtemp', 'Overtemp', VARIABLETYPE_BOOLEAN, '~Alert', [], 'cover', false, true, false],
+        ['Overpower', 'Overpower', VARIABLETYPE_BOOLEAN, '~Alert', [], 'cover', false, true, false],
+        ['Overvoltage', 'Overvoltage', VARIABLETYPE_BOOLEAN, '~Alert', [], 'cover', false, true, false],
+        ['DeviceTemperature', 'Device Temperature', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true, false],
 
-        ['EventComponent', 'Event Component', VARIABLETYPE_STRING, '', [], '', false, true],
-        ['Event', 'Event', VARIABLETYPE_STRING, '', [], '', false, true],
-        ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
+        ['EventComponent', 'Event Component', VARIABLETYPE_STRING, '', [], '', false, true, false],
+        ['Event', 'Event', VARIABLETYPE_STRING, '', [], '', false, true, false],
+        ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true, false]
     ];
 
     public function Create()
@@ -99,6 +99,9 @@ class ShellyPro2 extends ShellyModule
             if (array_key_exists('Topic', $Buffer)) {
                 if (fnmatch('*/online', $Buffer['Topic'])) {
                     $this->SetValue('Reachable', $Payload);
+                    if (!$Payload) {
+                        $this->zeroingValues();
+                    }
                 }
                 if (fnmatch('*/events/rpc', $Buffer['Topic'])) {
                     if (array_key_exists('params', $Payload)) {

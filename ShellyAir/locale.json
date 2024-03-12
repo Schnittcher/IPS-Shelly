@@ -14,7 +14,8 @@
             "External Temperature 1": "Externe Temperatur 1",
             "Total Work Time": "Gesamte Laufzeit",
             "Device": "Gerät",
-            "Devices": "Geräte"
+            "Devices": "Geräte",
+            "Zeroing by unreach": "Nullung durch Unerreichbarkeit"
         }
     }
 }

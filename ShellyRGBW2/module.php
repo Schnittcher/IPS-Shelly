@@ -9,29 +9,29 @@ class ShellyRGBW2 extends ShellyModule
     use ColorHelper;
 
     public static $Variables = [
-        ['Shelly_State', 'State', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true],
-        ['Shelly_State1', 'State 2', VARIABLETYPE_BOOLEAN, '~Switch', [], 'White', true, true],
-        ['Shelly_State2', 'State 3', VARIABLETYPE_BOOLEAN, '~Switch', [], 'White', true, true],
-        ['Shelly_State3', 'State 4', VARIABLETYPE_BOOLEAN, '~Switch', [], 'White', true, true],
-        ['Shelly_Color', 'Color', VARIABLETYPE_INTEGER, '~HexColor', [], 'Color', true, true],
-        ['Shelly_White', 'White', VARIABLETYPE_INTEGER, '~Intensity.255', [], 'Color', true, true],
-        ['Shelly_Gain', 'Gain', VARIABLETYPE_INTEGER, '~Intensity.100', [], 'Color', true, true],
-        ['Shelly_Effect', 'Effect', VARIABLETYPE_INTEGER, 'Shelly.Effect', [], 'Color', true, true],
-        ['Shelly_Brightness', 'Brightness 1', VARIABLETYPE_INTEGER, '~Intensity.100', [], 'White', true, true],
-        ['Shelly_Brightness1', 'Brightness 2', VARIABLETYPE_INTEGER, '~Intensity.100', [], 'White', true, true],
-        ['Shelly_Brightness2', 'Brightness 3', VARIABLETYPE_INTEGER, '~Intensity.100', [], 'White', true, true],
-        ['Shelly_Brightness3', 'Brightness 4', VARIABLETYPE_INTEGER, '~Intensity.100', [], 'White', true, true],
-        ['Shelly_Power', 'Power', VARIABLETYPE_FLOAT, '', [], '', false, true],
-        ['Shelly_Power1', 'Power 2', VARIABLETYPE_FLOAT, '', [], 'White', false, true],
-        ['Shelly_Power2', 'Power 3', VARIABLETYPE_FLOAT, '', [], 'White', false, true],
-        ['Shelly_Power3', 'Power 4', VARIABLETYPE_FLOAT, '', [], 'White', false, true],
-        ['Shelly_Overpower', 'Overpower', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
-        ['Shelly_Overpower1', 'Overpower 2', VARIABLETYPE_BOOLEAN, '~Alert', [], 'White', false, true],
-        ['Shelly_Overpower2', 'Overpower 3', VARIABLETYPE_BOOLEAN, '~Alert', [], 'White', false, true],
-        ['Shelly_Overpower3', 'Overpower 4',  VARIABLETYPE_BOOLEAN, '~Alert', [], 'White', false, true],
-        ['Shelly_Input', 'Input', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
-        ['Shelly_Longpush', 'Longpush', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
-        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
+        ['Shelly_State', 'State', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true, false],
+        ['Shelly_State1', 'State 2', VARIABLETYPE_BOOLEAN, '~Switch', [], 'White', true, true, false],
+        ['Shelly_State2', 'State 3', VARIABLETYPE_BOOLEAN, '~Switch', [], 'White', true, true, false],
+        ['Shelly_State3', 'State 4', VARIABLETYPE_BOOLEAN, '~Switch', [], 'White', true, true, false],
+        ['Shelly_Color', 'Color', VARIABLETYPE_INTEGER, '~HexColor', [], 'Color', true, true, false],
+        ['Shelly_White', 'White', VARIABLETYPE_INTEGER, '~Intensity.255', [], 'Color', true, true, false],
+        ['Shelly_Gain', 'Gain', VARIABLETYPE_INTEGER, '~Intensity.100', [], 'Color', true, true, false],
+        ['Shelly_Effect', 'Effect', VARIABLETYPE_INTEGER, 'Shelly.Effect', [], 'Color', true, true, false],
+        ['Shelly_Brightness', 'Brightness 1', VARIABLETYPE_INTEGER, '~Intensity.100', [], 'White', true, true, false],
+        ['Shelly_Brightness1', 'Brightness 2', VARIABLETYPE_INTEGER, '~Intensity.100', [], 'White', true, true, false],
+        ['Shelly_Brightness2', 'Brightness 3', VARIABLETYPE_INTEGER, '~Intensity.100', [], 'White', true, true, false],
+        ['Shelly_Brightness3', 'Brightness 4', VARIABLETYPE_INTEGER, '~Intensity.100', [], 'White', true, true, false],
+        ['Shelly_Power', 'Power', VARIABLETYPE_FLOAT, '', [], '', false, true, false],
+        ['Shelly_Power1', 'Power 2', VARIABLETYPE_FLOAT, '', [], 'White', false, true, false],
+        ['Shelly_Power2', 'Power 3', VARIABLETYPE_FLOAT, '', [], 'White', false, true, false],
+        ['Shelly_Power3', 'Power 4', VARIABLETYPE_FLOAT, '', [], 'White', false, true, false],
+        ['Shelly_Overpower', 'Overpower', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
+        ['Shelly_Overpower1', 'Overpower 2', VARIABLETYPE_BOOLEAN, '~Alert', [], 'White', false, true, false],
+        ['Shelly_Overpower2', 'Overpower 3', VARIABLETYPE_BOOLEAN, '~Alert', [], 'White', false, true, false],
+        ['Shelly_Overpower3', 'Overpower 4',  VARIABLETYPE_BOOLEAN, '~Alert', [], 'White', false, true, false],
+        ['Shelly_Input', 'Input', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true, false],
+        ['Shelly_Longpush', 'Longpush', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true, false],
+        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true, false]
     ];
 
     public function Create()
@@ -187,6 +187,7 @@ class ShellyRGBW2 extends ShellyModule
                                 break;
                             case 'false':
                                 $this->SetValue('Shelly_Reachable', false);
+                                $this->zeroingValues();
                                 break;
                         }
                 }

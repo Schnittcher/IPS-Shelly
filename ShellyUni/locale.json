@@ -21,7 +21,8 @@
             "External Humidity 4": "External Humidity 4",
             "External Humidity 5": "External Humidity 5",
             "Device": "Gerät",
-            "Devices": "Geräte"
+            "Devices": "Geräte",
+            "Zeroing by unreach": "Nullung durch Unerreichbarkeit"
         }
     }
 }

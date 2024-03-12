@@ -51,7 +51,8 @@
             "Device": "Gerät",
             "Devices": "Geräte",
             "Relay": "Relais",
-            "Cover": "Rollo"
+            "Cover": "Rollo",
+            "Zeroing by unreach": "Nullung durch Unerreichbarkeit"
         }
     }
 }

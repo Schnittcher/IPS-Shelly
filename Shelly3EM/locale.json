@@ -26,7 +26,8 @@
             "N Current": "N Stromstärke",
             "Neutral Conductor N RMS (ixsum)": " Neutralleiter N RMS (ixsum)",
             "Device": "Gerät",
-            "Devices": "Geräte"
+            "Devices": "Geräte",
+            "Zeroing by unreach": "Nullung durch Unerreichbarkeit"
         }
     }
 }

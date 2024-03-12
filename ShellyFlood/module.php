@@ -6,10 +6,10 @@ require_once __DIR__ . '/../libs/ShellyModule.php';
 class ShellyFlood extends ShellyModule
 {
     public static $Variables = [
-        ['Shelly_Flood', 'Flood', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
-        ['Shelly_Temperature', 'Temperature', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
-        ['Shelly_Battery', 'Battery', VARIABLETYPE_INTEGER, '~Battery.100', [], '', false, true],
-        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
+        ['Shelly_Flood', 'Flood', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
+        ['Shelly_Temperature', 'Temperature', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true, false],
+        ['Shelly_Battery', 'Battery', VARIABLETYPE_INTEGER, '~Battery.100', [], '', false, true, false],
+        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true, false]
     ];
 
     public function ReceiveData($JSONString)
@@ -40,6 +40,7 @@ class ShellyFlood extends ShellyModule
                             break;
                         case 'false':
                             $this->SetValue('Shelly_Reachable', false);
+                            $this->zeroingValues();
                             break;
                     }
                 }

@@ -6,15 +6,15 @@ require_once __DIR__ . '/../libs/ShellyModule.php';
 class ShellyPlusPMMini extends ShellyModule
 {
     public static $Variables = [
-        ['Current', 'Current', VARIABLETYPE_FLOAT, '~Ampere', [], '', false, true],
-        ['Voltage', 'Voltage', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true],
-        ['Power', 'Power', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true],
-        //['AprtPower', 'Apparent Power', VARIABLETYPE_FLOAT, '~Watt', [], '', false, true],
-        //['PF', 'Power Factor', VARIABLETYPE_FLOAT, '', [], '', false, true],
-        ['Frequency ', 'Frequency', VARIABLETYPE_FLOAT, '~Hertz', [], '', false, true],
-        ['TotalEnergy', 'Total Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
-        ['Error', 'Error', VARIABLETYPE_STRING, '', [], '', false, true],
-        ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true],
+        ['Current', 'Current', VARIABLETYPE_FLOAT, '~Ampere', [], '', false, true, false],
+        ['Voltage', 'Voltage', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true, false],
+        ['Power', 'Power', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true, false],
+        //['AprtPower', 'Apparent Power', VARIABLETYPE_FLOAT, '~Watt', [], '', false, true, false],
+        //['PF', 'Power Factor', VARIABLETYPE_FLOAT, '', [], '', false, true, false],
+        ['Frequency ', 'Frequency', VARIABLETYPE_FLOAT, '~Hertz', [], '', false, true, false],
+        ['TotalEnergy', 'Total Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true, false],
+        ['Error', 'Error', VARIABLETYPE_STRING, '', [], '', false, true, false],
+        ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true, false],
     ];
 
     public function ReceiveData($JSONString)
@@ -32,6 +32,9 @@ class ShellyPlusPMMini extends ShellyModule
             if (array_key_exists('Topic', $Buffer)) {
                 if (fnmatch('*/online', $Buffer['Topic'])) {
                     $this->SetValue('Reachable', $Payload);
+                    if (!$Payload) {
+                        $this->zeroingValues();
+                    }
                 }
 
                 if (fnmatch('*/status/pm1:*', $Buffer['Topic'])) {

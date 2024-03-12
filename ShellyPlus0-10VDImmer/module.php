@@ -6,22 +6,22 @@ require_once __DIR__ . '/../libs/ShellyModule.php';
 class ShellyPlus010VDimmer extends ShellyModule
 {
     public static $Variables = [
-        ['State', 'State', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true],
-        ['Brightness', 'Brightness', VARIABLETYPE_INTEGER, '~Intensity.100', [], '', true, true],
-        ['Power', 'Power', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true],
-        ['TotalEnergy', 'Total Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
-        ['Current', 'Current', VARIABLETYPE_FLOAT, '~Ampere', [], '', false, true],
-        ['Voltage', 'Voltage', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true],
-        ['Overtemp', 'Overtemp', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
-        ['Overpower', 'Overpower', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
-        ['Overvoltage', 'Overvoltage', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
-        ['DeviceTemperature', 'Device Temperature', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
-        ['Input0', 'Input 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
-        ['Input1', 'Input 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
-        ['EventComponent', 'Event Component', VARIABLETYPE_STRING, '', [], '', false, true],
+        ['State', 'State', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true, false],
+        ['Brightness', 'Brightness', VARIABLETYPE_INTEGER, '~Intensity.100', [], '', true, true, false],
+        ['Power', 'Power', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true, false],
+        ['TotalEnergy', 'Total Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true, false],
+        ['Current', 'Current', VARIABLETYPE_FLOAT, '~Ampere', [], '', false, true, false],
+        ['Voltage', 'Voltage', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true, false],
+        ['Overtemp', 'Overtemp', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
+        ['Overpower', 'Overpower', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
+        ['Overvoltage', 'Overvoltage', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
+        ['DeviceTemperature', 'Device Temperature', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true, false],
+        ['Input0', 'Input 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true, false],
+        ['Input1', 'Input 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true, false],
+        ['EventComponent', 'Event Component', VARIABLETYPE_STRING, '', [], '', false, true, false],
         //ggf. noch timer_stared_at, timer_duration
-        ['Event', 'Event', VARIABLETYPE_STRING, '', [], '', false, true],
-        ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
+        ['Event', 'Event', VARIABLETYPE_STRING, '', [], '', false, true, false],
+        ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true, false]
     ];
 
     public function RequestAction($Ident, $Value)
@@ -51,6 +51,9 @@ class ShellyPlus010VDimmer extends ShellyModule
             if (array_key_exists('Topic', $Buffer)) {
                 if (fnmatch('*/online', $Buffer['Topic'])) {
                     $this->SetValue('Reachable', $Payload);
+                    if (!$Payload) {
+                        $this->zeroingValues();
+                    }
                 }
                 if (fnmatch('*/events/rpc', $Buffer['Topic'])) {
                     if (array_key_exists('params', $Payload)) {

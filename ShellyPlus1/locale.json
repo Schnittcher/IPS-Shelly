@@ -26,7 +26,8 @@
             "External Input": "externer Eingang",
             "External Voltmeter": "externes Voltmeter",
             "Device": "Gerät",
-            "Devices": "Geräte"
+            "Devices": "Geräte",
+            "Zeroing by unreach": "Nullung durch Unerreichbarkeit"
         }
     }
 }

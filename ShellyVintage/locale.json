@@ -9,7 +9,8 @@
             "Energy": "Energie",
             "Device": "Gerät",
             "Devices": "Geräte",
-            "Brightness": "Helligkeit"
+            "Brightness": "Helligkeit",
+            "Zeroing by unreach": "Nullung durch Unerreichbarkeit"
         }
     }
 }

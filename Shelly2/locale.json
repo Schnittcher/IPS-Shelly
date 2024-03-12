@@ -23,7 +23,8 @@
             "Input 2": "Eingang 2",
             "Longpush Input 1": "Longpush Eingang 1",
             "Longpush Input 2": "Longpush Eingang 2",
-            "Stop Reason": "Stop Grund"
+            "Stop Reason": "Stop Grund",
+            "Zeroing by unreach": "Nullung durch Unerreichbarkeit"
         }
     }
 }

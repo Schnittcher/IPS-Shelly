@@ -8,7 +8,8 @@
             "Input 1": "Eingang 1",
             "Input 2": "Eingang 2",
             "Input 3 Count Total": "Eingang 3 Zähler",
-            "Input 3 Frequency": "Eingang 3 Frequenz"
+            "Input 3 Frequency": "Eingang 3 Frequenz",
+            "Zeroing by unreach": "Nullung durch Unerreichbarkeit"
         }
     }
 }

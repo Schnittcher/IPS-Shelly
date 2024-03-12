@@ -35,7 +35,8 @@
             "External Input State 2": "Externer Eingang 2 (Status)",
             "External Input Percent 2": "Externer Eingang 2 (Prozent)",
             "Device": "Gerät",
-            "Devices": "Geräte"
+            "Devices": "Geräte",
+            "Zeroing by unreach": "Nullung durch Unerreichbarkeit"
         }
     }
 }

@@ -6,40 +6,40 @@ require_once __DIR__ . '/../libs/ShellyModule.php';
 class ShellyPlus2PM extends ShellyModule
 {
     public static $Variables = [
-        ['State0', 'State 1', VARIABLETYPE_BOOLEAN, '~Switch', [], 'relay', true, true],
-        ['Power0', 'Power 1', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true],
-        ['TotalEnergy0', 'Total Energy 1', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
-        ['Current0', 'Current 1', VARIABLETYPE_FLOAT, '~Ampere', [], '', false, true],
-        ['Voltage0', 'Voltage 1', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true],
-        ['Temperature0', 'Temperature0', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
+        ['State0', 'State 1', VARIABLETYPE_BOOLEAN, '~Switch', [], 'relay', true, true, false],
+        ['Power0', 'Power 1', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true, false],
+        ['TotalEnergy0', 'Total Energy 1', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true, false],
+        ['Current0', 'Current 1', VARIABLETYPE_FLOAT, '~Ampere', [], '', false, true, false],
+        ['Voltage0', 'Voltage 1', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true, false],
+        ['Temperature0', 'Temperature0', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true, false],
 
-        ['State1', 'State 2', VARIABLETYPE_BOOLEAN, '~Switch', [], 'relay', true, true],
-        ['Power1', 'Power 2', VARIABLETYPE_FLOAT, '~Watt.3680', [], 'relay', false, true],
-        ['TotalEnergy1', 'Total Energy 2', VARIABLETYPE_FLOAT, '~Electricity', [], 'relay', false, true],
-        ['Current1', 'Current 2', VARIABLETYPE_FLOAT, '~Ampere', [], 'relay', false, true],
-        ['Voltage1', 'Voltage 2', VARIABLETYPE_FLOAT, '~Volt', [], 'relay', false, true],
-        ['Temperature1', 'Temperature1', VARIABLETYPE_FLOAT, '~Temperature', [], 'relay', false, true],
+        ['State1', 'State 2', VARIABLETYPE_BOOLEAN, '~Switch', [], 'relay', true, true, false],
+        ['Power1', 'Power 2', VARIABLETYPE_FLOAT, '~Watt.3680', [], 'relay', false, true, false],
+        ['TotalEnergy1', 'Total Energy 2', VARIABLETYPE_FLOAT, '~Electricity', [], 'relay', false, true, false],
+        ['Current1', 'Current 2', VARIABLETYPE_FLOAT, '~Ampere', [], 'relay', false, true, false],
+        ['Voltage1', 'Voltage 2', VARIABLETYPE_FLOAT, '~Volt', [], 'relay', false, true, false],
+        ['Temperature1', 'Temperature1', VARIABLETYPE_FLOAT, '~Temperature', [], 'relay', false, true, false],
 
-        ['State', 'State', VARIABLETYPE_INTEGER, '~ShutterMoveStop', [], 'roller', true, true],
-        ['CoverPosition', 'Position', VARIABLETYPE_INTEGER, '~Shutter', [], 'roller', true, true],
+        ['State', 'State', VARIABLETYPE_INTEGER, '~ShutterMoveStop', [], 'roller', true, true, false],
+        ['CoverPosition', 'Position', VARIABLETYPE_INTEGER, '~Shutter', [], 'roller', true, true, false],
 
-        ['Input0', 'Input 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
-        ['Input1', 'Input 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
+        ['Input0', 'Input 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true, false],
+        ['Input1', 'Input 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true, false],
 
-        ['EventComponent', 'Event Component', VARIABLETYPE_STRING, '', [], '', false, true],
-        ['Event', 'Event', VARIABLETYPE_STRING, '', [], '', false, true],
-        ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true],
-        ['Temperature100', 'External Temperature 1', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
-        ['Temperature101', 'External Temperature 2', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
-        ['Temperature102', 'External Temperature 3', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
-        ['Temperature103', 'External Temperature 4', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
-        ['Temperature104', 'External Temperature 5', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
-        ['Humidity100', 'External Humidity', VARIABLETYPE_FLOAT, '~Humidity.F', [], '', false, true],
-        ['Input100State', 'External Input State 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
-        ['Input100Percent', 'External Input Percent 1', VARIABLETYPE_FLOAT, 'Shelly.Input.Percent', [], '', false, true],
-        ['Input101State', 'External Input State 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
-        ['Input101Percent', 'External Input Percent 2', VARIABLETYPE_FLOAT, 'Shelly.Input.Percent', [], '', false, true],
-        ['Voltmeter100', 'External Voltmeter', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true],
+        ['EventComponent', 'Event Component', VARIABLETYPE_STRING, '', [], '', false, true, false],
+        ['Event', 'Event', VARIABLETYPE_STRING, '', [], '', false, true, false],
+        ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true, false],
+        ['Temperature100', 'External Temperature 1', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true, false],
+        ['Temperature101', 'External Temperature 2', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true, false],
+        ['Temperature102', 'External Temperature 3', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true, false],
+        ['Temperature103', 'External Temperature 4', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true, false],
+        ['Temperature104', 'External Temperature 5', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true, false],
+        ['Humidity100', 'External Humidity', VARIABLETYPE_FLOAT, '~Humidity.F', [], '', false, true, false],
+        ['Input100State', 'External Input State 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true, false],
+        ['Input100Percent', 'External Input Percent 1', VARIABLETYPE_FLOAT, 'Shelly.Input.Percent', [], '', false, true, false],
+        ['Input101State', 'External Input State 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true, false],
+        ['Input101Percent', 'External Input Percent 2', VARIABLETYPE_FLOAT, 'Shelly.Input.Percent', [], '', false, true, false],
+        ['Voltmeter100', 'External Voltmeter', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true, false],
     ];
 
     public function Create()
@@ -94,6 +94,9 @@ class ShellyPlus2PM extends ShellyModule
             if (array_key_exists('Topic', $Buffer)) {
                 if (fnmatch('*/online', $Buffer['Topic'])) {
                     $this->SetValue('Reachable', $Payload);
+                    if (!$Payload) {
+                        $this->zeroingValues();
+                    }
                 }
                 if (fnmatch('*/events/rpc', $Buffer['Topic'])) {
                     if (array_key_exists('params', $Payload)) {

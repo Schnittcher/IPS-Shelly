@@ -6,25 +6,25 @@ require_once __DIR__ . '/../libs/ShellyModule.php';
 class ShellyPro3 extends ShellyModule
 {
     public static $Variables = [
-        ['State0', 'State 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true],
-        ['Overtemp0', 'Overtemp 1', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
-        ['Overpower0', 'Overpower 1', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
-        ['Overvoltage0', 'Overvoltage 1', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
+        ['State0', 'State 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true, false],
+        ['Overtemp0', 'Overtemp 1', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
+        ['Overpower0', 'Overpower 1', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
+        ['Overvoltage0', 'Overvoltage 1', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
 
-        ['State1', 'State 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true],
-        ['Overtemp1', 'Overtemp 2', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
-        ['Overpower1', 'Overpower 2', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
-        ['Overvoltage1', 'Overvoltage 2', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
+        ['State1', 'State 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true, false],
+        ['Overtemp1', 'Overtemp 2', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
+        ['Overpower1', 'Overpower 2', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
+        ['Overvoltage1', 'Overvoltage 2', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
 
-        ['State2', 'State 3', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true],
-        ['Overtemp2', 'Overtemp 3', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
-        ['Overpower2', 'Overpower 3', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
-        ['Overvoltage2', 'Overvoltage 3', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
+        ['State2', 'State 3', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true, false],
+        ['Overtemp2', 'Overtemp 3', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
+        ['Overpower2', 'Overpower 3', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
+        ['Overvoltage2', 'Overvoltage 3', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
 
-        ['DeviceTemperature', 'Device Temperature', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
-        ['EventComponent', 'Event Component', VARIABLETYPE_STRING, '', [], '', false, true],
-        ['Event', 'Event', VARIABLETYPE_STRING, '', [], '', false, true],
-        ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
+        ['DeviceTemperature', 'Device Temperature', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true, false],
+        ['EventComponent', 'Event Component', VARIABLETYPE_STRING, '', [], '', false, true, false],
+        ['Event', 'Event', VARIABLETYPE_STRING, '', [], '', false, true, false],
+        ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true, false]
     ];
 
     public function RequestAction($Ident, $Value)
@@ -56,6 +56,9 @@ class ShellyPro3 extends ShellyModule
             if (array_key_exists('Topic', $Buffer)) {
                 if (fnmatch('*/online', $Buffer['Topic'])) {
                     $this->SetValue('Reachable', $Payload);
+                    if (!$Payload) {
+                        $this->zeroingValues();
+                    }
                 }
                 if (fnmatch('*/events/rpc', $Buffer['Topic'])) {
                     if (array_key_exists('params', $Payload)) {

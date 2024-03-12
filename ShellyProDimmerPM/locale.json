@@ -13,7 +13,8 @@
             "Device Temperature": "Gerätetemperatur",
             "Brightness": "Helligkeit",
             "Input 1": " Eingang 1",
-            "Input 2": " Eingang 2"
+            "Input 2": " Eingang 2",
+            "Zeroing by unreach": "Nullung durch Unerreichbarkeit"
         }
     }
 }

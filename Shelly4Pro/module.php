@@ -6,23 +6,23 @@ require_once __DIR__ . '/../libs/ShellyModule.php';
 class Shelly4Pro extends ShellyModule
 {
     public static $Variables = [
-        ['Shelly_State', 'State', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true],
-        ['Shelly_Power', 'Power', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true],
-        ['Shelly_Energy', 'Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
+        ['Shelly_State', 'State', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true, false],
+        ['Shelly_Power', 'Power', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true, false],
+        ['Shelly_Energy', 'Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true, false],
 
-        ['Shelly_State1', 'State 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true],
-        ['Shelly_Power1', 'Power 2', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true],
-        ['Shelly_Energy1', 'Energy 2', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
+        ['Shelly_State1', 'State 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true, false],
+        ['Shelly_Power1', 'Power 2', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true, false],
+        ['Shelly_Energy1', 'Energy 2', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true, false],
 
-        ['Shelly_State2', 'State 3', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true],
-        ['Shelly_Power2', 'Power 3', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true],
-        ['Shelly_Energy2', 'Energy 3', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
+        ['Shelly_State2', 'State 3', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true, false],
+        ['Shelly_Power2', 'Power 3', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true, false],
+        ['Shelly_Energy2', 'Energy 3', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true, false],
 
-        ['Shelly_State3', 'State 4', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true],
-        ['Shelly_Power3', 'Power 4', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true],
-        ['Shelly_Energy3', 'Energy 4', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
+        ['Shelly_State3', 'State 4', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true, false],
+        ['Shelly_Power3', 'Power 4', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true, false],
+        ['Shelly_Energy3', 'Energy 4', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true, false],
 
-        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
+        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true, false]
     ];
 
     public function RequestAction($Ident, $Value)
@@ -169,6 +169,7 @@ class Shelly4Pro extends ShellyModule
                             break;
                         case 'false':
                             $this->SetValue('Shelly_Reachable', false);
+                            $this->zeroingValues();
                             break;
                     }
                 }

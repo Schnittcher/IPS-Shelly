@@ -6,11 +6,11 @@ require_once __DIR__ . '/../libs/ShellyModule.php';
 class ShellyPlusSmoke extends ShellyModule
 {
     public static $Variables = [
-        ['Alarm', 'Alarm', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
-        ['Mute', 'Mute', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true],
-        ['Battery', 'Battery', VARIABLETYPE_INTEGER, '~Battery.100', [], '', false, true],
-        ['BatteryVolt', 'Battery Volt', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true],
-        ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
+        ['Alarm', 'Alarm', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
+        ['Mute', 'Mute', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true, false],
+        ['Battery', 'Battery', VARIABLETYPE_INTEGER, '~Battery.100', [], '', false, true, false],
+        ['BatteryVolt', 'Battery Volt', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true, false],
+        ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true, false]
     ];
 
     public function RequestAction($Ident, $Value)
@@ -37,6 +37,9 @@ class ShellyPlusSmoke extends ShellyModule
             if (array_key_exists('Topic', $Buffer)) {
                 if (fnmatch('*/online', $Buffer['Topic'])) {
                     $this->SetValue('Reachable', $Payload);
+                    if (!$Payload) {
+                        $this->zeroingValues();
+                    }
                 }
                 if (fnmatch('*/events/rpc', $Buffer['Topic'])) {
                     if (array_key_exists('params', $Payload)) {

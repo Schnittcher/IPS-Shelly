@@ -14,7 +14,8 @@
             "White": "Weiß",
             "Please select device": "Bitte wählen Sie das Gerät aus",
             "Gain": "Gain",
-            "Color": "Farbe"
+            "Color": "Farbe",
+            "Zeroing by unreach": "Nullung durch Unerreichbarkeit"
         }
     }
 }

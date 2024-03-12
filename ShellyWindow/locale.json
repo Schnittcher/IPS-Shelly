@@ -11,7 +11,8 @@
             "Tilt": "Neigung",
             "Please select device": "Bitte wählen Sie ein Gerät aus",
             "Device": "Gerät",
-            "Devices": "Geräte"
+            "Devices": "Geräte",
+            "Zeroing by unreach": "Nullung durch Unerreichbarkeit"
         }
     }
 }

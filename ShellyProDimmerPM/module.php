@@ -6,23 +6,23 @@ require_once __DIR__ . '/../libs/ShellyModule.php';
 class ShellyProDimmerPM extends ShellyModule
 {
     public static $Variables = [
-        ['State0', 'State 1', VARIABLETYPE_BOOLEAN, '~Switch', ['shellyprodimmer1pm', 'shellyprodimmer2pm'], '', true, true],
-        ['Brightness0', 'Brightness 1', VARIABLETYPE_INTEGER, '~Intensity.100', ['shellyprodimmer1pm', 'shellyprodimmer2pm'], '', true, true],
-        ['Power0', 'Power 1', VARIABLETYPE_FLOAT, '~Watt.3680', ['shellyprodimmer1pm', 'shellyprodimmer2pm'], '', false, true],
-        ['TotalEnergy0', 'Total Energy 1', VARIABLETYPE_FLOAT, '~Electricity', ['shellyprodimmer1pm', 'shellyprodimmer2pm'], '', false, true],
-        ['Current0', 'Current 1', VARIABLETYPE_FLOAT, '~Ampere', ['shellyprodimmer1pm', 'shellyprodimmer2pm'], '', false, true],
-        ['Voltage0', 'Voltage 1', VARIABLETYPE_FLOAT, '~Volt', ['shellyprodimmer1pm', 'shellyprodimmer2pm'], '', false, true],
-        ['Errors0', 'Errors 1', VARIABLETYPE_STRING, '', ['shellyprodimmer1pm', 'shellyprodimmer2pm'], '', false, true],
-        ['DeviceTemperature0', 'Device Temperature 1', VARIABLETYPE_FLOAT, '~Temperature', ['shellyprodimmer1pm', 'shellyprodimmer2pm'], '', false, true],
+        ['State0', 'State 1', VARIABLETYPE_BOOLEAN, '~Switch', ['shellyprodimmer1pm', 'shellyprodimmer2pm'], '', true, true, false],
+        ['Brightness0', 'Brightness 1', VARIABLETYPE_INTEGER, '~Intensity.100', ['shellyprodimmer1pm', 'shellyprodimmer2pm'], '', true, true, false],
+        ['Power0', 'Power 1', VARIABLETYPE_FLOAT, '~Watt.3680', ['shellyprodimmer1pm', 'shellyprodimmer2pm'], '', false, true, false],
+        ['TotalEnergy0', 'Total Energy 1', VARIABLETYPE_FLOAT, '~Electricity', ['shellyprodimmer1pm', 'shellyprodimmer2pm'], '', false, true, false],
+        ['Current0', 'Current 1', VARIABLETYPE_FLOAT, '~Ampere', ['shellyprodimmer1pm', 'shellyprodimmer2pm'], '', false, true, false],
+        ['Voltage0', 'Voltage 1', VARIABLETYPE_FLOAT, '~Volt', ['shellyprodimmer1pm', 'shellyprodimmer2pm'], '', false, true, false],
+        ['Errors0', 'Errors 1', VARIABLETYPE_STRING, '', ['shellyprodimmer1pm', 'shellyprodimmer2pm'], '', false, true, false],
+        ['DeviceTemperature0', 'Device Temperature 1', VARIABLETYPE_FLOAT, '~Temperature', ['shellyprodimmer1pm', 'shellyprodimmer2pm'], '', false, true, false],
 
-        ['State1', 'State 2', VARIABLETYPE_BOOLEAN, '~Switch', ['shellyprodimmer1pm', 'shellyprodimmer2pm'], '', true, true],
-        ['Brightness1', 'Brightness 2', VARIABLETYPE_INTEGER, '~Intensity.100', ['shellyprodimmer1pm', 'shellyprodimmer2pm'], '', true, true],
-        ['Power1', 'Power 2', VARIABLETYPE_FLOAT, '~Watt.3680', ['shellyprodimmer1pm', 'shellyprodimmer2pm'], '', false, true],
-        ['TotalEnergy1', 'Total Energy 2', VARIABLETYPE_FLOAT, '~Electricity', ['shellyprodimmer1pm', 'shellyprodimmer2pm'], '', false, true],
-        ['Current1', 'Current 2', VARIABLETYPE_FLOAT, '~Ampere', ['shellyprodimmer1pm', 'shellyprodimmer2pm'], '', false, true],
-        ['Voltage1', 'Voltage 2', VARIABLETYPE_FLOAT, '~Volt', ['shellyprodimmer1pm', 'shellyprodimmer2pm'], '', false, true],
-        ['Error10', 'Errors 2', VARIABLETYPE_STRING, '', ['shellyprodimmer1pm', 'shellyprodimmer2pm'], '', false, true],
-        ['DeviceTemperature1', 'Device Temperature 2', VARIABLETYPE_FLOAT, '~Temperature', ['shellyprodimmer1pm', 'shellyprodimmer2pm'], '', false, true],
+        ['State1', 'State 2', VARIABLETYPE_BOOLEAN, '~Switch', ['shellyprodimmer1pm', 'shellyprodimmer2pm'], '', true, true, false],
+        ['Brightness1', 'Brightness 2', VARIABLETYPE_INTEGER, '~Intensity.100', ['shellyprodimmer1pm', 'shellyprodimmer2pm'], '', true, true, false],
+        ['Power1', 'Power 2', VARIABLETYPE_FLOAT, '~Watt.3680', ['shellyprodimmer1pm', 'shellyprodimmer2pm'], '', false, true, false],
+        ['TotalEnergy1', 'Total Energy 2', VARIABLETYPE_FLOAT, '~Electricity', ['shellyprodimmer1pm', 'shellyprodimmer2pm'], '', false, true, false],
+        ['Current1', 'Current 2', VARIABLETYPE_FLOAT, '~Ampere', ['shellyprodimmer1pm', 'shellyprodimmer2pm'], '', false, true, false],
+        ['Voltage1', 'Voltage 2', VARIABLETYPE_FLOAT, '~Volt', ['shellyprodimmer1pm', 'shellyprodimmer2pm'], '', false, true, false],
+        ['Error10', 'Errors 2', VARIABLETYPE_STRING, '', ['shellyprodimmer1pm', 'shellyprodimmer2pm'], '', false, true, false],
+        ['DeviceTemperature1', 'Device Temperature 2', VARIABLETYPE_FLOAT, '~Temperature', ['shellyprodimmer1pm', 'shellyprodimmer2pm'], '', false, true, false],
 
         ['Input0', 'Input 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
         ['Input1', 'Input 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
@@ -64,6 +64,9 @@ class ShellyProDimmerPM extends ShellyModule
             if (array_key_exists('Topic', $Buffer)) {
                 if (fnmatch('*/online', $Buffer['Topic'])) {
                     $this->SetValue('Reachable', $Payload);
+                    if (!$Payload) {
+                        $this->zeroingValues();
+                    }
                 }
                 if (fnmatch('*/events/rpc', $Buffer['Topic'])) {
                     if (array_key_exists('params', $Payload)) {

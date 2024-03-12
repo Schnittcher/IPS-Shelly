@@ -39,7 +39,8 @@ class ShellyModule extends IPSModule
                 'DeviceType'   => $Variable[5],
                 'Action'       => $Variable[6],
                 'Pos'          => $Pos + 1,
-                'Keep'         => $Variable[7]
+                'Keep'         => $Variable[7],
+                'Zeroring'     => $Variable[8]
             ];
         }
         $this->RegisterPropertyString('Variables', json_encode($Variables));
@@ -96,7 +97,8 @@ class ShellyModule extends IPSModule
                     'DeviceType'   => $NewVariable[5],
                     'Action'       => $NewVariable[6],
                     'Pos'          => ++$NewPos,
-                    'Keep'         => $NewVariable[7]
+                    'Keep'         => $NewVariable[7],
+                    'Zeroing'      => $NewVariable[7]
                 ];
             }
             IPS_SetProperty($this->InstanceID, 'Variables', json_encode($Variables));
@@ -119,7 +121,8 @@ class ShellyModule extends IPSModule
                 'DeviceType'   => $Variable[5],
                 'Action'       => $Variable[6],
                 'Pos'          => $Pos + 1,
-                'Keep'         => $Variable[7]
+                'Keep'         => $Variable[7],
+                'Zeroing'      => $Variable[8]
             ];
         }
         IPS_SetProperty($this->InstanceID, 'Variables', json_encode($Variables));
@@ -132,6 +135,31 @@ class ShellyModule extends IPSModule
         if (@$this->GetIDForIdent($Ident)) {
             $this->SendDebug('SetValue :: ' . $Ident, $Value, 0);
             parent::SetValue($Ident, $Value);
+        }
+    }
+
+    protected function zeroingValues()
+    {
+        $Variables = json_decode($this->ReadPropertyString('Variables'), true);
+
+        foreach ($Variables as $key => $variable) {
+            if ($variable['Zeroing']) {
+                switch ($variable['VarType']) {
+                    case VARIABLETYPE_BOOLEAN:
+                        $this->SetValue($variable['Ident'], false);
+                        break;
+                    case VARIABLETYPE_STRING:
+                        $this->SetValue($variable['Ident'], '');
+                        break;
+                    case VARIABLETYPE_FLOAT:
+                    case VARIABLETYPE_INTEGER:
+                        $this->SetValue($variable['Ident'], 0);
+                        break;
+                    default:
+                        $this->LogMessage('Error by zeroing Values.', KL_ERROR);
+                        break;
+                }
+            }
         }
     }
 }

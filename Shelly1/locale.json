@@ -20,7 +20,8 @@
             "External Humidity": "Externe Luftfeuchte",
             "External Switch 1": "External Switch 1",
             "External Switch 2": "External Switch 2",
-            "External Switch 3": "External Switch 3"
+            "External Switch 3": "External Switch 3",
+            "Zeroing by unreach": "Nullung durch Unerreichbarkeit"
         }
     }
 }

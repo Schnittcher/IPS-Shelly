@@ -20,7 +20,8 @@
             "Variable profile type does not match for profile": "Der Profiltyp der Variablen stimmt nicht mit dem Profil überein",
             "Reachable": "Erreichbar",
             "Device": "Gerät",
-            "Devices": "Geräte"
+            "Devices": "Geräte",
+            "Zeroing by unreach": "Nullung durch Unerreichbarkeit"
         }
     }
 }

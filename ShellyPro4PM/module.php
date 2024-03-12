@@ -6,50 +6,50 @@ require_once __DIR__ . '/../libs/ShellyModule.php';
 class ShellyPro4PM extends ShellyModule
 {
     public static $Variables = [
-        ['State0', 'State 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true],
-        ['Power0', 'Power 1', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true],
-        ['TotalEnergy0', 'Total consumption 1', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
-        ['Current0', 'Current 1', VARIABLETYPE_FLOAT, '~Ampere', [], '', false, true],
-        ['Voltage0', 'Voltage 1', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true],
-        ['Powerfactor0', 'Powerfactor 1', VARIABLETYPE_FLOAT, '', [], '', false, true],
-        ['Overtemp0', 'Overtemp 1', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
-        ['Overpower0', 'Overpower 1', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
-        ['Overvoltage0', 'Overvoltage 1', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
+        ['State0', 'State 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true, false],
+        ['Power0', 'Power 1', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true, false],
+        ['TotalEnergy0', 'Total consumption 1', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true, false],
+        ['Current0', 'Current 1', VARIABLETYPE_FLOAT, '~Ampere', [], '', false, true, false],
+        ['Voltage0', 'Voltage 1', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true, false],
+        ['Powerfactor0', 'Powerfactor 1', VARIABLETYPE_FLOAT, '', [], '', false, true, false],
+        ['Overtemp0', 'Overtemp 1', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
+        ['Overpower0', 'Overpower 1', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
+        ['Overvoltage0', 'Overvoltage 1', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
 
-        ['State1', 'State 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true],
-        ['Power1', 'Power 2', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true],
-        ['TotalEnergy1', 'Total consumption 2', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
-        ['Current1', 'Current 2', VARIABLETYPE_FLOAT, '~Ampere', [], '', false, true],
-        ['Voltage1', 'Voltage 2', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true],
-        ['Powerfactor1', 'Powerfactor 2', VARIABLETYPE_FLOAT, '', [], '', false, true],
-        ['Overtemp1', 'Overtemp 2', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
-        ['Overpower1', 'Overpower 2', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
-        ['Overvoltage1', 'Overvoltage 2', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
+        ['State1', 'State 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true, false],
+        ['Power1', 'Power 2', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true, false],
+        ['TotalEnergy1', 'Total consumption 2', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true, false],
+        ['Current1', 'Current 2', VARIABLETYPE_FLOAT, '~Ampere', [], '', false, true, false],
+        ['Voltage1', 'Voltage 2', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true, false],
+        ['Powerfactor1', 'Powerfactor 2', VARIABLETYPE_FLOAT, '', [], '', false, true, false],
+        ['Overtemp1', 'Overtemp 2', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
+        ['Overpower1', 'Overpower 2', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
+        ['Overvoltage1', 'Overvoltage 2', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
 
-        ['State2', 'State 3', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true],
-        ['Power2', 'Power 3', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true],
-        ['TotalEnergy2', 'Total consumption 3', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
-        ['Current2', 'Current 3', VARIABLETYPE_FLOAT, '~Ampere', [], '', false, true],
-        ['Voltage2', 'Voltage 3', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true],
-        ['Powerfactor2', 'Powerfactor 3', VARIABLETYPE_FLOAT, '', [], '', false, true],
-        ['Overtemp2', 'Overtemp 3', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
-        ['Overpower2', 'Overpower 3', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
-        ['Overvoltage2', 'Overvoltage 3', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
+        ['State2', 'State 3', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true, false],
+        ['Power2', 'Power 3', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true, false],
+        ['TotalEnergy2', 'Total consumption 3', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true, false],
+        ['Current2', 'Current 3', VARIABLETYPE_FLOAT, '~Ampere', [], '', false, true, false],
+        ['Voltage2', 'Voltage 3', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true, false],
+        ['Powerfactor2', 'Powerfactor 3', VARIABLETYPE_FLOAT, '', [], '', false, true, false],
+        ['Overtemp2', 'Overtemp 3', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
+        ['Overpower2', 'Overpower 3', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
+        ['Overvoltage2', 'Overvoltage 3', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
 
-        ['State3', 'State 4', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true],
-        ['Power3', 'Power 4', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true],
-        ['TotalEnergy3', 'Total consumption 4', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true],
-        ['Current3', 'Current 4', VARIABLETYPE_FLOAT, '~Ampere', [], '', false, true],
-        ['Voltage3', 'Voltage 4', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true],
-        ['Powerfactor3', 'Powerfactor 4', VARIABLETYPE_FLOAT, '', [], '', false, true],
-        ['Overtemp3', 'Overtemp 4', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
-        ['Overpower3', 'Overpower 4', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
-        ['Overvoltage3', 'Overvoltage 4', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true],
+        ['State3', 'State 4', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true, false],
+        ['Power3', 'Power 4', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true, false],
+        ['TotalEnergy3', 'Total consumption 4', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true, false],
+        ['Current3', 'Current 4', VARIABLETYPE_FLOAT, '~Ampere', [], '', false, true, false],
+        ['Voltage3', 'Voltage 4', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true, false],
+        ['Powerfactor3', 'Powerfactor 4', VARIABLETYPE_FLOAT, '', [], '', false, true, false],
+        ['Overtemp3', 'Overtemp 4', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
+        ['Overpower3', 'Overpower 4', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
+        ['Overvoltage3', 'Overvoltage 4', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
 
-        ['DeviceTemperature', 'Device Temperature', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
-        ['EventComponent', 'Event Component', VARIABLETYPE_STRING, '', [], '', false, true],
-        ['Event', 'Event', VARIABLETYPE_STRING, '', [], '', false, true],
-        ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
+        ['DeviceTemperature', 'Device Temperature', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true, false],
+        ['EventComponent', 'Event Component', VARIABLETYPE_STRING, '', [], '', false, true, false],
+        ['Event', 'Event', VARIABLETYPE_STRING, '', [], '', false, true, false],
+        ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true, false]
     ];
 
     public function RequestAction($Ident, $Value)
@@ -84,6 +84,9 @@ class ShellyPro4PM extends ShellyModule
             if (array_key_exists('Topic', $Buffer)) {
                 if (fnmatch('*/online', $Buffer['Topic'])) {
                     $this->SetValue('Reachable', $Payload);
+                    if (!$Payload) {
+                        $this->zeroingValues();
+                    }
                 }
                 if (fnmatch('*/events/rpc', $Buffer['Topic'])) {
                     if (array_key_exists('params', $Payload)) {

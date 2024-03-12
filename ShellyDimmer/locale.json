@@ -17,7 +17,8 @@
             "Input 1 Event": "Eingang 1 Ereignis",
             "Input 2 Event": "Eingang 2 Ereignis",
             "Input 1 Event Count": "Eingang 1 Ereignis Anzahl",
-            "Input 2 Event Count": "Eingang 2 Ereignis Anzahl"
+            "Input 2 Event Count": "Eingang 2 Ereignis Anzahl",
+            "Zeroing by unreach": "Nullung durch Unerreichbarkeit"
         }
     }
 }

@@ -74,6 +74,24 @@
                         "caption": "Active",
                         "type": "CheckBox"
                     }
+                },
+                {
+                    "caption": "Zeroing by unreach",
+                    "name": "Zeroing",
+                    "width": "75px",
+                    "edit": {
+                        "caption": "Active",
+                        "type": "CheckBox"
+                    }
+                },
+                {
+                    "caption": "Zeroing by unreach",
+                    "name": "Zeroing",
+                    "width": "75px",
+                    "edit": {
+                        "caption": "Active",
+                        "type": "CheckBox"
+                    }
                 }
             ],
             "values": []

@@ -6,21 +6,21 @@ require_once __DIR__ . '/../libs/ShellyModule.php';
 class Shelly1 extends ShellyModule
 {
     public static $Variables = [
-        ['Shelly_State', 'State', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true],
-        ['Shelly_Input', 'Input', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
-        ['Shelly_Longpush', 'Longpush', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
-        ['Shelly_Power', 'Power', VARIABLETYPE_FLOAT, '~Watt.3680', ['shelly1pm', 'shelly1l'], '', false, true],
-        ['Shelly_Overtemperature', 'Overtemperature', VARIABLETYPE_FLOAT, '', ['shelly1pm', 'shelly1l'], '', false, true],
-        ['Shelly_Temperature', 'Temperature', VARIABLETYPE_FLOAT, '~Temperature', ['shelly1pm', 'shelly1l'], '', false, true],
-        ['Shelly_Energy', 'Energy', VARIABLETYPE_FLOAT, '~Electricity', ['shelly1pm', 'shelly1l'], '', false, true],
-        ['Shelly_ExtSwitch0', 'External Switch 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
-        ['Shelly_ExtSwitch1', 'External Switch 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
-        ['Shelly_ExtSwitch2', 'External Switch 3', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
-        ['Shelly_ExtTemperature0', 'External Temperature 1', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
-        ['Shelly_ExtTemperature1', 'External Temperature 2', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
-        ['Shelly_ExtTemperature2', 'External Temperature 3', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
-        ['Shelly_ExtHumidity0', 'External Humidity', VARIABLETYPE_FLOAT, '~Humidity.F', [], '', false, true],
-        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', [], '', false, true]
+        ['Shelly_State', 'State', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true, false],
+        ['Shelly_Input', 'Input', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true, false],
+        ['Shelly_Longpush', 'Longpush', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true, false],
+        ['Shelly_Power', 'Power', VARIABLETYPE_FLOAT, '~Watt.3680', ['shelly1pm', 'shelly1l'], '', false, true, false],
+        ['Shelly_Overtemperature', 'Overtemperature', VARIABLETYPE_FLOAT, '', ['shelly1pm', 'shelly1l'], '', false, true, false],
+        ['Shelly_Temperature', 'Temperature', VARIABLETYPE_FLOAT, '~Temperature', ['shelly1pm', 'shelly1l'], '', false, true, false],
+        ['Shelly_Energy', 'Energy', VARIABLETYPE_FLOAT, '~Electricity', ['shelly1pm', 'shelly1l'], '', false, true, false],
+        ['Shelly_ExtSwitch0', 'External Switch 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true, false],
+        ['Shelly_ExtSwitch1', 'External Switch 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true, false],
+        ['Shelly_ExtSwitch2', 'External Switch 3', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true, false],
+        ['Shelly_ExtTemperature0', 'External Temperature 1', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true, false],
+        ['Shelly_ExtTemperature1', 'External Temperature 2', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true, false],
+        ['Shelly_ExtTemperature2', 'External Temperature 3', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true, false],
+        ['Shelly_ExtHumidity0', 'External Humidity', VARIABLETYPE_FLOAT, '~Humidity.F', [], '', false, true, false],
+        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', [], '', false, true, false]
     ];
 
     public function RequestAction($Ident, $Value)
@@ -81,6 +81,7 @@ class Shelly1 extends ShellyModule
                             break;
                         case 'false':
                             $this->SetValue('Shelly_Reachable', false);
+                            $this->zeroingValues();
                             break;
                     }
                 }

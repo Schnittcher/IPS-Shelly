@@ -6,26 +6,26 @@ require_once __DIR__ . '/../libs/ShellyModule.php';
 class ShellyDimmer extends ShellyModule
 {
     public static $Variables = [
-        ['Shelly_State', 'State', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true],
-        ['Shelly_Brightness', 'Brightness', VARIABLETYPE_INTEGER, '~Intensity.100', [], '', true, true],
+        ['Shelly_State', 'State', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true, false],
+        ['Shelly_Brightness', 'Brightness', VARIABLETYPE_INTEGER, '~Intensity.100', [], '', true, true, false],
 
-        ['Shelly_Power', 'Power', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true],
+        ['Shelly_Power', 'Power', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true, false],
 
-        ['Shelly_Temperature', 'Device Temperature', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true],
-        ['Shelly_Overtemperature', 'Overtemperature', VARIABLETYPE_BOOLEAN, '', [], '', false, true],
-        ['Shelly_Overload', 'Overload', VARIABLETYPE_BOOLEAN, '', [], '', false, true],
-        ['Shelly_Loaderror', 'Loaderror', VARIABLETYPE_BOOLEAN, '', [], '', false, true],
+        ['Shelly_Temperature', 'Device Temperature', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true, false],
+        ['Shelly_Overtemperature', 'Overtemperature', VARIABLETYPE_BOOLEAN, '', [], '', false, true, false],
+        ['Shelly_Overload', 'Overload', VARIABLETYPE_BOOLEAN, '', [], '', false, true, false],
+        ['Shelly_Loaderror', 'Loaderror', VARIABLETYPE_BOOLEAN, '', [], '', false, true, false],
 
-        ['Shelly_Input0', 'Input 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
-        ['Shelly_Input1', 'Input 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true],
+        ['Shelly_Input0', 'Input 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true, false],
+        ['Shelly_Input1', 'Input 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true, false],
 
-        ['Shelly_InputEvent0', 'Input 1 Event', VARIABLETYPE_INTEGER, 'Shelly.DimmerInput', [], '', false, true],
-        ['Shelly_InputEvent1', 'Input 2 Event', VARIABLETYPE_INTEGER, 'Shelly.DimmerInput', [], '', false, true],
+        ['Shelly_InputEvent0', 'Input 1 Event', VARIABLETYPE_INTEGER, 'Shelly.DimmerInput', [], '', false, true, false],
+        ['Shelly_InputEvent1', 'Input 2 Event', VARIABLETYPE_INTEGER, 'Shelly.DimmerInput', [], '', false, true, false],
 
-        ['Shelly_InputEventCount0', 'Input 1 Event Count', VARIABLETYPE_INTEGER, '', [], '', false, true],
-        ['Shelly_InputEventCount1', 'Input 2 Event Count', VARIABLETYPE_INTEGER, '', [], '', false, true],
+        ['Shelly_InputEventCount0', 'Input 1 Event Count', VARIABLETYPE_INTEGER, '', [], '', false, true, false],
+        ['Shelly_InputEventCount1', 'Input 2 Event Count', VARIABLETYPE_INTEGER, '', [], '', false, true, false],
 
-        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true]
+        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true, false]
     ];
     public function Create()
     {
@@ -138,6 +138,7 @@ class ShellyDimmer extends ShellyModule
                             break;
                         case 'false':
                             $this->SetValue('Shelly_Reachable', false);
+                            $this->zeroingValues();
                             break;
                     }
                 }

@@ -13,7 +13,8 @@
             "Reachable": "Erreichbar",
             "Device": "Gerät",
             "Window": "Fenster",
-            "Devices": "Geräte"
+            "Devices": "Geräte",
+            "Zeroing by unreach": "Nullung durch Unerreichbarkeit"
         }
     }
 }
