@@ -91,7 +91,7 @@ class Shellyi3 extends ShellyModule
                             break;
                         case 'false':
                             $this->SetValue('Shelly_Reachable', false);
-                            $this->zeroingValues();
+                            $this->zeroingValues(); 
                             break;
                     }
                 }

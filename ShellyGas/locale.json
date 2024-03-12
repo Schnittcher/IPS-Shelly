@@ -29,7 +29,8 @@
             "Invalid Value for Gas:": "Ungültiger Wert für Gas:",
             "Invalid Value for Self Test:": "Ungültiger Wert für Self Test",
             "Device": "Gerät",
-            "Devices": "Geräte"
+            "Devices": "Geräte",
+            "Zeroing by unreach": "Nullung durch Unerreichbarkeit"
         }
     }
 }
