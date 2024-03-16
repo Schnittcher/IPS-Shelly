@@ -342,7 +342,7 @@ class ShellyConfigurator extends IPSModule
                 $foundedKey = array_search($Payload['id'], array_column($Shellies, 'ID'));
                 if ($foundedKey !== false) {
                     $Shellies[$foundedKey]['LastActivity'] = time();
-                    $Shellies[$foundedKey]['Model'] = $Payload['model'];
+                    $Shellies[$foundedKey]['Model'] = (array_key_exists('model', $Payload)) ? ($Payload['model']) : '';
                     $Shellies[$foundedKey]['MAC'] = $Payload['mac'];
                     if (array_key_exists('gen', $Payload)) {
                         $Shellies[$foundedKey]['Name'] = $Payload['name'];
@@ -357,7 +357,7 @@ class ShellyConfigurator extends IPSModule
                 $Shelly = [];
                 $Shelly['Name'] = '-';
                 $Shelly['ID'] = $Payload['id'];
-                $Shelly['Model'] = $Payload['model'];
+                $Shellies[$foundedKey]['Model'] = (array_key_exists('model', $Payload)) ? ($Payload['model']) : '';
                 $Shelly['MAC'] = $Payload['mac'];
                 $Shelly['IP'] = '-';
                 $Shelly['Gen'] = 'gen1';
