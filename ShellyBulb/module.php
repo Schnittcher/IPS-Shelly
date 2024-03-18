@@ -191,7 +191,7 @@ class ShellyBulb extends ShellyModule
 
                 IPS_SetHidden($this->GetIDForIdent('Shelly_Color'), false);
                 IPS_SetHidden($this->GetIDForIdent('Shelly_Gain'), false);
-                IPS_SetHidden($this->GetIDForIdent('Shelly_White'), false);
+                IPS_SetHidden($this->GetIDForIdent('Shelly_White'), true);
                 break;
             case 'white':
                 IPS_SetHidden($this->GetIDForIdent('Shelly_Brightness'), false);
@@ -199,7 +199,7 @@ class ShellyBulb extends ShellyModule
 
                 IPS_SetHidden($this->GetIDForIdent('Shelly_Color'), true);
                 IPS_SetHidden($this->GetIDForIdent('Shelly_Gain'), true);
-                IPS_SetHidden($this->GetIDForIdent('Shelly_White'), true);
+                IPS_SetHidden($this->GetIDForIdent('Shelly_White'), false);
                 break;
         }
     }
