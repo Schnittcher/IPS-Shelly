@@ -357,7 +357,8 @@ class ShellyConfigurator extends IPSModule
                 $Shelly = [];
                 $Shelly['Name'] = '-';
                 $Shelly['ID'] = $Payload['id'];
-                $Shellies[$foundedKey]['Model'] = (array_key_exists('model', $Payload)) ? ($Payload['model']) : '';
+                //$Shelly['Model'] = $Payload['model'];
+                $Shelly['Model'] = (array_key_exists('model', $Payload)) ? ($Payload['model']) : '';
                 $Shelly['MAC'] = $Payload['mac'];
                 $Shelly['IP'] = '-';
                 $Shelly['Gen'] = 'gen1';
