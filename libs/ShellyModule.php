@@ -40,10 +40,30 @@ class ShellyModule extends IPSModule
                 'Action'       => $Variable[6],
                 'Pos'          => $Pos + 1,
                 'Keep'         => $Variable[7],
-                'Zeroring'     => $Variable[8]
+                'Zeroing'      => $Variable[8]
             ];
         }
         $this->RegisterPropertyString('Variables', json_encode($Variables));
+    }
+
+    public function Migrate($JSONData)
+    {
+
+        // Diese Zeile nicht entfernen
+        parent::Migrate($JSONData);
+
+        // Eigenschaften/Attribute migrieren
+        $j = json_decode($JSONData, true);
+        $Variables = json_decode($j['configuration']['Variables'], true);
+
+        //Zeroing kam später dazu, deswegen die Migrate Funktion
+        foreach ($Variables as $key => &$value) {
+            if (!array_key_exists('Zeroing', $value)) {
+                $value['Zeroing'] = false;
+            }
+        }
+        $j['configuration']['Variables'] = json_encode($Variables);
+        return json_encode($j, JSON_FORCE_OBJECT);
     }
 
     public function ApplyChanges()
