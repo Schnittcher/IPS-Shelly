@@ -791,7 +791,10 @@ class ShellyConfigurator extends IPSModule
 
             $this->WriteAttributeString('Shellies', json_encode($Shellies));
         }
-        $this->sendMQTT('shellies/command', 'announce');
+
+        if ($this->HasActiveParent()) {
+            $this->sendMQTT('shellies/command', 'announce');
+        }
     }
 
     private function getShellyInstances($ShellyID)
