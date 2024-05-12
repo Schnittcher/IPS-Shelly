@@ -15,6 +15,7 @@ class ShellyPro4PM extends ShellyModule
         ['Overtemp0', 'Overtemp 1', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
         ['Overpower0', 'Overpower 1', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
         ['Overvoltage0', 'Overvoltage 1', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
+        ['Input0', 'Input 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true, false],
 
         ['State1', 'State 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true, false],
         ['Power1', 'Power 2', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true, false],
@@ -25,6 +26,7 @@ class ShellyPro4PM extends ShellyModule
         ['Overtemp1', 'Overtemp 2', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
         ['Overpower1', 'Overpower 2', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
         ['Overvoltage1', 'Overvoltage 2', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
+        ['Input1', 'Input 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true, false],
 
         ['State2', 'State 3', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true, false],
         ['Power2', 'Power 3', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true, false],
@@ -35,6 +37,7 @@ class ShellyPro4PM extends ShellyModule
         ['Overtemp2', 'Overtemp 3', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
         ['Overpower2', 'Overpower 3', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
         ['Overvoltage2', 'Overvoltage 3', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
+        ['Input2', 'Input 3', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true, false],
 
         ['State3', 'State 4', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true, false],
         ['Power3', 'Power 4', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true, false],
@@ -45,6 +48,7 @@ class ShellyPro4PM extends ShellyModule
         ['Overtemp3', 'Overtemp 4', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
         ['Overpower3', 'Overpower 4', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
         ['Overvoltage3', 'Overvoltage 4', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
+        ['Input3', 'Input 4', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true, false],
 
         ['DeviceTemperature', 'Device Temperature', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true, false],
         ['EventComponent', 'Event Component', VARIABLETYPE_STRING, '', [], '', false, true, false],
@@ -94,7 +98,19 @@ class ShellyPro4PM extends ShellyModule
                             $events = $Payload['params']['events'][0];
                             $this->SetValue('EventComponent', $events['component']);
                             $this->SetValue('Event', $events['event']);
+                            
                         }
+
+                        for ($i = 0; $i <= 3; $i++) {
+                            $inputIndex = 'input:' . $i;
+                            if (array_key_exists($inputIndex, $Payload['params'])) {
+                                $input = $Payload['params'][$inputIndex];
+                                if (array_key_exists('state', $input)) {
+                                    $this->SetValue('Input' . $i, $input['state']);
+                                }
+                            }
+                        }
+
                         for ($i = 0; $i <= 3; $i++) {
                             $switchIndex = 'switch:' . $i;
                             if (array_key_exists($switchIndex, $Payload['params'])) {
