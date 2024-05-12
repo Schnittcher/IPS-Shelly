@@ -36,6 +36,8 @@ class ShellyPro3EM extends ShellyModule
         ['cTotalActRetEnergy', 'Phase C total active returned Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true, false],
         ['totalActEnergy', 'Total active Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true, false],
         ['totalActRetEnergy', 'Total active returned Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true, false],
+        //Pro 3EM Switch Addon
+        ['State100', 'State 100', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true, false],
         ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true, false]
     ];
 
@@ -79,6 +81,14 @@ class ShellyPro3EM extends ShellyModule
                 }
                 if (fnmatch('*/events/rpc', $Buffer['Topic'])) {
                     if (array_key_exists('params', $Payload)) {
+
+                        if (array_key_exists('switch:100', $Payload['params'])) {
+                            $switch = $Payload['params']['switch:100'];
+                            if (array_key_exists('output', $switch)) {
+                                $this->SetValue('State100' . $i, $switch['output']);
+                            }
+                        }
+
                         if (array_key_exists('em:0', $Payload['params'])) {
                             $em = $Payload['params']['em:0'];
                             $this->SetValue('aCurrent', $em['a_current']);
