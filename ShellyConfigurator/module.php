@@ -501,6 +501,7 @@ class ShellyConfigurator extends IPSModule
                     case 'SHUNI-1':
                     case 'SHTRV-01':
                     case 'SHBTN-1':
+                    case 'SHBTN-2':
                     case 'SHPLG2-1':
                     case 'SHPLG-S':
                     case 'SHPLG-1':
