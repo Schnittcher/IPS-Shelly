@@ -56,6 +56,9 @@ class ShellyBLUConfigurator extends IPSModule
                                 if (array_key_exists('motion', $data)) {
                                     $devcieType = 'Shelly BLU Motion';
                                 }
+                                if (array_key_exists('humidity', $data)) {
+                                    $devcieType = 'Shelly BLU H&T';
+                                }
 
                                 if (!array_key_exists($data['address'], $Devices)) {
                                     $Devices[$data['address']] = $devcieType;
@@ -117,6 +120,18 @@ class ShellyBLUConfigurator extends IPSModule
                         break;
                     case 'Shelly BLU Motion':
                         $moduleID = '{2F6CA178-2817-4F78-A88B-1783997CEC0E}';
+                        $DeviceType = $Device;
+                        $AddValue['create'] = [
+                            'moduleID'      => $moduleID,
+                            'info'          => $BLUAddress,
+                            'configuration' => [
+                                'BLUAddress' => $BLUAddress,
+                                'Event'      => 'shelly-blu'
+                            ]
+                        ];
+                        break;
+                    case 'Shelly BLU H&T':
+                        $moduleID = '{C077278B-316D-7027-CA62-5D4EBDCE1769}';
                         $DeviceType = $Device;
                         $AddValue['create'] = [
                             'moduleID'      => $moduleID,
