@@ -167,6 +167,9 @@ class ShellyBLUConfigurator extends IPSModule
         //Shelly BLU Motion
         $InstanceIDs[] = IPS_GetInstanceListByModuleID('{2F6CA178-2817-4F78-A88B-1783997CEC0E}');
 
+        //Shelly BLU H&T
+        $InstanceIDs[] = IPS_GetInstanceListByModuleID('{C077278B-316D-7027-CA62-5D4EBDCE1769}');
+
         foreach ($InstanceIDs as $IDs) {
             foreach ($IDs as $id) {
                 if (strtolower(IPS_GetProperty($id, 'BLUAddress')) == $BLUAddress) {
