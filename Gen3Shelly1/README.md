@@ -1,9 +1,9 @@
-# Gen3Shelly1
-   Dieses Modul ermöglicht es, die Gen 3 Shelly 1 und Shelly 1 PM in IP-Symcon zu integrieren.\
+# Gen3Shelly1Mini
+   Dieses Modul ermöglicht es, die Gen 3 Shelly 1 Mini, Shelly 1 PM Mini und Shelly PM Mini in IP-Symcon zu integrieren.\
    Es können die Kanäle geschaltet werden und die Messwerte werden in IP-Symcon dargestellt.   
     
 ## Inhaltverzeichnis
-- [Gen3Shelly1](#gen3shelly1)
+- [Gen3Shelly1Mini](#gen3shelly1mini)
   - [Inhaltverzeichnis](#inhaltverzeichnis)
   - [1. Konfiguration](#1-konfiguration)
   - [2. Funktionen](#2-funktionen)

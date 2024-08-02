@@ -203,6 +203,14 @@ class ShellyConfigurator extends IPSModule
             'Name'  => 'Shelly Plus 1 Mini',
             'GUID'  => '{AF5127F4-4929-49AF-9894-D7B8627667A7}'
         ],
+        'S3SW-001X16EU' => [
+            'Name'  => 'Shelly 1 Gen3',
+            'GUID'  => '{04EB19A3-7C30-9A64-F297-3BBB7EA6906A}'
+        ],
+        'S3SW-001P16EU' => [
+            'Name'  => 'Shelly 1PM Gen3',
+            'GUID'  => '{04EB19A3-7C30-9A64-F297-3BBB7EA6906A}'
+        ],
         'S3SW-001X8EU' => [
             'Name'  => 'Shelly 1 Mini Gen3',
             'GUID'  => '{D6B33C50-1855-F2B2-EC6A-0C14F4259952}'
@@ -638,6 +646,26 @@ class ShellyConfigurator extends IPSModule
                                 'configuration' => [
                                     'MQTTTopic' => strtolower($Shelly['ID']),
                                     'Device'    => 'shellyplusplugs'
+                                ]
+                            ];
+                            break;
+                        case 'S3SW-001X16EU':
+                            $AddValue['create'] = [
+                                'moduleID'      => $moduleID,
+                                'info'          => $Shelly['IP'],
+                                'configuration' => [
+                                    'MQTTTopic' => strtolower($Shelly['ID']),
+                                    'Device'    => 'gen3shelly1'
+                                ]
+                            ];
+                            break;
+                        case 'S3SW-001P16EU':
+                            $AddValue['create'] = [
+                                'moduleID'      => $moduleID,
+                                'info'          => $Shelly['IP'],
+                                'configuration' => [
+                                    'MQTTTopic' => strtolower($Shelly['ID']),
+                                    'Device'    => 'gen3shelly1pm'
                                 ]
                             ];
                             break;

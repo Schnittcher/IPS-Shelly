@@ -4,8 +4,8 @@
     "type": 3,
     "vendor": "Shelly",
     "aliases": [
-        "Shelly 1 Gen 3",
-        "Shelly 1PM Gen 3"
+        "Shelly 1 Mini Gen 3",
+        "Shelly 1PM Mini Gen 3"
     ],
     "parentRequirements": [
         "{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}"

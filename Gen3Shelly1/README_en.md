@@ -1,9 +1,9 @@
-# Gen3Shelly1
-   This module enables the integration of a en 3 Shelly 1 and Shelly 1 PM in IP-Symcon.\
+# Gen3Shelly1Mini
+   This module enables the integration of a en 3 Shelly 1 Mini, Shelly 1 PM Mini or Shelly PM Mini in IP-Symcon.\
    The channels can be switched and the sensor data is visualized in IP-Symcon.   
     
 ## Table of Contents
-- [Gen3Shelly1](#gen3shelly1)
+- [Gen3Shelly1Mini](#gen3shelly1mini)
   - [Table of Contents](#table-of-contents)
   - [1. Configuration](#1-configuration)
   - [2. Functions](#2-functions)
