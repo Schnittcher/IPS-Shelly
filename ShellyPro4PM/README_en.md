@@ -3,8 +3,10 @@
    The channels can be switched and the sensor data is visualized in IP-Symcon.   
     
    ## Table of Contents
-   1. [Configuration](#1-configuration)
-   2. [Functions](#2-functions)
+- [ShellyPro4PM](#shellypro4pm)
+  - [Table of Contents](#table-of-contents)
+  - [1. Configuration](#1-configuration)
+  - [2. Functions](#2-functions)
    
    ## 1. Configuration
    
@@ -41,3 +43,14 @@
    RequestAction(25836, true); //Switch On State 4
    RequestAction(25836, false); //Switch Off State 4
    ```
+
+   ```php
+   SHELLY_ToggleAfter($InstanceID, $switch, $value, $toggle_after)
+   ```
+   This function can be used to start a timer.
+
+   **Beispiel:**
+
+   ```php
+   SHELLY_ToggleAfter(12345, 0, true, 10); //Switches Relay 0 to on for 10 seconds.
+   SHELLY_ToggleAfter(12345, 0, false, 10); //Switches Relay 0 to on after 10 seconds.

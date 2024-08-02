@@ -21,6 +21,7 @@ class ShellyPlus2PM extends ShellyModule
         ['Temperature1', 'Temperature1', VARIABLETYPE_FLOAT, '~Temperature', [], 'relay', false, true, false],
 
         ['State', 'State', VARIABLETYPE_INTEGER, '~ShutterMoveStop', [], 'roller', true, true, false],
+        ['RunningState', 'Running State', VARIABLETYPE_STRING, '', [], 'roller', true, true, false],
         ['CoverPosition', 'Position', VARIABLETYPE_INTEGER, '~Shutter', [], 'roller', true, true, false],
 
         ['Input0', 'Input 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true, false],
@@ -168,6 +169,7 @@ class ShellyPlus2PM extends ShellyModule
                         if (array_key_exists('cover:0', $Payload['params'])) {
                             $cover = $Payload['params']['cover:0'];
                             if (array_key_exists('state', $cover)) {
+                                $this->SetValue('RunningState', $cover['state']);
                                 switch ($cover['state']) {
                                     case 'stopped':
                                         $this->SetValue('State', 2);
@@ -326,6 +328,18 @@ class ShellyPlus2PM extends ShellyModule
                 }
             }
         }
+    }
+
+    public function ToggleAfter(int $switch, bool $value, int $toggle_after)
+    {
+        $Topic = $this->ReadPropertyString('MQTTTopic') . '/rpc';
+
+        $Payload['id'] = 1;
+        $Payload['src'] = 'user_1';
+        $Payload['method'] = 'Switch.Set';
+        $Payload['params'] = ['id' => $switch, 'on' => $value, 'toggle_after' => $toggle_after];
+
+        $this->sendMQTT($Topic, json_encode($Payload));
     }
 
     private function SwitchMode(int $switch, bool $value)

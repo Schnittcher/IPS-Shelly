@@ -51,3 +51,15 @@
    ```php
    RequestAction(56789, 25);  //Rolladen aus 25% fahren!
    ```
+
+   ```php
+   SHELLY_ToggleAfter($InstanceID, $switch, $value, $toggle_after)
+   ```
+   Mit dieser Funktion kann ein Timer gestartet werden.
+
+   **Beispiel:**
+
+   ```php
+   SHELLY_ToggleAfter(12345, 0, true, 10); //Schaltet Relay 0 für 10 Sekunden auf ein.
+   SHELLY_ToggleAfter(12345, 0, false, 10); //Schaltet Relay 0 nach 10 Sekunden auf ein.
+   ```

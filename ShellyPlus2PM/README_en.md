@@ -51,3 +51,14 @@
    ```php
    RequestAction(56789, 25);  //Move shutter to 25%
    ```
+
+   ```php
+   SHELLY_ToggleAfter($InstanceID, $switch, $value, $toggle_after)
+   ```
+   This function can be used to start a timer.
+
+   **Beispiel:**
+
+   ```php
+   SHELLY_ToggleAfter(12345, 0, true, 10); //Switches Relay 0 to on for 10 seconds.
+   SHELLY_ToggleAfter(12345, 0, false, 10); //Switches Relay 0 to on after 10 seconds.

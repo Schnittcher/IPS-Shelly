@@ -181,6 +181,18 @@ class ShellyPlusPlugS extends ShellyModule
         $this->setUiCOnfig($config);
     }
 
+    public function ToggleAfter(int $switch, bool $value, int $toggle_after)
+    {
+        $Topic = $this->ReadPropertyString('MQTTTopic') . '/rpc';
+
+        $Payload['id'] = 1;
+        $Payload['src'] = 'user_1';
+        $Payload['method'] = 'Switch.Set';
+        $Payload['params'] = ['id' => $switch, 'on' => $value, 'toggle_after' => $toggle_after];
+
+        $this->sendMQTT($Topic, json_encode($Payload));
+    }
+
     private function SwitchMode(int $switch, bool $value)
     {
         $Topic = $this->ReadPropertyString('MQTTTopic') . '/rpc';

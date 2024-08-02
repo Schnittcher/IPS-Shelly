@@ -59,3 +59,15 @@
    ```php
    SHELLY_SetLEDOff(12345);  //Schaltet den Mode auf "Completely off".
    ```
+
+   ```php
+   SHELLY_ToggleAfter($InstanceID, $switch, $value, $toggle_after)
+   ```
+   Mit dieser Funktion kann ein Timer gestartet werden.
+
+   **Beispiel:**
+
+   ```php
+   SHELLY_ToggleAfter(12345, 0, true, 10); //Schaltet Relay 0 für 10 Sekunden auf ein.
+   SHELLY_ToggleAfter(12345, 0, false, 10); //Schaltet Relay 0 nach 10 Sekunden auf ein.
+   ```
