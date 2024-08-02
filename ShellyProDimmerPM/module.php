@@ -216,8 +216,14 @@ class ShellyProDimmerPM extends ShellyModule
 
         $Payload['id'] = 1;
         $Payload['src'] = 'user_1';
-        $Payload['method'] = 'Switch.Set';
-        $Payload['params'] = ['id' => $id, 'brightness' => $brightness, 'transition' => $transition, 'toggle_after' => $toggle_after];
+        $Payload['method'] = 'Light.Set';
+        $Payload['params'] = ['id' => $id, 'on' => true, 'brightness' => $brightness];
+        if ($toggle_after != 0) {
+            $Payload['params']['toggle_after'] = $toggle_after;
+        }
+        if ($transition != 0) {
+            $Payload['params']['transition_duration'] = $transition;
+        }
 
         $this->sendMQTT($Topic, json_encode($Payload));
     }
@@ -227,7 +233,7 @@ class ShellyProDimmerPM extends ShellyModule
 
         $Payload['id'] = 1;
         $Payload['src'] = 'user_1';
-        $Payload['method'] = 'Switch.Set';
+        $Payload['method'] = 'Light.Set';
         $Payload['params'] = ['id' => $id, 'on' => $value];
 
         $this->sendMQTT($Topic, json_encode($Payload));
