@@ -6,12 +6,12 @@ require_once __DIR__ . '/../libs/ShellyModule.php';
 class ShellyGas extends ShellyModule
 {
     public static $Variables = [
-        ['Shelly_Operation', 'Operation', VARIABLETYPE_INTEGER, 'Shelly.Gas.Operation', [], '', false, true,false],
-        ['Shelly_Gas', 'Gas', VARIABLETYPE_INTEGER, 'Shelly.Gas', [], '', false, true,false],
-        ['Shelly_SelfTest', 'Self Test', VARIABLETYPE_INTEGER, 'Shelly.Gas.SelfTest', [], '', false, true,false],
-        ['Shelly_Concentration', 'Concentration', VARIABLETYPE_INTEGER, '', [], '', false, true,false],
-        ['Shelly_Control', 'Control', VARIABLETYPE_INTEGER, 'Shelly.Gas.Control', [], '', true, true,false],
-        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true,false]
+        ['Shelly_Operation', 'Operation', VARIABLETYPE_INTEGER, 'Shelly.Gas.Operation', [], '', false, true, false],
+        ['Shelly_Gas', 'Gas', VARIABLETYPE_INTEGER, 'Shelly.Gas', [], '', false, true, false],
+        ['Shelly_SelfTest', 'Self Test', VARIABLETYPE_INTEGER, 'Shelly.Gas.SelfTest', [], '', false, true, false],
+        ['Shelly_Concentration', 'Concentration', VARIABLETYPE_INTEGER, '', [], '', false, true, false],
+        ['Shelly_Control', 'Control', VARIABLETYPE_INTEGER, 'Shelly.Gas.Control', [], '', true, true, false],
+        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true, false]
     ];
 
     public function Create()
