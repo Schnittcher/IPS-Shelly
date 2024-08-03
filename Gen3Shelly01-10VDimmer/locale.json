@@ -1,0 +1,20 @@
+{
+    "translations": {
+        "de": {
+            "Active": "Aktiv",
+            "State": "Status",
+            "Reachable": "Erreichbar",
+            "Variable profile type does not match for profile": "Der Profiltyp der Variablen stimmt nicht mit dem Profil überein",
+            "Power": "Leistung",
+            "Total Energy": "Gesamt Energie",
+            "Current": "Stromstärke",
+            "Voltage": "Volt",
+            "Total consumption": "Gesamtverbrauch",
+            "Device Temperature": "Gerätetemperatur",
+            "Brightness": "Helligkeit",
+            "Input 1": " Eingang 1",
+            "Input 2": " Eingang 2",
+            "Zeroing by unreach": "Nullung durch Unerreichbarkeit"
+        }
+    }
+}
