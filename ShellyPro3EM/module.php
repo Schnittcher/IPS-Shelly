@@ -81,7 +81,6 @@ class ShellyPro3EM extends ShellyModule
                 }
                 if (fnmatch('*/events/rpc', $Buffer['Topic'])) {
                     if (array_key_exists('params', $Payload)) {
-
                         if (array_key_exists('switch:100', $Payload['params'])) {
                             $switch = $Payload['params']['switch:100'];
                             if (array_key_exists('output', $switch)) {

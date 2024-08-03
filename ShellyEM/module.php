@@ -6,28 +6,28 @@ require_once __DIR__ . '/../libs/ShellyModule.php';
 class ShellyEM extends ShellyModule
 {
     public static $Variables = [
-        ['Shelly_State', 'State', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true,false],
+        ['Shelly_State', 'State', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true, false],
 
-        ['Shelly_Power0', 'Power L1', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true,false],
-        ['Shelly_Energy0', 'Energy L1', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true,false],
-        ['Shelly_ReturnedEnergy0', 'Returned Energy L1', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true,false],
-        ['Shelly_ReactivePower0', 'Reactive Power', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true,false],
-        ['Shelly_Voltage0', 'Voltage L1', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true,false],
-        ['Shelly_Total0', 'Total L1', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true,false],
-        ['Shelly_TotalReturned0', 'Total Returned L1', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true,false],
+        ['Shelly_Power0', 'Power L1', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true, false],
+        ['Shelly_Energy0', 'Energy L1', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true, false],
+        ['Shelly_ReturnedEnergy0', 'Returned Energy L1', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true, false],
+        ['Shelly_ReactivePower0', 'Reactive Power', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true, false],
+        ['Shelly_Voltage0', 'Voltage L1', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true, false],
+        ['Shelly_Total0', 'Total L1', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true, false],
+        ['Shelly_TotalReturned0', 'Total Returned L1', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true, false],
 
-        ['Shelly_Power1', 'Power L2', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true,false],
-        ['Shelly_Energy1', 'Energy L2', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true,false],
-        ['Shelly_ReturnedEnergy1', 'Returned Energy L2', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true,false],
-        ['Shelly_ReactivePower1', 'Reactive Power L2', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true,false],
-        ['Shelly_Voltage1', 'Voltage L2', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true,false],
-        ['Shelly_Total1', 'Total L2', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true,false],
-        ['Shelly_TotalReturned1', 'Total Returned L2', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true,false],
+        ['Shelly_Power1', 'Power L2', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true, false],
+        ['Shelly_Energy1', 'Energy L2', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true, false],
+        ['Shelly_ReturnedEnergy1', 'Returned Energy L2', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true, false],
+        ['Shelly_ReactivePower1', 'Reactive Power L2', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true, false],
+        ['Shelly_Voltage1', 'Voltage L2', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true, false],
+        ['Shelly_Total1', 'Total L2', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true, false],
+        ['Shelly_TotalReturned1', 'Total Returned L2', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true, false],
 
-        ['Shelly_Voltage0', 'Voltage L1', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true,false],
-        ['Shelly_Total0', 'Total L1', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true,false],
-        ['Shelly_TotalReturned0', 'Total Returned L1', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true,false],
-        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true,false]
+        ['Shelly_Voltage0', 'Voltage L1', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true, false],
+        ['Shelly_Total0', 'Total L1', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true, false],
+        ['Shelly_TotalReturned0', 'Total Returned L1', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true, false],
+        ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true, false]
     ];
 
     public function RequestAction($Ident, $Value)
