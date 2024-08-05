@@ -36,8 +36,9 @@ class ShellyPro3EM extends ShellyModule
         ['cTotalActRetEnergy', 'Phase C total active returned Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true, false],
         ['totalActEnergy', 'Total active Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true, false],
         ['totalActRetEnergy', 'Total active returned Energy', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true, false],
+
         //Pro 3EM Switch Addon
-        ['State100', 'State 100', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true, false],
+        ['Switch', 'Switching output', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true, false],
         ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true, false]
     ];
 
@@ -58,6 +59,37 @@ class ShellyPro3EM extends ShellyModule
         $this->MaintainVariable('CurrentImport', $this->Translate('Current Import'), 2, '~Watt', 0, $this->ReadPropertyBoolean('Netting'));
         $this->MaintainVariable('Import', $this->Translate('Import'), 2, '~Electricity', 0, $this->ReadPropertyBoolean('Netting'));
         $this->MaintainVariable('Returned', $this->Translate('Returned'), 2, '~Electricity', 0, $this->ReadPropertyBoolean('Netting'));
+    }
+
+    public function RequestAction($Ident, $Value)
+    {
+        $this->SendDebug(__FUNCTION__, 'ident=' . $Ident . ', value=' . $Value, 0);
+        switch ($Ident) {
+            case 'Switch':
+                $this->SetSwitch($Value);
+                break;
+			default:
+                $this->SendDebug(__FUNCTION__, 'invalid ident "', $Ident . '"', 0);
+                break;
+		}
+    }
+
+    private function SetSwitch(bool $Value)
+    {
+        $Topic = $this->ReadPropertyString('MQTTTopic') . '/rpc';
+
+        $Payload = [
+            'id'     => 1,
+            'src'    => 'user_1',
+            'method' => 'Switch.Set',
+            'params' =>  [
+                'id' => 100,
+                'on' => $Value,
+            ],
+        ];
+
+        $this->SendDebug(__FUNCTION__, 'topic=' . $Topic . ', payload='.print_r($Payload,true), 0);
+        $this->sendMQTT($Topic, json_encode($Payload));
     }
 
     public function ReceiveData($JSONString)
@@ -84,10 +116,9 @@ class ShellyPro3EM extends ShellyModule
                         if (array_key_exists('switch:100', $Payload['params'])) {
                             $switch = $Payload['params']['switch:100'];
                             if (array_key_exists('output', $switch)) {
-                                $this->SetValue('State100' . $i, $switch['output']);
+                                $this->SetValue('Switch', (bool) $switch['output']);
                             }
                         }
-
                         if (array_key_exists('em:0', $Payload['params'])) {
                             $em = $Payload['params']['em:0'];
                             $this->SetValue('aCurrent', $em['a_current']);
