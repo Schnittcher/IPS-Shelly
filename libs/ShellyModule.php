@@ -118,7 +118,7 @@ class ShellyModule extends IPSModule
                     'Action'       => $NewVariable[6],
                     'Pos'          => ++$NewPos,
                     'Keep'         => $NewVariable[7],
-                    'Zeroing'      => $NewVariable[7]
+                    'Zeroing'      => $NewVariable[8]
                 ];
             }
             IPS_SetProperty($this->InstanceID, 'Variables', json_encode($Variables));
