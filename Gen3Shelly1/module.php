@@ -118,6 +118,11 @@ class Gen3Shelly1 extends ShellyModule
                     if (array_key_exists('current', $Payload)) {
                         $this->SetValue('Current', $Payload['current']);
                     }
+                    if (array_key_exists('temperature', $Payload)) {
+                        if (array_key_exists('tC', $Payload['temperature'])) {
+                            $this->SetValue('DeviceTemperature', $Payload['temperature']['tC']);
+                        }
+                    }
                     if (array_key_exists('aenergy', $Payload)) {
                         if (array_key_exists('total', $Payload['aenergy'])) {
                             $this->SetValue('TotalEnergy', $Payload['aenergy']['total'] / 1000);
