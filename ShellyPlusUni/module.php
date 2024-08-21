@@ -19,6 +19,8 @@ class ShellyPlusUni extends ShellyModule
         ['Temperature104', 'External Temperature 5', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true, false],
         ['Humidity100', 'External Humidity', VARIABLETYPE_FLOAT, '~Humidity.F', [], '', false, true, false],
         ['Voltmeter100', 'External Voltmeter', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true, false],
+        ['Xpercent100', 'Xpercent 100', VARIABLETYPE_FLOAT, '', [], '', false, true, false],
+        ['Percent100', 'Percent 100', VARIABLETYPE_FLOAT, '', [], '', false, true, false],
         ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true, false]
     ];
 
@@ -81,7 +83,6 @@ class ShellyPlusUni extends ShellyModule
                                 $this->SetValue('Input1', $service['state']);
                             }
                         }
-
                         if (array_key_exists('input:2', $Payload['params'])) {
                             $service = $Payload['params']['input:2'];
                             if (array_key_exists('counts', $service)) {
@@ -91,7 +92,6 @@ class ShellyPlusUni extends ShellyModule
                                 $this->SetValue('Input2Frequency', $service['freq']);
                             }
                         }
-                    }
                     for ($i = 100; $i <= 104; $i++) {
                         $temperatureIndex = 'temperature:' . $i;
                         if (array_key_exists($temperatureIndex, $Payload['params'])) {
@@ -113,9 +113,19 @@ class ShellyPlusUni extends ShellyModule
                             $this->SetValue('Humidity100', $humidity['rh']);
                         }
                     }
+                    if (array_key_exists('input:100', $Payload['params'])) {
+                        $input100 = $Payload['params']['input:100'];
+                        if (array_key_exists('xpercent', $input100)) {
+                            $this->SetValue('Xpercent100', $input100['xpercent']);
+                        }
+                        if (array_key_exists('percent', $input100)) {
+                            $this->SetValue('Percent100', $input100['percent']);
+                        }
+                    }
                 }
             }
-        }
+    }
+}
     }
 
     private function SwitchMode(int $switch, bool $value)
