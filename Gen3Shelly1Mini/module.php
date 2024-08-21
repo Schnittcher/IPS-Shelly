@@ -125,9 +125,9 @@ class Gen3Shelly1Mini extends ShellyModule
                     if (array_key_exists('freq', $Payload)) {
                         $this->SetValue('Frequency', $Payload['freq']);
                     }
-                    if (array_key_exists('temperature', $switch)) {
-                        if (array_key_exists('tC', $switch['temperature'])) {
-                            $this->SetValue('DeviceTemperature', $switch['temperature']['tC']);
+                    if (array_key_exists('temperature', $Payload)) {
+                        if (array_key_exists('tC', $Payload['temperature'])) {
+                            $this->SetValue('DeviceTemperature', $Payload['temperature']['tC']);
                         }
                     }
                     if (array_key_exists('aenergy', $Payload)) {
