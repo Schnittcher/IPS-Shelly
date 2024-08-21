@@ -11,6 +11,7 @@ class Gen3Shelly1Mini extends ShellyModule
         ['TotalEnergy', 'Total Energy', VARIABLETYPE_FLOAT, '~Electricity', ['gen3shelly1pmmini', 'gen3shellypmmini'], '', false, true, false],
         ['Current', 'Current', VARIABLETYPE_FLOAT, '~Ampere', ['gen3shelly1pmmini', 'gen3shellypmmini'], '', false, true, false],
         ['Voltage', 'Voltage', VARIABLETYPE_FLOAT, '~Volt', ['gen3shelly1pmmini', 'gen3shellypmmini'], '', false, true, false],
+        ['Frequency', 'Frequency', VARIABLETYPE_FLOAT, '~Hertz', ['gen3shelly1pmmini', 'gen3shellypmmini'], '', false, true, false],
         ['Overtemp', 'Overtemp', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
         ['Overpower', 'Overpower', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
         ['Overvoltage', 'Overvoltage', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
@@ -69,6 +70,9 @@ class Gen3Shelly1Mini extends ShellyModule
                             if (array_key_exists('current', $switch)) {
                                 $this->SetValue('Current', $switch['current']);
                             }
+                            if (array_key_exists('freq', $Payload)) {
+                                $this->SetValue('Frequency', $Payload['freq']);
+                            }
                             if (array_key_exists('temperature', $switch)) {
                                 if (array_key_exists('tC', $switch['temperature'])) {
                                     $this->SetValue('DeviceTemperature', $switch['temperature']['tC']);
@@ -117,6 +121,14 @@ class Gen3Shelly1Mini extends ShellyModule
                     }
                     if (array_key_exists('current', $Payload)) {
                         $this->SetValue('Current', $Payload['current']);
+                    }
+                    if (array_key_exists('freq', $Payload)) {
+                        $this->SetValue('Frequency', $Payload['freq']);
+                    }
+                    if (array_key_exists('temperature', $switch)) {
+                        if (array_key_exists('tC', $switch['temperature'])) {
+                            $this->SetValue('DeviceTemperature', $switch['temperature']['tC']);
+                        }
                     }
                     if (array_key_exists('aenergy', $Payload)) {
                         if (array_key_exists('total', $Payload['aenergy'])) {
