@@ -321,7 +321,7 @@ class ShellyPlusRGBWPM extends ShellyModule
         $Payload['id'] = 1;
         $Payload['src'] = 'user_1';
         $Payload['method'] = 'RGB.Set';
-        $Payload['params'] = ['id' => $id, 'on' => true];
+        $Payload['params'] = ['id' => $id, 'on' => $state];
         if ($toggle_after != 0) {
             $Payload['params']['toggle_after'] = $toggle_after;
         }
@@ -372,7 +372,7 @@ class ShellyPlusRGBWPM extends ShellyModule
         $Payload['id'] = 1;
         $Payload['src'] = 'user_1';
         $Payload['method'] = 'RGBW.Set';
-        $Payload['params'] = ['id' => $id, 'on' => true];
+        $Payload['params'] = ['id' => $id, 'on' => $state];
         if ($toggle_after != 0) {
             $Payload['params']['toggle_after'] = $toggle_after;
         }
