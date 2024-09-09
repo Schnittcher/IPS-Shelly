@@ -271,9 +271,9 @@ class ShellyConfigurator extends IPSModule
             'Name'  => 'Shelly Pro 2PM v.1',
             'GUID'  => '{A7B9C446-E5C6-4DE9-AF1E-B9FE20FFF3FF}'
         ],
-        'XXX-SPSH-002PE16EU' => [ //fehlt - falsches model?
+        'SPSH-002PE16EU' => [
             'Name'  => 'Shelly Pro Dual Cover/Shutter PM',
-            'GUID'  => ''
+            'GUID'  => '{3E9D7B48-F0D6-6E35-2A9A-84B33B80386F}'
         ],
         'SPSW-003XE16EU' => [
             'Name'  => 'Shelly Pro 3',
@@ -554,6 +554,7 @@ class ShellyConfigurator extends IPSModule
                     case 'SNGW-BT01':
                     case 'S3PM-001PCEU16':
                     case 'SNSN-0043X':
+                    case 'SPSH-002PE16EU':
                         $AddValue['create'] = [
                             'name'          => $Shelly['ID'],
                             'moduleID'      => $moduleID,
