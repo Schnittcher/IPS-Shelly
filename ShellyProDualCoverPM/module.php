@@ -6,9 +6,9 @@ require_once __DIR__ . '/../libs/ShellyModule.php';
 class ShellyProDualCoverPM extends ShellyModule
 {
     public static $Variables = [
-        ['State0', 'State 1', VARIABLETYPE_INTEGER, '~ShutterMoveStop', [], 'roller', true, true, false],
-        ['RunningState0', 'Running State 1', VARIABLETYPE_STRING, '', [], 'roller', true, true, false],
-        ['CoverPosition0', 'Position 1', VARIABLETYPE_INTEGER, '~Shutter', [], 'roller', true, true, false],
+        ['State0', 'State 1', VARIABLETYPE_INTEGER, '~ShutterMoveStop', [], '', true, true, false],
+        ['RunningState0', 'Running State 1', VARIABLETYPE_STRING, '', [], '', true, true, false],
+        ['CoverPosition0', 'Position 1', VARIABLETYPE_INTEGER, '~Shutter', [], '', true, true, false],
         ['Power0', 'Power 1', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true, false],
         ['TotalEnergy0', 'Total Energy 1', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true, false],
         ['Current0', 'Current 1', VARIABLETYPE_FLOAT, '~Ampere', [], '', false, true, false],
@@ -16,9 +16,9 @@ class ShellyProDualCoverPM extends ShellyModule
         ['Errors0', 'Errors 1', VARIABLETYPE_STRING, '', [], '', false, true, false],
         ['DeviceTemperature0', 'Device Temperature 1', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true, false],
 
-        ['State1', 'State 2', VARIABLETYPE_INTEGER, '~ShutterMoveStop', [], 'roller', true, true, false],
-        ['RunningState1', 'Running State 2', VARIABLETYPE_STRING, '', [], 'roller', true, true, false],
-        ['CoverPosition1', 'Position 2', VARIABLETYPE_INTEGER, '~Shutter', [], 'roller', true, true, false],
+        ['State1', 'State 2', VARIABLETYPE_INTEGER, '~ShutterMoveStop', [], '', true, true, false],
+        ['RunningState1', 'Running State 2', VARIABLETYPE_STRING, '', [], '', true, true, false],
+        ['CoverPosition1', 'Position 2', VARIABLETYPE_INTEGER, '~Shutter', [], '', true, true, false],
         ['Power1', 'Power 2', VARIABLETYPE_FLOAT, '~Watt.3680', [], '', false, true, false],
         ['TotalEnergy1', 'Total Energy 2', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true, false],
         ['Current1', 'Current 2', VARIABLETYPE_FLOAT, '~Ampere', [], '', false, true, false],
