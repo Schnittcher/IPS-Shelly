@@ -70,6 +70,12 @@ class ShellyProDualCoverPM extends ShellyModule
                         break;
                 }
                 break;
+            case 'CoverPosition0':
+                $this->CoverPosition(0, $Value);
+                break;
+            case 'CoverPosition1':
+                $this->CoverPosition(1, $Value);
+                break;
             }
     }
 
