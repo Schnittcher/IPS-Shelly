@@ -122,9 +122,9 @@ class ShellyProDualCoverPM extends ShellyModule
 
                         if (array_key_exists('cover:0', $Payload['params'])) {
                             $service = $Payload['params']['cover:0'];
-                            if (array_key_exists('state', $cover)) {
-                                $this->SetValue('RunningState0', $cover['state']);
-                                switch ($cover['state']) {
+                            if (array_key_exists('state', $service)) {
+                                $this->SetValue('RunningState0', $service['state']);
+                                switch ($service['state']) {
                                     case 'stopped':
                                         $this->SetValue('State0', 2);
                                         break;
@@ -136,7 +136,7 @@ class ShellyProDualCoverPM extends ShellyModule
                                         $this->SetValue('State0', 4);
                                         break;
                                     default:
-                                        $this->SendDebug('Invalid Value for Cover', $cover['state'], 0);
+                                        $this->SendDebug('Invalid Value for Cover', $service['state'], 0);
                                         break;
                                 }
                             }
@@ -169,9 +169,9 @@ class ShellyProDualCoverPM extends ShellyModule
                         }
                         if (array_key_exists('cover:1', $Payload['params'])) {
                             $service = $Payload['params']['cover:1'];
-                            if (array_key_exists('state', $cover)) {
-                                $this->SetValue('RunningState1', $cover['state']);
-                                switch ($cover['state']) {
+                            if (array_key_exists('state', $service)) {
+                                $this->SetValue('RunningState1', $service['state']);
+                                switch ($service['state']) {
                                     case 'stopped':
                                         $this->SetValue('State1', 2);
                                         break;
@@ -183,7 +183,7 @@ class ShellyProDualCoverPM extends ShellyModule
                                         $this->SetValue('State1', 4);
                                         break;
                                     default:
-                                        $this->SendDebug('Invalid Value for Cover', $cover['state'], 0);
+                                        $this->SendDebug('Invalid Value for Cover', $service['state'], 0);
                                         break;
                                 }
                             }
