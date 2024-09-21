@@ -122,6 +122,24 @@ class ShellyProDualCoverPM extends ShellyModule
 
                         if (array_key_exists('cover:0', $Payload['params'])) {
                             $service = $Payload['params']['cover:0'];
+                            if (array_key_exists('state', $cover)) {
+                                $this->SetValue('RunningState0', $cover['state']);
+                                switch ($cover['state']) {
+                                    case 'stopped':
+                                        $this->SetValue('State0', 2);
+                                        break;
+                                    case 'opening':
+                                        $this->SetValue('State0', 0);
+                                        break;
+                                    case 'closing':
+                                    case 'closed':
+                                        $this->SetValue('State0', 4);
+                                        break;
+                                    default:
+                                        $this->SendDebug('Invalid Value for Cover', $cover['state'], 0);
+                                        break;
+                                }
+                            }
                             if (array_key_exists('current_pos', $service)) {
                                 $this->SetValue('CoverPosition0', $service['current_pos']);
                             }
@@ -151,6 +169,24 @@ class ShellyProDualCoverPM extends ShellyModule
                         }
                         if (array_key_exists('cover:1', $Payload['params'])) {
                             $service = $Payload['params']['cover:1'];
+                            if (array_key_exists('state', $cover)) {
+                                $this->SetValue('RunningState1', $cover['state']);
+                                switch ($cover['state']) {
+                                    case 'stopped':
+                                        $this->SetValue('State1', 2);
+                                        break;
+                                    case 'opening':
+                                        $this->SetValue('State1', 0);
+                                        break;
+                                    case 'closing':
+                                    case 'closed':
+                                        $this->SetValue('State1', 4);
+                                        break;
+                                    default:
+                                        $this->SendDebug('Invalid Value for Cover', $cover['state'], 0);
+                                        break;
+                                }
+                            }
                             if (array_key_exists('current_pos', $service)) {
                                 $this->SetValue('CoverPosition1', $service['current_pos']);
                             }
