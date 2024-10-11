@@ -57,7 +57,6 @@ class ShellyPlusRGBWPM extends ShellyModule
         ['LightErrors3', 'Errors 4', VARIABLETYPE_STRING, '', ['light'], '', false, true, false],
         ['LightDeviceTemperature3', 'Device Temperature 4', VARIABLETYPE_FLOAT, '~Temperature', ['light'], '', false, true, false],
 
-        
         ['EventComponent', 'Event Component', VARIABLETYPE_STRING, '', [], '', false, true, false],
         ['Event', 'Event', VARIABLETYPE_STRING, '', [], '', false, true, false],
         ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true, false],
@@ -70,35 +69,35 @@ class ShellyPlusRGBWPM extends ShellyModule
                 $rgb = $this->HexToRGB(intval($Value));
                 switch ($this->ReadPropertyString('Device')) {
                     case 'rgb':
-                        $this->SetRGB(0,$this->GetValue('Brightness'), $rgb, 0, 0);
+                        $this->SetRGB(0, $this->GetValue('Brightness'), $rgb, 0, 0);
                         break;
                     case 'rgbw':
-                        $this->SetRGBW(0,$this->GetValue('Brightness'), $this->GetValue('White'), $rgb, 0, 0);
+                        $this->SetRGBW(0, $this->GetValue('Brightness'), $rgb, $this->GetValue('White'), 0, 0);
                         break;
                 }
                 break;
             case 'State':
                 switch ($this->ReadPropertyString('Device')) {
                     case 'rgb':
-                        $this->SetRGBState(0,$Value);
+                        $this->SetRGBState(0, $Value);
                         break;
                     case 'rgbw':
-                        $this->SetRGBWState(0,$Value);
+                        $this->SetRGBWState(0, $Value);
                         break;
                 }
                 break;
             case 'Brightness':
                 switch ($this->ReadPropertyString('Device')) {
                     case 'rgb':
-                        $this->SetRGBBrightness(0,$Value);
+                        $this->SetRGBBrightness(0, $Value);
                         break;
                     case 'rgbw':
-                        $this->SetRGBWBrightness(0,$Value);
+                        $this->SetRGBWBrightness(0, $Value);
                         break;
                 }
                 break;
             case 'White':
-                $this->SetRGBWWhite(0,$Value);
+                $this->SetRGBWWhite(0, $Value);
                 break;
             case 'LightState0':
                 $this->SetLightState(0, $Value);
@@ -111,7 +110,7 @@ class ShellyPlusRGBWPM extends ShellyModule
                 break;
             case 'LightState3':
                 $this->SetLightState(3, $Value);
-                break;                    
+                break;
             case 'LightBrightness0':
                 $this->SetLightBrightness(0, $Value);
                 break;
@@ -170,33 +169,33 @@ class ShellyPlusRGBWPM extends ShellyModule
                             if (array_key_exists($lightIndex, $Payload['params'])) {
                                 $service = $Payload['params'][$lightIndex];
                                 if (array_key_exists('output', $service)) {
-                                    $this->SetValue('LightState'.$lightIndex, $service['output']);
+                                    $this->SetValue('LightState' . $lightIndex, $service['output']);
                                 }
                                 if (array_key_exists('brightness', $service)) {
-                                    $this->SetValue('Brightness'.$lightIndex, $service['brightness']);
+                                    $this->SetValue('Brightness' . $lightIndex, $service['brightness']);
                                 }
                                 if (array_key_exists('apower', $service)) {
-                                    $this->SetValue('Power'. $lightIndex, $service['apower']);
+                                    $this->SetValue('Power' . $lightIndex, $service['apower']);
                                 }
                                 if (array_key_exists('voltage', $service)) {
-                                    $this->SetValue('Voltage'. $lightIndex, $service['voltage']);
+                                    $this->SetValue('Voltage' . $lightIndex, $service['voltage']);
                                 }
                                 if (array_key_exists('current', $service)) {
-                                    $this->SetValue('Current' .$lightIndex, $service['current']);
+                                    $this->SetValue('Current' . $lightIndex, $service['current']);
                                 }
                                 if (array_key_exists('aenergy', $service)) {
                                     if (array_key_exists('total', $service['aenergy'])) {
-                                        $this->SetValue('TotalEnergy'. $lightIndex, $service['aenergy']['total'] / 1000);
+                                        $this->SetValue('TotalEnergy' . $lightIndex, $service['aenergy']['total'] / 1000);
                                     }
                                 }
                                 if (array_key_exists('temperature', $Payload)) {
                                     if (array_key_exists('tC', $Payload['temperature'])) {
-                                        $this->SetValue('DeviceTemperature'. $lightIndex, $Payload['temperature']['tC']);
+                                        $this->SetValue('DeviceTemperature' . $lightIndex, $Payload['temperature']['tC']);
                                     }
                                 }
                                 if (array_key_exists('errors', $service)) {
                                     $errors = implode(',', $service['errors']);
-                                    $this->SetValue('Errors'. $lightIndex, $errors);
+                                    $this->SetValue('Errors' . $lightIndex, $errors);
                                 }
                             }
                             if (array_key_exists('rgb:0', $Payload['params'])) {
@@ -274,10 +273,10 @@ class ShellyPlusRGBWPM extends ShellyModule
                             }
                         }
                     }
-                    }
                 }
             }
         }
+    }
 
     public function SetLightState(int $id, bool $value, int $transition = 0, int $toggle_after = 0)
     {
@@ -315,7 +314,8 @@ class ShellyPlusRGBWPM extends ShellyModule
         $this->sendMQTT($Topic, json_encode($Payload));
     }
 
-    public function SetRGBState(int $id, bool $state, int $transition =0, $toggle_after = 0) {
+    public function SetRGBState(int $id, bool $state, int $transition = 0, $toggle_after = 0)
+    {
         $Topic = $this->ReadPropertyString('MQTTTopic') . '/rpc';
 
         $Payload['id'] = 1;
@@ -332,7 +332,8 @@ class ShellyPlusRGBWPM extends ShellyModule
         $this->sendMQTT($Topic, json_encode($Payload));
     }
 
-    public function SetRGBBrightness(int $id, int $brightness, int $transition =0, $toggle_after = 0) {
+    public function SetRGBBrightness(int $id, int $brightness, int $transition = 0, $toggle_after = 0)
+    {
         $Topic = $this->ReadPropertyString('MQTTTopic') . '/rpc';
 
         $Payload['id'] = 1;
@@ -349,7 +350,8 @@ class ShellyPlusRGBWPM extends ShellyModule
         $this->sendMQTT($Topic, json_encode($Payload));
     }
 
-    public function SetRGB(int $id, int $brightness, $rgb, int $transition =0, $toggle_after = 0) {
+    public function SetRGB(int $id, int $brightness, $rgb, int $transition = 0, $toggle_after = 0)
+    {
         $Topic = $this->ReadPropertyString('MQTTTopic') . '/rpc';
 
         $Payload['id'] = 1;
@@ -366,7 +368,8 @@ class ShellyPlusRGBWPM extends ShellyModule
         $this->sendMQTT($Topic, json_encode($Payload));
     }
 
-    public function SetRGBWState(int $id, bool $state, int $transition =0, $toggle_after = 0) {
+    public function SetRGBWState(int $id, bool $state, int $transition = 0, $toggle_after = 0)
+    {
         $Topic = $this->ReadPropertyString('MQTTTopic') . '/rpc';
 
         $Payload['id'] = 1;
@@ -383,7 +386,8 @@ class ShellyPlusRGBWPM extends ShellyModule
         $this->sendMQTT($Topic, json_encode($Payload));
     }
 
-    public function SetRGBWBrightness(int $id, int $brightness, int $transition =0, $toggle_after = 0) {
+    public function SetRGBWBrightness(int $id, int $brightness, int $transition = 0, $toggle_after = 0)
+    {
         $Topic = $this->ReadPropertyString('MQTTTopic') . '/rpc';
 
         $Payload['id'] = 1;
@@ -400,7 +404,8 @@ class ShellyPlusRGBWPM extends ShellyModule
         $this->sendMQTT($Topic, json_encode($Payload));
     }
 
-    public function SetRGBWWhite(int $id, int $white, int $transition =0, $toggle_after = 0) {
+    public function SetRGBWWhite(int $id, int $white, int $transition = 0, $toggle_after = 0)
+    {
         $Topic = $this->ReadPropertyString('MQTTTopic') . '/rpc';
 
         $Payload['id'] = 1;
@@ -417,7 +422,8 @@ class ShellyPlusRGBWPM extends ShellyModule
         $this->sendMQTT($Topic, json_encode($Payload));
     }
 
-    public function SetRGBW(int $id, int $brightness, $rgb, int $white, int $transition =0, $toggle_after = 0) {
+    public function SetRGBW(int $id, int $brightness, $rgb, int $white, int $transition = 0, $toggle_after = 0)
+    {
         $Topic = $this->ReadPropertyString('MQTTTopic') . '/rpc';
 
         $Payload['id'] = 1;
