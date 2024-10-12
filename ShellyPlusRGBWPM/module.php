@@ -169,33 +169,33 @@ class ShellyPlusRGBWPM extends ShellyModule
                             if (array_key_exists($lightIndex, $Payload['params'])) {
                                 $service = $Payload['params'][$lightIndex];
                                 if (array_key_exists('output', $service)) {
-                                    $this->SetValue('LightState' . $lightIndex, $service['output']);
+                                    $this->SetValue('LightState' . $i, $service['output']);
                                 }
                                 if (array_key_exists('brightness', $service)) {
-                                    $this->SetValue('Brightness' . $lightIndex, $service['brightness']);
+                                    $this->SetValue('LightBrightness' . $i, $service['brightness']);
                                 }
                                 if (array_key_exists('apower', $service)) {
-                                    $this->SetValue('Power' . $lightIndex, $service['apower']);
+                                    $this->SetValue('LightPower' . $i, $service['apower']);
                                 }
                                 if (array_key_exists('voltage', $service)) {
-                                    $this->SetValue('Voltage' . $lightIndex, $service['voltage']);
+                                    $this->SetValue('LightVoltage' . $i, $service['voltage']);
                                 }
                                 if (array_key_exists('current', $service)) {
-                                    $this->SetValue('Current' . $lightIndex, $service['current']);
+                                    $this->SetValue('LightCurrent' . $i, $service['current']);
                                 }
                                 if (array_key_exists('aenergy', $service)) {
                                     if (array_key_exists('total', $service['aenergy'])) {
-                                        $this->SetValue('TotalEnergy' . $lightIndex, $service['aenergy']['total'] / 1000);
+                                        $this->SetValue('LightTotalEnergy' . $i, $service['aenergy']['total'] / 1000);
                                     }
                                 }
                                 if (array_key_exists('temperature', $Payload)) {
                                     if (array_key_exists('tC', $Payload['temperature'])) {
-                                        $this->SetValue('DeviceTemperature' . $lightIndex, $Payload['temperature']['tC']);
+                                        $this->SetValue('LightDeviceTemperature' . $i, $Payload['temperature']['tC']);
                                     }
                                 }
                                 if (array_key_exists('errors', $service)) {
                                     $errors = implode(',', $service['errors']);
-                                    $this->SetValue('Errors' . $lightIndex, $errors);
+                                    $this->SetValue('Errors' . $i, $errors);
                                 }
                             }
                             if (array_key_exists('rgb:0', $Payload['params'])) {
