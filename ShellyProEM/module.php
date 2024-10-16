@@ -96,12 +96,12 @@ class ShellyProEM extends ShellyModule
                 if (fnmatch('*/status/em1data:*', $Buffer['Topic'])) {
                     if (array_key_exists('id', $Payload)) {
                         if ($Payload['id'] == 0) {
-                            $this->SetValue('aTotalActEnergy', $Payload['total_act_energy']);
-                            $this->SetValue('aTotalActRetEnergy', $Payload['total_act_ret_energy']);
+                            $this->SetValue('aTotalActEnergy', $Payload['total_act_energy'] / 1000);
+                            $this->SetValue('aTotalActRetEnergy', $Payload['total_act_ret_energy'] / 1000);
                         }
                         if ($Payload['id'] == 1) {
-                            $this->SetValue('bTotalActEnergy', $Payload['total_act_energy']);
-                            $this->SetValue('bTotalActRetEnergy', $Payload['total_act_ret_energy']);
+                            $this->SetValue('bTotalActEnergy', $Payload['total_act_energy'] / 1000);
+                            $this->SetValue('bTotalActRetEnergy', $Payload['total_act_ret_energy'] / 1000);
                         }
                     }
                 }
