@@ -235,6 +235,10 @@ class ShellyConfigurator extends IPSModule
             'Name'  => 'Shelly 2PM Gen3',
             'GUID'  => '{362656D9-579E-F416-7C0B-CD01C08A3800}'
         ],
+        'S3PL-00112EU' => [
+            'Name'  => 'Shelly Plug S MTR Gen3',
+            'GUID'  => '{E3F21CC9-39DE-258B-EFFF-C8996C05DA12}'
+        ],
         'SNSW-001P8EU' => [
             'Name'  => 'Shelly Plus 1PM Mini',
             'GUID'  => '{AF5127F4-4929-49AF-9894-D7B8627667A7}'
@@ -558,6 +562,7 @@ class ShellyConfigurator extends IPSModule
                     case 'SNGW-BT01':
                     case 'S3PM-001PCEU16':
                     case 'S3SW-002P16EU':
+                    case 'S3PL-00112EU':
                     case 'SNSN-0043X':
                     case 'SPSH-002PE16EU':
                         $AddValue['create'] = [
