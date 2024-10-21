@@ -57,6 +57,11 @@ class ShellyPlusRGBWPM extends ShellyModule
         ['LightErrors3', 'Errors 4', VARIABLETYPE_STRING, '', ['light'], '', false, true, false],
         ['LightDeviceTemperature3', 'Device Temperature 4', VARIABLETYPE_FLOAT, '~Temperature', ['light'], '', false, true, false],
 
+        ['Input0', 'Input 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true, false],
+        ['Input1', 'Input 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true, false],
+        ['Input2', 'Input 3', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true, false],
+        ['Input3', 'Input 4', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true, false],
+
         ['EventComponent', 'Event Component', VARIABLETYPE_STRING, '', [], '', false, true, false],
         ['Event', 'Event', VARIABLETYPE_STRING, '', [], '', false, true, false],
         ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true, false],

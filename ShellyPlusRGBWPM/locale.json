@@ -45,7 +45,11 @@
             "Event": "Ereignis",
             "Device": "Gerät",
             "Devices": "Geräte",
-            "Zeroing by unreach": "Nullung durch Unerreichbarkeit"
+            "Zeroing by unreach": "Nullung durch Unerreichbarkeit",
+            "Input 1": "Eingang 1",
+            "Input 2": "Eingang 2",
+            "Input 3": "Eingang 3",
+            "Input 4": "Eingang 4"
         }
     }
 }
