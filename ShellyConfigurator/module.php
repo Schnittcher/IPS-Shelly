@@ -300,7 +300,7 @@ class ShellyConfigurator extends IPSModule
             'GUID'  => '{ED673810-352A-4D63-B035-55DF6BDA86AB}'
         ],
         'SPEM-003CEBEU63' => [
-            'Name'  => 'Shelly Pro 3EM-CT63',
+            'Name'  => 'Shelly Pro 3EM-3CT63',
             'GUID'  => '{ED673810-352A-4D63-B035-55DF6BDA86AB}'
         ],
         'SPEM-002CEBEU50' => [
