@@ -1,0 +1,42 @@
+{
+    "translations": {
+        "de": {
+            "Active": "Aktiv",
+            "Device Type": "Gerätetyp",
+            "State": "Status",
+            "State 1": "Status 1",
+            "State 2": "Status 2",
+            "Power 1": "Leistung 1",
+            "Power 2": "Leistung 2",
+            "Total Energy 1": "Gesamt Energie 1",
+            "Total Energy 2": "Gesamt Energie 2",
+            "Current 1": "Stromstärke 1",
+            "Current 2": "Stromstärke 2",
+            "Voltage 1": "Spannung 1",
+            "Voltage 2": "Spannung 2",
+            "Frequency 1": "Frequenz 1",
+            "Frequency 2": "Frequenz 1",
+            "Event Component": "Ereignis Komponente",
+            "Event": "Ereignis",
+            "Roller": "Rollo",
+            "Relay": "Relais",
+            "Position": "Position",
+            "Slat Position": "Lamellenposition",
+            "Running State": "Laufender Status",
+            "Input 1": "Eingang 1",
+            "Input 2": "Eingang 2",
+            "Reachable": "Erreichbar",
+            "Device Temperature 1": "Gerätetemperatur 1",
+            "Device Temperature 2": "Gerätetemperatur 2",
+            "Device": "Gerät",
+            "Devices": "Geräte",
+            "Zeroing by unreach": "Nullung durch Unerreichbarkeit",
+            "Overvoltage 1": "Überspannung 1",
+            "Overvoltage 2": "Überspannung 2",
+            "Overpower 1": "Überlastung 1",
+            "Overpower 2": "Überlastung 2",
+            "Overtemp 1": "Übertemperatur 1",
+            "Overtemp 2": "Übertemperatur 2"
+        }
+    }
+}

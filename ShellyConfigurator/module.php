@@ -231,6 +231,10 @@ class ShellyConfigurator extends IPSModule
             'Name'  => 'Shelly PM Mini Gen3',
             'GUID'  => '{EA5280A7-811D-D2E3-A5A1-DF6C81505CE8}'
         ],
+        'S3SW-002P16EU' => [
+            'Name'  => 'Shelly 2PM Gen3',
+            'GUID'  => '{362656D9-579E-F416-7C0B-CD01C08A3800}'
+        ],
         'SNSW-001P8EU' => [
             'Name'  => 'Shelly Plus 1PM Mini',
             'GUID'  => '{AF5127F4-4929-49AF-9894-D7B8627667A7}'
@@ -553,6 +557,7 @@ class ShellyConfigurator extends IPSModule
                     case 'S3DM-0010WW':
                     case 'SNGW-BT01':
                     case 'S3PM-001PCEU16':
+                    case 'S3SW-002P16EU':
                     case 'SNSN-0043X':
                     case 'SPSH-002PE16EU':
                         $AddValue['create'] = [
@@ -591,7 +596,7 @@ class ShellyConfigurator extends IPSModule
                                 'info'          => $Shelly['IP'],
                                 'configuration' => [
                                     'MQTTTopic'       => $Shelly['ID'],
-                                    'Device'      => 'light'
+                                    'Device'          => 'light'
                                 ]
                             ],
                             'Shelly RGBW PM RGB' => [
@@ -599,7 +604,7 @@ class ShellyConfigurator extends IPSModule
                                 'info'          => $Shelly['IP'],
                                 'configuration' => [
                                     'MQTTTopic'       => $Shelly['ID'],
-                                    'Device'      => 'rgb'
+                                    'Device'          => 'rgb'
                                 ]
                             ],
                             'Shelly RGBW PM RGBW' => [
@@ -607,7 +612,7 @@ class ShellyConfigurator extends IPSModule
                                 'info'          => $Shelly['IP'],
                                 'configuration' => [
                                     'MQTTTopic'       => $Shelly['ID'],
-                                    'Device'      => 'rgbw'
+                                    'Device'          => 'rgbw'
                                 ]
                             ]
                         ];
