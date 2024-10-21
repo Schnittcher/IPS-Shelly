@@ -16,6 +16,7 @@ class Gen3Shelly1Mini extends ShellyModule
         ['Overpower', 'Overpower', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
         ['Overvoltage', 'Overvoltage', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
         ['DeviceTemperature', 'Device Temperature', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true, false],
+        ['Input0', 'Input 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true, false],
         ['EventComponent', 'Event Component', VARIABLETYPE_STRING, '', [], '', false, true, false],
         ['Event', 'Event', VARIABLETYPE_STRING, '', [], '', false, true, false],
         ['Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', '', '', false, true, false]
@@ -55,6 +56,12 @@ class Gen3Shelly1Mini extends ShellyModule
                             $events = $Payload['params']['events'][0];
                             $this->SetValue('EventComponent', $events['component']);
                             $this->SetValue('Event', $events['event']);
+                        }
+                        if (array_key_exists('input:0', $Payload['params'])) {
+                            $input = $Payload['params']['input:0'];
+                            if (array_key_exists('state', $input)) {
+                                $this->SetValue('Input0', $input['state']);
+                            }
                         }
                         if (array_key_exists('switch:0', $Payload['params'])) {
                             $switch = $Payload['params']['switch:0'];
