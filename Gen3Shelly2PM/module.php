@@ -254,6 +254,9 @@ class Gen3Shelly2PM extends ShellyModule
                         if (array_key_exists('current', $cover)) {
                             $this->SetValue('Current0', $cover['current']);
                         }
+                        if (array_key_exists('freq', $Payload)) {
+                            $this->SetValue('Frequency0', $Payload['freq']);
+                        }
                         if (array_key_exists('aenergy', $cover)) {
                             if (array_key_exists('total', $cover['aenergy'])) {
                                 $this->SetValue('TotalEnergy0', $cover['aenergy']['total'] / 1000);
@@ -261,7 +264,7 @@ class Gen3Shelly2PM extends ShellyModule
                         }
                         if (array_key_exists('temperature', $cover)) {
                             if (array_key_exists('tC', $cover['temperature'])) {
-                                $this->SetValue('Temperature0', $cover['temperature']['tC']);
+                                $this->SetValue('DeviceTemperature0', $cover['temperature']['tC']);
                             }
                         }
                     }
@@ -336,6 +339,9 @@ class Gen3Shelly2PM extends ShellyModule
                     if (array_key_exists('current', $Payload)) {
                         $this->SetValue('Current0', $Payload['current']);
                     }
+                    if (array_key_exists('freq', $Payload)) {
+                        $this->SetValue('Frequency0', $Payload['freq']);
+                    }
                     if (array_key_exists('aenergy', $Payload)) {
                         if (array_key_exists('total', $Payload['aenergy'])) {
                             $this->SetValue('TotalEnergy0', $Payload['aenergy']['total'] / 1000);
@@ -343,7 +349,7 @@ class Gen3Shelly2PM extends ShellyModule
                     }
                     if (array_key_exists('temperature', $Payload)) {
                         if (array_key_exists('tC', $Payload['temperature'])) {
-                            $this->SetValue('Temperature0', $Payload['temperature']['tC']);
+                            $this->SetValue('DeviceTemperature0', $Payload['temperature']['tC']);
                         }
                     }
                 }
