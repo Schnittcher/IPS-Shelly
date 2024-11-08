@@ -558,6 +558,7 @@ class ShellyConfigurator extends IPSModule
                     case 'SPEM-003CEBEU':
                     case 'SPEM-003CEBEU120':
                     case 'SPEM-003CEBEU400':
+                    case 'SPEM-003CEBEU63':
                     case 'SPEM-002CEBEU50':
                     case 'SPSW-004PE16EU':
                     case 'SPSW-104PE16EU':
