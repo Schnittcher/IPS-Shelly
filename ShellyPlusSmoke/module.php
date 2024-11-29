@@ -65,7 +65,7 @@ class ShellyPlusSmoke extends ShellyModule
                         $this->SetValue('Mute', $Payload['alarm']);
                     }
                 }
-                if (fnmatch('*/status/smoke:0', $Buffer['Topic'])) {
+                if (fnmatch('*/status/devicepower:0', $Buffer['Topic'])) {
                     if (array_key_exists('battery', $Payload)) {
                         if (array_key_exists('percent', $Payload['battery'])) {
                             $this->SetValue('Battery', $Payload['battery']['percent']);
