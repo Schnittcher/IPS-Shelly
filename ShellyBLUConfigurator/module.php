@@ -49,6 +49,9 @@ class ShellyBLUConfigurator extends IPSModule
                                 $DeviceType = '';
                                 if (array_key_exists('button', $data)) {
                                     $devcieType = 'Shelly BLU Button 1';
+                                    if (is_array($data['button'])) {
+                                        $devcieType = 'Shelly BLU RC Button 4';
+                                    }
                                 }
                                 if (array_key_exists('window', $data)) {
                                     $devcieType = 'Shelly BLU Door/Window';
@@ -94,6 +97,18 @@ class ShellyBLUConfigurator extends IPSModule
 
                 $moduleID = '';
                 switch ($Device) {
+                    case 'Shelly BLU RC Button 4':
+                        $moduleID = '{C99EAB02-DEF7-25CF-6453-5C8F1E3A27B7}';
+                        $DeviceType = $Device;
+                        $AddValue['create'] = [
+                            'moduleID'      => $moduleID,
+                            'info'          => $BLUAddress,
+                            'configuration' => [
+                                'BLUAddress' => $BLUAddress,
+                                'Event'      => 'shelly-blu'
+                            ]
+                        ];
+                        break;
                     case 'Shelly BLU Button 1':
                         $moduleID = '{5E02DB53-B7BD-4479-AC5C-09E7519BD89F}';
                         $DeviceType = $Device;
