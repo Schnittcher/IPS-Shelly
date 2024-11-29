@@ -169,7 +169,7 @@ class Gen3Shelly2PM extends ShellyModule
                         }
                     }
                     if (array_key_exists('switch:1', $Payload['params'])) {
-                        $switch = $Payload['params']['switch:0'];
+                        $switch = $Payload['params']['switch:1'];
                         if (array_key_exists('output', $switch)) {
                             $this->SetValue('State1', $switch['output']);
                         }
