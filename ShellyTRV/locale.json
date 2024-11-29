@@ -14,7 +14,8 @@
             "Device": "Gerät",
             "Window": "Fenster",
             "Devices": "Geräte",
-            "Zeroing by unreach": "Nullung durch Unerreichbarkeit"
+            "Zeroing by unreach": "Nullung durch Unerreichbarkeit",
+            "Boost Minutes": "Boost Minuten"
         }
     }
 }

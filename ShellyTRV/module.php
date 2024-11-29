@@ -7,6 +7,7 @@ class ShellyTRV extends ShellyModule
 {
     public static $Variables = [
         ['Position', 'Position', VARIABLETYPE_INTEGER, '~Intensity.100', [], '', true, true, false],
+        ['BoostMinutes', 'Boost Minutes', VARIABLETYPE_INTEGER, '', [], '', true, true, false],
         ['TargetTemperature', 'Target Temperature', VARIABLETYPE_FLOAT, '~Temperature.Room', [], '', true, true, false],
         ['Temperature', 'Temperature', VARIABLETYPE_FLOAT, '~Temperature', [], '', false, true, false],
         ['ExtTemperature', 'External Temperature', VARIABLETYPE_FLOAT, '~Temperature', [], '', true, true, false],
@@ -16,6 +17,7 @@ class ShellyTRV extends ShellyModule
         ['BatteryVoltage', 'Battery Voltage', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true, false],
         ['WindowOpen', 'Window', VARIABLETYPE_BOOLEAN, '~Window', [], '', true, true, false],
         ['Shelly_Reachable', 'Reachable', VARIABLETYPE_BOOLEAN, 'Shelly.Reachable', [], '', false, true, false]
+
     ];
 
     public function RequestAction($Ident, $Value)
@@ -26,6 +28,9 @@ class ShellyTRV extends ShellyModule
                 break;
             case 'Position':
                 $this->setValvePosition($Value);
+                break;
+            case 'BoostMinutes':
+                $this->setBoostMinutes($Value);
                 break;
             case 'ExtTemperature':
                 $this->setExtTemp($Value);
@@ -108,6 +113,13 @@ class ShellyTRV extends ShellyModule
     private function setValvePosition(int $Value)
     {
         $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/thermostat/0/command/valve_pos';
+        $Payload = strval(intval($Value));
+        $this->sendMQTT($Topic, $Payload);
+    }
+
+    private function setBoostMinutes(int $Value)
+    {
+        $Topic = MQTT_GROUP_TOPIC . '/' . $this->ReadPropertyString('MQTTTopic') . '/thermostat/0/command/boost_minutes';
         $Payload = strval(intval($Value));
         $this->sendMQTT($Topic, $Payload);
     }
