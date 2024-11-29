@@ -57,6 +57,24 @@ class ShellyPlusSmoke extends ShellyModule
                         }
                     }
                 }
+                if (fnmatch('*/status/smoke:0', $Buffer['Topic'])) {
+                    if (array_key_exists('mute', $Payload)) {
+                        $this->SetValue('Alarm', $Payload['mute']);
+                    }
+                    if (array_key_exists('alarm', $Payload)) {
+                        $this->SetValue('Mute', $Payload['alarm']);
+                    }
+                }
+                if (fnmatch('*/status/smoke:0', $Buffer['Topic'])) {
+                    if (array_key_exists('battery', $Payload)) {
+                        if (array_key_exists('percent', $Payload['battery'])) {
+                            $this->SetValue('Battery', $Payload['battery']['percent']);
+                        }
+                        if (array_key_exists('V', $Payload['battery'])) {
+                            $this->SetValue('BatteryVolt', $Payload['battery']['V']);
+                        }
+                    }
+                }
             }
         }
     }
