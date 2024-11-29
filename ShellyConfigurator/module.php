@@ -275,6 +275,10 @@ class ShellyConfigurator extends IPSModule
             'Name'  => 'Shelly Pro 2 PM',
             'GUID'  => '{A7B9C446-E5C6-4DE9-AF1E-B9FE20FFF3FF}'
         ],
+        'SPSW-202XE12UL' => [
+            'Name'  => 'Shelly Pro 2 PM (SPSW-202XE12UL - nicht in der Shelly Doku)',
+            'GUID'  => '{A7B9C446-E5C6-4DE9-AF1E-B9FE20FFF3FF}'
+        ],
         'SPSW-202PE16EU' => [
             'Name'  => 'Shelly Pro 2PM v.1',
             'GUID'  => '{A7B9C446-E5C6-4DE9-AF1E-B9FE20FFF3FF}'
