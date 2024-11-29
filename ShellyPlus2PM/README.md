@@ -40,7 +40,7 @@
 
    **Beispiel:**
    
-   Variable ID Roller = 12345
+   Variable ID Status = 12345
    ```php
    RequestAction(12345, 0);  //Rolladen hochfahren
    RequestAction(12345, 2); //Rolladen stoppen

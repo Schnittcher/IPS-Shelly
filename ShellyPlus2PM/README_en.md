@@ -39,7 +39,7 @@
 
    **Example:**
    
-   Variable ID Shutter = 12345
+   Variable ID State = 12345
    ```php
    RequestAction(12345, 0);  //Move shutter up
    RequestAction(12345, 2); //Stop shutter
