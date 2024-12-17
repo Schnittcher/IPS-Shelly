@@ -32,6 +32,8 @@ class Shelly3EM extends ShellyModule
         ['Shelly_CurrentN', 'N Current', VARIABLETYPE_FLOAT, '~Ampere', [], '', false, true, false],
         ['Shelly_IxsumN', 'Neutral Conductor N RMS (ixsum)', VARIABLETYPE_FLOAT, '~Ampere', [], '', false, true, false],
 
+        ['Shelly_Total', 'Total', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true, false],
+        ['Shelly_TotalReturned', 'Total Returned', VARIABLETYPE_FLOAT, '~Electricity', [], '', false, true, false],
     ];
 
     public function RequestAction($Ident, $Value)
@@ -94,9 +96,13 @@ class Shelly3EM extends ShellyModule
                 }
                 if (fnmatch('*emeter/0/total', $Buffer->Topic)) {
                     $this->SetValue('Shelly_Total0', floatval($Buffer->Payload) / 1000);
+                    $Total = $this->GetValue('Shelly_Total') + (floatval($Buffer->Payload) / 1000);
+                    $this->SetValue('Shelly_Total', $Total);
                 }
                 if (fnmatch('*emeter/0/total_returned', $Buffer->Topic)) {
                     $this->SetValue('Shelly_TotalReturned0', floatval($Buffer->Payload) / 1000);
+                    $TotalReturned = $this->GetValue('Shelly_TotalReturned') + (floatval($Buffer->Payload) / 1000);
+                    $this->SetValue('Shelly_TotalReturned', $TotalReturned);
                 }
 
                 //Phase B
@@ -114,9 +120,13 @@ class Shelly3EM extends ShellyModule
                 }
                 if (fnmatch('*emeter/1/total', $Buffer->Topic)) {
                     $this->SetValue('Shelly_Total1', floatval($Buffer->Payload) / 1000);
+                    $Total = $this->GetValue('Shelly_Total') + (floatval($Buffer->Payload) / 1000);
+                    $this->SetValue('Shelly_Total', $Total);
                 }
                 if (fnmatch('*emeter/1/total_returned', $Buffer->Topic)) {
                     $this->SetValue('Shelly_TotalReturned1', floatval($Buffer->Payload) / 1000);
+                    $TotalReturned = $this->GetValue('Shelly_TotalReturned') + (floatval($Buffer->Payload) / 1000);
+                    $this->SetValue('Shelly_TotalReturned', $TotalReturned);
                 }
 
                 //Phase C
@@ -134,9 +144,13 @@ class Shelly3EM extends ShellyModule
                 }
                 if (fnmatch('*emeter/2/total', $Buffer->Topic)) {
                     $this->SetValue('Shelly_Total2', floatval($Buffer->Payload) / 1000);
+                    $Total = $this->GetValue('Shelly_Total') + (floatval($Buffer->Payload) / 1000);
+                    $this->SetValue('Shelly_Total', $Total);
                 }
                 if (fnmatch('*emeter/2/total_returned', $Buffer->Topic)) {
                     $this->SetValue('Shelly_TotalReturned2', floatval($Buffer->Payload) / 1000);
+                    $TotalReturned = $this->GetValue('Shelly_TotalReturned') + (floatval($Buffer->Payload) / 1000);
+                    $this->SetValue('Shelly_TotalReturned', $TotalReturned);
                 }
 
                 //Emeter N
