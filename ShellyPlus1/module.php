@@ -27,6 +27,8 @@ class ShellyPlus1 extends ShellyModule
         ['Humidity100', 'External Humidity', VARIABLETYPE_FLOAT, '~Humidity.F', [], '', false, true, false],
         ['Input100State', 'External Input State', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true, false],
         ['Input100Percent', 'External Input Percent', VARIABLETYPE_FLOAT, 'Shelly.Input.Percent', [], '', false, true, false],
+        ['Input101State', 'External Input State 101', VARIABLETYPE_BOOLEAN, '~Switch', [], '', false, true, false],
+        ['Input101Percent', 'External Input Percent 101', VARIABLETYPE_FLOAT, 'Shelly.Input.Percent', [], '', false, true, false],
         ['Voltmeter100', 'External Voltmeter', VARIABLETYPE_FLOAT, '~Volt', [], '', false, true, false],
     ];
 
@@ -141,6 +143,16 @@ class ShellyPlus1 extends ShellyModule
                             }
                         }
                         //External Sensor Addon
+                        if (array_key_exists('input:101', $Payload['params'])) {
+                            $input = $Payload['params']['input:101'];
+                            if (array_key_exists('state', $input)) {
+                                $this->SetValue('Input101State', $input['state']);
+                            }
+                            if (array_key_exists('percent', $input)) {
+                                $this->SetValue('Input101Percent', $input['percent']);
+                            }
+                        }
+                        //External Sensor Addon
                         if (array_key_exists('voltmeter:100', $Payload['params'])) {
                             $voltmeter = $Payload['params']['voltmeter:100'];
                             if (array_key_exists('voltage', $voltmeter)) {
@@ -166,6 +178,24 @@ class ShellyPlus1 extends ShellyModule
                         if (array_key_exists('total', $Payload['aenergy'])) {
                             $this->SetValue('TotalEnergy', $Payload['aenergy']['total'] / 1000);
                         }
+                    }
+                }
+                if (fnmatch('*/status/input:100', $Buffer['Topic'])) {
+                    $input = $Payload['params']['input:100'];
+                    if (array_key_exists('state', $input)) {
+                        $this->SetValue('Input100State', $input['state']);
+                    }
+                    if (array_key_exists('percent', $input)) {
+                        $this->SetValue('Input100Percent', $input['percent']);
+                    }
+                }
+                if (fnmatch('*/status/input:101', $Buffer['Topic'])) {
+                    $input = $Payload['params']['input:101'];
+                    if (array_key_exists('state', $input)) {
+                        $this->SetValue('Input101State', $input['state']);
+                    }
+                    if (array_key_exists('percent', $input)) {
+                        $this->SetValue('Input101Percent', $input['percent']);
                     }
                 }
                 //Temperatur ist immer vorhanden und sollte immer der selbe Wert sein.
