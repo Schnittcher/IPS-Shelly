@@ -1,0 +1,17 @@
+{
+    "id": "{BF2F6A56-076E-73DE-7665-415C4689CE67}",
+    "name": "ShellyWallDisplay",
+    "type": 3,
+    "vendor": "Shelly",
+    "aliases": [
+        "Shelly Wall Display"
+    ],
+    "parentRequirements": [
+        "{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}"
+    ],
+    "childRequirements": [],
+    "implemented": [
+        "{7F7632D9-FA40-4F38-8DEA-C83CD4325A32}"
+    ],
+    "prefix": "SHELLY"
+}

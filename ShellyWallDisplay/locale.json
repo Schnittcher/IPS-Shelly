@@ -1,0 +1,19 @@
+{
+    "translations": {
+        "de": {
+            "Active": "Aktiv",
+            "State": "Status",
+            "Reachable": "Erreichbar",
+            "Overvoltage": "Überspannung",
+            "Overpower": "Überlastung",
+            "Overtemp": "Übertemperatur",
+            "Input": "Eingang",
+            "Event Component": "Ereignis Komponente",
+            "Event": "Ereignis",
+            "Temperature": "Temperatur",
+            "Humidity": "Luftfeuchte",
+            "Illuminance": "Beleuchtungsstärke",
+            "Zeroing by unreach": "Nullung durch Unerreichbarkeit"
+        }
+    }
+}
