@@ -44,11 +44,11 @@ class ShellyPlusSmoke extends ShellyModule
                 if (fnmatch('*/events/rpc', $Buffer['Topic'])) {
                     if (array_key_exists('params', $Payload)) {
                         if (array_key_exists('smoke:0', $Payload['params'])) {
-                            if (array_key_exists('mute', $Payload['params']['smoke:0'])) {
-                                $this->SetValue('Alarm', $Payload['params']['smoke:0']['mute']);
-                            }
                             if (array_key_exists('alarm', $Payload['params']['smoke:0'])) {
-                                $this->SetValue('Mute', $Payload['params']['smoke:0']['alarm']);
+                                $this->SetValue('Alarm', $Payload['params']['smoke:0']['alarm']);
+                            }
+                            if (array_key_exists('mute', $Payload['params']['smoke:0'])) {
+                                $this->SetValue('Mute', $Payload['params']['smoke:0']['mute']);
                             }
                         }
                         if (array_key_exists('devicepower:0', $Payload['params'])) {
@@ -58,11 +58,11 @@ class ShellyPlusSmoke extends ShellyModule
                     }
                 }
                 if (fnmatch('*/status/smoke:0', $Buffer['Topic'])) {
-                    if (array_key_exists('mute', $Payload)) {
-                        $this->SetValue('Alarm', $Payload['mute']);
-                    }
                     if (array_key_exists('alarm', $Payload)) {
-                        $this->SetValue('Mute', $Payload['alarm']);
+                        $this->SetValue('Alarm', $Payload['alarm']);
+                    }
+                    if (array_key_exists('mute', $Payload)) {
+                        $this->SetValue('Mute', $Payload['mute']);
                     }
                 }
                 if (fnmatch('*/status/devicepower:0', $Buffer['Topic'])) {
