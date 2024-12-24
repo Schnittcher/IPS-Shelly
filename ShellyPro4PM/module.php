@@ -168,6 +168,12 @@ class ShellyPro4PM extends ShellyModule
                         }
                     }
                 }
+
+                if (fnmatch('*/status/input:*', $Buffer['Topic'])) {
+                    if (array_key_exists('state', $Payload)) {
+                        $this->SetValue('Input' . $Payload['id'], $Payload['state']);
+                    }
+                }
                 if (fnmatch('*/status/switch:*', $Buffer['Topic'])) {
                     if (array_key_exists('output', $Payload)) {
                         $this->SetValue('State' . $Payload['id'], $Payload['output']);
