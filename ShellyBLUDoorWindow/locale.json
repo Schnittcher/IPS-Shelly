@@ -1,0 +1,18 @@
+{
+    "translations": {
+        "de": {
+            "Active": "Aktiv",
+            "Event": "Event",
+            "BLU Address": "BLU Adresse",
+            "Contact": "Kontakt",
+            "Motion": "Bewegung",
+            "Rotation": "Rotation",
+            "Illuminance": "Beleuchtungsstärke",
+            "Long": "Lang",
+            "Variable profile type does not match for profile": "Der Profiltyp der Variablen stimmt nicht mit dem Profil überein",
+            "Battery": "Batterie",
+            "Device": "Gerät",
+            "Devices": "Geräte"
+        }
+    }
+}

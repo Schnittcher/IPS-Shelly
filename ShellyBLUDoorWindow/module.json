@@ -1,0 +1,17 @@
+{
+    "id": "{3551089F-4CDF-4440-B7FA-3ACB88CAD23F}",
+    "name": "ShellyBLUDoorWindow",
+    "type": 3,
+    "vendor": "Shelly",
+    "aliases": [
+        "Shelly BLU Door/Window"
+    ],
+    "parentRequirements": [
+        "{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}"
+    ],
+    "childRequirements": [],
+    "implemented": [
+        "{7F7632D9-FA40-4F38-8DEA-C83CD4325A32}"
+    ],
+    "prefix": "SHELLY"
+}
