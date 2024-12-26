@@ -182,20 +182,24 @@ class ShellyPlus1 extends ShellyModule
                 }
                 if (fnmatch('*/status/input:100', $Buffer['Topic'])) {
                     $input = $Payload['params']['input:100'];
-                    if (array_key_exists('state', $input)) {
-                        $this->SetValue('Input100State', $input['state']);
-                    }
-                    if (array_key_exists('percent', $input)) {
-                        $this->SetValue('Input100Percent', $input['percent']);
+                    if (array_key_exists('input:100', $Payload)) {
+                        if (array_key_exists('state', $Payload['input:100'])) {
+                            $this->SetValue('Input100State', $Payload['input:100']['state']);
+                        }
+                        if (array_key_exists('percent', $Payload['input:100'])) {
+                            $this->SetValue('Input100Percent', $Payload['input:100']['percent']);
+                        }
                     }
                 }
                 if (fnmatch('*/status/input:101', $Buffer['Topic'])) {
                     $input = $Payload['params']['input:101'];
-                    if (array_key_exists('state', $input)) {
-                        $this->SetValue('Input101State', $input['state']);
-                    }
-                    if (array_key_exists('percent', $input)) {
-                        $this->SetValue('Input101Percent', $input['percent']);
+                    if (array_key_exists('input:101', $Payload)) {
+                        if (array_key_exists('state', $Payload['input:101'])) {
+                            $this->SetValue('Input101State', $Payload['input:101']['state']);
+                        }
+                        if (array_key_exists('percent', $Payload['input:101'])) {
+                            $this->SetValue('Input101Percent', $Payload['input:101']['percent']);
+                        }
                     }
                 }
                 //Temperatur ist immer vorhanden und sollte immer der selbe Wert sein.
