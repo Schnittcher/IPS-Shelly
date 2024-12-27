@@ -181,7 +181,6 @@ class ShellyPlus1 extends ShellyModule
                     }
                 }
                 if (fnmatch('*/status/input:100', $Buffer['Topic'])) {
-                    $input = $Payload['params']['input:100'];
                     if (array_key_exists('input:100', $Payload)) {
                         if (array_key_exists('state', $Payload['input:100'])) {
                             $this->SetValue('Input100State', $Payload['input:100']['state']);
@@ -192,7 +191,6 @@ class ShellyPlus1 extends ShellyModule
                     }
                 }
                 if (fnmatch('*/status/input:101', $Buffer['Topic'])) {
-                    $input = $Payload['params']['input:101'];
                     if (array_key_exists('input:101', $Payload)) {
                         if (array_key_exists('state', $Payload['input:101'])) {
                             $this->SetValue('Input101State', $Payload['input:101']['state']);
