@@ -1,9 +1,9 @@
-# ShellyPlusi4
-   This module enables the integration of a Shelly Plus i4 in IP-Symcon.\
+# Gen3Shellyi4
+   This module enables the integration of a Shelly Gen3 I4/I4DC in IP-Symcon.\
    The channels can be switched and the sensor data is visualized in IP-Symcon.   
     
 ## Table of Contents
-- [ShellyPlusi4](#shellyplusi4)
+- [Gen3Shellyi4](#gen3shellyi4)
   - [Table of Contents](#table-of-contents)
   - [1. Configuration](#1-configuration)
   - [2. Functions](#2-functions)
@@ -12,7 +12,7 @@
    
    Field        | Description
    ------------ | -------------
-   MQTT Topic   | The Topic (shellyplusi4-deviceid) of the Shelly Plus i4 is entered here.
+   MQTT Topic   | The Topic (shellyi4g3-deviceid) of the Shelly Gen3 I4/I4DC is entered here.
    
 ## 2. Functions
 

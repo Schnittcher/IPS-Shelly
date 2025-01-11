@@ -9,7 +9,7 @@ class ShellyConfigurator extends IPSModule
 {
     use MQTTHelper;
     use DebugHelper;
-    //{65462305-608D-4E48-B532-E3D389F7DF00}
+
     private static $DeviceTypes = [
         'SHSW-1' => [
             'Name'  => 'Shelly 1',
@@ -223,6 +223,10 @@ class ShellyConfigurator extends IPSModule
             'Name'  => 'Shelly 1 Mini Gen3',
             'GUID'  => '{D6B33C50-1855-F2B2-EC6A-0C14F4259952}'
         ],
+        'S3SN-0024X' => [
+            'Name'  => 'Shelly I4/I4DC Mini Gen3',
+            'GUID'  => '{5D72295B-D390-F5AA-1368-C5C82846158F}'
+        ],
         'S3SW-001P8EU' => [
             'Name'  => 'Shelly 1PM Mini Gen3',
             'GUID'  => '{D6B33C50-1855-F2B2-EC6A-0C14F4259952}'
@@ -334,7 +338,11 @@ class ShellyConfigurator extends IPSModule
         'SNSN-0043X' => [
             'Name'  => 'Shelly Plus Uni',
             'GUID'  => '{6997986C-A636-A888-EEFB-7886787DEBF8}'
-        ]
+        ],
+        'SAWD1' => [
+            'Name'  => 'Shelly Wall Display',
+            'GUID'  => '{BF2F6A56-076E-73DE-7665-415C4689CE67}'
+        ],
     ];
 
     public function Create()
@@ -572,8 +580,10 @@ class ShellyConfigurator extends IPSModule
                     case 'S3PM-001PCEU16':
                     case 'S3SW-002P16EU':
                     case 'S3PL-00112EU':
+                    case 'S3SN-0024X':
                     case 'SNSN-0043X':
                     case 'SPSH-002PE16EU':
+                    case 'SAWD1':
                         $AddValue['create'] = [
                             'name'          => $Shelly['ID'],
                             'moduleID'      => $moduleID,

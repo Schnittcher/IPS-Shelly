@@ -1,0 +1,18 @@
+{
+    "id": "{5D72295B-D390-F5AA-1368-C5C82846158F}",
+    "name": "Gen3Shellyi4",
+    "type": 3,
+    "vendor": "Shelly",
+    "aliases": [
+        "Shelly I4 Gen 3",
+        "Shelly I4DC Gen 3"
+    ],
+    "parentRequirements": [
+        "{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}"
+    ],
+    "childRequirements": [],
+    "implemented": [
+        "{7F7632D9-FA40-4F38-8DEA-C83CD4325A32}"
+    ],
+    "prefix": "SHELLY"
+}
