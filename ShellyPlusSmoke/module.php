@@ -5,6 +5,8 @@ require_once __DIR__ . '/../libs/ShellyModule.php';
 
 class ShellyPlusSmoke extends ShellyModule
 {
+    use ShellyGen2Plus;
+
     public static $Variables = [
         ['Alarm', 'Alarm', VARIABLETYPE_BOOLEAN, '~Alert', [], '', false, true, false],
         ['Mute', 'Mute', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true, false],

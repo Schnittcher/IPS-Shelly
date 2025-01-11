@@ -5,6 +5,8 @@ require_once __DIR__ . '/../libs/ShellyModule.php';
 
 class Gen3Shelly1Mini extends ShellyModule
 {
+    use ShellyGen2Plus;
+
     public static $Variables = [
         ['State', 'State', VARIABLETYPE_BOOLEAN, '~Switch', ['gen3shelly1mini', 'gen3shelly1pmmini'], '', true, true, false],
         ['Power', 'Power', VARIABLETYPE_FLOAT, '~Watt.3680', ['gen3shelly1pmmini', 'gen3shellypmmini'], '', false, true, false],

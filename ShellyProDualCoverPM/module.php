@@ -5,6 +5,8 @@ require_once __DIR__ . '/../libs/ShellyModule.php';
 
 class ShellyProDualCoverPM extends ShellyModule
 {
+    use ShellyGen2Plus;
+
     public static $Variables = [
         ['State0', 'State 1', VARIABLETYPE_INTEGER, '~ShutterMoveStop', [], '', true, true, false],
         ['RunningState0', 'Running State 1', VARIABLETYPE_STRING, '', [], '', true, true, false],

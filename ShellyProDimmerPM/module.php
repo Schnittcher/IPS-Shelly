@@ -5,6 +5,8 @@ require_once __DIR__ . '/../libs/ShellyModule.php';
 
 class ShellyProDimmerPM extends ShellyModule
 {
+    use ShellyGen2Plus;
+
     public static $Variables = [
         ['State0', 'State 1', VARIABLETYPE_BOOLEAN, '~Switch', ['shellyprodimmer1pm', 'shellyprodimmer2pm'], '', true, true, false],
         ['Brightness0', 'Brightness 1', VARIABLETYPE_INTEGER, '~Intensity.100', ['shellyprodimmer1pm', 'shellyprodimmer2pm'], '', true, true, false],

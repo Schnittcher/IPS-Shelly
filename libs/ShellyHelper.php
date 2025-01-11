@@ -84,3 +84,26 @@ trait Shelly
         return $relay;
     }
 }
+
+trait ShellyGen2Plus
+{
+    public function SetKVS(string $key, string $value)
+    {
+        $Topic = $this->ReadPropertyString('MQTTTopic') . '/rpc';
+        $Payload['id'] = 1;
+        $Payload['src'] = 'user_1';
+        $Payload['method'] = 'KVS.Set';
+        $Payload['params'] = ['key' => $key, 'value' => $value];
+        $this->sendMQTT($Topic, json_encode($Payload));
+    }
+
+    public function DeleteKVS(string $key)
+    {
+        $Topic = $this->ReadPropertyString('MQTTTopic') . '/rpc';
+        $Payload['id'] = 1;
+        $Payload['src'] = 'user_1';
+        $Payload['method'] = 'KVS.Delete';
+        $Payload['params'] = ['key' => $key];
+        $this->sendMQTT($Topic, json_encode($Payload));
+    }
+}

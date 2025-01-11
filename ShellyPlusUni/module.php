@@ -5,6 +5,8 @@ require_once __DIR__ . '/../libs/ShellyModule.php';
 
 class ShellyPlusUni extends ShellyModule
 {
+    use ShellyGen2Plus;
+
     public static $Variables = [
         ['State0', 'State 1', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true, false],
         ['State1', 'State 2', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true, false],

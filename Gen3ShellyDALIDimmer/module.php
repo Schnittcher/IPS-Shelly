@@ -5,6 +5,8 @@ require_once __DIR__ . '/../libs/ShellyModule.php';
 
 class Gen3ShellyDALIDimmer extends ShellyModule
 {
+    use ShellyGen2Plus;
+
     public static $Variables = [
         ['State', 'State', VARIABLETYPE_BOOLEAN, '~Switch', [], '', true, true, false],
         ['Brightness', 'Brightness', VARIABLETYPE_INTEGER, '~Intensity.100', [], '', true, true, false],

@@ -6,6 +6,7 @@ require_once __DIR__ . '/../libs/vendor/SymconModulHelper/ColorHelper.php';
 
 class ShellyRGBW2 extends ShellyModule
 {
+    use ShellyGen2Plus;
     use ColorHelper;
 
     public static $Variables = [
