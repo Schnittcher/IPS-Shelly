@@ -211,6 +211,10 @@ class ShellyConfigurator extends IPSModule
             'Name'  => 'Shelly Dimmer 0/1-10V PM Gen3',
             'GUID'  => '{BEB3F904-87CE-3FC0-5FA4-36B44AADA172}'
         ],
+        'S3DM-0A1WW' => [
+            'Name'  => 'Shelly DALI Dimmer Gen3',
+            'GUID'  => '{E6FE3833-2703-54F3-16C8-8747058AF9FE}'
+        ],
         'S3SW-001X16EU' => [
             'Name'  => 'Shelly 1 Gen3',
             'GUID'  => '{04EB19A3-7C30-9A64-F297-3BBB7EA6906A}'
@@ -576,6 +580,7 @@ class ShellyConfigurator extends IPSModule
                     case 'SPSW-104PE16EU':
                     case 'SNDM-00100WW':
                     case 'S3DM-0010WW':
+                    case 'S3DM-0A1WW':
                     case 'SNGW-BT01':
                     case 'S3PM-001PCEU16':
                     case 'S3SW-002P16EU':
