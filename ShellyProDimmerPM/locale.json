@@ -24,7 +24,8 @@
             "Input 2": " Eingang 2",
             "Event": "Ereignis",
             "Event Component": "Ereignis Komponente",
-            "Zeroing by unreach": "Nullung durch Unerreichbarkeit"
+            "Zeroing by unreach": "Nullung durch Unerreichbarkeit",
+            "Please select device": "Bitte wählen Sie das Gerät aus"
         }
     }
 }
