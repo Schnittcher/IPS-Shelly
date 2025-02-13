@@ -87,6 +87,10 @@ class ShellyConfigurator extends IPSModule
             'Name'  => 'Shelly Dimmer 2',
             'GUID'  => '{69B501C7-DCE8-4A4A-910C-D3954473E654}'
         ],
+        'S3DM-0A101WWL' => [
+            'Name'  => 'Shelly Dimmer Gen 3',
+            'GUID'  => '{D857921E-7ED6-0DEF-5343-A2EB01F88E43}'
+        ],       
         'SHBDUO-1' => [
             'Name'  => 'Shelly Duo',
             'GUID'  => '{6FEE58E6-082D-6934-F49E-EC6642E39992}'
@@ -551,6 +555,7 @@ class ShellyConfigurator extends IPSModule
                     case 'SHPLG-1':
                     case 'SHDM-1':
                     case 'SHDM-2':
+                    case 'S3DM-0A101WWL':
                     case 'SHVIN-1':
                     case 'SHBLB-1':
                     case 'SHHT-1':
