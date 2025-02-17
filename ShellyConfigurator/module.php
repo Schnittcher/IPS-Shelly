@@ -90,7 +90,7 @@ class ShellyConfigurator extends IPSModule
         'S3DM-0A101WWL' => [
             'Name'  => 'Shelly Dimmer Gen 3',
             'GUID'  => '{D857921E-7ED6-0DEF-5343-A2EB01F88E43}'
-        ],       
+        ],
         'SHBDUO-1' => [
             'Name'  => 'Shelly Duo',
             'GUID'  => '{6FEE58E6-082D-6934-F49E-EC6642E39992}'
@@ -914,9 +914,6 @@ class ShellyConfigurator extends IPSModule
 
         foreach ($InstanceIDs as $IDs) {
             foreach ($IDs as $id) {
-                IPS_LogMessage('Test',$ShellyID);
-                IPS_LogMessage('Test ID',$id);
-                IPS_LogMessage('Test MQTTTopic',IPS_GetProperty($id, 'MQTTTopic'));
                 if (strtolower(IPS_GetProperty($id, 'MQTTTopic')) == strtolower($ShellyID)) {
                     if (IPS_GetInstance($id)['ConnectionID'] === IPS_GetInstance($this->InstanceID)['ConnectionID']) {
                         return $id;
