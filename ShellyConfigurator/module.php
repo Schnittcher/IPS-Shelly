@@ -916,6 +916,7 @@ class ShellyConfigurator extends IPSModule
             foreach ($IDs as $id) {
                 IPS_LogMessage('Test',$ShellyID);
                 IPS_LogMessage('Test ID',$id);
+                IPS_LogMessage('Test MQTTTopic',IPS_GetProperty($id, 'MQTTTopic'));
                 if (strtolower(IPS_GetProperty($id, 'MQTTTopic')) == strtolower($ShellyID)) {
                     if (IPS_GetInstance($id)['ConnectionID'] === IPS_GetInstance($this->InstanceID)['ConnectionID']) {
                         return $id;
