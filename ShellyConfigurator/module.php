@@ -351,6 +351,11 @@ class ShellyConfigurator extends IPSModule
             'Name'  => 'Shelly Wall Display',
             'GUID'  => '{BF2F6A56-076E-73DE-7665-415C4689CE67}'
         ],
+        'S3GW-1DBT001' => [
+            'Name'  => 'Shelly BLU Gateway Gen3',
+            'GUID'  => '{BF2F6A56-076E-73DE-7665-415C4689CE67}'
+        ],
+
     ];
 
     public function Create()
@@ -594,6 +599,7 @@ class ShellyConfigurator extends IPSModule
                     case 'SNSN-0043X':
                     case 'SPSH-002PE16EU':
                     case 'SAWD1':
+                    case 'S3GW-1DBT001':
                         $AddValue['create'] = [
                             'name'          => $Shelly['ID'],
                             'moduleID'      => $moduleID,
