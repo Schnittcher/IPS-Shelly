@@ -333,7 +333,7 @@ class ShellyConfigurator extends IPSModule
         ],
         'SNGW-BT01' => [
             'Name'  => 'Shelly Bluetooth Gateway',
-            'GUID'  => '{5B4C60D3-A1AB-CA1D-323C-A0CDCEB1D990}'
+            'GUID'  => '{2E25C0EA-9F71-3988-9201-736747B1DC2E}'
         ],
         'SPDM-001PE01EU' => [
             'Name'  => 'Shelly Pro Dimmer 1PM',
@@ -917,7 +917,6 @@ class ShellyConfigurator extends IPSModule
                 $InstanceIDs[] = IPS_GetInstanceListByModuleID($value['GUID']);
             }
         }
-
         foreach ($InstanceIDs as $IDs) {
             foreach ($IDs as $id) {
                 if (strtolower(IPS_GetProperty($id, 'MQTTTopic')) == strtolower($ShellyID)) {
