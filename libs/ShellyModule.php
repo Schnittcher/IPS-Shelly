@@ -158,6 +158,14 @@ class ShellyModule extends IPSModule
         }
     }
 
+    protected function GetValue($Ident)
+    {
+        if (@$this->GetIDForIdent($Ident)) {
+            $this->SendDebug('GetValue :: ', $Ident, 0);
+            return parent::GetValue($Ident);
+        }
+    }
+
     protected function zeroingValues()
     {
         $Variables = json_decode($this->ReadPropertyString('Variables'), true);
