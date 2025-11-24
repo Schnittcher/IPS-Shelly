@@ -73,7 +73,7 @@ class ShellyModule extends IPSModule
 
         //Setze Filter für ReceiveData
         $MQTTTopic = $this->ReadPropertyString('MQTTTopic');
-        $this->SetReceiveDataFilter('.*' . $MQTTTopic . '.*');
+        $this->SetReceiveDataFilter('.*' . $MQTTTopic . '/.*');
 
         $NewRows = static::$Variables;
         $NewPos = 0;
