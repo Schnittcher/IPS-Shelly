@@ -96,13 +96,9 @@ class Shelly3EM extends ShellyModule
                 }
                 if (fnmatch('*emeter/0/total', $Buffer->Topic)) {
                     $this->SetValue('Shelly_Total0', floatval($Buffer->Payload) / 1000);
-                    $Total = $this->GetValue('Shelly_Total') + (floatval($Buffer->Payload) / 1000);
-                    $this->SetValue('Shelly_Total', $Total);
                 }
                 if (fnmatch('*emeter/0/total_returned', $Buffer->Topic)) {
                     $this->SetValue('Shelly_TotalReturned0', floatval($Buffer->Payload) / 1000);
-                    $TotalReturned = $this->GetValue('Shelly_TotalReturned') + (floatval($Buffer->Payload) / 1000);
-                    $this->SetValue('Shelly_TotalReturned', $TotalReturned);
                 }
 
                 //Phase B
@@ -120,13 +116,9 @@ class Shelly3EM extends ShellyModule
                 }
                 if (fnmatch('*emeter/1/total', $Buffer->Topic)) {
                     $this->SetValue('Shelly_Total1', floatval($Buffer->Payload) / 1000);
-                    $Total = $this->GetValue('Shelly_Total') + (floatval($Buffer->Payload) / 1000);
-                    $this->SetValue('Shelly_Total', $Total);
                 }
                 if (fnmatch('*emeter/1/total_returned', $Buffer->Topic)) {
                     $this->SetValue('Shelly_TotalReturned1', floatval($Buffer->Payload) / 1000);
-                    $TotalReturned = $this->GetValue('Shelly_TotalReturned') + (floatval($Buffer->Payload) / 1000);
-                    $this->SetValue('Shelly_TotalReturned', $TotalReturned);
                 }
 
                 //Phase C
@@ -142,14 +134,18 @@ class Shelly3EM extends ShellyModule
                 if (fnmatch('*emeter/2/voltage', $Buffer->Topic)) {
                     $this->SetValue('Shelly_Voltage2', floatval($Buffer->Payload));
                 }
+
                 if (fnmatch('*emeter/2/total', $Buffer->Topic)) {
                     $this->SetValue('Shelly_Total2', floatval($Buffer->Payload) / 1000);
-                    $Total = $this->GetValue('Shelly_Total') + (floatval($Buffer->Payload) / 1000);
+
+                    //Total immer addieren wenn Phase C gesendet wird
+                    $Total = $this->GetValue('Shelly_Total0') + $this->GetValue('Shelly_Total1') + $this->GetValue('Shelly_Total2');
                     $this->SetValue('Shelly_Total', $Total);
                 }
                 if (fnmatch('*emeter/2/total_returned', $Buffer->Topic)) {
                     $this->SetValue('Shelly_TotalReturned2', floatval($Buffer->Payload) / 1000);
-                    $TotalReturned = $this->GetValue('Shelly_TotalReturned') + (floatval($Buffer->Payload) / 1000);
+                    //Total immer addieren wenn Phase C gesendet wird
+                    $TotalReturned = $this->GetValue('Shelly_TotalReturned0') + $this->GetValue('Shelly_TotalReturned1') + $this->GetValue('Shelly_TotalReturned2');
                     $this->SetValue('Shelly_TotalReturned', $TotalReturned);
                 }
 
