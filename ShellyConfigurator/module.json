@@ -16,5 +16,6 @@
         "{7F7632D9-FA40-4F38-8DEA-C83CD4325A32}",
         "{DBDA9DF7-5D04-F49D-370A-2B9153D00D9B}"
     ],
-    "prefix": "SHELLY"
+    "prefix": "SHELLY",
+    "url": "https://deinsmarthome.info/doku/shelly/shellyconfigurator/"
 }

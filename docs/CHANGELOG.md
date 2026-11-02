@@ -1,15 +1,6 @@
 # Changelog
 
-<!--
-Neueste Version oben, direkt unter dieser Zeile. Format (Regeln: Symcon-Regelwerk, standards/CHANGELOG.md):
-
-## TT.MM.JJJJ - Version x.y.z
-
-### Neu
-- Was neu ist, ein Satz je Punkt.
+## 02.11.2026 - Version 6.2.2
 
 ### Fixes
-- Was behoben wurde, ein Satz je Punkt.
-
-Aktuelle Version laut library.json: 6.2.2. Diesen Kommentar beim ersten Eintrag entfernen.
--->
+- Der Dokumentationslink der Instanzen führt jetzt zur Dokumentation auf deinsmarthome.info.
