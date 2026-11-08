@@ -154,7 +154,7 @@ class Gen3ShellyPlugSMTR extends ShellyModule
         $this->setUiCOnfig($config);
     }
 
-    public function SetLEDPowerConsumption($brightness)
+    public function SetLEDPowerConsumption(int $brightness)
     {
         $config = [
             'config' => [

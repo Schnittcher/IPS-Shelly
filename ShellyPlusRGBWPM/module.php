@@ -320,7 +320,7 @@ class ShellyPlusRGBWPM extends ShellyModule
         $this->sendMQTT($Topic, json_encode($Payload));
     }
 
-    public function SetRGBState(int $id, bool $state, int $transition = 0, $toggle_after = 0)
+    public function SetRGBState(int $id, bool $state, int $transition = 0, int $toggle_after = 0)
     {
         $Topic = $this->ReadPropertyString('MQTTTopic') . '/rpc';
 
@@ -338,7 +338,7 @@ class ShellyPlusRGBWPM extends ShellyModule
         $this->sendMQTT($Topic, json_encode($Payload));
     }
 
-    public function SetRGBBrightness(int $id, int $brightness, int $transition = 0, $toggle_after = 0)
+    public function SetRGBBrightness(int $id, int $brightness, int $transition = 0, int $toggle_after = 0)
     {
         $Topic = $this->ReadPropertyString('MQTTTopic') . '/rpc';
 
@@ -356,7 +356,7 @@ class ShellyPlusRGBWPM extends ShellyModule
         $this->sendMQTT($Topic, json_encode($Payload));
     }
 
-    public function SetRGB(int $id, int $brightness, $rgb, int $transition = 0, $toggle_after = 0)
+    public function SetRGB(int $id, int $brightness, $rgb, int $transition = 0, int $toggle_after = 0)
     {
         $Topic = $this->ReadPropertyString('MQTTTopic') . '/rpc';
 
@@ -374,7 +374,7 @@ class ShellyPlusRGBWPM extends ShellyModule
         $this->sendMQTT($Topic, json_encode($Payload));
     }
 
-    public function SetRGBWState(int $id, bool $state, int $transition = 0, $toggle_after = 0)
+    public function SetRGBWState(int $id, bool $state, int $transition = 0, int $toggle_after = 0)
     {
         $Topic = $this->ReadPropertyString('MQTTTopic') . '/rpc';
 
@@ -392,7 +392,7 @@ class ShellyPlusRGBWPM extends ShellyModule
         $this->sendMQTT($Topic, json_encode($Payload));
     }
 
-    public function SetRGBWBrightness(int $id, int $brightness, int $transition = 0, $toggle_after = 0)
+    public function SetRGBWBrightness(int $id, int $brightness, int $transition = 0, int $toggle_after = 0)
     {
         $Topic = $this->ReadPropertyString('MQTTTopic') . '/rpc';
 
@@ -410,7 +410,7 @@ class ShellyPlusRGBWPM extends ShellyModule
         $this->sendMQTT($Topic, json_encode($Payload));
     }
 
-    public function SetRGBWWhite(int $id, int $white, int $transition = 0, $toggle_after = 0)
+    public function SetRGBWWhite(int $id, int $white, int $transition = 0, int $toggle_after = 0)
     {
         $Topic = $this->ReadPropertyString('MQTTTopic') . '/rpc';
 
@@ -428,7 +428,7 @@ class ShellyPlusRGBWPM extends ShellyModule
         $this->sendMQTT($Topic, json_encode($Payload));
     }
 
-    public function SetRGBW(int $id, int $brightness, $rgb, int $white, int $transition = 0, $toggle_after = 0)
+    public function SetRGBW(int $id, int $brightness, $rgb, int $white, int $transition = 0, int $toggle_after = 0)
     {
         $Topic = $this->ReadPropertyString('MQTTTopic') . '/rpc';
 

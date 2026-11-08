@@ -57,36 +57,36 @@ SHELLY_SetLightBrightness(int $InstanzID, int $id, int $brightness, int $transit
 Mit dieser Funktion kann die Helligkeit der 4 Licht Kanäle gesetzt werden, wenn das Gerät auf "Lights x 4" eingestellt ist.
 
 ```php
-SHELLY_SetRGBState(int $InstanzID, int $id, bool $state, int $transition =0, $toggle_after = 0);
+SHELLY_SetRGBState(int $InstanzID, int $id, bool $state, int $transition =0, int $toggle_after = 0);
 ```
 Mit dieser Funktion kann der Status gesetzt werden, wenn das Gerät auf "RGB" eingestellt ist.
 
 ```php
-SHELLY_SetRGBBrightness(int $InstanzID, int $id, bool $brightness, int $transition =0, $toggle_after = 0);
+SHELLY_SetRGBBrightness(int $InstanzID, int $id, bool $brightness, int $transition =0, int $toggle_after = 0);
 ```
 Mit dieser Funktion kann die Helligkeit gesetzt werden, wenn das Gerät auf "RGB" eingestellt ist.
 
 ```php
-SHELLY_SetRGB(int $InstanzID, int $id, int $brightness, $rgb, int $transition =0, $toggle_after = 0);
+SHELLY_SetRGB(int $InstanzID, int $id, int $brightness, $rgb, int $transition =0, int $toggle_after = 0);
 ```
 Mit dieser Funktion kann die Helligkeit und die Farbe gesetzt werden, wenn das Gerät auf "RGB" eingestellt ist.
 
 ```php
-SHELLY_SetRGBW(SetRGBWState(int $InstanzID, int $id, bool $state, int $transition =0, $toggle_after = 0));
+SHELLY_SetRGBW(SetRGBWState(int $InstanzID, int $id, bool $state, int $transition =0, int $toggle_after = 0));
 ```
 Mit dieser Funktion kann der Status gesetzt werden, wenn das Gerät auf "RGBW" eingestellt ist.
 
 ```php
-SHELLY_SetRGBWBrightness(int $InstanzID, int $id, bool $brightness, int $transition =0, $toggle_after = 0);
+SHELLY_SetRGBWBrightness(int $InstanzID, int $id, bool $brightness, int $transition =0, int $toggle_after = 0);
 ```
 Mit dieser Funktion kann die Helligkeit gesetzt werden, wenn das Gerät auf "RGBW" eingestellt ist.
 
 ```php
-SHELLY_SetRGBWWhite(int $InstanzID, int $id, int $white, int $transition =0, $toggle_after = 0);
+SHELLY_SetRGBWWhite(int $InstanzID, int $id, int $white, int $transition =0, int $toggle_after = 0);
 ```
 Mit dieser Funktion kann der Weiß Wert gesetzt werden, wenn das Gerät auf "RGBW" eingestellt ist.
 
 ```php
-SHELLY_SetRGBW(int $InstanzID, int $id, int $brightness, $rgb, int $white, int $transition =0, $toggle_after = 0)
+SHELLY_SetRGBW(int $InstanzID, int $id, int $brightness, $rgb, int $white, int $transition =0, int $toggle_after = 0)
 ```
 Mit dieser Funktion kann die Helligkeit, die Farbe und der Weiß Wert gesetzt werden, wenn das Gerät auf "RGBW" eingestellt ist.
