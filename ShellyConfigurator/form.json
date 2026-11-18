@@ -1,6 +1,16 @@
 {
     "actions": [
         {
+            "type": "Label",
+            "caption": "Bitte das neue Shelly Gen2+ Modul verwenden! Dieses Modul soll nur noch für Gen1 Geräte genutzt werden.",
+            "bold": true
+        },
+        {
+            "type": "Label",
+            "caption": "Weitere Infos hier: https://deinsmarthome.info/module/shellyv2/",
+            "bold": true
+        },
+        {
             "type": "Configurator",
             "name": "Configurator",
             "caption": "Shelly Configurator",

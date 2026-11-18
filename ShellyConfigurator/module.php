@@ -443,9 +443,9 @@ class ShellyConfigurator extends IPSModule
         $Values = [];
 
         if (count($Shellies) == 0) {
-            $Form['actions'][1]['visible'] = true;
+            $Form['actions'][3]['visible'] = true;
         } else {
-            $Form['actions'][1]['visible'] = false;
+            $Form['actions'][3]['visible'] = false;
         }
 
         if (count($Shellies) > 0) {
@@ -886,7 +886,7 @@ class ShellyConfigurator extends IPSModule
 
                 $Values[] = $AddValue;
             }
-            $Form['actions'][0]['values'] = $Values;
+            $Form['actions'][2]['values'] = $Values;
         }
         return json_encode($Form);
     }
